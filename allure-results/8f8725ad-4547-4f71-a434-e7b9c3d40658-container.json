@@ -1,1 +1,0 @@
-{"uuid":"8f8725ad-4547-4f71-a434-e7b9c3d40658","name":"Effort NXT Automation","children":["ec2de9c4-8992-4615-bc32-8345c01da3dc"],"befores":[{"name":"initTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1665492193233,"stop":1665492193241}],"afters":[],"start":1665492193183,"stop":1665492248951}
