@@ -1,3 +1,5 @@
 allure-results/
 target/
 ErrorScreenshots/
+test-output/
+.settings/
