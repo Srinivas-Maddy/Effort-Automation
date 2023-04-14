@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Effort_NXT_Automation" class="navigator-link">
+              <span class="suite-name border-passed">Effort NXT Automation</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Effort_NXT_Automation" class="navigator-link ">
+                    <span>C:\SeleniumWorkSpace\EFFORT_WEB_LIVE\TestNG.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Effort_NXT_Automation" class="navigator-link ">
+                    <span class="test-stats">4 tests</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Effort_NXT_Automation" class="navigator-link ">
+                    <span>1 group</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Effort_NXT_Automation" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Effort_NXT_Automation" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Effort_NXT_Automation" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Effort_NXT_Automation" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">12 methods,   12 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Effort_NXT_Automation" class="hide-methods passed suite-Effort_NXT_Automation"> (hide)</a> <!-- hide-methods passed suite-Effort_NXT_Automation -->
+                      <a href="#" panel-name="suite-Effort_NXT_Automation" class="show-methods passed suite-Effort_NXT_Automation"> (show)</a> <!-- show-methods passed suite-Effort_NXT_Automation -->
+                    </span>
+                    <div class="method-list-content passed suite-Effort_NXT_Automation">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.employees.EmployeeCreationTest" class="method navigator-link" hash-for-method="AddEmployee">AddEmployee</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.works.AddWorkProcessTest" class="method navigator-link" hash-for-method="AddWork">AddWork</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.test.forms.FormsTest" class="method navigator-link" hash-for-method="formSpecCreation">formSpecCreation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.test.forms.FormsTest" class="method navigator-link" hash-for-method="formSpecModification">formSpecModification</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.test.forms.FormsTest" class="method navigator-link" hash-for-method="formSpecValidation">formSpecValidation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.test.forms.FormsTest" class="method navigator-link" hash-for-method="formSpecWithDrawn">formSpecWithDrawn</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.LoginTest" class="method navigator-link" hash-for-method="logIn">logIn</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.works.WorkProcessCreationTest" class="method navigator-link" hash-for-method="modificationWorkSpec">modificationWorkSpec</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.test.forms.FormSubmissionTest" class="method navigator-link" hash-for-method="submitForm">submitForm</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.works.WorkProcessCreationTest" class="method navigator-link" hash-for-method="validationWorkSpec">validationWorkSpec</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.works.WorkProcessCreationTest" class="method navigator-link" hash-for-method="withDrawWorkSpec">withDrawWorkSpec</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Effort_NXT_Automation" title="com.effort.nxt.test.works.WorkProcessCreationTest" class="method navigator-link" hash-for-method="workSpecCreation">workSpecCreation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Effort_NXT_Automation -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Effort_NXT_Automation" class="panel Effort_NXT_Automation">
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.nxt.test.employees.EmployeeCreationTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AddEmployee">
+                  </a> <!-- AddEmployee -->
+                  <span class="method-name">AddEmployee</span>
+                  <em>
+(Go to Employees and enter data)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.test.forms.FormSubmissionTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="submitForm">
+                  </a> <!-- submitForm -->
+                  <span class="method-name">submitForm</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.test.forms.FormsTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="formSpecCreation">
+                  </a> <!-- formSpecCreation -->
+                  <span class="method-name">formSpecCreation</span>
+                  <em>
+(Creating the Form spec in configurator)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="formSpecModification">
+                  </a> <!-- formSpecModification -->
+                  <span class="method-name">formSpecModification</span>
+                  <em>
+(Form Spec Modification)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="formSpecValidation">
+                  </a> <!-- formSpecValidation -->
+                  <span class="method-name">formSpecValidation</span>
+                  <em>
+(Form Spec Validation)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="formSpecWithDrawn">
+                  </a> <!-- formSpecWithDrawn -->
+                  <span class="method-name">formSpecWithDrawn</span>
+                  <em>
+(Withdrawn the form spec in configurator)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.nxt.test.works.WorkProcessCreationTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="modificationWorkSpec">
+                  </a> <!-- modificationWorkSpec -->
+                  <span class="method-name">modificationWorkSpec</span>
+                  <em>
+(Modifying the Work Spec)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="validationWorkSpec">
+                  </a> <!-- validationWorkSpec -->
+                  <span class="method-name">validationWorkSpec</span>
+                  <em>
+(Validating Created Process Spec)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="withDrawWorkSpec">
+                  </a> <!-- withDrawWorkSpec -->
+                  <span class="method-name">withDrawWorkSpec</span>
+                  <em>
+(Withdraw Work Spec)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="workSpecCreation">
+                  </a> <!-- workSpecCreation -->
+                  <span class="method-name">workSpecCreation</span>
+                  <em>
+(Creating the work spec in configurator)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.nxt.test.works.AddWorkProcessTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AddWork">
+                  </a> <!-- AddWork -->
+                  <span class="method-name">AddWork</span>
+                  <em>
+(Add the work in the web app)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+          <div class="suite-Effort_NXT_Automation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.effort.nxt.test.LoginTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="logIn">
+                  </a> <!-- logIn -->
+                  <span class="method-name">logIn</span>
+                  <em>
+( Test Case #1 , LogIn)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Effort_NXT_Automation-class-passed -->
+        </div> <!-- panel Effort_NXT_Automation -->
+        <div panel-name="test-xml-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\SeleniumWorkSpace\EFFORT_WEB_LIVE\TestNG.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Effort NXT Automation&quot;&gt;
+  &lt;parameter name=&quot;siteURL&quot; value=&quot;https://secure.spoors.io/effortx/login&quot;/&gt;
+  &lt;parameter name=&quot;browser&quot; value=&quot;Chrome&quot;/&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;com.effort.nxt.util.TestListener&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Login&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.effort.nxt.test.LoginTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Login --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;employee&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.effort.nxt.test.employees.EmployeeCreationTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- employee --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;works&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.effort.nxt.test.works.WorkProcessCreationTest&quot;/&gt;
+      &lt;class name=&quot;com.effort.nxt.test.works.AddWorkProcessTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- works --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;forms&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.effort.test.forms.FormsTest&quot;/&gt;
+      &lt;class name=&quot;com.effort.test.forms.FormSubmissionTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- forms --&gt;
+&lt;/suite&gt; &lt;!-- Effort NXT Automation --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Effort NXT Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Login (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">employee (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">works (2 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">forms (2 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Effort NXT Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">sanity</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">AddEmployee</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">AddWork</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">formSpecCreation</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">formSpecModification</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">formSpecValidation</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">formSpecWithDrawn</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">logIn</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">modificationWorkSpec</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">validationWorkSpec</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">withDrawWorkSpec</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">workSpecCreation</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Effort NXT Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Effort_NXT_Automation');
+function tableData_Effort_NXT_Automation() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(12);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'formSpecCreation')
+data.setCell(0, 2, 'com.effort.test.forms.FormsTest')
+data.setCell(0, 3, 107109);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'workSpecCreation')
+data.setCell(1, 2, 'com.effort.nxt.test.works.WorkProcessCreationTest')
+data.setCell(1, 3, 62018);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'submitForm')
+data.setCell(2, 2, 'com.effort.test.forms.FormSubmissionTest')
+data.setCell(2, 3, 50408);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'AddEmployee')
+data.setCell(3, 2, 'com.effort.nxt.test.employees.EmployeeCreationTest')
+data.setCell(3, 3, 25914);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'formSpecModification')
+data.setCell(4, 2, 'com.effort.test.forms.FormsTest')
+data.setCell(4, 3, 11859);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'logIn')
+data.setCell(5, 2, 'com.effort.nxt.test.LoginTest')
+data.setCell(5, 3, 10237);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'modificationWorkSpec')
+data.setCell(6, 2, 'com.effort.nxt.test.works.WorkProcessCreationTest')
+data.setCell(6, 3, 8196);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'formSpecWithDrawn')
+data.setCell(7, 2, 'com.effort.test.forms.FormsTest')
+data.setCell(7, 3, 5803);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'formSpecValidation')
+data.setCell(8, 2, 'com.effort.test.forms.FormsTest')
+data.setCell(8, 3, 3216);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'withDrawWorkSpec')
+data.setCell(9, 2, 'com.effort.nxt.test.works.WorkProcessCreationTest')
+data.setCell(9, 3, 1904);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'AddWork')
+data.setCell(10, 2, 'com.effort.nxt.test.works.AddWorkProcessTest')
+data.setCell(10, 3, 1149);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'validationWorkSpec')
+data.setCell(11, 2, 'com.effort.nxt.test.works.WorkProcessCreationTest')
+data.setCell(11, 3, 68);
+window.suiteTableData['Effort_NXT_Automation']= { tableData: data, tableDiv: 'times-div-Effort_NXT_Automation'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
+              <div id="times-div-Effort_NXT_Automation">
+              </div> <!-- times-div-Effort_NXT_Automation -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Effort NXT Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">4 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.effort.test.forms.FormSubmissionTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initTestData</span>
+                <br/>
+                <span class="ignored-method-name">quitAllDrivers</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.effort.nxt.test.works.AddWorkProcessTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initTestData</span>
+                <br/>
+                <span class="ignored-method-name">quitAllDrivers</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Effort_NXT_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.test.forms.FormsTest</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">initTestData</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.nxt.test.LoginTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">35 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">logIn</span>
+                <span class="method-start">6045 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logout</span>
+                <span class="method-start">16423 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.nxt.test.employees.EmployeeCreationTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">18673 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">AddEmployee</span>
+                <span class="method-start">25785 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logOutForm</span>
+                <span class="method-start">51704 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.nxt.test.works.WorkProcessCreationTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">53491 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">workSpecCreation</span>
+                <span class="method-start">57654 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">validationWorkSpec</span>
+                <span class="method-start">119679 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">modificationWorkSpec</span>
+                <span class="method-start">119765 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">withDrawWorkSpec</span>
+                <span class="method-start">127975 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logOutForm</span>
+                <span class="method-start">129882 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.nxt.test.works.AddWorkProcessTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">137169 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">AddWork</span>
+                <span class="method-start">142077 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logOutForm</span>
+                <span class="method-start">143231 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.test.forms.FormsTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">144619 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">formSpecCreation</span>
+                <span class="method-start">149594 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">formSpecValidation</span>
+                <span class="method-start">256742 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">formSpecModification</span>
+                <span class="method-start">259976 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">formSpecWithDrawn</span>
+                <span class="method-start">271838 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logOutForm</span>
+                <span class="method-start">277646 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.test.forms.FormSubmissionTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">initEffortLogin(https://secure.spoors.io/effortx/login, Chrome)</span>
+                <span class="method-start">281155 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">submitForm</span>
+                <span class="method-start">284649 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logOutForm</span>
+                <span class="method-start">335084 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.effort.test.forms.FormsTest</div> <!-- chronological-class-name -->
+              <div class="configuration-suite after">
+                <span class="method-name">quitAllDrivers</span>
+                <span class="method-start">336679 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>

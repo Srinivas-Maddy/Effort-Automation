@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="4" total="16" passed="12" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-04-13T21:38:42 IST" name="Effort NXT Automation" finished-at="2023-04-13T21:44:19 IST" duration-ms="336437">
+    <groups>
+      <group name="sanity">
+        <method signature="LoginTest.logIn()[pri:1, instance:com.effort.nxt.test.LoginTest@710636b0]" name="logIn" class="com.effort.nxt.test.LoginTest"/>
+        <method signature="EmployeeCreationTest.AddEmployee()[pri:1, instance:com.effort.nxt.test.employees.EmployeeCreationTest@1a4927d6]" name="AddEmployee" class="com.effort.nxt.test.employees.EmployeeCreationTest"/>
+        <method signature="AddWorkProcessTest.AddWork()[pri:1, instance:com.effort.nxt.test.works.AddWorkProcessTest@6f43c82]" name="AddWork" class="com.effort.nxt.test.works.AddWorkProcessTest"/>
+        <method signature="WorkProcessCreationTest.modificationWorkSpec()[pri:3, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" name="modificationWorkSpec" class="com.effort.nxt.test.works.WorkProcessCreationTest"/>
+        <method signature="WorkProcessCreationTest.validationWorkSpec()[pri:2, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" name="validationWorkSpec" class="com.effort.nxt.test.works.WorkProcessCreationTest"/>
+        <method signature="WorkProcessCreationTest.withDrawWorkSpec()[pri:4, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" name="withDrawWorkSpec" class="com.effort.nxt.test.works.WorkProcessCreationTest"/>
+        <method signature="WorkProcessCreationTest.workSpecCreation()[pri:1, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" name="workSpecCreation" class="com.effort.nxt.test.works.WorkProcessCreationTest"/>
+        <method signature="FormsTest.formSpecCreation()[pri:1, instance:com.effort.test.forms.FormsTest@2584b82d]" name="formSpecCreation" class="com.effort.test.forms.FormsTest"/>
+        <method signature="FormsTest.formSpecModification()[pri:3, instance:com.effort.test.forms.FormsTest@2584b82d]" name="formSpecModification" class="com.effort.test.forms.FormsTest"/>
+        <method signature="FormsTest.formSpecValidation()[pri:2, instance:com.effort.test.forms.FormsTest@2584b82d]" name="formSpecValidation" class="com.effort.test.forms.FormsTest"/>
+        <method signature="FormsTest.formSpecWithDrawn()[pri:4, instance:com.effort.test.forms.FormsTest@2584b82d]" name="formSpecWithDrawn" class="com.effort.test.forms.FormsTest"/>
+      </group> <!-- sanity -->
+    </groups>
+    <test started-at="2023-04-13T21:38:42 IST" name="Login" finished-at="2023-04-13T21:39:00 IST" duration-ms="17842">
+      <class name="com.effort.nxt.test.LoginTest">
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.nxt.test.LoginTest@710636b0]" started-at="2023-04-13T21:38:42 IST" name="initEffortLogin" finished-at="2023-04-13T21:38:48 IST" duration-ms="5998" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="logIn()[pri:1, instance:com.effort.nxt.test.LoginTest@710636b0]" started-at="2023-04-13T21:38:48 IST" name="logIn" description=" Test Case #1 , LogIn" finished-at="2023-04-13T21:38:58 IST" duration-ms="10237" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logIn -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:com.effort.nxt.test.LoginTest@710636b0]" started-at="2023-04-13T21:38:59 IST" name="logout" finished-at="2023-04-13T21:39:00 IST" duration-ms="1434" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+      </class> <!-- com.effort.nxt.test.LoginTest -->
+    </test> <!-- Login -->
+    <test started-at="2023-04-13T21:39:01 IST" name="employee" finished-at="2023-04-13T21:39:35 IST" duration-ms="34633">
+      <class name="com.effort.nxt.test.employees.EmployeeCreationTest">
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.nxt.test.employees.EmployeeCreationTest@1a4927d6]" started-at="2023-04-13T21:39:01 IST" name="initEffortLogin" finished-at="2023-04-13T21:39:08 IST" duration-ms="7111" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="AddEmployee()[pri:1, instance:com.effort.nxt.test.employees.EmployeeCreationTest@1a4927d6]" started-at="2023-04-13T21:39:08 IST" name="AddEmployee" description="Go to Employees and enter data" finished-at="2023-04-13T21:39:34 IST" duration-ms="25914" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddEmployee -->
+        <test-method is-config="true" signature="logOutForm()[pri:0, instance:com.effort.nxt.test.employees.EmployeeCreationTest@1a4927d6]" started-at="2023-04-13T21:39:34 IST" name="logOutForm" finished-at="2023-04-13T21:39:35 IST" duration-ms="1598" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logOutForm -->
+      </class> <!-- com.effort.nxt.test.employees.EmployeeCreationTest -->
+    </test> <!-- employee -->
+    <test started-at="2023-04-13T21:39:36 IST" name="works" finished-at="2023-04-13T21:41:07 IST" duration-ms="90947">
+      <class name="com.effort.nxt.test.works.WorkProcessCreationTest">
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:39:36 IST" name="initEffortLogin" finished-at="2023-04-13T21:39:40 IST" duration-ms="4162" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="workSpecCreation()[pri:1, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:39:40 IST" name="workSpecCreation" description="Creating the work spec in configurator" finished-at="2023-04-13T21:40:42 IST" duration-ms="62018" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- workSpecCreation -->
+        <test-method signature="validationWorkSpec()[pri:2, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:40:42 IST" name="validationWorkSpec" description="Validating Created Process Spec" finished-at="2023-04-13T21:40:42 IST" duration-ms="68" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validationWorkSpec -->
+        <test-method signature="modificationWorkSpec()[pri:3, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:40:42 IST" name="modificationWorkSpec" description="Modifying the Work Spec" finished-at="2023-04-13T21:40:50 IST" duration-ms="8196" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- modificationWorkSpec -->
+        <test-method signature="withDrawWorkSpec()[pri:4, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:40:50 IST" name="withDrawWorkSpec" description="Withdraw Work Spec" finished-at="2023-04-13T21:40:52 IST" duration-ms="1904" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- withDrawWorkSpec -->
+        <test-method is-config="true" signature="logOutForm()[pri:0, instance:com.effort.nxt.test.works.WorkProcessCreationTest@821330f]" started-at="2023-04-13T21:40:52 IST" name="logOutForm" finished-at="2023-04-13T21:40:59 IST" duration-ms="7286" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logOutForm -->
+      </class> <!-- com.effort.nxt.test.works.WorkProcessCreationTest -->
+      <class name="com.effort.nxt.test.works.AddWorkProcessTest">
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.nxt.test.works.AddWorkProcessTest@6f43c82]" started-at="2023-04-13T21:40:59 IST" name="initEffortLogin" finished-at="2023-04-13T21:41:04 IST" duration-ms="4907" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="AddWork()[pri:1, instance:com.effort.nxt.test.works.AddWorkProcessTest@6f43c82]" started-at="2023-04-13T21:41:04 IST" name="AddWork" description="Add the work in the web app" finished-at="2023-04-13T21:41:05 IST" duration-ms="1149" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddWork -->
+        <test-method is-config="true" signature="logOutForm()[pri:0, instance:com.effort.nxt.test.works.AddWorkProcessTest@6f43c82]" started-at="2023-04-13T21:41:05 IST" name="logOutForm" finished-at="2023-04-13T21:41:07 IST" duration-ms="1202" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logOutForm -->
+      </class> <!-- com.effort.nxt.test.works.AddWorkProcessTest -->
+    </test> <!-- works -->
+    <test started-at="2023-04-13T21:41:07 IST" name="forms" finished-at="2023-04-13T21:44:19 IST" duration-ms="191838">
+      <class name="com.effort.test.forms.FormSubmissionTest">
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.test.forms.FormSubmissionTest@7bbc8656]" started-at="2023-04-13T21:43:23 IST" name="initEffortLogin" finished-at="2023-04-13T21:43:27 IST" duration-ms="3492" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="submitForm()[pri:1, instance:com.effort.test.forms.FormSubmissionTest@7bbc8656]" started-at="2023-04-13T21:43:27 IST" name="submitForm" finished-at="2023-04-13T21:44:17 IST" duration-ms="50408" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitForm -->
+        <test-method is-config="true" signature="logOutForm()[pri:0, instance:com.effort.test.forms.FormSubmissionTest@7bbc8656]" started-at="2023-04-13T21:44:17 IST" name="logOutForm" finished-at="2023-04-13T21:44:19 IST" duration-ms="1370" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logOutForm -->
+      </class> <!-- com.effort.test.forms.FormSubmissionTest -->
+      <class name="com.effort.test.forms.FormsTest">
+        <test-method is-config="true" signature="initTestData()[pri:0, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:38:42 IST" name="initTestData" finished-at="2023-04-13T21:38:42 IST" duration-ms="15" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initTestData -->
+        <test-method is-config="true" signature="initEffortLogin(java.lang.String, java.lang.String)[pri:0, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:41:07 IST" name="initEffortLogin" finished-at="2023-04-13T21:41:12 IST" duration-ms="4975" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://secure.spoors.io/effortx/login]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initEffortLogin -->
+        <test-method signature="formSpecCreation()[pri:1, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:41:12 IST" name="formSpecCreation" description="Creating the Form spec in configurator" finished-at="2023-04-13T21:42:59 IST" duration-ms="107109" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- formSpecCreation -->
+        <test-method signature="formSpecValidation()[pri:2, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:42:59 IST" name="formSpecValidation" description="Form Spec Validation" finished-at="2023-04-13T21:43:02 IST" duration-ms="3216" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- formSpecValidation -->
+        <test-method signature="formSpecModification()[pri:3, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:43:02 IST" name="formSpecModification" description="Form Spec Modification" finished-at="2023-04-13T21:43:14 IST" duration-ms="11859" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- formSpecModification -->
+        <test-method signature="formSpecWithDrawn()[pri:4, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:43:14 IST" name="formSpecWithDrawn" description="Withdrawn the form spec in configurator" finished-at="2023-04-13T21:43:20 IST" duration-ms="5803" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- formSpecWithDrawn -->
+        <test-method is-config="true" signature="logOutForm()[pri:0, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:43:20 IST" name="logOutForm" finished-at="2023-04-13T21:43:23 IST" duration-ms="3509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logOutForm -->
+        <test-method is-config="true" signature="quitAllDrivers()[pri:0, instance:com.effort.test.forms.FormsTest@2584b82d]" started-at="2023-04-13T21:44:19 IST" name="quitAllDrivers" finished-at="2023-04-13T21:44:25 IST" duration-ms="6514" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitAllDrivers -->
+      </class> <!-- com.effort.test.forms.FormsTest -->
+    </test> <!-- forms -->
+  </suite> <!-- Effort NXT Automation -->
+</testng-results>

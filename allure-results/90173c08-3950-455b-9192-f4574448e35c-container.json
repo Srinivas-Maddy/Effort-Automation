@@ -1,0 +1,1 @@
+{"uuid":"90173c08-3950-455b-9192-f4574448e35c","name":"com.effort.nxt.test.LoginTest","children":["c8044f2b-f1f4-409b-a7df-4e0f17680b08"],"befores":[{"name":"initEffortLogin","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1676400893115,"stop":1676400899679}],"afters":[],"start":1676400893095,"stop":1676400905069}

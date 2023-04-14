@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Effort NXT Automation]">
+  <parameter name="siteURL" value="https://secure.spoors.io/effortx/login"/>
+  <parameter name="browser" value="Chrome"/>
+  <listeners>
+    <listener class-name="com.effort.nxt.util.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="Works(failed)">
+    <classes>
+      <class name="com.effort.nxt.test.works.AddWorkProcessTest">
+        <methods>
+          <include name="initEffortLogin"/>
+          <include name="initTestData"/>
+          <include name="quitAllDrivers"/>
+          <include name="AddWork"/>
+          <include name="logOutForm"/>
+        </methods>
+      </class> <!-- com.effort.nxt.test.works.AddWorkProcessTest -->
+    </classes>
+  </test> <!-- Works(failed) -->
+</suite> <!-- Failed suite [Effort NXT Automation] -->
