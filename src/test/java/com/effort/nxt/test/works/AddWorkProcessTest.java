@@ -32,7 +32,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 			this.loginPage.enterUserName(testDataProp.getProperty("name"));
 			this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 			this.loginPage.clickOnLoginButton();
-			this.addWork.clickOnWebApp();
+			this.addWork.clickOnWebApp();	
 			logger.info("Ending of initEffortLogin method in Work Creation process");			
 		}
 		
@@ -41,12 +41,15 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		@Description("Test Case #1, Assigning the work")
 		@Severity(SeverityLevel.BLOCKER)
 		@Story("Test Case #1, Assign the work to the user")
-		public void AddWork() {
-			
+		public void AddWork() throws InterruptedException {			
 			logger.info("Starting of the AddWork method");
 			this.addWork.clickOnProcessModule();
-			logger.info("Ending the Addwork Method");
-					
+			this.addWork.clickOnWorkName();
+			this.addWork.clickOnAddWorkBtn();
+			this.addWork.enterWorkName("Test work 001");
+			this.addWork.clickOnWorkEndDate();
+			this.addWork.clickOnCurrentDateTime();
+			logger.info("Ending the Addwork Method");					
 		}
 		
 		@AfterClass(alwaysRun = true)

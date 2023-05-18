@@ -3,7 +3,6 @@ package com.effort.employees;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +16,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 	private static final Logger logger = Logger.getLogger(EmployeeCreation.class.getName());
 	String parentWind=driver.getWindowHandle();
 
+	String employeeFirstName=null;
 
 	@FindBy(xpath="//a[contains(text(),'Web App')]")
 	private WebElement webApp;
@@ -41,19 +41,31 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 	@FindBy(id="generateQrCode")
 	private WebElement qrCode;
-	
+
 	@FindBy(id="empEmail")
 	private WebElement empEmail;
-	
+
 	@FindBy(xpath="//input[@name='empPhone']")
 	private WebElement empPhone;
-	
+
 	@FindBy(xpath="//input[@id='save']")
 	private WebElement saveBtn;
-	
+
+	@FindBy(id="filters")
+	private WebElement filterBtn;
+
+	@FindBy(id="empNamefilt")
+	private WebElement EmployeefirstName;
+
+	@FindBy(id="search")
+	private WebElement applyBtn;
+
+	@FindBy(xpath="//table/tbody/tr/td[2]/div/span/i")
+	private List<WebElement> editButtons;
+
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
-	
+
 	@FindBy(xpath="//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
 
@@ -107,7 +119,8 @@ public class EmployeeCreation extends BaseAutomationPage{
 	public void enterFirstName(String enterFirstName) {
 		logger.info("Starting of enterFirstName method");
 		waitUntilElementVisible(driver, firstName);
-		firstName.sendKeys(enterFirstName+"_"+getCurrentDate());
+		this.employeeFirstName=enterFirstName+"_"+getCurrentDate();
+		firstName.sendKeys(this.employeeFirstName);
 		logger.info("Ending of enterFirstName method");
 	}
 
@@ -147,7 +160,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 		empEmail.sendKeys(randomEmail);
 		logger.info("ending of enterEmpEmail method");
 	}
-	
+
 	public void EmpPhone() {
 		logger.info("Starting of enterEmpPhone method");
 		String randomPhone=randomMobileNumbers();
@@ -155,12 +168,47 @@ public class EmployeeCreation extends BaseAutomationPage{
 		empPhone.sendKeys(randomPhone);
 		logger.info("ending of enterEmpPhone method");
 	}
-	
+
 	public void clickOnSaveBtn() {
 		logger.info("Starting of clickOnSaveBtn method");
 		waitUntilElementVisible(driver, saveBtn);
 		saveBtn.click();
 		logger.info("ending of qrCodeCheckBox method");
+	}
+
+
+	public void clickOnFilter() {
+		logger.info("Starting of clickOnFilter method");
+		scrollDown(100, this.filterBtn);
+		waitUntilElementVisible(driver,this.filterBtn);
+		this.filterBtn.click();
+		logger.info("Ending of clickOnFilter method");
+	}
+
+	public void filterEmployeeName(){
+		logger.info("Starting of filterEmployeeName method");
+		waitUntilElementVisible(driver, this.EmployeefirstName);
+		this.EmployeefirstName.sendKeys(this.employeeFirstName);
+		waitUntilElementVisible(driver, this.applyBtn);
+		this.applyBtn.click();
+		logger.info("Ending of filterEmployeeName method");
+
+	}
+
+	public void clickOnEditButton() throws InterruptedException {
+		logger.info("Starting of clickOnEditButton method");
+		Thread.sleep(500);
+		for(int i=0;i<editButtons.size();i++) {
+			this.editButtons.get(i).click();
+			break;
+		}
+		
+		waitUntilElementVisible(driver, this.firstName);
+		this.firstName.clear();
+		this.firstName.sendKeys("Modified Employee Name");
+		this.empLastName.clear();
+		this.empLastName.sendKeys("Modified Last name");
+
 	}
 
 	public void logOut() {

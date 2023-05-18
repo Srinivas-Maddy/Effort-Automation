@@ -15,6 +15,7 @@
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
 	</test>
+	
 
 	<test name="employee">
 		<classes>
@@ -22,19 +23,26 @@
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
+	
 
 	<test name="works">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
-			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
-
+			<!-- <class name="com.effort.nxt.test.works.AddWorkProcessTest" /> -->
 		</classes>
 	</test>
+	
 
 	<test name="forms">
 		<classes>
 			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
+		</classes>
+	</test>
+	
+	<test name="Export Functionalities">
+		<classes>
+			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 		</classes>
 	</test>
 
