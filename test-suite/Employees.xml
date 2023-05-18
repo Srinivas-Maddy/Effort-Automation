@@ -10,12 +10,11 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Works">
+	<test name="forms">
 		<classes>
-           <!-- <class name="com.effort.nxt.test.works.WorkProcessCreationTest" /> -->	
-		       <class name="com.effort.nxt.test.works.AddWorkProcessTest" />
-			
+			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
 
+	
 </suite>
