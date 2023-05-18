@@ -349,6 +349,7 @@ public class FormSubmission extends BaseAutomationPage{
 		if(timerItemsCount != 1440) {
 			index = 50;
 		}
+		Thread.sleep(1000);
 		this.timers.get(index).click();
 
 		logger.info("Ending of enterTextData method");
@@ -422,7 +423,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of audioData method");
 		waitUntilElementVisible(driver, this.audioField);
 		this.audioField.click();
-		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\Audiofilepicker.exe";
+		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\AudioScript.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of audioData method");

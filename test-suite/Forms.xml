@@ -12,8 +12,8 @@
 
 	<test name="forms">
 		<classes>
-			<class name="com.effort.test.forms.FormsTest" />  
-			<!-- <class name="com.effort.test.forms.FormSubmissionTest" /> -->
+			<!--<class name="com.effort.test.forms.FormsTest" />  -->
+			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>
 

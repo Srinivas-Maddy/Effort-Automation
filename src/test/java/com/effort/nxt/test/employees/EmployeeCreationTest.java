@@ -36,12 +36,12 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	}
 	
 	
-	@Test(priority = 1, description="Go to Employees and enter data", groups = {"sanity"})
+	@Test(priority = 1, description="Go to Employees and Add the employee details", groups = {"sanity"})
 	@Description("Create the employee")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Form Spec Creation in the navigation bar")
+	@Story("Employee creation by clicking on add employee button")
 	public void AddEmployee() throws InterruptedException {
-		logger.info("Starting of createEmployee Method");
+		logger.info("Starting of AddEmployee Method");
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
 		empCreation.switchNewWindow();
@@ -53,7 +53,21 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.EmpEmail();
 		empCreation.EmpPhone();
 		empCreation.clickOnSaveBtn();
+		logger.info("Ending of AddEmployee Method");
+
 		
+	}
+	
+	
+	@Test(priority = 2, description="Modify the employee data", groups = {"sanity"})
+	@Description("Modify the employee")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Employee modification in list screen")
+	public void modifyEmployee() throws InterruptedException {
+		logger.info("Starting of modifyEmployee Method");
+		empCreation.clickOnFilter();
+		empCreation.filterEmployeeName();
+		empCreation.clickOnEditButton();
 	}
 	
 	@AfterClass(alwaysRun = true)
