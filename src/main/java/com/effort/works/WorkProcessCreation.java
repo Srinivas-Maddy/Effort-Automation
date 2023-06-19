@@ -246,7 +246,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			//String lableName=driver.findElements(By.xpath("//div[@class='select2-result-label']")).get(i).getText();
 			String lableName=this.labelNames.get(i).getText();
 			
-			if(!lableName.equals("Datespan") && !lableName.equals("DateTimespan") && !lableName.equals("Dropdown") && !lableName.equals("Multi Select Dropdown") && !lableName.equals("Location Diff")) {
+			if(!lableName.equals("Datespan") && !lableName.equals("DateTimespan") && !lableName.equals("Dropdown") && !lableName.equals("Multi Select Dropdown") && !lableName.equalsIgnoreCase("Location diff")) {
 				//driver.findElements(By.xpath("//div[@class='select2-result-label']")).get(i).click();	
 				this.selectUserDefinedFields.get(i).click();
 				driver.findElement(By.xpath("//input[@id='formFieldSpecs"+labelCount+"_fieldLabel']")).sendKeys("Normal_Fields_"+lableName);

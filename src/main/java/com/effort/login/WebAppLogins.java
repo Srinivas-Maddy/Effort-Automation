@@ -1,4 +1,4 @@
-package com.effort.base;
+package com.effort.login;
 
 import java.util.List;
 
@@ -8,9 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BaseAutomationPage {
+import com.effort.base.BaseAutomationPage;
 
-	private static final Logger logger = Logger.getLogger(LoginPage.class.getName());
+public class WebAppLogins extends BaseAutomationPage{
+
+	private static final Logger logger = Logger.getLogger(WebAppLogins.class.getName());
+
+
+	public WebAppLogins(WebDriver driver) {
+		super(driver);
+		PageFactory.initElements(driver, this);
+	}
 
 	@FindBy(xpath = "//input[@id=\"j_username\"]")
 	private WebElement username;
@@ -23,9 +31,15 @@ public class LoginPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//a[text()='Web App']")
 	private WebElement webApp;
-	
+
 	@FindBy(xpath="//div[@id='invalidCredentialsMessage']")
 	private WebElement invalidMessage;
+
+	@FindBy(xpath="//a[contains(text(),'App Builder')]")
+	private WebElement appBuilder;
+	
+	@FindBy(xpath="//a[contains(text(),'Reports Studio')]")
+	private WebElement reportStudio;
 
 
 	@FindBy(xpath="//li[@id='logout_id']")
@@ -42,15 +56,9 @@ public class LoginPage extends BaseAutomationPage {
 	private WebElement signOutAllSessions;
 
 
-	public LoginPage(WebDriver driver) {
-		super(driver);
-		PageFactory.initElements(driver, this);
-	}
-
-
 	public void enterUserName(String name) {
 		logger.info("Starting of enterUserName method");
-     	waitUntilElementVisible(driver, this.username);
+		waitUntilElementVisible(driver, this.username);
 		this.username.click();
 		this.username.sendKeys(name);
 		logger.info("Ending of enterUserName method");
@@ -71,6 +79,13 @@ public class LoginPage extends BaseAutomationPage {
 		logger.info("Ending of clickOnLoginButton method");
 	}
 
+
+	public String getErrorMessage() {
+		waitUntilElementVisible(driver, this.invalidMessage);
+		String errorMsg=this.invalidMessage.getText();
+		return errorMsg;
+	}
+
 	public void clickOnWebApp() {
 		logger.info("Starting of WebApp method");
 		waitUntilElementVisible(driver, webApp);
@@ -78,7 +93,13 @@ public class LoginPage extends BaseAutomationPage {
 		logger.info("Ending of Web App method");
 
 	}
-	
+
+	public void clickOnAppBuilder() {
+		logger.info("Starting of app builder");
+		waitUntilElementVisible(driver, this.appBuilder);
+		this.appBuilder.click();
+		logger.info("Ending of app builder");
+	}
 
 	public void logOut() {
 		logger.info("Starting of Logout method");
@@ -89,5 +110,5 @@ public class LoginPage extends BaseAutomationPage {
 		}
 		logger.info("Ending of Logout method");
 	}
-}
 
+}
