@@ -18,7 +18,7 @@ public class EmployeeExports extends BaseAutomationTest{
 
 	private static final Logger logger=Logger.getLogger(EmployeeExports.class);
 	private EmployeeExportPage empExport=null;
-	private String ExportAllConfirmationMsg="The Report Will Be Emailed To The Registered Email Address When It Is Ready.";
+	private static final String ExportAllConfirmationMsg="The report will be emailed to the registered email address when it is ready.";
 
 	//Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)

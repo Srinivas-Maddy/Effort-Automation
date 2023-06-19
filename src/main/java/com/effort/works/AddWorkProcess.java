@@ -3,6 +3,7 @@ package com.effort.works;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,9 +36,15 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='fields2_fieldValueDateTime']")
 	private WebElement workEndDate;
 	
-	@FindBy(xpath="(//div[@class='xdsoft_calendar'])[3]/table/tbody/tr/td")
-	//(//div[@class='xdsoft_calendar'])[3]/table/tbody/tr/td/div
+	@FindBy(xpath="//body/div[13]/div[1]/div[2]/table/tbody/tr/td/div")
 	private List<WebElement> dateTimes;
+	
+	///html[1]/body[1]/div[5]/div[1]/div[2]/table/tbody/tr/td/div
+	//html[1]/body[1]/div[5]/div[1]/div[2]/table/tbody/tr/td
+	
+	@FindBy(xpath="//input[@id='save1']")
+	private WebElement saveBtn;
+
 	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -102,16 +109,23 @@ public class AddWorkProcess extends BaseAutomationPage{
 		String presentDate=getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for(int i=0;i<=dateTimes.size()-1;i++) {
-			Thread.sleep(100);
-			String date=dateTimes.get(i).getText();
-			if(dateTimes.get(i).getText().equalsIgnoreCase(presentDate)) {
-				waitUntilElementVisible(driver, dateTimes.get(i));
-				dateTimes.get(i).click();
-				break;
+			String actualDate = (String) ((JavascriptExecutor)driver).executeScript("return $(arguments[0]).text();", dateTimes.get(i));
+			if(actualDate.equalsIgnoreCase(presentDate)) {
+				//clickOnWebElement(dateTimes.get(i));
+				 waitUntilElementVisible(driver, dateTimes.get(i));
+				 dateTimes.get(i).click();		 
+				 break;
 			}
 		}
 		this.workEndDate.click();
 		logger.info("Ending of clickOnDatePicker method");
+	}
+	
+	public void clickOnSave() {
+		logger.info("Starting of clickOnSave method");
+        waitUntilElementVisible(driver, this.saveBtn);
+        this.saveBtn.click();
+		logger.info("Ending of clickOnSave method");
 	}
 	
 	

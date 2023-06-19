@@ -45,6 +45,12 @@
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 		</classes>
 	</test>
+	
+	<test name="Web Logins">
+	<classes>
+			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
+		</classes>
+	</test>
 
 
 </suite>

@@ -49,6 +49,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 			this.addWork.enterWorkName("Test work 001");
 			this.addWork.clickOnWorkEndDate();
 			this.addWork.clickOnCurrentDateTime();
+			this.addWork.clickOnSave();
 			logger.info("Ending the Addwork Method");					
 		}
 		
