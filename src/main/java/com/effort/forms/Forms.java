@@ -137,7 +137,7 @@ public class Forms extends BaseAutomationPage{
 		ignoreDatatypes.add("Dropdown");
 		ignoreDatatypes.add("Datespan");
 		ignoreDatatypes.add("DateTimespan");
-		ignoreDatatypes.add("Location Diff");
+		ignoreDatatypes.add("Location diff");
 		ignoreDatatypes.add("Number To Word");
 		ignoreDatatypes.add("Timespan");
 		ignoreDatatypes.add("Repeatable Section");

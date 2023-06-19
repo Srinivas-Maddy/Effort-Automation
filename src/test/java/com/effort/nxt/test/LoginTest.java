@@ -21,6 +21,8 @@ import io.qameta.allure.Story;
 
 public class LoginTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(LoginTest.class.getName());
+	
+	private String expectedInvalidLoginMessage="Invalid Email/Password.";
 
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "siteURL", "browser" })
@@ -34,9 +36,9 @@ public class LoginTest extends BaseAutomationTest {
 	}
 
 	@Test(priority = 1, description = " Test Case #1 , LogIn", groups = {"sanity"})
-	@Description("Test Case #1, Create Employee")
+	@Description("Test Case #1, Valid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #1, Create Employee")
+	@Story("Web App login")
 	public void logIn() {
 		logger.info("Starting of logIn method");
 		loginPage.enterUserName(testDataProp.getProperty("name"));
@@ -45,6 +47,8 @@ public class LoginTest extends BaseAutomationTest {
         loginPage.clickOnWebApp();
 		logger.info("Ending of logIn method");
 	}
+	
+	
 	
 	@AfterClass (alwaysRun = true)
 	public void logout() {
