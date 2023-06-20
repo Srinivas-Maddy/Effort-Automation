@@ -33,7 +33,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	@Description("Test Case #1, Valid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
-	public void logIn() {
+	public void WelcomScreen() {
 		logger.info("Starting of logIn method");
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		login.enterUserName(testDataProp.getProperty("name"));
@@ -42,11 +42,11 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		logger.info("Ending of logIn method");
 	}
 	
-	@Test(priority = 2, description = " Test Case #3 , Click on webApp", groups = {"sanity"})
+	@Test(priority = 2, description = " Test Case #3 , Validating Web App Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
-	public void clickOnWebApp(){
+	public void WebAppHomeScree(){
 		logger.info("Starting of clickOnWebApp method");
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		login.enterUserName(testDataProp.getProperty("name"));
@@ -57,11 +57,11 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 
 	}
 	
-	@Test(priority = 3, description = " Test Case #3 , Click on App Builder", groups = {"sanity"})
+	@Test(priority = 3, description = " Test Case #3 , Validating AppBuilder Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
-	public void clickOnAppBuilder(){
+	public void AppBuilderHomeScreen(){
 		logger.info("Starting of clickOnWebApp method");
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		login.enterUserName(testDataProp.getProperty("name"));
@@ -72,8 +72,38 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 
 	}
 	
+	
+	@Test(priority = 4, description = " Test Case #3 , Validating Report studio Page", groups = {"sanity"})
+	@Description("Test Case #2, Click on Report Studio")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Web App login")
+	public void ReportStudioHomeScree(){
+		logger.info("Starting of clickOnWebApp method");
+		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		login.enterUserName(testDataProp.getProperty("name"));
+		login.clickOnPassword(testDataProp.getProperty("password1"));
+		login.clickOnLoginButton();
+		login.clickOnReportStudio();
+		logger.info("Ending of clickOnWebApp method");
+	}
+	
 
-	@Test(priority = 4, description = " Test Case #2 , Invalid LogIn Details")
+	@Test(priority = 5, description = " Test Case #3 , Click on App Builder", groups = {"sanity"})
+	@Description("Test Case #2, Click on WebApp")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Web App login")
+	public void InviteEmployeeScreen(){
+		logger.info("Starting of clickOnWebApp method");
+		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		login.enterUserName(testDataProp.getProperty("name"));
+		login.clickOnPassword(testDataProp.getProperty("password1"));
+		login.clickOnLoginButton();
+		login.inviteEmp("Srinivas", "Maddy Inv 01");
+		logger.info("Ending of clickOnWebApp method");
+	}
+	
+
+	@Test(priority = 6, description = " Test Case #2 , Invalid LogIn Details")
 	@Description("Test Case #2, Invalid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
@@ -90,7 +120,6 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	}
 
 	
-
 
 	@AfterMethod (groups = {"sanity"})
 	public void logout() {
