@@ -50,6 +50,9 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//input[@id='save']")
 	private WebElement saveBtn;
+	
+	@FindBy(xpath="//div[@id='snackbarVal']")
+	private WebElement EmpsavedMsg;
 
 	@FindBy(id="filters")
 	private WebElement filterBtn;
@@ -110,9 +113,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 			if(!parentWind.equals(child_window))
 			{
 				driver.switchTo().window(child_window);
-
 			}
-
 		}
 	}
 
@@ -175,6 +176,14 @@ public class EmployeeCreation extends BaseAutomationPage{
 		saveBtn.click();
 		logger.info("ending of qrCodeCheckBox method");
 	}
+	
+	public String EmpSavedSuccsusfullyMsg() throws InterruptedException {
+		logger.info("Starting of EmpSavedSuccsusfullyMsg Method");
+		Thread.sleep(500);
+		waitUntilElementVisible(driver, EmpsavedMsg);
+		String actualEmpSavedMsg = this.EmpsavedMsg.getText();
+		return actualEmpSavedMsg;
+		}
 
 
 	public void clickOnFilter() {

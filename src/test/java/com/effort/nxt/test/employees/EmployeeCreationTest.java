@@ -1,6 +1,7 @@
 package com.effort.nxt.test.employees;
 
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -17,8 +18,10 @@ import io.qameta.allure.Story;
 
 public class EmployeeCreationTest extends BaseAutomationTest{
 	
+
 	private static final Logger logger=Logger.getLogger(EmployeeCreationTest.class.getName());
 	private EmployeeCreation empCreation;
+	private static final String expectedEmpSavedMsg = "Saved successfully";
 	
 	@BeforeClass (alwaysRun = true)
 	@Parameters({"siteURL","browser"})
@@ -53,9 +56,9 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.EmpEmail();
 		empCreation.EmpPhone();
 		empCreation.clickOnSaveBtn();
-		logger.info("Ending of AddEmployee Method");
-
-		
+		String actualEmpSavedMsg = empCreation.EmpSavedSuccsusfullyMsg();
+		Assert.assertEquals(actualEmpSavedMsg, expectedEmpSavedMsg);
+		logger.info("Ending of AddEmployee Method");		
 	}
 	
 	
@@ -68,6 +71,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.clickOnFilter();
 		empCreation.filterEmployeeName();
 		empCreation.clickOnEditButton();
+		logger.info("Ending of modifyEmployee Method");
 	}
 	
 	@AfterClass(alwaysRun = true)
