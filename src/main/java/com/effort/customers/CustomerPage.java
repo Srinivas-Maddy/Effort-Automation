@@ -72,10 +72,10 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id=\"field_9\"]")
 	private WebElement state;
 
-	@FindBy(xpath = "//span[@id='select2-chosen-29']")
+	@FindBy(xpath = "//div[@id='s2id_field_10']")
 	private WebElement countryDropDown;
 
-	@FindBy(xpath = "//ul[@id='select2-results-29']/li/div")
+	@FindBy(xpath = "//ul[@id='select2-results-182']/li/div")
 	private List<WebElement> countryNames;
 
 	@FindBy(xpath = "//input[@id='fields2_fieldValue']")
@@ -310,7 +310,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of Country Select Method");
 		waitUntilElementVisible(driver, this.countryDropDown);
 		this.countryDropDown.click();
-		for (int i = 0; i < this.countryNames.size(); i++) {
+		for (int i = 0; i <this.countryNames.size(); i++) {
 			String countryName = this.countryNames.get(i).getText();
 			if (countryName.equalsIgnoreCase("India")) {
 				waitUntilElementVisible(driver, this.countryNames.get(i));
