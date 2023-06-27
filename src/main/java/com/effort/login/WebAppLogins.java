@@ -40,7 +40,27 @@ public class WebAppLogins extends BaseAutomationPage{
 	
 	@FindBy(xpath="//a[contains(text(),'Reports Studio')]")
 	private WebElement reportStudio;
+	
+	@FindBy(xpath="//a[contains(text(),'Invite Employee')]")
+	private WebElement inviteEmployee;
+	
+	@FindBy(id="firstName1")
+	private WebElement firstName;
+	
+	@FindBy(id="lastName1")
+	private WebElement lastName; 
+	
+	@FindBy(id="email_1")
+	private WebElement email;
+	
+	@FindBy(id="mobileNumber_1")
+	private WebElement mobileNumber;
 
+	@FindBy(id="save1")
+	private WebElement saveBtn;
+	
+	@FindBy(xpath="//button[contains(text(),'OK')]")
+	private WebElement okBtn;
 
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -91,6 +111,42 @@ public class WebAppLogins extends BaseAutomationPage{
 		waitUntilElementVisible(driver, webApp);
 		webApp.click();
 		logger.info("Ending of Web App method");
+	}
+
+	public void clickOnAppBuilder() {
+		logger.info("Starting of clickOnAppBuilder method");
+		waitUntilElementVisible(driver, this.appBuilder);
+		this.appBuilder.click();
+		logger.info("Ending of clickOnAppBuilder method");
+	}
+	
+	public void clickOnReportStudio() {
+		logger.info("Starting of ClcikOnReportStudio Method");
+		waitUntilElementVisible(driver, this.reportStudio);
+		this.reportStudio.click();
+		logger.info("Ending of ClcikOnReportStudio Menthod");
+	}
+	
+	public void inviteEmp(String firstName, String lastName) {
+		
+		logger.info("Starting of inviteEmp Method");
+		waitUntilElementVisible(driver, this.inviteEmployee);
+		this.inviteEmployee.click();
+		waitUntilElementVisible(driver, this.firstName);
+		this.firstName.sendKeys(firstName);
+		waitUntilElementVisible(driver, this.lastName);
+		this.lastName.sendKeys(lastName);
+		String randomEmail=randomEmailGenerator();
+		waitUntilElementVisible(driver, this.email);
+		this.email.sendKeys(randomEmail);
+		String randomPhone=randomMobileNumbers();
+		waitUntilElementVisible(driver, this.mobileNumber);
+		this.mobileNumber.sendKeys(randomPhone);
+		waitUntilElementVisible(driver, this.saveBtn);
+		this.saveBtn.click();
+		waitUntilElementVisible(driver, this.okBtn);
+		this.okBtn.click();
+		logger.info("Ending of inviteEmp Method");
 
 	}
 
