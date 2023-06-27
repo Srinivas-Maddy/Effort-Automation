@@ -129,6 +129,7 @@ public class WebAppLogins extends BaseAutomationPage{
 	}
 	
 	public void inviteEmp(String firstName, String lastName) {
+		
 		logger.info("Starting of inviteEmp Method");
 		waitUntilElementVisible(driver, this.inviteEmployee);
 		this.inviteEmployee.click();

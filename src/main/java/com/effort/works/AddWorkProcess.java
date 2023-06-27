@@ -39,8 +39,15 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//body/div[13]/div[1]/div[2]/table/tbody/tr/td/div")
 	private List<WebElement> dateTimes;
 	
-	///html[1]/body[1]/div[5]/div[1]/div[2]/table/tbody/tr/td/div
-	//html[1]/body[1]/div[5]/div[1]/div[2]/table/tbody/tr/td
+	@FindBy(xpath="//span[contains(text(),'Select Employee')]")
+	private WebElement assigneeDropdown;
+	
+	@FindBy(xpath="//input[@id='s2id_autogen212_search']")
+	private WebElement enterName;
+	
+	@FindBy(xpath="//ul[@id='select2-results-212']//li/div")
+	private List<WebElement> employeeNames;
+	
 	
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
@@ -120,6 +127,24 @@ public class AddWorkProcess extends BaseAutomationPage{
 		this.workEndDate.click();
 		logger.info("Ending of clickOnDatePicker method");
 	}
+	
+	public void assignEmplpoyee(String assigneeName) {
+		logger.info("Starting of assign Employee");
+		waitUntilElementVisible(driver, this.assigneeDropdown);
+		this.assigneeDropdown.click();
+		scrollDown(500, this.enterName);
+		waitUntilElementVisible(driver, this.enterName);
+		this.enterName.sendKeys(assigneeName);
+		for (int i=0; i<employeeNames.size(); i++) {
+			String actualEmpName= employeeNames.get(i).getText();
+			if(actualEmpName.equalsIgnoreCase(assigneeName)) {
+				waitUntilElementVisible(driver,employeeNames.get(i));
+				employeeNames.get(i).click();
+			}
+		}
+		
+	}
+	
 	
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
