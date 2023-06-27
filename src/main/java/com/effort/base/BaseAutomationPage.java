@@ -26,6 +26,7 @@ public class BaseAutomationPage {
 	protected WebDriver driver = null;
 
 	private static final Logger logger = Logger.getLogger(BaseAutomationPage.class);
+	
 	public static String TEST_FILE_PATH = null;
 
 	public BaseAutomationPage(WebDriver driver) {
@@ -50,6 +51,7 @@ public class BaseAutomationPage {
 		Select conditions = new Select(element);
 		conditions.selectByValue(value);
 		logger.info("Ending of selectDropdown method");
+	
 	}
 
 	public void scrollDown(int scroll,WebElement element) {
@@ -116,7 +118,7 @@ public class BaseAutomationPage {
 
 		Random rand = new Random();
 		// Generate random integers in range 0 to 99
-		int rand_int1 = rand.nextInt(100);
+		int rand_int1 = rand.nextInt(10000);
 
 		return value + rand_int1;
 	}
@@ -201,7 +203,7 @@ public class BaseAutomationPage {
 	}
 
 
-	//Creating a methon for random string 
+	//Creating a method for random string 
 	public static String RandGeneratedString(int l){
 
 		// a list of characters to choose from in form of a string
