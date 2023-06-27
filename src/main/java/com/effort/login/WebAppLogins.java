@@ -62,7 +62,6 @@ public class WebAppLogins extends BaseAutomationPage{
 	@FindBy(xpath="//button[contains(text(),'OK')]")
 	private WebElement okBtn;
 
-
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -151,8 +150,12 @@ public class WebAppLogins extends BaseAutomationPage{
 
 	}
 
-	
-
+	public void clickOnAppBuilder() {
+		logger.info("Starting of app builder");
+		waitUntilElementVisible(driver, this.appBuilder);
+		this.appBuilder.click();
+		logger.info("Ending of app builder");
+	}
 
 	public void logOut() {
 		logger.info("Starting of Logout method");

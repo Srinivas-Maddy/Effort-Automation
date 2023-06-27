@@ -48,7 +48,6 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//ul[@id='select2-results-212']//li/div")
 	private List<WebElement> employeeNames;
 	
-	
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
 
@@ -145,7 +144,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 		
 	}
 	
-	
+
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
         waitUntilElementVisible(driver, this.saveBtn);
