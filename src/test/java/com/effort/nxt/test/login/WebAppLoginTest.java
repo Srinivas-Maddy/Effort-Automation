@@ -34,7 +34,6 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
 	public void WelcomScreen() {
-
 		logger.info("Starting of logIn method");
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		login.enterUserName(testDataProp.getProperty("name"));
@@ -42,14 +41,13 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.clickOnLoginButton();
 		logger.info("Ending of logIn method");
 	}
-	
 
 	@Test(priority = 2, description = " Test Case #3 , Validating Web App Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
 	public void WebAppHomeScree(){
-
+  
 		logger.info("Starting of clickOnWebApp method");
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		login.enterUserName(testDataProp.getProperty("name"));
@@ -60,6 +58,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 
 	}
 	
+
 	@Test(priority = 3, description = " Test Case #3 , Validating AppBuilder Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
@@ -75,6 +74,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 
 	}
 	
+
 	@Test(priority = 4, description = " Test Case #3 , Validating Report studio Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on Report Studio")
 	@Severity(SeverityLevel.BLOCKER)
@@ -120,7 +120,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		logger.info("Ending of invalidCreditionals method");
 
 	}
-
+  
 	@AfterMethod (groups = {"sanity"})
 	public void logout() {
 		logger.info("Starting of logout method");

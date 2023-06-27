@@ -48,7 +48,6 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//ul[@id='select2-results-212']//li/div")
 	private List<WebElement> employeeNames;
 	
-	
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
 
@@ -128,6 +127,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 		logger.info("Ending of clickOnDatePicker method");
 	}
 	
+
 	public void assignEmplpoyee(String assigneeName) {
 		logger.info("Starting of assign Employee");
 		waitUntilElementVisible(driver, this.assigneeDropdown);
@@ -144,7 +144,6 @@ public class AddWorkProcess extends BaseAutomationPage{
 		}
 		
 	}
-	
 	
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
