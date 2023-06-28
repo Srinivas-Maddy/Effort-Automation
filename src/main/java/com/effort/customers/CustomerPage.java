@@ -500,11 +500,12 @@ public class CustomerPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, assignDrpDown);
 		this.assignDrpDown.click();
 		waitUntilElementVisible(driver, enterFieldInput);
-		this.enterFieldInput.sendKeys("test");
+		this.enterFieldInput.sendKeys("Automation");
 		waitUntilElementVisible(driver, empNameInDropDown);
 		this.empNameInDropDown.click();
 		waitUntilElementVisible(driver, applyBtn);
 		this.applyBtn.click();
+		driver.switchTo().alert().accept();
 		logger.info("Ending of ClickonAssign method");
 	}
 
