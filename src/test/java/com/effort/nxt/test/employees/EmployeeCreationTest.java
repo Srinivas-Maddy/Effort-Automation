@@ -71,8 +71,22 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.clickOnFilter();
 		empCreation.filterEmployeeName();
 		empCreation.clickOnEditButton();
+		empCreation.clickOnSaveBtn();
 		logger.info("Ending of modifyEmployee Method");
 	}
+	
+	@Test(priority = 3, description="Employee Disable", groups = {"sanity"})
+	@Description("Disable Employee")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Employee modification in list screen")
+	public void disableEmployee() throws InterruptedException {
+		logger.info("Starting of Employee Disable Method");
+		empCreation.clickOnFilter();
+		empCreation.disableEmployee();	
+		logger.info("Ending of Employee Disable Method");
+	}
+	
+	
 	
 	@AfterClass(alwaysRun = true)
 	public void logOutForm() {
