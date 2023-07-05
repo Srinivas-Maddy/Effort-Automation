@@ -114,7 +114,6 @@ public class CustomerTest extends BaseAutomationTest {
 	public void customerDeletion() throws InterruptedException {
 		logger.info("Starting of customerDeletion Method");
 		custmrCreation.SelectCustmrtoDelete();
-		custmrCreation.ClickonDeleteBtn();
 		String deletepopupmsg = custmrCreation.ClickonDeleteBtn();
 		Assert.assertEquals(deletepopupmsg, expecteddeletepopupmsg);
 		logger.info("Ending of customerDeletion Method");

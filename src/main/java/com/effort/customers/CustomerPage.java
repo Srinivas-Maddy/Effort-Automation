@@ -75,7 +75,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//div[@id='s2id_field_10']")
 	private WebElement countryDropDown;
 
-	@FindBy(xpath = "//ul[@id='select2-results-182']/li/div")
+	@FindBy(xpath = "//ul[@class='select2-results']/li/div")
 	private List<WebElement> countryNames;
 
 	@FindBy(xpath = "//input[@id='fields2_fieldValue']")
@@ -228,34 +228,6 @@ public class CustomerPage extends BaseAutomationPage {
 		this.custmrlongitude.sendKeys(CustmrLong);
 		logger.info("Ending of CustmrLocationlong Method");
 	}
-
-	//	public void ClickonMap() {
-	//		logger.info("Starting of ClickonMap Method");
-	//		waitUntilElementVisible(driver, customerMap);
-	//		this.customerMap.click();
-	//		logger.info("Ending of ClickonMap Method");
-	//	}
-	//	public void SwitchNewWindowcnfirm() {
-	//		
-	//		String parent2 = driver.getWindowHandle();
-	//		
-	//		Set<String> newwindow1 = driver.getWindowHandles();
-	//		Iterator<String> I2 = newwindow1.iterator();
-	//		while(I2.hasNext()) {
-	//			String child1_Window = I2.next();
-	//			if(!parent2.equals(child1_Window))
-	//			{
-	//				driver.switchTo().window(child1_Window);	
-	//			}
-	//		}	
-	//	}
-
-	//	public void ClickonConfirmLocation() {
-	//		logger.info("Starting of CliconConfirmLocation Method");
-	//		waitUntilElementVisible(driver, confirmLocation);
-	//		this.confirmLocation.click();
-	//		logger.info("Ending of CliconConfirmLocation Method");
-	//	}
 
 	public void EnterCustmrStreet(String Customerstreet) {
 		logger.info("Starting of EnterCustmrStreet Method");
@@ -505,7 +477,6 @@ public class CustomerPage extends BaseAutomationPage {
 		this.empNameInDropDown.click();
 		waitUntilElementVisible(driver, applyBtn);
 		this.applyBtn.click();
-		driver.switchTo().alert().accept();
 		logger.info("Ending of ClickonAssign method");
 	}
 
