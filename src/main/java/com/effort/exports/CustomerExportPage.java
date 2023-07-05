@@ -178,13 +178,21 @@ public class CustomerExportPage extends BaseAutomationPage {
 		this.custmrnamefilter.sendKeys("customer");
 		logger.info("Ending of filterCustomerName Method");	
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 	public void selectCustomerName() {
 		logger.info("Starting of selectCustomerName Method");
 		int i=0;
 		while(i<customernameinput.size()) {
 			String customerName = this.customernameinput.get(i).getText();
+<<<<<<< HEAD
 			if(customerName.equals("Customer00185")) {
+=======
+			if(customerName.contains("Customer")) {
+>>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 				this.customernameinput.get(i).click();
 				break;
 			}

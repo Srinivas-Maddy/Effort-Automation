@@ -38,7 +38,6 @@ public class CustomerTest extends BaseAutomationTest {
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
 		this.custmrCreation.ClickonWebApp();
-
 		logger.info("Ending of initEffortLogin Method");
 	}
 

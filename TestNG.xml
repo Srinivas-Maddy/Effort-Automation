@@ -10,34 +10,38 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Login">
+	<test name="Login Credentials">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
 	</test>
 	
-	<test name="employee">
+	<test name="Employee Module">
 		<classes>
 			<class
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
 	
-	<test name="customer">
+	<test name="Customer Module">
 		<classes>
+<<<<<<< HEAD
 			<class
 				name="com.effort.nxt.test.customer.CustomerTest" />
+=======
+			<class name="com.effort.nxt.test.customer.CustomerTest" />
+>>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 		</classes>
 	</test>
-		
-	 <test name="works">
+	
+	 <test name="Works Module">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" /> 
 		</classes>
 	</test> 
 		
-	<test name="forms">
+	<test name="Forms Module">
 		<classes>
 			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
@@ -56,6 +60,7 @@
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
 		</classes>
 	</test>
+	
 
 
 </suite>

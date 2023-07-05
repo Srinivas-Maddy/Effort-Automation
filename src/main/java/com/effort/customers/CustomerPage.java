@@ -67,10 +67,17 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@name='customerAddressState']")
 	private WebElement state;
 
+<<<<<<< HEAD
 	@FindBy(xpath = "//div[@class='select2-container sysField']")
 	private WebElement countryDropDown;
 
 	@FindBy(xpath = "(//ul[@class='select2-results'])[last()]/li")
+=======
+	@FindBy(xpath = "//div[@id='s2id_field_10']")
+	private WebElement countryDropDown;
+
+	@FindBy(xpath = "//ul[@id='select2-results-182']/li/div")
+>>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 	private List<WebElement> countryNames;
 
 	@FindBy(xpath = "//input[@name='formAndField.fields[2].fieldValue']")
@@ -422,7 +429,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of Country Select Method");
 		waitUntilElementVisible(driver, this.countryDropDown);
 		this.countryDropDown.click();
-		for (int i = 0; i < this.countryNames.size(); i++) {
+		for (int i = 0; i <this.countryNames.size(); i++) {
 			String countryName = this.countryNames.get(i).getText();
 			if (countryName.equalsIgnoreCase("India")) {
 				waitUntilElementVisible(driver, this.countryNames.get(i));
@@ -944,11 +951,16 @@ public class CustomerPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, assignDrpDown);
 		this.assignDrpDown.click();
 		waitUntilElementVisible(driver, enterFieldInput);
+<<<<<<< HEAD
 		this.enterFieldInput.sendKeys("automation");
+=======
+		this.enterFieldInput.sendKeys("Automation");
+>>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 		waitUntilElementVisible(driver, empNameInDropDown);
 		this.empNameInDropDown.click();
 		waitUntilElementVisible(driver, applyBtn);
 		this.applyBtn.click();
+		driver.switchTo().alert().accept();
 		logger.info("Ending of ClickonAssign method");
 	}
 

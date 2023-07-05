@@ -17,6 +17,8 @@ public class EmployeeCreation extends BaseAutomationPage{
 	String parentWind=driver.getWindowHandle();
 
 	String employeeFirstName=null;
+	private String employeeId=null;
+	private String disableLabel="CLICK TO DISABLE";
 
 	@FindBy(xpath="//a[contains(text(),'Web App')]")
 	private WebElement webApp;
@@ -48,7 +50,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 	@FindBy(xpath="//input[@name='empPhone']")
 	private WebElement empPhone;
 
-	@FindBy(xpath="//input[@id='save']")
+	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
 	
 	@FindBy(xpath="//div[@id='snackbarVal']")
@@ -65,6 +67,18 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//table/tbody/tr/td[2]/div/span/i")
 	private List<WebElement> editButtons;
+	
+	@FindBy(id="empNofilt")
+	private WebElement empIdFilterScreen;
+	
+	@FindBy(xpath="//button[@id='dropdownMenu1']")
+	private WebElement actionMenu;
+	
+	@FindBy(xpath="//ul[@aria-labelledby='dropdownMenu1']/li/a")
+	private List<WebElement> actionDropDowns;
+	
+	@FindBy(id="disableEmployee")
+	private WebElement applyDisableEmp;
 
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -134,9 +148,9 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 	public void EmpId() {
 		logger.info("Starting of enterEmpId method");
-		String empNo=getUniqueNumber("Auto_EMP");
+		employeeId=getUniqueNumber("Auto_EMP");
 		waitUntilElementVisible(driver, empId);
-		empId.sendKeys(empNo);
+		empId.sendKeys(this.employeeId);
 		logger.info("ending of enterEmpId method");
 	}
 
@@ -207,18 +221,39 @@ public class EmployeeCreation extends BaseAutomationPage{
 	public void clickOnEditButton() throws InterruptedException {
 		logger.info("Starting of clickOnEditButton method");
 		Thread.sleep(500);
-		for(int i=0;i<editButtons.size();i++) {
+		int i=0;
+		if(i<editButtons.size())
 			this.editButtons.get(i).click();
-			break;
-		}
-		
 		waitUntilElementVisible(driver, this.firstName);
 		this.firstName.clear();
 		this.firstName.sendKeys("Modified Employee Name");
 		this.empLastName.clear();
 		this.empLastName.sendKeys("Modified Last name");
-
 	}
+	
+	
+	public void disableEmployee() throws InterruptedException {
+		logger.info("Starting of diable employee method");
+		waitUntilElementVisible(driver, this.empIdFilterScreen);
+		this.empIdFilterScreen.sendKeys(this.employeeId);
+		waitUntilElementVisible(driver, this.applyBtn);
+		this.applyBtn.click();	
+		waitUntilElementVisible(driver, this.actionMenu);
+		Thread.sleep(5000);
+		this.actionMenu.click();
+		Thread.sleep(5000);
+		for (int i=0; i<actionDropDowns.size(); i++) {
+			String ExpectedLabel=this.actionDropDowns.get(i).getText();
+			if(this.disableLabel.equalsIgnoreCase(ExpectedLabel)) {
+				waitUntilElementVisible(driver, this.actionDropDowns.get(i));
+				this.actionDropDowns.get(i).click();
+				break;
+			}			
+		}
+		waitUntilElementVisible(driver, this.applyDisableEmp);
+		this.applyDisableEmp.click();	
+	}
+	
 
 	public void logOut() {
 		logger.info("Starting of Logout method");
