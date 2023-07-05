@@ -36,22 +36,21 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='fields2_fieldValueDateTime']")
 	private WebElement workEndDate;
 	
-	@FindBy(xpath="//body/div[13]/div[1]/div[2]/table/tbody/tr/td/div")
+	@FindBy(xpath="(//div[@class='xdsoft_datepicker active'])[10]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
 	
 	@FindBy(xpath="//span[contains(text(),'Select Employee')]")
 	private WebElement assigneeDropdown;
 	
-	@FindBy(xpath="//input[@id='s2id_autogen212_search']")
+	@FindBy(xpath="/html[1]/body[1]/div[16]/div[1]/input[1]")
 	private WebElement enterName;
 	
-	@FindBy(xpath="//ul[@id='select2-results-212']//li/div")
+	@FindBy(xpath="//div[@id='select2-drop']/ul/li")
 	private List<WebElement> employeeNames;
 	
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
 
-	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 	
@@ -139,6 +138,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 			if(actualEmpName.equalsIgnoreCase(assigneeName)) {
 				waitUntilElementVisible(driver,employeeNames.get(i));
 				employeeNames.get(i).click();
+				break;
 			}
 		}
 		

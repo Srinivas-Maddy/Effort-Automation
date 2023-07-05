@@ -67,16 +67,14 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@name='customerAddressState']")
 	private WebElement state;
 
-
-	@FindBy(xpath = "//div[@id='s2id_field_10']")
+	@FindBy(xpath = "//div[@class='select2-container sysField']")
 	private WebElement countryDropDown;
 
-	@FindBy(xpath = "//ul[@id='select2-results-182']/li/div")
+	@FindBy(xpath = "//ul[@class='select2-results']/li/div")
 	private List<WebElement> countryNames;
 
 	@FindBy(xpath = "//input[@name='formAndField.fields[2].fieldValue']")
 	private WebElement text;
-
 	
 	@FindBy(xpath = "//input[@class='field currency form-control']")
 	private WebElement custmrcurrency;
@@ -950,7 +948,7 @@ public class CustomerPage extends BaseAutomationPage {
 		this.empNameInDropDown.click();
 		waitUntilElementVisible(driver, applyBtn);
 		this.applyBtn.click();
-		driver.switchTo().alert().accept();
+		//driver.switchTo().alert().accept();
 		logger.info("Ending of ClickonAssign method");
 	}
 
@@ -969,7 +967,7 @@ public class CustomerPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, deleteBtn);
 		this.deleteBtn.click();
 		driver.switchTo().alert().accept();
-		Thread.sleep(9000);
+		Thread.sleep(10000);
 		String capturedDeleteMsg = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return capturedDeleteMsg;

@@ -25,12 +25,7 @@
 	
 	<test name="Customer Module">
 		<classes>
-<<<<<<< HEAD
-			<class
-				name="com.effort.nxt.test.customer.CustomerTest" />
-=======
 			<class name="com.effort.nxt.test.customer.CustomerTest" />
->>>>>>> c6653ab0f4126a090782888732b940e966c3a823
 		</classes>
 	</test>
 	
