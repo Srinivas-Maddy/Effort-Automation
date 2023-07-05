@@ -1,5 +1,6 @@
 package com.effort.customers;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -30,13 +31,13 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//li/a/button[@type='button']")
 	private WebElement addCustomer;
 
-	@FindBy(xpath = "//input[@id='field_2']")
+	@FindBy(xpath = "//input[@name='customerNo']")
 	private WebElement customerId;
 
-	@FindBy(xpath = "//input[@id='field_1']")
+	@FindBy(xpath = "//input[@name='customerName']")
 	private WebElement customerName;
 
-	@FindBy(xpath = "//input[@id=\"field_3\"]")
+	@FindBy(xpath = "//input[@name='customerPhone']")
 	private WebElement customerPhone;
 
 	@FindBy(xpath = "//input[@id='customerLat']")
@@ -45,74 +46,212 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='customerLong']")
 	private WebElement custmrlongitude;
 
-	//	@FindBy(xpath = "//img[@id=\"map\"]")
-	//	private WebElement customerMap;
-	//
-	//	@FindBy(xpath = "//span[text()='Confirm Location']")
-	//	private WebElement confirmLocation;
-
-	@FindBy(xpath = "//input[@id=\"field_5\"]")
+	@FindBy(xpath = "//input[@name='customerAddressStreet']")
 	private WebElement addStreet;
 
-	@FindBy(xpath = "//input[@id=\"field_8\"]")
+	@FindBy(xpath = "//input[@name='customerAddressLandMark']")
 	private WebElement landMark;
 
-	@FindBy(xpath = "//input[@id=\"field_6\"]")
+	@FindBy(xpath = "//input[@name='customerAddressArea']")
 	private WebElement area;
 
-	@FindBy(xpath = "//input[@id=\"field_7\"]")
+	@FindBy(xpath = "//input[@name='customerAddressCity']")
 	private WebElement city;
 
-	@FindBy(xpath = "//input[@id=\"field_22\"]")
+	@FindBy(xpath = "//input[@name='customerAddressDistrict']")
 	private WebElement district;
 
-	@FindBy(xpath = "//input[@id=\"field_11\"]")
+	@FindBy(xpath = "//input[@name='customerAddressPincode']")
 	private WebElement pinCode;
 
-	@FindBy(xpath = "//input[@id=\"field_9\"]")
+	@FindBy(xpath = "//input[@name='customerAddressState']")
 	private WebElement state;
 
-	@FindBy(xpath = "//div[@id='s2id_field_10']")
+	@FindBy(xpath = "//div[@class='select2-container sysField']")
 	private WebElement countryDropDown;
 
 	@FindBy(xpath = "//ul[@class='select2-results']/li/div")
 	private List<WebElement> countryNames;
 
-	@FindBy(xpath = "//input[@id='fields2_fieldValue']")
+	@FindBy(xpath = "//input[@name='formAndField.fields[2].fieldValue']")
 	private WebElement text;
+	
+	@FindBy(xpath = "//input[@class='field currency form-control']")
+	private WebElement custmrcurrency;
 
-	@FindBy(xpath = "//input[@id='field_12']")
+	@FindBy(xpath = "(//img[@class='ui-datepicker-trigger'])[2]")
+	private WebElement datePicker;
+
+	@FindBy(xpath = "(//div[@id='ui-datepicker-div']//tbody/tr/td)[@data-handler='selectDay']")
+	private List<WebElement> dates;
+
+	@FindBy(xpath = "(//img[@class='ui-datepicker-trigger'])[last()]")
+	private WebElement date1Picker;
+
+	@FindBy(xpath = "(//div[@id='ui-datepicker-div']//tbody/tr/td)[@data-handler='selectDay']")
+	private List<WebElement> dates1;
+
+	@FindBy(xpath = "(//input[@class='field dateTime form-control'])[2]")
+	private WebElement datetimepicker;
+
+	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[2]/table/tbody/tr/td")
+	private List<WebElement> datetimes;
+
+	@FindBy(xpath = "(//div/input[@class='field dateTime form-control'])[last()]")
+	private WebElement datetime1picker;
+
+	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[3]/table/tbody/tr/td")
+	private List<WebElement> datetimes1;
+
+	@FindBy(xpath = "(//input[@class='sysField form-control numeric'])[2]")
+	private WebElement number;
+
+	@FindBy(xpath = "(//input[@class='time form-control'])[1]")
+	private WebElement timefield;
+
+	@FindBy(xpath = "(//div[@class='xdsoft_timepicker active']/div)[4]/div[@class='xdsoft_time_variant']/div")
+	private List<WebElement> time;
+
+	@FindBy(xpath = "(//div/input[@class='field form-control'])[1]")
+	private WebElement customfieldEmail;
+
+	@FindBy(xpath = "(//div/input[@class='mapField form-control'])[1]")
+	private WebElement customfieldlocationlat;
+
+	@FindBy(xpath = "(//div/input[@class='mapField form-control'])[2]")
+	private WebElement customfieldlocationlog;
+
+	@FindBy(xpath = "//div/input[@class='field form-control inputTypePhone']")
+	private WebElement customfieldphone;
+
+	@FindBy(xpath = "(//div/input[@class='field form-control'])[2]")
+	private WebElement customfieldURL;
+
+	@FindBy(xpath = "//div/input[@class='fileAudio']")
+	private WebElement customfieldaudio;
+
+	@FindBy(xpath = "//div/input[@class='fileImage']")
+	private WebElement customfieldimage;
+
+	@FindBy(xpath = "//div/input[@class='file']")
+	private WebElement customfieldsignature;
+
+	@FindBy(xpath = "//div/input[@class='fileVideo']")
+	private WebElement customfieldvideo;
+
+	@FindBy(xpath = "//div/select[@class='field customEntityPick form-control']")
+	private WebElement customentityfield;
+
+	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[4]/td[2]")
+	private WebElement customentitypicker;
+
+	@FindBy(xpath = "//input[@class='btn btn-success btn-block']")
+	private WebElement customentityokbtn;
+
+	@FindBy(xpath = "//div/select[@class='field cusPick form-control']")
+	private WebElement customerpickfield;
+
+	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
+	private WebElement customerpicker;
+
+	@FindBy(xpath = "//input[@value='OK']")
+	private WebElement customerpickokbtn;
+
+	@FindBy(xpath = "//div/select[@class='field pickemployees form-control']")
+	private WebElement employeepickfield;
+
+	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[5]/td[2]")
+	private WebElement employeepicker;
+
+	@FindBy(xpath = "//input[@class='btn  btn-success']")
+	private WebElement employeepickokbtn;
+
+	@FindBy(xpath = "//div[@class='select2-container field pickForms']")
+	private WebElement formfield;
+
+	@FindBy(xpath = "(//ul[@class='select2-results'])[last()]/li[3]")
+	private WebElement selectform;
+
+	@FindBy(xpath = "(//div[@class='select2-container field'])[1]")
+	private WebElement YesorNofield;
+
+	@FindBy(xpath = "//ul[@class='select2-results']//li//div")
+	private List<WebElement> Yesvalue;
+
+	@FindBy(xpath = "//a[text()='					Click here to Select Lists']")
+	private WebElement multipicklistfield;
+
+	@FindBy(xpath = "((//div[@class='pq-cont']/table/tbody/tr)[3]/td)[2]")
+	private WebElement multipicklistvalues;
+
+	@FindBy(xpath = "(//input[contains(@class , 'btn')])[6]")
+	private WebElement multipickokbtn;
+
+	@FindBy(xpath = "//div[contains(@class,'select2-container-multi field')]")
+	private WebElement multiselectdropdownfield;
+
+	@FindBy(xpath = "(//ul[@class='select2-results'])[9]/li[1]")
+	private WebElement multiselectdropdownvalue;
+
+	@FindBy(xpath = "(//div/select[@class='field entPick form-control'])[2]")
+	private WebElement picklistfield;
+
+	@FindBy(xpath = "(//div[@class='pq-cont']/table/tbody/tr)[3]/td[2]")
+	private WebElement picklistvalue;
+
+	@FindBy(xpath = "(//input[@type='submit'])[2]")
+	private WebElement picklistokbtn;
+
+	@FindBy(xpath = "(//div/input[@class='sysField form-control numeric'])[3]")
+	private WebElement groupnumber;
+
+	@FindBy(xpath = "(//div/input[@class='time form-control'])[2]")
+	private WebElement grouptime;
+
+	@FindBy(xpath = "(//div[@class='xdsoft_time_box xdsoft_scroller_box'])[5]/div[1]/div")
+	private List<WebElement> grouptimelist;
+
+	@FindBy(xpath = "(//div[@class='select2-container field'])[2]/a/span[1]")
+	private WebElement dropdownfield;
+
+	@FindBy(xpath = "//div[@id='select2-drop']//ul/li[2]")
+	private WebElement dropdownvalue;
+	
+	@FindBy(xpath = "//input[@name='primaryContactFirstName']")
 	private WebElement primryCustmrFirstName;
 
-	@FindBy(xpath = "//input[@id='field_13']")
+	@FindBy(xpath = "//input[@name='primaryContactLastName']")
 	private WebElement primryCustmrLastName;
 
-	@FindBy(xpath = "//input[@id='field_14']")
+	@FindBy(xpath = "//input[@name='primaryContactTitle']")
 	private WebElement primryCustmrTitle;
 
-	@FindBy(xpath = "//input[@id='field_16']")
+	@FindBy(xpath = "//input[@name='primaryContactPhone']")
 	private WebElement primryCustmrPhone;
 
-	@FindBy(xpath = "//input[@id='field_15']")
+	@FindBy(xpath = "(//input[contains(@class,'compEmail')])[1]")
 	private WebElement primryCustmrEmail;
 
-	@FindBy(xpath = "//input[@id='field_17']")
+	@FindBy(xpath = "//input[@name='secondaryContactFirstName']")
 	private WebElement secondryCustmrFirstName;
 
-	@FindBy(xpath = "//input[@id='field_18']")
+	@FindBy(xpath = "//input[@name='secondaryContactLastName']")
 	private WebElement secondryCustmrLastName;
 
-	@FindBy(xpath = "//input[@id='field_19']")
+	@FindBy(xpath = "//input[@name='secondaryContactTitle']")
 	private WebElement secondryCustmrTitle;
 
-	@FindBy(xpath = "//input[@id='field_21']")
+	@FindBy(xpath = "//input[@name='secondaryContactPhone']")
 	private WebElement secondryCustmrPhone;
 
-	@FindBy(xpath = "//input[@id='field_20']")
+	@FindBy(xpath = "//input[@name='secondaryContactEmail']")
 	private WebElement secondryCustmrEmail;
 
 	@FindBy(xpath = "//input[@id='save']")
 	private WebElement SaveBtn;
+	
+	@FindBy(xpath="//div[text()=' Customer Created Succesfully']")
+	private WebElement custmrcreatedsuccessmsg;
 
 	@FindBy(xpath = "//form[@id='command']")
 	private WebElement form;
@@ -132,16 +271,16 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[@class='select2-choice select2-default']")
 	private WebElement assignDrpDown;
 
-	@FindBy(xpath = "//input[@id='s2id_autogen3_search']")
+	@FindBy(xpath = "//div[@class='select2-search']/input[@id='s2id_autogen3_search']")
 	private WebElement enterFieldInput;
 
-	@FindBy(xpath = "//ul[@id='select2-results-3']/li/div/span")
+	@FindBy(xpath = "(//ul[@class='select2-results'])[5]/li/div/span")
 	private WebElement empNameInDropDown;
 
 	@FindBy(id = "assignCustomers")
 	private WebElement applyBtn;
 
-	@FindBy(id="deleteCustomers")
+	@FindBy(id = "deleteCustomers")
 	private WebElement deleteBtn;
 
 	@FindBy(xpath = "//li[@id='logout_id']")
@@ -300,24 +439,350 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Ending of EnterCustmrText Method");
 	}
 
-	public void PrimryCustmrFirstName(String EnterFirstName) {
+
+	public void enterCustomerCurrency(String CurrencyValue) {
+		logger.info("Starting of enterCustomerCurrency Method");
+		waitUntilElementVisible(driver, custmrcurrency);
+		this.custmrcurrency.sendKeys(CurrencyValue);
+
+		logger.info("Ending of enterCustomerCurrency Method");
+	}
+
+	public void clickOnDatePicker() {
+		logger.info("Starting of clickOnDatePicker Method");
+		waitUntilElementVisible(driver, datePicker);
+		this.datePicker.click();
+		logger.info("Ending of clickOnDatePicker Method");
+	}
+
+	public void pickCurrentDate() throws InterruptedException {
+		logger.info("Starting of pickCurrentDate Method");
+		String presentdate = getCurrentDateAsNumber();
+		Thread.sleep(500);
+		for (int i = 0; i <= dates.size() -1; i++) {
+			String actualdate = dates.get(i).getText();
+			if (actualdate.equalsIgnoreCase(presentdate)) {
+				waitUntilElementVisible(driver, dates.get(i));
+				dates.get(i).click();
+				break;
+			}
+		}
+		logger.info("Ending of pickCurrentDate Method");
+	}
+
+	public void clickOnDate1Picker() {
+		logger.info("Starting of clickOnDate1Picker Method");
+		waitUntilElementVisible(driver, date1Picker);
+		this.date1Picker.click();
+		logger.info("Ending of clickOnDate1Picker Method");
+
+	}
+
+	public void pickCurrentDate1() throws InterruptedException {
+		logger.info("Starting of pickCurrentDate1 Method");
+		String presentdate = getCurrentDateAsNumber();
+		Thread.sleep(500);
+		for (int i = 0; i <= dates1.size() - 1; i++) {
+			String actualdate = dates1.get(i).getText();
+			if (actualdate.equalsIgnoreCase(presentdate)) {
+				waitUntilElementVisible(driver, dates1.get(i));
+				dates1.get(i).click();
+				break;
+			}
+		}
+		logger.info("Ending of pickCurrentDate1 Method");
+	}
+
+	public void clickOnDateTimePicker() {
+		logger.info("Starting of clickOnDateTimePicker Method");
+		waitUntilElementVisible(driver, datetimepicker);
+		this.datetimepicker.click();
+		logger.info("Ending of clickOnDateTimePicker Method");
+	}
+
+	public void pickCurrentDateTime() throws InterruptedException {
+		logger.info("Starting of pickCurrentDateTime Method");
+		String presentdatetime = getCurrentDateAsNumber();
+		Thread.sleep(500);
+		for (int i = 0; i <= datetimes.size() - 1; i++) {
+			String actualdatetime = datetimes.get(i).getText();
+			if (actualdatetime.equalsIgnoreCase(presentdatetime)) {
+				waitUntilElementVisible(driver, datetimes.get(i));
+				datetimes.get(i).click();
+				break;
+			}
+		}
+		this.datetimepicker.click();
+		logger.info("Ending of pickCurrentDateTime Method");
+	}
+
+	public void clickOnDateTime1Picker() throws InterruptedException {
+		logger.info("Starting of clickOnDateTime1Picker Method");
+		scrollDown(100, datetime1picker);
+		waitUntilElementVisible(driver, this.datetime1picker);
+		this.datetime1picker.click();
+		logger.info("Ending of clickOnDateTime1Picker Method");
+	}
+
+	public void pickCurrentDateTime1() throws InterruptedException {
+		logger.info("Starting of pickCurrentDateTime1 Method");
+		String presentdatetime = getCurrentDateAsNumber();
+		Thread.sleep(500);
+		for (int i = 0; i <= datetimes1.size() - 1; i++) {
+			String actualdatetime = datetimes1.get(i).getText();
+			if (actualdatetime.equalsIgnoreCase(presentdatetime)) {
+				waitUntilElementVisible(driver, datetimes1.get(i));
+				datetimes1.get(i).click();
+				break;
+			}
+		}
+		this.datetime1picker.click();
+		logger.info("Ending of pickCurrentDateTime1 Method");
+	}
+
+	public void enterCustomFieldNumber(String Number) {
+		logger.info("Starting of enterCustomFieldNumber Method");
+		waitUntilElementVisible(driver, number);
+		this.number.sendKeys(Number);
+		logger.info("Ending of enterCustomFieldNumber Method");
+	}
+
+	public void pickTime() throws InterruptedException {
+		logger.info("Starting of pickTime Method");
+		waitUntilElementVisible(driver, this.timefield);
+		scrollDown(100, timefield);
+		this.timefield.click();
+		String currentTime = getCurrentTime();
+		String[] timeString = currentTime.split(":");
+		Integer hour = Integer.parseInt(timeString[0]);
+		hour = hour * 60;
+		Integer min = Integer.parseInt(timeString[1]);
+		int Index = hour + min;
+		int timeItemCount = time.size();
+		if (timeItemCount != 1440) {
+			Index = 50;
+		}
+		Thread.sleep(1000);
+		this.time.get(Index).click();
+
+		logger.info("Ending of pickTime Method");
+	}
+
+	public void enterCustomFieldEmail(String CustmEmail) {
+		logger.info("Starting of enterCustomerFieldEmail Method");
+		waitUntilElementVisible(driver, customfieldEmail);
+		this.customfieldEmail.sendKeys(CustmEmail);
+		logger.info("Ending of enterCustomerFieldEmail Method");
+	}
+
+	public void selectCustomFieldLat(String CustmFieldlat) {
+		logger.info("Starting of selectCustomerFieldLat Method");
+		waitUntilElementVisible(driver, customfieldlocationlat);
+		this.customfieldlocationlat.sendKeys(CustmFieldlat);
+		logger.info("Ending of selectCustomerFieldLat Method");
+	}
+
+	public void selectCustomFieldLog(String CustmFieldlog) {
+		logger.info("Starting of selectCustomerFieldLog Method");
+		waitUntilElementVisible(driver, customfieldlocationlog);
+		this.customfieldlocationlog.sendKeys(CustmFieldlog);
+		logger.info("Ending of selectCustomerFieldLog Method");
+	}
+
+	public void enterCustomFieldPhone() {
+		logger.info("Starting of enterCustomFieldPhone Method");
+		String customfieldphonenumbr = randomMobileNumbers();
+		waitUntilElementVisible(driver, customfieldphone);
+		this.customfieldphone.sendKeys(customfieldphonenumbr);
+		logger.info("Ending of enterCustomFieldPhone Method");
+	}
+
+	public void enterCustomFieldURL(String custmfieldURL) {
+		logger.info("Starting of enterCustomFieldURL Method");
+		waitUntilElementVisible(driver, customfieldURL);
+		this.customfieldURL.sendKeys(custmfieldURL);
+		logger.info("Ending of enterCustomFieldURL Method");
+	}
+
+	public void selectAudio() {
+		logger.info("Starting of selectAudio Method ");
+		waitUntilElementVisible(driver, customfieldaudio);
+		String audiofilePath = System.getProperty("user.dir") + "\\MediaFiles\\Audofile.mp3";
+		this.customfieldaudio.sendKeys(audiofilePath);
+		logger.info("Ending of selectAudio Method ");
+	}
+
+	public void selectImage() throws IOException, InterruptedException {
+		logger.info("Starting of selectImage Method ");
+		waitUntilElementVisible(driver, this.customfieldimage);
+		String imagefilepath = System.getProperty("user.dir") + "\\MediaFiles\\image.jpg";
+		this.customfieldimage.sendKeys(imagefilepath);
+		logger.info("Ending of selectImage Method ");
+	}
+
+	public void selectSignature() {
+		logger.info("Starting of selectSignature Method ");
+		waitUntilElementVisible(driver, this.customfieldsignature);
+		String signatuerfilepath = System.getProperty("user.dir") + "\\MediaFiles\\Signature.jpg";
+		this.customfieldsignature.sendKeys(signatuerfilepath);
+		logger.info("Ending of selectSignature Method ");
+	}
+
+	public void selectVideo() {
+		logger.info("Starting of selectVideo Method ");
+		waitUntilElementVisible(driver, this.customfieldvideo);
+		String videofilepath = System.getProperty("user.dir") + "\\MediaFiles\\Video.mp4";
+		this.customfieldvideo.sendKeys(videofilepath);
+		logger.info("Ending of selectVideo Method ");
+	}
+
+	public void pickCustomEntity() {
+		logger.info("Starting of customerPickField Method");
+		waitUntilElementVisible(driver, customentityfield);
+		this.customentityfield.click();
+		waitUntilElementVisible(driver, customentitypicker);
+		this.customentitypicker.click();
+		waitUntilElementVisible(driver, customentityokbtn);
+		this.customentityokbtn.click();
+		logger.info("Ending of customerPickField Method");
+	}
+
+	public void pickCustomer() throws InterruptedException {
+		logger.info("Starting of customPicker Method");
+		scrollDown(100, customerpickfield);
+		waitUntilElementVisible(driver, customerpickfield);
+		this.customerpickfield.click();
+		waitUntilElementVisible(driver, customerpicker);
+		this.customerpicker.click();
+		waitUntilElementVisible(driver, customerpickokbtn);
+		this.customerpickokbtn.click();
+		logger.info("Ending of customPicker Method");
+	}
+
+	public void pickEmployee() {
+		logger.info("Starting of employeePicker Method");
+		scrollDown(100, employeepickfield);
+		waitUntilElementVisible(driver, employeepickfield);
+		this.employeepickfield.click();
+		waitUntilElementVisible(driver, employeepicker);
+		this.employeepicker.click();
+		waitUntilElementVisible(driver, employeepickokbtn);
+		this.employeepickokbtn.click();
+		logger.info("Ending of employeePicker Method");
+	}
+
+	public void pickForm() throws InterruptedException {
+		logger.info("Starting of formPicker Method");
+		waitUntilElementVisible(driver, formfield);
+		this.formfield.click();
+		waitUntilElementVisible(driver, selectform);
+		this.selectform.click();
+		logger.info("Ending of formPicker Method");
+	}
+
+	public void pickYesOrNo() {
+		logger.info("Starting of pickYesOrNo Method");
+		waitUntilElementVisible(driver, this.YesorNofield);
+		this.YesorNofield.click();
+		int yesOrNoOptionCount = 0;
+		while (yesOrNoOptionCount < Yesvalue.size()) {
+			if (Yesvalue.get(yesOrNoOptionCount).getText().equalsIgnoreCase("Yes")) {
+				Yesvalue.get(yesOrNoOptionCount).click();
+				break;
+			}
+			yesOrNoOptionCount++;
+		}
+		logger.info("Ending of pickYesOrNo Method");
+	}
+
+	public void pickMultiPickList() {
+		logger.info("Starting of pickMultiPickList Method");
+		scrollDown(100, multipicklistfield);
+		waitUntilElementVisible(driver, this.multipicklistfield);
+		this.multipicklistfield.click();
+		waitUntilElementVisible(driver, this.multipicklistvalues);
+		this.multipicklistvalues.click();
+		waitUntilElementVisible(driver, this.multipickokbtn);
+		this.multipickokbtn.click();
+		logger.info("Ending of pickMultiPickList Method");
+	}
+
+	public void pickMultiSelectDropDown() {
+		logger.info("Starting of pickMultiSelectDropDown Method");
+		waitUntilElementVisible(driver, this.multiselectdropdownfield);
+		this.multiselectdropdownfield.click();
+		waitUntilElementVisible(driver, this.multiselectdropdownvalue);
+		this.multiselectdropdownvalue.click();
+		logger.info("Ending of pickMultiSelectDropDown Method");
+	}
+
+	public void pickPickList() {
+		logger.info("Starting of pickPickList Method");
+		waitUntilElementVisible(driver, this.picklistfield);
+		this.picklistfield.click();
+		waitUntilElementVisible(driver, this.picklistvalue);
+		this.picklistvalue.click();
+		waitUntilElementVisible(driver, this.picklistokbtn);
+		this.picklistokbtn.click();
+		logger.info("Ending of pickPickList Method");
+	}
+
+	public void enterGroupNumber(String GroupNumber) {
+		logger.info("Starting of enterGroupNumber Method");
+		waitUntilElementVisible(driver, this.groupnumber);
+		this.groupnumber.sendKeys(GroupNumber);
+		logger.info("Ending of enterGroupNumber Method");
+	}
+
+	public void pickGroupTime() throws InterruptedException {
+		logger.info("Starting of pickGroupTime Method");
+		waitUntilElementVisible(driver, this.grouptime);
+		scrollDown(100, grouptime);
+		this.grouptime.click();
+		String currentTime = getCurrentTime();
+		String[] timeString = currentTime.split(":");
+		Integer hour = Integer.parseInt(timeString[0]);
+		hour = hour * 60;
+		Integer min = Integer.parseInt(timeString[1]);
+		int Index = hour + min;
+		int timeItemCount = grouptimelist.size();
+		if (timeItemCount != 1440) {
+			Index = 50;
+		}
+		Thread.sleep(1000);
+		this.grouptimelist.get(Index).click();
+
+		logger.info("Ending of pickGroupTime Method");
+	}
+
+	public void pickDropDown() throws InterruptedException {
+		logger.info("Starting of pickDropDown Method");
+		Thread.sleep(500);
+		waitUntilElementVisible(driver, this.dropdownfield);
+		this.dropdownfield.click();
+		waitUntilElementVisible(driver, this.dropdownvalue);
+		this.dropdownvalue.click();
+		logger.info("Ending of pickDropDown Method");
+	}
+
+	public void PrimryCustmrFirstName(String primryfirstname) {
 		logger.info("Starting of PrimryCustmrFirstName Method");
 		waitUntilElementVisible(driver, primryCustmrFirstName);
-		this.primryCustmrFirstName.sendKeys(EnterFirstName);
+		this.primryCustmrFirstName.sendKeys(primryfirstname);
 		logger.info("Ending of PrimryCustmrFirstName Method");
 	}
 
-	public void PrimryCustmrLastName(String EnterLastName) {
+	public void PrimryCustmrLastName(String primryLastName) {
 		logger.info("Starting of PrimryCustmrLastName Method");
 		waitUntilElementVisible(driver, primryCustmrLastName);
-		this.primryCustmrLastName.sendKeys(EnterLastName);
+		this.primryCustmrLastName.sendKeys(primryLastName);
 		logger.info("Ending of PrimryCustmrLastName Method");
 	}
 
-	public void PrimryCustmrTitle(String EnterPrimeryTitle) {
+	public void PrimryCustmrTitle(String PrimeryTitle) {
 		logger.info("Starting of PrimryCustmrTitle Method");
 		waitUntilElementVisible(driver, primryCustmrTitle);
-		this.primryCustmrTitle.sendKeys(EnterPrimeryTitle);
+		this.primryCustmrTitle.sendKeys(PrimeryTitle);
 		logger.info("Ending of PrimryCustmrTitle Method");
 	}
 
@@ -337,24 +802,24 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Ending of PrimryCustmrEmail Method");
 	}
 
-	public void SecondryCustmrFirstName(String EnterFirstName) {
+	public void SecondryCustmrFirstName(String SecondryFirstName) {
 		logger.info("Starting of SecondryCustmrFirstName Method");
 		waitUntilElementVisible(driver, secondryCustmrFirstName);
-		this.secondryCustmrFirstName.sendKeys(EnterFirstName);
+		this.secondryCustmrFirstName.sendKeys(SecondryFirstName);
 		logger.info("Ending of SecondryCustmrFirstName Method");
 	}
 
-	public void SecondryCustmrLastName(String EnterLastName) {
+	public void SecondryCustmrLastName(String SecondryLastName) {
 		logger.info("Starting of SecondryCustmrLastName Method");
 		waitUntilElementVisible(driver, secondryCustmrLastName);
-		this.secondryCustmrLastName.sendKeys(EnterLastName);
+		this.secondryCustmrLastName.sendKeys(SecondryLastName);
 		logger.info("Ending of SecondryCustmrLastName Method");
 	}
 
-	public void SecondryCustmrTitle(String EnterSecondryTitle) {
+	public void SecondryCustmrTitle(String SecondryTitle) {
 		logger.info("Starting of SecondryCustmrTitle Method");
 		waitUntilElementVisible(driver, secondryCustmrTitle);
-		this.secondryCustmrTitle.sendKeys(EnterSecondryTitle);
+		this.secondryCustmrTitle.sendKeys(SecondryTitle);
 		logger.info("Ending of SecondryCustmrTitle Method");
 	}
 
@@ -380,7 +845,14 @@ public class CustomerPage extends BaseAutomationPage {
 		this.SaveBtn.click();
 		logger.info("Ending of ClickonSaveButton Method");
 	}
-
+	
+	public String customerCreatedSuccesMsg() {
+		logger.info("Starting of customerCreatedSuccesMsg Method ");
+		waitUntilElementVisible(driver, custmrcreatedsuccessmsg);
+		String custmrcreatdsuccesmsg = this.custmrcreatedsuccessmsg.getText();
+		return custmrcreatdsuccesmsg;
+	}
+		
 	public void ClickonEditBtn() throws InterruptedException {
 		logger.info("Starting of ClickonEditBtn Method");
 		Thread.sleep(500);
@@ -448,12 +920,11 @@ public class CustomerPage extends BaseAutomationPage {
 		return CustmrModifiedMsg;
 	}
 
-
 	public void CustmrMaptoEmployee() throws InterruptedException {
 		logger.info("Starting of CustmrMaptoEmployee Method");
 		Thread.sleep(500);
 		scrollDown(100, form);
-		for (int i = 0; i <=5; i++) {
+		for (int i = 0; i <= 5; i++) {
 			this.custmrmapingcheckbox.get(i).click();
 		}
 		logger.info("Ending of CustmrMaptoEmployee Method");
@@ -472,7 +943,7 @@ public class CustomerPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, assignDrpDown);
 		this.assignDrpDown.click();
 		waitUntilElementVisible(driver, enterFieldInput);
-		this.enterFieldInput.sendKeys("Automation");
+		this.enterFieldInput.sendKeys("automation");
 		waitUntilElementVisible(driver, empNameInDropDown);
 		this.empNameInDropDown.click();
 		waitUntilElementVisible(driver, applyBtn);
@@ -484,17 +955,18 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of SelectCustmrtoDelete Method");
 		Thread.sleep(500);
 		scrollDown(100, form);
-		for (int i = 0; i <3; i++) {
+		for (int i = 0; i < 3; i++) {
 			this.custmrmapingcheckbox.get(i).click();
 		}
 		logger.info("Ending of SelectCustmrtoDelete Method");
 	}
-	public String ClickonDeleteBtn() throws InterruptedException{
+
+	public String ClickonDeleteBtn() throws InterruptedException {
 		logger.info("Starting of ClickonDelete Method");
 		waitUntilElementVisible(driver, deleteBtn);
 		this.deleteBtn.click();
 		driver.switchTo().alert().accept();
-		Thread.sleep(9000);
+		Thread.sleep(10000);
 		String capturedDeleteMsg = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return capturedDeleteMsg;
@@ -506,7 +978,7 @@ public class CustomerPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, userNameBtn);
 		userNameBtn.click();
 		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("LogOut")) {
-			logoutBtn.get(logoutBtn.size()-1).click();
+			logoutBtn.get(logoutBtn.size() - 1).click();
 		}
 		logger.info("Ending of LogOut Method");
 	}

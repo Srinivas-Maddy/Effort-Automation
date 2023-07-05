@@ -51,7 +51,6 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
 
-	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 	

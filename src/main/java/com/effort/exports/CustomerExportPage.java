@@ -178,19 +178,19 @@ public class CustomerExportPage extends BaseAutomationPage {
 		this.custmrnamefilter.sendKeys("customer");
 		logger.info("Ending of filterCustomerName Method");	
 	}
-
+	
 	public void selectCustomerName() {
 		logger.info("Starting of selectCustomerName Method");
 		int i=0;
 		while(i<customernameinput.size()) {
 			String customerName = this.customernameinput.get(i).getText();
+
 			if(customerName.contains("Customer")) {
 				this.customernameinput.get(i).click();
 				break;
 			}
 			i++;
 		}
-
 		logger.info("Ending of selectCustomerName Method");
 	}
 
