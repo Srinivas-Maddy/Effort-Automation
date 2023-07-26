@@ -41,6 +41,15 @@ public class ImportPages extends BaseAutomationPage{
 
 	@FindBy(xpath="//table[@id='empBulkUploads']/tbody/tr[1]/td[7]")
 	private WebElement dataValiation;
+	
+	@FindBy(xpath="//div[@id='s2id_entitySpecId']")
+	private WebElement listDropdown;
+	
+	@FindBy(xpath="//ul[@id='select2-results-1']/li/div")
+	private List<WebElement> listSpecs;
+	
+	@FindBy(xpath="//div[@class='col-md-12']/form/div[3]/input")
+	private WebElement chooseFileListImport;
 
 
 	@FindBy(xpath="//li[@id='logout_id']")
@@ -74,6 +83,7 @@ public class ImportPages extends BaseAutomationPage{
 		logger.info("Ending of clickOnImports method");
 	}
 
+	//Employee bulk upload
 	public String clickOnImportCard(String card, String filePath) throws InterruptedException{
 		logger.info("Starting on import employee card");
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -101,9 +111,7 @@ public class ImportPages extends BaseAutomationPage{
 
 	}
 
-
-
-
+	//Employee Customer Bulk import
 	public String importCustomerMapping(String card, String filePath) throws InterruptedException {
 		logger.info("Starting  on import Customer employee mapping");
 
@@ -126,8 +134,39 @@ public class ImportPages extends BaseAutomationPage{
 		}
 		return empCustomerMappingStatus;
 
+	}
+	
+	//Employee List mapping bulk upload
+	public void importEmployeeListMapping(String card, String filePath, String listName) throws InterruptedException {
+		logger.info("Starting  on import Customer employee mapping");
+
+		for (int i = 0; i <employeeMenu.size(); i++){
+			String cardName=employeeMenu.get(i).getText();
+
+			if(cardName.equalsIgnoreCase(card)) {
+				waitUntilElementVisible(driver, employeeMenu.get(i));
+				employeeMenu.get(i).click();
+				waitUntilElementVisible(driver, this.listDropdown);
+				this.listDropdown.click();
+				for (int j = 0; j <this.listSpecs.size(); j++) {
+					waitUntilElementVisible(driver, this.listSpecs.get(i));
+					String listSpecName=this.listSpecs.get(j).getText();
+					if(listSpecName.equalsIgnoreCase(listName)) {
+						this.listSpecs.get(j).click();
+						waitUntilElementVisible(driver, this.chooseFileListImport);
+						this.chooseFileListImport.sendKeys(filePath);
+						this.importBtn.click();
+					}
+				}
+				break;
+		    }
+			logger.info("Ending  on import Customer employee mapping");
+
+		}
 
 	}
+	
+	
 
 
 
