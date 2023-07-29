@@ -69,7 +69,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Story("Test Case #2, Validate Process")
 	public void validationWorkSpec() {
 		logger.info("Starting of validateCreateProcess method");
-		String expectedWorkSpecName=processCreation.WorkSpecName+" Process Actions";
+		String expectedWorkSpecName=processCreation.WorkSpecName+" Process Activities";
 		String actualWorkSpecName=processCreation.getWorkProcessName();
 		Assert.assertEquals(actualWorkSpecName, expectedWorkSpecName);
 		logger.info("Ending of validateCreateProcess method");
