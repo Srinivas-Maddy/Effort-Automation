@@ -16,7 +16,7 @@ import com.effort.base.LoginPage;
 
 public class CustomerPage extends BaseAutomationPage {
 
-	private static final Logger logger = Logger.getLogger(LoginPage.class.getName());
+	private static final Logger logger = Logger.getLogger(CustomerPage.class.getName());
 
 	String parentwind = driver.getWindowHandle();
 

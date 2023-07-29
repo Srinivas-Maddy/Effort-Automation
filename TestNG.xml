@@ -50,6 +50,14 @@
 		</classes>
 	</test>
 	
+	<test name="Entities">
+		<classes>
+			 <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
+			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
+			
+		</classes>
+	</test>
+	
 	 <test name="Web Logins">
 	<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />

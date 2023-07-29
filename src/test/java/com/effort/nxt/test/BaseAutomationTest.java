@@ -35,6 +35,7 @@ public class BaseAutomationTest {
 	protected static Properties empDataProp=null;
 	protected static Properties formDataProp=null;
 	protected static Properties custmrDataProp=null;
+	protected static Properties entityDataProp=null;
 	
 	
 
@@ -53,6 +54,7 @@ public class BaseAutomationTest {
 			FileReader empDataReader=null;
 			FileReader custmrDataReader=null;
 			FileReader formDataReader=null;
+			FileReader entityDataReader=null;
 
 			try {
 				
@@ -62,6 +64,8 @@ public class BaseAutomationTest {
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties") ;
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
 				formDataReader = new FileReader("src/main/resources/FormData.properties");
+				entityDataReader = new FileReader("src/main/resources/EntitiesDetails.properties");
+				
 				
 				
 
@@ -80,6 +84,8 @@ public class BaseAutomationTest {
 				formDataProp = new Properties();
 				formDataProp.load(formDataReader);
 				
+				entityDataProp = new Properties();
+				entityDataProp.load(entityDataReader);
 				
 				
 
@@ -92,6 +98,7 @@ public class BaseAutomationTest {
 					assertionsReader.close();
 					empDataProp.clone();
 					custmrDataProp.clone();
+					entityDataProp.clone();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
