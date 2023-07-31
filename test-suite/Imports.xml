@@ -10,16 +10,10 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	 <test name="Employee Exports">
+	<test name="Customers">
 		<classes>
-			<class name="com.effort.nxt.test.exports.EmployeeExports" />
+			<class name="com.effort.nxt.test.imports.ImportTest"/>
 		</classes>
-	</test>
-	
-	<test name="Customer Exports">
-		<classes>
-			<class name="com.effort.nxt.test.exports.CustomerExports"/>
-		</classes>		
 	</test>
 
 	

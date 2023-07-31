@@ -33,7 +33,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(id="work")
 	private WebElement processButton;
 
-	@FindBy(xpath="//li[@title='Action Process']/span[2]/a")
+	@FindBy(xpath="//li[@title='Activity Process']/span[2]/a")
 	private WebElement actionProcess;
 
 	@FindBy(xpath="//input[@value='Create Process ']")
@@ -67,7 +67,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='nxtButton']")
 	private WebElement FlowNext;
 	
-	@FindBy(xpath="//button[contains(text(),'Add Action')]")
+	@FindBy(xpath="//button[contains(text(),'Add Activity')]")
 	private WebElement addActionBtn;
 	
 	@FindBy(xpath="//ul[@id='select2-results-38']//li")

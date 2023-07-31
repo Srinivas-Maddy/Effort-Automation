@@ -113,7 +113,7 @@ public class WebAppLogins extends BaseAutomationPage{
 		logger.info("Ending of Web App method");
 	}
 
-	public void clickOnAppBuilder() {
+	public void clickOnAppBuilderPage() {
 		logger.info("Starting of clickOnAppBuilder method");
 		waitUntilElementVisible(driver, this.appBuilder);
 		this.appBuilder.click();

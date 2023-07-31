@@ -2,16 +2,13 @@ package com.effort.nxt.test;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -19,14 +16,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
-import com.effort.base.BaseAutomationPage;
 import com.effort.base.LoginPage;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseAutomationTest {
@@ -37,14 +29,21 @@ public class BaseAutomationTest {
 	protected WebDriver driver = null;
 	protected String loginURL = null;
 	protected LoginPage loginPage = null;
-	
+
 	protected static Properties expectedAssertionsProp = null;
 	protected static Properties testDataProp = null;
 	protected static Properties empDataProp=null;
 	protected static Properties formDataProp=null;
 	protected static Properties custmrDataProp=null;
+
+	protected static Properties entityDataProp=null;
 	
 	
+
+	protected static Properties importProp=null;
+
+
+
 
 	private static Map<WEB_DRIVER, WebDriver> webDriverPool = new Hashtable<WEB_DRIVER, WebDriver>();
 
@@ -62,34 +61,55 @@ public class BaseAutomationTest {
 			FileReader custmrDataReader=null;
 			FileReader formDataReader=null;
 
+			FileReader entityDataReader=null;
+
+			FileReader importsReader=null;
+
+
 			try {
-				
+
 				testDataReader = new FileReader("src/main/resources/testdata.properties");
 				//testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
 				empDataReader= new FileReader("src/main/resources/EmployeeDetails.properties");
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties") ;
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
 				formDataReader = new FileReader("src/main/resources/FormData.properties");
+
+				entityDataReader = new FileReader("src/main/resources/EntitiesDetails.properties");
 				
 				
+				
+
+				importsReader = new FileReader("src/main/resources/importCards.properties");
+
+
 
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
 
 				expectedAssertionsProp = new Properties();
 				expectedAssertionsProp.load(assertionsReader);
-				
+
 				empDataProp = new Properties();
 				empDataProp.load(empDataReader);
-				
+
 				custmrDataProp = new Properties();
 				custmrDataProp.load(custmrDataReader);
-				
+
 				formDataProp = new Properties();
 				formDataProp.load(formDataReader);
+
+				
+				entityDataProp = new Properties();
+				entityDataProp.load(entityDataReader);
 				
 				
-				
+
+
+				importProp=new Properties();
+				importProp.load(importsReader);
+
+
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -100,6 +120,7 @@ public class BaseAutomationTest {
 					assertionsReader.close();
 					empDataProp.clone();
 					custmrDataProp.clone();
+					entityDataProp.clone();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -245,7 +266,7 @@ public class BaseAutomationTest {
 		logger.info("End of method getWebDriver");
 
 		webDriverPool.put(webDriver, driver);
-		      
+
 		return driver;
 	}
 
@@ -269,19 +290,19 @@ public class BaseAutomationTest {
 		return tVersion;
 	}
 
-//	protected void logIn(String siteURL, String userName, String password, WebDriver driver) throws Exception {
-//		logger.debug("Login URL " + siteURL);
-//
-//		driver.get(siteURL);
-//
-//		this.loginPage.logIn(userName, password);
-//	}
+	//	protected void logIn(String siteURL, String userName, String password, WebDriver driver) throws Exception {
+	//		logger.debug("Login URL " + siteURL);
+	//
+	//		driver.get(siteURL);
+	//
+	//		this.loginPage.logIn(userName, password);
+	//	}
 
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {
 
 		driver.get(siteURL);
 
 	}
-	
+
 
 }

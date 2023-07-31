@@ -1,5 +1,7 @@
 package com.effort.nxt.test.customer;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -20,8 +22,9 @@ public class CustomerTest extends BaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(CustomerTest.class.getName());
 	private CustomerPage custmrCreation;
-	private static final String expectedModifiedMsg = "Customer Modified Successfully";
-	private static final String expecteddeletepopupmsg = "Customer Deleted Successfully";
+	private static final String EXPECTEDCUSTOMERCREATEDSUCCESMSG = "Customer Created Succesfully";
+	private static final String EXPECTEDMODIFIEDMSG = "Customer Modified Successfully";
+	private static final String EXPECTEDDELETEPOPUPMSG = "Customer Deleted Successfully";
 
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "siteURL", "browser" })
@@ -35,7 +38,6 @@ public class CustomerTest extends BaseAutomationTest {
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
 		this.custmrCreation.ClickonWebApp();
-
 		logger.info("Ending of initEffortLogin Method");
 	}
 
@@ -43,7 +45,7 @@ public class CustomerTest extends BaseAutomationTest {
 	@Description("Create the Customer and Add the Customer Details")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Customer Creation on clicking add Customer button")
-	public void AddCustomer() throws InterruptedException {
+	public void AddCustomer() throws InterruptedException, IOException {
 		logger.info("Starting of AddCustomer Method");
 		custmrCreation.ClickonCustomer();
 		custmrCreation.ClickonAddCustomerBtn();
@@ -62,6 +64,37 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.EnterCustmrState(custmrDataProp.getProperty("state"));
 		custmrCreation.selectCountry();
 		custmrCreation.EnterCustmrText(custmrDataProp.getProperty("text"));
+		custmrCreation.enterCustomerCurrency(custmrDataProp.getProperty("customercurrency"));
+		custmrCreation.clickOnDatePicker();
+		custmrCreation.pickCurrentDate();
+		custmrCreation.clickOnDate1Picker();
+		custmrCreation.pickCurrentDate1();
+		custmrCreation.clickOnDateTimePicker();
+		custmrCreation.pickCurrentDateTime();
+		custmrCreation.clickOnDateTime1Picker();
+		custmrCreation.pickCurrentDateTime1();
+		custmrCreation.enterCustomFieldNumber(custmrDataProp.getProperty("number"));
+		custmrCreation.pickTime();
+		custmrCreation.enterCustomFieldEmail(custmrDataProp.getProperty("customfieldemail"));
+		custmrCreation.selectCustomFieldLat(custmrDataProp.getProperty("customfieldLat"));
+		custmrCreation.selectCustomFieldLog(custmrDataProp.getProperty("customfieldLog"));
+		custmrCreation.enterCustomFieldPhone();
+		custmrCreation.enterCustomFieldURL(custmrDataProp.getProperty("customfieldurl"));
+		custmrCreation.selectAudio();
+		custmrCreation.selectImage();
+		custmrCreation.selectSignature();
+		custmrCreation.selectVideo();
+		custmrCreation.pickCustomEntity();
+		custmrCreation.pickCustomer();
+		custmrCreation.pickEmployee();
+		custmrCreation.pickForm();
+		custmrCreation.pickYesOrNo();
+		custmrCreation.pickMultiPickList();
+		custmrCreation.pickMultiSelectDropDown();
+		custmrCreation.pickPickList();
+		custmrCreation.enterGroupNumber(custmrDataProp.getProperty("GroupNumber"));
+		custmrCreation.pickGroupTime();
+		custmrCreation.pickDropDown();
 		custmrCreation.PrimryCustmrFirstName(custmrDataProp.getProperty("primryfirstname"));
 		custmrCreation.PrimryCustmrLastName(custmrDataProp.getProperty("primrylastname"));
 		custmrCreation.PrimryCustmrTitle(custmrDataProp.getProperty("primrytitle"));
@@ -73,6 +106,8 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.SecondryCustmrPhone();
 		custmrCreation.SecondryCustmrEmail();
 		custmrCreation.ClickonSaveButton();
+		String actualcapturedmsg = custmrCreation.customerCreatedSuccesMsg();
+		Assert.assertEquals(actualcapturedmsg, EXPECTEDCUSTOMERCREATEDSUCCESMSG);
 		logger.info("Ending of AddCustomer Method");
 	}
 
@@ -91,7 +126,7 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.ModifiedsecondryFirstName(custmrDataProp.getProperty("modifiedsecondryfirstname"));
 		custmrCreation.ClickonSaveButton();
 		String actualMsg = custmrCreation.CaptureModifiedMsg();
-		Assert.assertEquals(actualMsg, expectedModifiedMsg);
+		Assert.assertEquals(actualMsg, EXPECTEDMODIFIEDMSG);
 		logger.info("Ending of modifyCustomer Method");
 	}
 
@@ -115,9 +150,8 @@ public class CustomerTest extends BaseAutomationTest {
 	public void customerDeletion() throws InterruptedException {
 		logger.info("Starting of customerDeletion Method");
 		custmrCreation.SelectCustmrtoDelete();
-		custmrCreation.ClickonDeleteBtn();
-		String deletepopupmsg = custmrCreation.ClickonDeleteBtn();
-		Assert.assertEquals(deletepopupmsg, expecteddeletepopupmsg);
+		String deletepopupmsg =custmrCreation.ClickonDeleteBtn();
+		Assert.assertEquals(deletepopupmsg, EXPECTEDDELETEPOPUPMSG);
 		logger.info("Ending of customerDeletion Method");
 	}
 
