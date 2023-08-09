@@ -49,6 +49,15 @@
 		</classes>
 	</test>
 	
+
+	<test name="Entities">
+		<classes>
+			 <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
+			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
+			</classes>
+	</test>
+
+
 	 <test name="Bulk Uploads">
 	<classes>
 			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />

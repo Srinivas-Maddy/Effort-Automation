@@ -28,7 +28,8 @@ public class BaseAutomationPage {
 	private static final Logger logger = Logger.getLogger(BaseAutomationPage.class);
 	
 	public static String TEST_FILE_PATH = null;
-
+	
+	
 	public BaseAutomationPage(WebDriver driver) {
 		this.driver = driver;
 		if (TEST_FILE_PATH == null) {
