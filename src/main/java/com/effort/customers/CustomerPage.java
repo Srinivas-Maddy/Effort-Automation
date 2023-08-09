@@ -142,7 +142,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//div/select[@class='field customEntityPick form-control']")
 	private WebElement customentityfield;
 
-	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[4]/td[2]")
+	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[2]/td[2]")
 	private WebElement customentitypicker;
 
 	@FindBy(xpath = "//input[@class='btn btn-success btn-block']")

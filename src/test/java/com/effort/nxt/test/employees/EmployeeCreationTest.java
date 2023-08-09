@@ -86,7 +86,6 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.clickOnFilter();
 		empCreation.filterEmployeeName();
 		empCreation.clickOnEditButton();
-		empCreation.clickOnSaveBtn();
 		logger.info("Ending of modifyEmployee Method");
 	}
 	
