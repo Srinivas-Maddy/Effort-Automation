@@ -334,11 +334,8 @@ public class EmployeeCreation extends BaseAutomationPage{
 					}
 					terrioryOptionsCount++;
 				}
-				
 			}
-			
 		}
-
 	}
 
 
@@ -393,7 +390,6 @@ public class EmployeeCreation extends BaseAutomationPage{
 		this.empLastName.sendKeys("Modified Last name");
 		waitUntilElementVisible(driver, this.modifySaveBtn);
 		this.modifySaveBtn.click();
-
 	}
 
 
