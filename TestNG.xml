@@ -15,7 +15,7 @@
 		</classes>
 	</test>
 	
-	<test name="Employee Module">
+ 	<test name="Employee Module">
 		<classes>
 			<class
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
@@ -46,17 +46,9 @@
 		<classes>
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
+			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 		</classes>
 	</test>
-	
-
-	<test name="Entities">
-		<classes>
-			 <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
-			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
-			</classes>
-	</test>
-
 
 	 <test name="Bulk Uploads">
 	<classes>
@@ -64,7 +56,21 @@
 		</classes>
 	</test>
 	
-	 <test name="Web Logins">
+	<test name="Entities">
+		<classes>
+		    <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
+			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
+			</classes>
+	</test>
+	
+	<test name="Filters">
+		<classes>
+		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>
+			
+			</classes>
+	</test>
+	
+	<test name="Web Logins">
 	<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
 		</classes>

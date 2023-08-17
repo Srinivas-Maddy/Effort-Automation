@@ -21,6 +21,12 @@
 			<class name="com.effort.nxt.test.exports.CustomerExports"/>
 		</classes>		
 	</test>
+	
+	<test name="Entities Exports">
+		<classes>
+			<class name="com.effort.nxt.test.exports.EntitiesExportTest"/>
+		</classes>		
+	</test>
 
 	
 </suite>

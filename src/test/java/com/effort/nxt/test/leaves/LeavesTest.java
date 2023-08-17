@@ -1,0 +1,93 @@
+package com.effort.nxt.test.leaves;
+
+import org.apache.log4j.Logger;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.effort.base.LoginPage;
+import com.effort.leaves.LeavesPage;
+import com.effort.nxt.test.BaseAutomationTest;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+public class LeavesTest extends BaseAutomationTest{
+	
+	private static final Logger logger = Logger.getLogger(LeavesTest.class.getName());
+	private LeavesPage leavespage;
+	
+	@BeforeClass(alwaysRun = true)
+	@Parameters({"siteURL","browser"})
+	
+	public void initEffortLogin(String siteURL , String browser) throws Exception {
+		logger.info("Starting of initEffortLogin Method");
+		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+	    this.goToSite(siteURL, driver);
+	    this.leavespage = new LeavesPage(driver);
+	    this.loginPage = new LoginPage(driver);
+	    loginPage.enterUserName(testDataProp.getProperty("name"));
+	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+	    loginPage.clickOnLoginButton();
+	    leavespage.clickOnWebApp();
+		logger.info("Ending of initEffortLogin Method");
+	}
+	
+	@Test(priority = 1, description = "Test Case #1, Apply Leaves" ,groups = {"Sanity"},enabled = true)
+	@Description("Appling Leaves")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #1 , Appling Leaves")
+	
+	public void applyLeaves() throws InterruptedException
+	{
+		logger.info("Starting of applyLeaves Method");
+		leavespage.clickOnLeaves();
+		leavespage.clickOnApplyLeaves();
+		leavespage.SwitchNewWindow();
+		leavespage.pickLeavesFromDate();
+		leavespage.pickLeaveType(leavesDataProp.getProperty("leavetype"));
+		leavespage.enterLeaveRemarks(leavesDataProp.getProperty("leaveRemark"));
+		leavespage.leavesSave();
+		logger.info("Ending of applyLeaves Method");
+	}
+	
+	@Test(priority = 2, description = "Test Case #2, Approve Leaves" ,groups = {"Sanity"})
+	@Description("After Appling Leaves,Approve the Leave")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #1 , Approve Leaves")
+	
+	public void approveLeaves() throws InterruptedException
+	{
+		logger.info("Starting of approveLeaves Method");
+		leavespage.clickOnLeaves();
+		leavespage.selectEmployeeToApprove();;
+		leavespage.clickOnApprove();
+		leavespage.enterLeaveApprovelNote();
+		logger.info("Ending of approveLeaves Method");
+	}
+	
+	@Test(priority = 3,description = "Test Case#3, Reject Leaves" , groups= {"Sanity"})
+	@Description("Afetr Appling Leave,Reject the Leave")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #3, Reject the Leave")
+	
+	public void rejectLeaves() throws InterruptedException {
+		logger.info("Starting of rejectLeaves Method");
+		leavespage.selectEmployeeToReject();
+		leavespage.clickOnReject();
+		leavespage.enterLeaveRejectNote();
+		logger.info("Ending of rejectLeaves Method");
+		
+	}
+	
+	@AfterClass(alwaysRun = true)
+	public void leavesLogout() throws InterruptedException {
+		logger.info("Starting of leavesLogout Method");
+		leavespage.leavesLogOut();
+		logger.info("Ending of leavesLogout Method");
+	}
+	
+}

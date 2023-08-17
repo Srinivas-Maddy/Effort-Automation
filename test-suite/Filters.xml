@@ -10,15 +10,17 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Entities">
+	<!-- <test name="EmployeeFilters">
 		<classes>
-			  <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
-			 <class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
-			
+			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest"/>
+		</classes>
+	</test>-->
+	
+	<test name="EntitiesFilters">
+		<classes>
+			<class name="com.effort.nxt.test.filters.EntityFiltersTest"/>
 		</classes>
 	</test>
-	
-	
 
 	
 </suite>

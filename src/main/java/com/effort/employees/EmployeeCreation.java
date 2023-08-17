@@ -28,7 +28,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 	@FindBy(xpath="//a[contains(text(),' Employees ')]")
 	private WebElement employeeModule;
 
-	@FindBy(xpath="//button[@id='addItems']")
+	@FindBy(xpath="//a[@title='Add Employee']")
 	private WebElement addEmpBtn;
 
 	@FindBy(xpath="//input[@id='empFirstName']")
@@ -97,7 +97,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='select2-drop']/ul/li/div")
 	private List<WebElement> territoryOptions;
 
-	@FindBy(xpath="//input[@id='save1']")
+	@FindBy(xpath="//input[@id='save']")
 	private WebElement saveBtn;
 
 	@FindBy(xpath="//div[@id='snackbarVal']")
@@ -123,6 +123,9 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//ul[@aria-labelledby='dropdownMenu1']/li/a")
 	private List<WebElement> actionDropDowns;
+	
+	@FindBy(id="save1")
+	private WebElement modifySaveBtn;
 
 	@FindBy(id="disableEmployee")
 	private WebElement applyDisableEmp;
@@ -320,6 +323,7 @@ public class EmployeeCreation extends BaseAutomationPage{
 			
 			//Territoty dropdown
 			else if(labelName.equalsIgnoreCase("Employee territory :")) {
+				scrollDown(500, this.territoryDropdown);
 				waitUntilElementVisible(driver, this.territoryDropdown);
 				this.territoryDropdown.click();
 				int terrioryOptionsCount=0;
@@ -333,9 +337,6 @@ public class EmployeeCreation extends BaseAutomationPage{
 				
 			}
 			
-			
-			
-			
 		}
 
 	}
@@ -343,9 +344,11 @@ public class EmployeeCreation extends BaseAutomationPage{
 
 
 
-	public void clickOnSaveBtn() {
+	public void clickOnSaveBtn() throws InterruptedException {
 		logger.info("Starting of clickOnSaveBtn method");
+		scrollDown(500, this.territoryDropdown);
 		waitUntilElementVisible(driver, saveBtn);
+		Thread.sleep(2000);
 		saveBtn.click();
 		logger.info("ending of qrCodeCheckBox method");
 	}
@@ -388,6 +391,9 @@ public class EmployeeCreation extends BaseAutomationPage{
 		this.firstName.sendKeys("Modified Employee Name");
 		this.empLastName.clear();
 		this.empLastName.sendKeys("Modified Last name");
+		waitUntilElementVisible(driver, this.modifySaveBtn);
+		this.modifySaveBtn.click();
+
 	}
 
 

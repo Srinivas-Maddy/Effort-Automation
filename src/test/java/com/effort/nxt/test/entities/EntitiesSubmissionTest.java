@@ -115,25 +115,12 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		logger.info("Ending of deleteEntity Method");	
 	}	
 	
-		
-//	@Test(priority = 4,description = "Test Case 4 , Map to Employee" , groups= {"sanity"})
-//	@Description("Mapping Entity to Employee")
-//	@Severity(SeverityLevel.BLOCKER)
-//	@Story("Test Case 4 ,Map to Employee")
-//	public void mapEntityToEmployee() {
-//		logger.info("Starting of mapEntityToEmployee Method");
-//		entitiessubmission.clickOnCheckboxtoSelectEntity();
-//		entitiessubmission.clickOnMapToEmployee();
-//		entitiessubmission.entityMapingToEmployee(entityDataProp.getProperty("entitymaptoemployeename"));
-//		logger.info("Ending of mapEntityToEmployee Method");
-//		
-//	}
 	
 	@AfterClass(alwaysRun = true)
-	public void logoutEntitites() {
+	public void logoutEntitites() throws InterruptedException {
 		logger.info("Starting of logoutEntitites Method");
 		
-		entitiessubmission.logOutEntitites();
+		entitiessubmission.LogOutEntity();
 		
 		logger.info("Ending of logoutEntitites Method");
 	}
