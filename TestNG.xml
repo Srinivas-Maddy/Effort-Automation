@@ -56,7 +56,7 @@
 		</classes>
 	</test>
 	
-	<test name="Entities">
+	<test name="Entities Module">
 		<classes>
 		    <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
 			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
@@ -65,10 +65,10 @@
 	
 	<test name="Filters">
 		<classes>
-		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>
-			
+		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>	
 			</classes>
 	</test>
+	
 	
 	<test name="Web Logins">
 	<classes>
@@ -76,6 +76,5 @@
 		</classes>
 	</test>
 	
-
 
 </suite>

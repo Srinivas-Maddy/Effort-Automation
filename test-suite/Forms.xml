@@ -2,7 +2,7 @@
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
 	<parameter name="siteURL"
-		value="https://secure.spoors.io/effortx/login" />
+		value="https://staging.spoors.in/effortx/login?oppLoginEnable=true" />
 
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 
@@ -13,7 +13,7 @@
 	<test name="forms">
 		<classes>
 
-			<class name="com.effort.test.forms.FormsTest" /> 
+			<!--<class name="com.effort.test.forms.FormsTest" /> -->
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>

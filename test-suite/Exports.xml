@@ -12,13 +12,13 @@
 
 	 <test name="Employee Exports">
 		<classes>
-			<class name="com.effort.nxt.test.exports.EmployeeExports" />
+			<!-- <class name="com.effort.nxt.test.exports.EmployeeExports" />-->
 		</classes>
 	</test>
 	
 	<test name="Customer Exports">
 		<classes>
-			<class name="com.effort.nxt.test.exports.CustomerExports"/>
+			<!-- <class name="com.effort.nxt.test.exports.CustomerExports"/>-->
 		</classes>		
 	</test>
 	

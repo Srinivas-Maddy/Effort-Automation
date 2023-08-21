@@ -28,7 +28,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest{
 	private final String EXPECTED_EMP_ID_UPDATE_STATUS="Processed";
 	private final String EXPECTED_ROUTE_ASSIGNMENT="We've received the sheet you uploaded. An email will be sent to you notifying the status of the update."
 			+ " The following are the files that were uploaded:";
-	//expectedWorkAssignmentStatus
+	private final String EXPECTED_TERRITORY_MAPPING_STATUS="We've received the sheet you uploaded. An email will be sent to you notifying the status of the update. The following are the files that were uploaded:";
 	private final String EXPECTED_WORK_ASSIGNMENT_STATUS="Successful";
 
 
@@ -174,9 +174,26 @@ public class EmployeeBulkUplods extends BaseAutomationTest{
 		Assert.assertEquals(actualStatusMsg, EXPECTED_WORK_ASSIGNMENT_STATUS);
 		logger.info("Ending of Work Reassignment Method");
 	}	
+	
 
+	@Test(priority = 9, description="Employee Terriotry Mapping", groups = {"sanity"})
+	@Description("Employee Terriotry mapping")
+	@Epic("Imports Module")
+	@Feature("Bulk Uploads")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Validating the employee Terriotry items mapping through the bulk upload")
+	public void employeeTerriotryMapping() throws InterruptedException {
+		logger.info("Starting of Emp Terriotry Mapping Method");
+		this.importpage.clickOnImports();
+		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Employee_Territory_Mapping.xls";
+		String actualEmpTerritoryStatus=this.importpage.importEmpTerritoryMapping(importProp.getProperty("employeeTerritoryMapping"),importSheetPath);
+		Assert.assertEquals(actualEmpTerritoryStatus, EXPECTED_TERRITORY_MAPPING_STATUS);
+		logger.info("Ending of Emp Terriotry Mapping Method");
 
-	@Test(priority = 9, description="Employee List Mapping", groups = {"sanity"})
+	}
+	
+
+	@Test(priority = 10, description="Employee List Mapping", groups = {"sanity"})
 	@Description("Employee List mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
