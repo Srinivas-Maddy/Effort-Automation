@@ -3,6 +3,7 @@ package com.effort.entities;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -94,33 +95,32 @@ public class EntitiesProcess extends BaseAutomationPage {
 	@FindBy(xpath="//input[@name='appNameForMobile']")
 	private WebElement selectdefaultmobileappname;
 	
-	@FindBy(xpath="(//ul[@class='formspecActionsConfig']/li)[1]")
-	private WebElement modifyentityspeccard;
+	@FindBy(xpath="(//ul[@class='formspecActionsConfig']/li)[2]")
+	private WebElement editentityspeccard;
 	
-	@FindBy(id ="customEntitySpecTitle")
-	private WebElement modifyspecentityname;
+	@FindBy(id="save1")
+	private WebElement entitymodifysave;
 	
-	@FindBy(id ="description")
-	private WebElement modifyspecentitydescription;
+	@FindBy(xpath="//ul[@class='list-group fieldType-group dynamic']/li[5]")
+	private WebElement entitypicklist;
 	
-	@FindBy(xpath="//input[@class='btn buttonStyle']")
-	private WebElement modifyspecentitysavebtn;
+	@FindBy(xpath="//div[@id='dataTypes_pannel']")
+	private WebElement scrolldown;
 	
 	@FindBy(xpath="(//ul[@class='formspecActionsConfig']/li)[9]")
 	private WebElement withdrawspecentitycard;
 	
+	@FindBy(xpath="(//div[@class='row'])[2]//ul/li")
+	private List<WebElement> entityspeccards;
+	
 	@FindBy(id="logout_id")
 	private WebElement username;
 	
-	@FindBy(xpath="(//ul[@class='dropdown-menu'])[2]/li[4]/a[text()=' Switch to Web App ']")
-	private WebElement switchwebapp;
-	
-	@FindBy(xpath="(//ul[@class='dropdown-menu'])[2]/li[5]/a[text()=' Switch to App Builder (Admin)']")
-	private WebElement switchappbuilder;
-	
 	@FindBy(xpath="(//ul[@class='entityConfig']/li)[2]")
 	private WebElement manageentity;
-
+	
+	@FindBy(id="searchText")
+	private WebElement entitysearchbox;
 	
 
 	
@@ -221,10 +221,11 @@ public class EntitiesProcess extends BaseAutomationPage {
 		this.proximitycheckout.click();
 		waitUntilElementVisible(driver, forcedcheckout);
 		this.forcedcheckout.click();
+		Thread.sleep(2000);
 		Actions action = new Actions(driver);
 		((JavascriptExecutor) driver).executeScript("document.body.style.zoom='90%'");
 		action.sendKeys(Keys.PAGE_DOWN).build().perform();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click()", this.nextbtn);
 		driver.switchTo().alert().accept();
@@ -248,52 +249,68 @@ public class EntitiesProcess extends BaseAutomationPage {
 		logger.info("Ending of selectWebandMobileCheckbox Method");
 	}
 	
-	public void clickOnModifyEntitySpec() {
-		logger.info("Starting of clickOnModifyEntitySpec Method");
-		waitUntilElementVisible(driver, this.modifyentityspeccard);
-		this.modifyentityspeccard.click();	
-		logger.info("Ending of clickOnModifyEntitySpec Method");
-		}
-	
-	public void enterModifiedName(String modifyname) {
-		logger.info("Starting of enterModifiedName Method");
-		waitUntilElementVisible(driver, this.modifyspecentityname);
-		this.modifyspecentityname.clear();
-		this.modifyspecentityname.sendKeys(modifyname);
-		logger.info("Ending of enterModifiedName Method");
+	public String entitySpecValidation() {
+		logger.info("Starting of entitySpecValidation Method");
+		String entityspeccreatedsuccesmsg = driver.findElement(By.xpath("//h4[contains(text(),' "+name+"')]")).getText();
+		return entityspeccreatedsuccesmsg;
 		
 	}
 	
-	public void enterModifiedDescription(String modifydescription) {
-		logger.info("Starting of enterModifiedDescription Method");
-		waitUntilElementVisible(driver, this.modifyspecentitydescription);
-		this.modifyspecentitydescription.clear();
-		this.modifyspecentitydescription.sendKeys(modifydescription);
-		waitUntilElementVisible(driver, this.modifyspecentitysavebtn);
-		this.modifyspecentitysavebtn.click();
-		logger.info("Ending of enterModifiedDescription Method");
-	}
+	public void entitySpecModification( ) throws InterruptedException {
+		logger.info("Starting of entitySpecModification Method");
+		Thread.sleep(2000);
+		waitUntilElementVisible(driver, this.editentityspeccard);
+		this.editentityspeccard.click();
+		scrollDown(100, this.entitypicklist);
+		waitUntilElementVisible(driver, this.entitypicklist);
+		Actions action = new Actions(driver);
+		action.dragAndDrop(this.entitypicklist, this.dropdownarea).build().perform();
+		waitUntilElementVisible(driver, this.entitymodifysave);
+		this.entitymodifysave.click();
+		logger.info("Ending of entitySpecModification Method");
+		}
 	
-	public void deleteEntitySpec() throws InterruptedException {
+	public void deleteEntitySpec() {
 		logger.info("Starting of deleteEntitySpec Method");
-		Thread.sleep(1000);
-		scrollDown(100, this.withdrawspecentitycard);
+		waitUntilElementVisible(driver, this.entities);
+		this.entities.click();
+		waitUntilElementVisible(driver, this.manageentity);
+		this.manageentity.click();
+		waitUntilElementVisible(driver, this.entitysearchbox);
+		this.entitysearchbox.sendKeys(name);
+		driver.findElement(By.xpath("//a[contains(text(),'"+ name +"')]")).click();
 		waitUntilElementVisible(driver, this.withdrawspecentitycard);
 		this.withdrawspecentitycard.click();
-		driver.switchTo().alert().accept();	
+		driver.switchTo().alert().accept();
 		logger.info("Ending of deleteEntitySpec Method");
-		
-		}
-	
-	public void clickOnSwitchToWebApp() {
-		logger.info("Starting of clickOnSwitchToWebApp Method");
-		waitUntilElementVisible(driver, this.username);
-		this.username.click();
-		waitUntilElementVisible(driver, this.switchwebapp);
-		this.switchwebapp.click();
-		logger.info("Ending of clickOnSwitchToWebApp Method");		
 	}
 	
+	public void deleteEntityLoopSpec() {
+		logger.info("Starting of deleteEntityLoopSpec Method");
+		waitUntilElementVisible(driver, this.entities);
+		this.entities.click();
+		waitUntilElementVisible(driver, this.manageentity);
+		this.manageentity.click();
+		for(int i=0 ; i<19; i++) {
+			String activespeccardnames = this.entityspeccards.get(i).getText();
+			if (activespeccardnames.equalsIgnoreCase("Automation Entity teju")) {
+				continue;
+			}
+			else {
+				this.entityspeccards.get(i).click();
+				scrollDown(100, this.withdrawspecentitycard);
+				this.withdrawspecentitycard.click();
+				driver.switchTo().alert().accept();
+				
+			}
+			
+		}
+		
+		
+		
+		logger.info("Ending of deleteEntityLoopSpec Method");
+		
+	}
 	public void logOutEntitites() {
 		logger.info("Starting of logOutEntitites Method");	
 		waitUntilElementVisible(driver, userNameBtn);

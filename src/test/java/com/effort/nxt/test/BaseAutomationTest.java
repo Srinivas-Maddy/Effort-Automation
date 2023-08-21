@@ -35,10 +35,9 @@ public class BaseAutomationTest {
 	protected static Properties empDataProp=null;
 	protected static Properties formDataProp=null;
 	protected static Properties custmrDataProp=null;
-
 	protected static Properties entityDataProp=null;
-	
-	
+	protected static Properties filtersDataProp=null;
+	protected static Properties leavesDataProp=null;
 
 	protected static Properties importProp=null;
 
@@ -62,6 +61,8 @@ public class BaseAutomationTest {
 			FileReader formDataReader=null;
 
 			FileReader entityDataReader=null;
+			FileReader filtersDataReader=null;
+			FileReader leavesDataReader=null;
 
 			FileReader importsReader=null;
 
@@ -76,8 +77,8 @@ public class BaseAutomationTest {
 				formDataReader = new FileReader("src/main/resources/FormData.properties");
 
 				entityDataReader = new FileReader("src/main/resources/EntitiesDetails.properties");
-				
-				
+				filtersDataReader = new FileReader("src/main/resources/FiltersDetails.properties");
+				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
 				
 
 				importsReader = new FileReader("src/main/resources/importCards.properties");
@@ -103,6 +104,11 @@ public class BaseAutomationTest {
 				entityDataProp = new Properties();
 				entityDataProp.load(entityDataReader);
 				
+				filtersDataProp = new Properties();
+				filtersDataProp.load(filtersDataReader);
+				
+				leavesDataProp = new Properties();
+				leavesDataProp.load(leavesDataReader);
 				
 
 
@@ -121,6 +127,10 @@ public class BaseAutomationTest {
 					empDataProp.clone();
 					custmrDataProp.clone();
 					entityDataProp.clone();
+					filtersDataProp.clone();
+					leavesDataProp.clone();
+					
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

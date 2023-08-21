@@ -6,8 +6,10 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -181,7 +183,8 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	@FindBy(xpath="//div[@id='snackbarVal']")
 	private WebElement entitycreationsuccusmsg;
 	
-	@FindBy(xpath="(//div[@class='col-md-12'])[3]")
+	@FindBy(xpath="(//div[@class='container-fluid bg-1'])[2]")
+//	(//div[@class='col-md-12'])[3]
 	private WebElement page;
 	
 	@FindBy(xpath="//table[@id='example']/tbody//td[@class=' dt-body-center'][1]/div/a/i")
@@ -600,7 +603,10 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void ClickonEditBtn() throws InterruptedException {
 		logger.info("Starting of ClickonEditBtn Method");
 		Thread.sleep(500);
-		scrollDown(100, page);
+		//scrollDown(200, page);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN).build().perform();
+		Thread.sleep(3000);
 		for (int i = 0; i < editbtn.size(); i++) {
 			this.editbtn.get(i).click();
 			break;
@@ -648,54 +654,23 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.deletebtn);
 		this.deletebtn.click();
 		driver.switchTo().alert().accept();
-		Thread.sleep(2000);
+		JavascriptExecutor js= 	(JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,-250)");
 		logger.info("Ending of ClickonDelete Method");
 	}
 	
-	public void clickOnCheckboxtoSelectEntity() {
-		for(int i=0;i<this.leftcheckboxs.size();i++) {
-			this.leftcheckboxs.get(i).click();
-			break;
-		}
-	}
 	
-	public void clickOnMapToEmployee()
-	{
-		logger.info("Starting of clickOnMapToEmployee Method");
-		waitUntilElementVisible(driver, this.maptoemployeebtn);
-		this.maptoemployeebtn.click();
-		logger.info("Starting of clickOnMapToEmployee Method");
-	}
-	
-	public void entityMapingToEmployee(String entitymaptoemployeename) {
-		logger.info("Starting of entityMapingToEmployee Method");
-		waitUntilElementVisible(driver, this.maptoemployeefield);
-		this.maptoemployeefield.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.getElementById('s2id_autogen1_search').value='auto';");	
-		
-		for(int i =0 ; i<this.maptoemployeedropdowndata.size();i++) {
-			String entitymaptoemplname= this.maptoemployeedropdowndata.get(i).getText();
-                if(entitymaptoemplname.equalsIgnoreCase(entitymaptoemployeename)) {
-                	waitUntilElementVisible(driver, this.maptoemployeedropdowndata.get(i));
-                	this.maptoemployeedropdowndata.get(i).click();
-                	break;
-                }
-		waitUntilElementVisible(driver, this.maptoemployeeapply);
-		this.maptoemployeeapply.click();	
-		logger.info("Ending of entityMapingToEmployee Method");
-	}
-	}
-	
-	public void logOutEntitites() {
-		logger.info("Starting of logOutEntitites Method");
-		
+	public void LogOutEntity() throws InterruptedException {
+		logger.info("Starting of LogOut Method");
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_UP).build().perform();
+		Thread.sleep(3000);
 		waitUntilElementVisible(driver, userNameBtn);
 		userNameBtn.click();
-		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("Logout"))
-		logoutBtn.get(logoutBtn.size() - 1).click();
-		
-		logger.info("Ending of logOutEntitites Method");
+		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("LogOut")) {
+			logoutBtn.get(logoutBtn.size() - 1).click();
+		}
+		logger.info("Ending of LogOut Method");
 	}
 
 }

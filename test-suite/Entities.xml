@@ -12,8 +12,8 @@
 
 	<test name="Entities">
 		<classes>
-			 <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
-			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
+			  <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
+			 <class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
 			
 		</classes>
 	</test>

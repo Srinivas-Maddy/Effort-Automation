@@ -423,7 +423,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of audioData method");
 		waitUntilElementVisible(driver, this.audioField);
 		this.audioField.click();
-		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\AudioScript.exe";
+		String pathExeFile=System.getProperty("user.dir")+ "\\Autoit\\AudioScript.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of audioData method");

@@ -38,7 +38,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
 	
-	@Test(priority= 1,description="Test Case #1 ,Entities Spec Creation" , groups= {"sanity"})
+	@Test(priority= 1,description="Test Case #1 ,Entities Spec Creation" , groups= {"sanity"},enabled = true)
 	@Description("Test Case #1 , Creating Entities Spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1 , Create Entities Spec Process")
@@ -57,27 +57,55 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		logger.info("Ending of entitySpecCreation Method");
 	}
 	
-	@Test(priority= 2,description="Test Case #2 ,Entities Spec Modification" , groups= {"sanity"})
-	@Description("Test Case #2 , Modify Entities Spec")
+	@Test(priority= 2,description="Test Case #2 ,Entities Spec Validation" , groups= {"sanity"},enabled = true)
+	@Description("Test Case #2 , Validating the Entities Spec Created or Not")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #2 , Modify Entities Spec Process")
-	public void entitySpecModification() {
+	@Story("Test Case #2 , Validating Entities Spec")
+	public void entitySpecValidation() {
+		logger.info("Starting of entitySpecValidation Method");
+		String expectedentityspecmsg= EntitiesProcess.name+" Created Successfully.";
+		String actualentityspecmsg =entitiesprocess.entitySpecValidation();
+		Assert.assertEquals(expectedentityspecmsg, actualentityspecmsg);
+		logger.info("Ending of entitySpecValidation Method");
+	}
+	
+	
+	@Test(priority= 3,description="Test Case #3 ,Entities Spec Modification" , groups= {"sanity"},enabled = true)
+	@Description("Test Case #3 , Modify Entities Spec")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #3 , Modify Entities Spec Process")
+	public void entitySpecModification() throws InterruptedException {
 		logger.info("Starting of entitySpecModification Method");
-		entitiesprocess.clickOnModifyEntitySpec();
-		entitiesprocess.enterModifiedName(entityDataProp.getProperty("specmodifiedname"));	
-		entitiesprocess.enterModifiedDescription(entityDataProp.getProperty("specmodifieddescription"));
+		
+		entitiesprocess.entitySpecModification();
+
 		logger.info("Ending of entitySpecModification Method");
 	}
 	
-	@Test(priority= 3,description="Test Case #3 ,Entities Spec Deletion" , groups= {"sanity"})
-	@Description("Test Case #3 , Delete Entities Spec")
+	@Test(priority= 4,description="Test Case #4 ,Entities Spec Deletion" , groups= {"sanity"},enabled = true)
+	@Description("Test Case #4 , Delete Entities Spec")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #3 , Delete Entities Spec Process")
+	@Story("Test Case #4 , Delete Entities Spec Process")
 	public void entitySpecDeletion() throws InterruptedException {
 		logger.info("Starting of entitySpecDeletion Method");
+		
 		entitiesprocess.deleteEntitySpec();
+		
 		logger.info("Starting of entitySpecDeletion Method");
 	}
+	
+	@Test(priority= 5,description="Test Case #5 ,Entities Spec Loop Deletion" , groups= {"sanity"},enabled = false)
+	@Description("Test Case #5 , Delete Entities Spec Loop")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #5 , Delete Entities Spec Loop Process")
+	public void entitySpecLoopDeletion() {
+		logger.info("Starting of entitySpecLoopDeletion Method");
+		
+		entitiesprocess.deleteEntityLoopSpec();
+		logger.info("Ending of entitySpecLoopDeletion Method");
+		
+	}
+	
 	
 	@AfterClass(alwaysRun = true)
 	public void logoutEntitites() {

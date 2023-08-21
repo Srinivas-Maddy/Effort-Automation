@@ -102,9 +102,10 @@ public class AddWorkProcess extends BaseAutomationPage{
 		this.workNamefield.sendKeys(workName);
 	}
 	
-	public void clickOnWorkEndDate() {
+	public void clickOnWorkEndDate() throws InterruptedException {
 		logger.info("Starting of clickOnWorkEndDate method");
 		waitUntilElementVisible(driver, this.workEndDate);
+		Thread.sleep(10000);
 		this.workEndDate.click();
 	}
 	
