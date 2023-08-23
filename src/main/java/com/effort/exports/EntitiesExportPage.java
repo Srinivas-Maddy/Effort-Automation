@@ -37,6 +37,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[3]")
 	private WebElement entityexportall;
+	
+	@FindBy(xpath = "(//div[@class='jconfirm-buttons']/button)[1]")
+	private WebElement entityexportallconfirmbtn;
 
 	@FindBy(id = "filters")
 	private WebElement filters;
@@ -116,17 +119,20 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	public void selectEntityExportAll() throws InterruptedException {
 		logger.info("Starting of entityExportAll Method");
-		scrollDown(100, scrollform);
+		scrollDown(100, entityexportimportoption);
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.entityexportall);
 		this.entityexportall.click();
-		Thread.sleep(1000);
+		waitUntilElementVisible(driver, this.entityexportallconfirmbtn);
+		this.entityexportallconfirmbtn.click();
+		Thread.sleep(2000);
 		logger.info("Ending of entityExportAll Method");
 	}
 
-	public void clickOnFilters(String filterentityname) {
+	public void clickOnFilters(String filterentityname)  {
 		logger.info("Starting of clickOnFilters Method");
+		scrollDown(100, filters);
 		waitUntilElementVisible(driver, this.filters);
 		this.filters.click();
 		waitUntilElementVisible(driver, this.filtersentitynametextfield);
@@ -142,7 +148,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.exportfiltered);
 		this.exportfiltered.click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		logger.info("Ending of selectEntityExportFiltered Method");
 	}
 	

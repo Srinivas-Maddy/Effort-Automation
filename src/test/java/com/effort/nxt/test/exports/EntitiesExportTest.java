@@ -21,11 +21,9 @@ import io.qameta.allure.Story;
 
 public class EntitiesExportTest extends BaseAutomationTest{
 	
-	//private static final Logger logger = Logger.getLogger(EntitiesSubmissionTest.class.getName());
-	
 	private static final Logger logger = Logger.getLogger(EntitiesExportTest.class.getName());
-	private EntitiesExportPage entitiesexportpage;
-	private EntitiesExportPage entitiesExpt=null;
+	private EntitiesExportPage entitiesexportpage=null;
+	//private EntitiesExportPage entitiesExpt=null;
 	
 	@BeforeClass(alwaysRun = true)
 	@Parameters({"siteURL" ,"browser"})
@@ -64,9 +62,9 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		@Story("Test Case #2 ,Downloading all Entities using Export All")
 		public void entityExportAll() throws InterruptedException {
 			logger.info("Starting of entityExportAll Method");
-			
+			entitiesexportpage.clickOnDots();
+			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
 			entitiesexportpage.selectEntityExportAll();
-			
 			logger.info("Ending of entityExportAll Method");		
 		}
 		
@@ -76,7 +74,8 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		@Story("Test Case #3 ,Downloading Filtered Entities")
 		public void entityExportFiltered() throws InterruptedException  {
 			logger.info("Starting of entityExportAll Method");
-			
+			entitiesexportpage.clickOnDots();
+			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
 			entitiesexportpage.clickOnFilters(entityDataProp.getProperty("filterentityname"));
 			entitiesexportpage.selectEntityExportFiltered();
 			

@@ -65,7 +65,7 @@ public class LeavesTest extends BaseAutomationTest{
 		leavespage.clickOnLeaves();
 		leavespage.selectEmployeeToApprove();;
 		leavespage.clickOnApprove();
-		leavespage.enterLeaveApprovelNote();
+		leavespage.enterLeaveApprovelNote(leavesDataProp.getProperty("approvalNote"));
 		logger.info("Ending of approveLeaves Method");
 	}
 	
@@ -78,7 +78,7 @@ public class LeavesTest extends BaseAutomationTest{
 		logger.info("Starting of rejectLeaves Method");
 		leavespage.selectEmployeeToReject();
 		leavespage.clickOnReject();
-		leavespage.enterLeaveRejectNote();
+		leavespage.enterLeaveRejectNote(leavesDataProp.getProperty("rejectNote"));
 		logger.info("Ending of rejectLeaves Method");
 		
 	}

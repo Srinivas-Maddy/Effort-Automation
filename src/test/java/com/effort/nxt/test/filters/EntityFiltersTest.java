@@ -21,7 +21,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	private static final Logger logger = Logger.getLogger(EntityFiltersTest.class.getName());
 	
 	private static final String EXPECTED_FILTER_ENTITY_NAME="Entity07";
-	private static final String EXPECTED_FILTER_ENTITY_ID="163230320893";
+	private static final String EXPECTED_FILTER_ENTITY_ID="163126725381";
 	private static final String EXPECTED_FILTER_ENTITY_LOCATION="17.443190433765462,78.36599349975586";
 	private static final String EXPECTED_FILTER_ENTITY_NUMBER ="987654678";
 	private static final String EXPECTED_FILTER_ENTITY_TEXT="Entity Automation Text";
@@ -34,7 +34,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	private static final String EXPECTED_FILTER_ENTITY_CUSTOMERNAME ="Entity07";
 	private static final String EXPECTED_FILTER_ENTITY_MULTIPICKCUSTOMERNAME ="Entity07";
 	private static final String EXPECTED_FILTER_ENTITY_TERRITORY="807090";
-	private static final String EXPECTED_FILTER_ENTITY_YESORNO="07082023";
+	private static final String EXPECTED_FILTER_ENTITY_YESORNO="Entity07";
 	private static final String EXPECTED_FILTER_ENTITY_CUSTOMERTYPE ="Retailers";
 	private static final String EXPECTED_FILTER_ENTITY_FILLEDBY="Bulkfilledtype";
 	

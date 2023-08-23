@@ -28,7 +28,7 @@
 		</classes>
 	</test>
 	
-	 <test name="Works Module">
+	  <test name="Works Module">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" /> 
@@ -38,7 +38,7 @@
 	<test name="Forms Module">
 		<classes>
 			<class name="com.effort.test.forms.FormsTest" />
-			<class name="com.effort.test.forms.FormSubmissionTest" />
+		  <class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>
 		
@@ -47,6 +47,7 @@
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
+			<class name ="com.effort.nxt.test.exports.LeavesExportTest"/>
 		</classes>
 	</test>
 
@@ -56,6 +57,14 @@
 		</classes>
 	</test>
 	
+	<test name= "Leaves">
+		<classes>
+			<class name="com.effort.nxt.test.leaves.LeavesTest" />
+		</classes>
+		
+	</test>
+	
+	
 	<test name="Entities">
 		<classes>
 		    <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
@@ -63,10 +72,11 @@
 			</classes>
 	</test>
 	
+	
 	<test name="Filters">
 		<classes>
 		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>
-			
+			<class name="com.effort.nxt.test.filters.LeavesFiltersTest"/>
 			</classes>
 	</test>
 	
