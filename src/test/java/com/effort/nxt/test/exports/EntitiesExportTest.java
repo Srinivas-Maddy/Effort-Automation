@@ -2,18 +2,14 @@ package com.effort.nxt.test.exports;
 
 
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-
 import com.effort.base.LoginPage;
-import com.effort.exports.CustomerExportPage;
 import com.effort.exports.EntitiesExportPage;
 import com.effort.nxt.test.BaseAutomationTest;
-import com.effort.nxt.test.entities.EntitiesSubmissionTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -22,8 +18,14 @@ import io.qameta.allure.Story;
 public class EntitiesExportTest extends BaseAutomationTest{
 	
 	private static final Logger logger = Logger.getLogger(EntitiesExportTest.class.getName());
+
 	private EntitiesExportPage entitiesexportpage=null;
 	//private EntitiesExportPage entitiesExpt=null;
+
+	private String EXPORT_SELECTED_STUTUS="Data download process is successful.";
+	private String EXPORT_ALL_STATUS="Thank you";
+	
+
 	
 	@BeforeClass(alwaysRun = true)
 	@Parameters({"siteURL" ,"browser"})
@@ -51,8 +53,8 @@ public class EntitiesExportTest extends BaseAutomationTest{
 			entitiesexportpage.clickOnDots();
 			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
 			entitiesexportpage.entitySelectionCheckbox();
-			entitiesexportpage.selectEntityExportSelected();
-			
+			String actualSelectedExportStatus=entitiesexportpage.selectEntityExportSelected();	
+			Assert.assertEquals(actualSelectedExportStatus, EXPORT_SELECTED_STUTUS);
 			logger.info("Ending of entity ExportSelected Method");
 		}
 		
@@ -65,6 +67,8 @@ public class EntitiesExportTest extends BaseAutomationTest{
 			entitiesexportpage.clickOnDots();
 			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
 			entitiesexportpage.selectEntityExportAll();
+			String actualExportAllStatus=entitiesexportpage.selectEntityExportAll();	
+			Assert.assertEquals(actualExportAllStatus,EXPORT_ALL_STATUS);
 			logger.info("Ending of entityExportAll Method");		
 		}
 		

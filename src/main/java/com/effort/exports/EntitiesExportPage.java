@@ -28,6 +28,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[2]")
 	private WebElement exportSelected;
+	
+	@FindBy(xpath="//div[@id='progress']")
+	private WebElement exportSelectedStatusMsg;
 
 	@FindBy(xpath = "(//div[@class='container-fluid bg-1'])[2]")
 	private WebElement scrollform;
@@ -38,8 +41,16 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[3]")
 	private WebElement entityexportall;
 	
+
 	@FindBy(xpath = "(//div[@class='jconfirm-buttons']/button)[1]")
 	private WebElement entityexportallconfirmbtn;
+
+	@FindBy(xpath="//button[@class='btn btn-green']")
+	private WebElement confirmBtn;
+	
+	@FindBy(xpath="//div[@class='heading']")
+	private WebElement exportAllStatusMes;
+
 
 	@FindBy(id = "filters")
 	private WebElement filters;
@@ -52,6 +63,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	
 	@FindBy(xpath="(//ul[@class='dropdown-menu btn-block'])[2]/li[4]")
 	private WebElement exportfiltered;
+	
+	@FindBy(xpath="//div[@id='progress']")
+	private WebElement filterSeletedStatusMsg;
 	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -106,20 +120,23 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		logger.info("Ending of selectCustomertoExport Method");
 	}
 
-	public void selectEntityExportSelected() throws InterruptedException {
+	public String selectEntityExportSelected() throws InterruptedException {
 		logger.info("Starting of entityExportSelected Method");
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.exportSelected);
 		this.exportSelected.click();
-		Thread.sleep(1000);
-		this.refresh();
+		Thread.sleep(10000);
+		waitUntilElementVisible(driver, this.exportSelectedStatusMsg);
+		String statusMsg=this.exportSelectedStatusMsg.getText();
 		logger.info("Ending of entityExportSelected Method");
+		return statusMsg;
 	}
 
-	public void selectEntityExportAll() throws InterruptedException {
+	public String selectEntityExportAll() throws InterruptedException {
 		logger.info("Starting of entityExportAll Method");
 		scrollDown(100, entityexportimportoption);
+	    scrollDown(500, this.entityexportimportoption);
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.entityexportall);
@@ -127,13 +144,20 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.entityexportallconfirmbtn);
 		this.entityexportallconfirmbtn.click();
 		Thread.sleep(2000);
+		waitUntilElementVisible(driver, this.confirmBtn);
+		this.confirmBtn.click();
+		waitUntilElementVisible(driver, this.exportAllStatusMes);
+		String acutulExportAllStatus=this.exportAllStatusMes.getText();
 		logger.info("Ending of entityExportAll Method");
+		return acutulExportAllStatus;
 	}
 
 	public void clickOnFilters(String filterentityname)  {
 		logger.info("Starting of clickOnFilters Method");
 		scrollDown(100, filters);
 		waitUntilElementVisible(driver, this.filters);
+	    scrollDown(500,this.filters);
+     	waitUntilElementVisible(driver, this.filters);
 		this.filters.click();
 		waitUntilElementVisible(driver, this.filtersentitynametextfield);
 		this.filtersentitynametextfield.sendKeys(filterentityname);
@@ -142,14 +166,18 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		logger.info("Ending of clickOnFilters Method");
 	}
 
-	public void selectEntityExportFiltered() throws InterruptedException {
+	public String selectEntityExportFiltered() throws InterruptedException {
 		logger.info("Starting of selectEntityExportFiltered Method");
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.exportfiltered);
 		this.exportfiltered.click();
 		Thread.sleep(5000);
+		//Thread.sleep(2000);
+		waitUntilElementVisible(driver, this.filterSeletedStatusMsg);
+		String exportFilterStatus=this.filterSeletedStatusMsg.getText();
 		logger.info("Ending of selectEntityExportFiltered Method");
+		return exportFilterStatus;
 	}
 	
 	public void logOut() {

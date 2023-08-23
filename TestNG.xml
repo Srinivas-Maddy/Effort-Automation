@@ -57,6 +57,7 @@
 		</classes>
 	</test>
 	
+<<<<<<< HEAD
 	<test name= "Leaves">
 		<classes>
 			<class name="com.effort.nxt.test.leaves.LeavesTest" />
@@ -66,6 +67,9 @@
 	
 	
 	<test name="Entities">
+=======
+	<test name="Entities Module">
+>>>>>>> 6500f5753c7ba201c29437e735098909f2e67385
 		<classes>
 		    <class name="com.effort.nxt.test.entities.EntitiesProcessTest"/>
 			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest"/>
@@ -75,10 +79,15 @@
 	
 	<test name="Filters">
 		<classes>
+<<<<<<< HEAD
 		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest"/>
+=======
+		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>	
+>>>>>>> 6500f5753c7ba201c29437e735098909f2e67385
 			</classes>
 	</test>
+	
 	
 	<test name="Web Logins">
 	<classes>
@@ -86,6 +95,5 @@
 		</classes>
 	</test>
 	
-
 
 </suite>
