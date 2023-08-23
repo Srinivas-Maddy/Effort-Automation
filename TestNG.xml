@@ -66,10 +66,9 @@
 	<test name="Filters">
 		<classes>
 		    <class name="com.effort.nxt.test.filters.EntityFiltersTest"/>	
-			</classes>
+		</classes>
 	</test>
-	
-	
+		
 	<test name="Web Logins">
 	<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />

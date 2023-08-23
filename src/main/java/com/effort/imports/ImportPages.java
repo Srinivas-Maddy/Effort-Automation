@@ -25,6 +25,7 @@ public class ImportPages extends BaseAutomationPage{
 	public static String customerBulkUploadStatus;
 	public static String cutomerBulkDeleteStatus;
 	public static String TerritoryUploadStatus;
+	public static String ListUploadStauts;
 
 	@FindBy(xpath="//a[contains(text(),'Web App')]")
 	private WebElement WebApp;
@@ -109,6 +110,22 @@ public class ImportPages extends BaseAutomationPage{
 	
 	@FindBy(xpath="//div[@style='color: orange;']")
     private WebElement empTerritoryUploadStatus;
+	
+	@FindBy(xpath="(//ul[@class='icons'])[4]/li/a[2]")
+	private WebElement importListCard;
+	
+	@FindBy(xpath="//div[@id='s2id_entitySpecId']")
+	private WebElement pickListDropDown;
+	
+	@FindBy(xpath="//ul[@id='select2-results-1']/li/div")
+	private List<WebElement> listSpecsNames;
+	
+	@FindBy(xpath="(//div[@class='form-group'])[3]/input")
+	private WebElement chooseFileOptionList;
+	
+	@FindBy(xpath="//table[@id='allWorkflows']/tbody/tr/td[7]")
+	private WebElement listUploadStatus;
+	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -445,6 +462,35 @@ public class ImportPages extends BaseAutomationPage{
 		}
 		return TerritoryUploadStatus;
 	}
+	
+	//Import List Moudle
+	public String importListUpload(String specNamePro, String filePath) throws InterruptedException {
+		logger.info("Starting of import list module");
+		waitUntilElementVisible(driver, this.importListCard);
+		this.importListCard.click();
+		waitUntilElementVisible(driver, this.pickListDropDown);
+		this.pickListDropDown.click();
+		for (int i = 0; i < this.listSpecsNames.size(); i++) {
+			String specName=this.listSpecsNames.get(i).getText();
+			if (specName.equalsIgnoreCase(specNamePro)){
+				waitUntilElementVisible(driver, this.listSpecsNames.get(i));
+				this.listSpecsNames.get(i).click();	
+				waitUntilElementVisible(driver, this.chooseFileOptionList);
+				this.chooseFileOptionList.sendKeys(filePath);
+				this.importBtn.click();
+				Thread.sleep(4000);
+				driver.navigate().refresh();
+				Thread.sleep(5000);
+				driver.navigate().refresh();
+				waitUntilElementVisible(driver,this.listUploadStatus);
+				ListUploadStauts=this.listUploadStatus.getText();
+				break;
+			}		
+		}
+		logger.info("Ending of import list method");
+		return ListUploadStauts;		
+	}
+	
 
 	public void logOut() {
 		logger.info("Starting of Logout method");
