@@ -13,7 +13,11 @@
 	<test name="forms">
 		<classes>
 
+<<<<<<< HEAD
+			 <class name="com.effort.test.forms.FormsTest" /> 
+=======
 			<!--<class name="com.effort.test.forms.FormsTest" /> -->
+>>>>>>> 6500f5753c7ba201c29437e735098909f2e67385
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>

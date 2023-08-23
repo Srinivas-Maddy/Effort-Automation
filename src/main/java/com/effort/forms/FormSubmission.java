@@ -423,7 +423,8 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of audioData method");
 		waitUntilElementVisible(driver, this.audioField);
 		this.audioField.click();
-		String pathExeFile=System.getProperty("user.dir")+ "\\Autoit\\AudioScript.exe";
+		String pathExeFile=System.getProperty("user.dir")+ "\\AutoIt\\AudioScript.exe";
+		//String pathExeFile=System.getProperty("user.dir")+ "\\Autoit\\AudioScript.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of audioData method");
@@ -433,6 +434,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of documentUpload method");
 		waitUntilElementVisible(driver, this.documentField);
 		this.documentField.click();
+		Thread.sleep(3000);
 		//Thread.sleep(5000);
 		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\Documentpicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
@@ -444,6 +446,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of imageUpload method");
 		waitUntilElementVisible(driver, this.imageField);
 		this.imageField.click();
+		Thread.sleep(3000);
 		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\ImagePicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
@@ -455,6 +458,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of videoUpload method");
 		waitUntilElementVisible(driver, this.videoField);
 		this.videoField.click();
+		Thread.sleep(3000);
 		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\VideoPicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
@@ -490,10 +494,11 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Ending of pick coustomer method");   
 	}
 	
-	public void pickEmployee() {
+	public void pickEmployee() throws InterruptedException {
 		logger.info("Starting of pick Employee method");
 		waitUntilElementVisible(driver, this.employeePicker);
 		this.employeePicker.click();
+		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.pickerSelection);
 		this.pickerSelection.click();
 		this.okBtn.click();

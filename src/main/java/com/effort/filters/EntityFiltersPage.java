@@ -134,7 +134,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select/option")
 	private List<WebElement> fltryesornodata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[5]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[4]")
 	private WebElement fltryesornoresult;
 
 	@FindBy(xpath = "(//div[text()='Customer Type'])[2]/input")
@@ -155,14 +155,14 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath="((//table[@id='example']/tbody/tr)/td)[4]")
 	private WebElement fltrfilledbyresult;
 	
-	
-
-
-	@FindBy(xpath = "//li[@id='logout_id']")
+	@FindBy(xpath = "((//a/span)[4]/span)[2]")
 	private WebElement userNameBtn;
+	
+	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a[text()=' Logout']")
+	private WebElement logoutBtn;
 
-	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
-	private List<WebElement> logoutBtn;
+//	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a")
+//	private List<WebElement> logoutBtn;
 
 	@FindBy(id = "search")
 	private WebElement filterapply;
@@ -217,10 +217,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 		this.filterapply.click();
 		waitUntilElementVisible(driver, this.entityNameResult);
 		String actualfltrname = this.entityNameResult.getText();
-
 		return actualfltrname;
-
-		// logger.info("Ending of enterFiltersEntityName Method");
 	}
 
 	public String enterFilterEntityID(String filterentityid) {
@@ -541,17 +538,17 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	}
 	
 	public void filtersEntityLogout() throws InterruptedException {
-
+		
 		logger.info("Starting of filtersEntityLogout Method");
-		Actions action = new Actions(driver);
-		action.sendKeys(Keys.PAGE_UP).build().perform();
-		Thread.sleep(3000);
+		 Thread.sleep(5000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",userNameBtn );
 		waitUntilElementVisible(driver, userNameBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.userNameBtn);
-		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("LogOut")) {
-			logoutBtn.get(logoutBtn.size() - 1).click();
-		}
+		waitUntilElementVisible(driver, this.logoutBtn);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.logoutBtn);
 		logger.info("Ending of filtersEntityLogout Method");
+		}
+	
 	}
 
-}
+

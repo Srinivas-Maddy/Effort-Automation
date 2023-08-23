@@ -72,10 +72,9 @@ public class LeavesPage extends BaseAutomationPage {
 	@FindBy(xpath = "//textarea[@id='managerNoteForReject']")
 	private WebElement leaverejectnote;
 
-	@FindBy(xpath = "(//input[@value='Reject'])[2]")
+	@FindBy(xpath = "//input[@id='rejectLeaves']")
 	private WebElement leaverejectnotebtn;
-
-
+	
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -176,11 +175,13 @@ public class LeavesPage extends BaseAutomationPage {
 
 	public void selectEmployeeToApprove() {
 		logger.info("Starting of selectEmployeeToApprove Method");
-		for(int i=0 ; i<this.leavescheckbox.size() ; i++) {
-		waitUntilElementVisible(driver, this.leavescheckbox.get(i));
-		this.leavescheckbox.get(1).click();
-		break;
+		int i=0;
+		while(i<this.leavescheckbox.size()){
+			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
+			this.leavescheckbox.get(1).click();
+			break;
 		}
+		i++;
 	}
 	public void clickOnApprove() {
 		logger.info("Starting of clickOnApprove Method");
@@ -188,17 +189,18 @@ public class LeavesPage extends BaseAutomationPage {
 		this.leavesapprovebtn.click();
 	}
 	
-	public void enterLeaveApprovelNote() throws InterruptedException {
+	public void enterLeaveApprovelNote(String approvalnote) throws InterruptedException {
 		logger.info("Starting of clickOnApprove Method");
 		waitUntilElementVisible(driver, this.leavapprovalnote);
-		this.leavapprovalnote.sendKeys("Appling Leave");
+		this.leavapprovalnote.sendKeys(approvalnote);
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.leaveapprovalnotebtn);
 		this.leaveapprovalnotebtn.click();
 	}
 
-	public void selectEmployeeToReject() {
+	public void selectEmployeeToReject() throws InterruptedException {
 		logger.info("Starting of selectEmployeeToReject Method");
+		Thread.sleep(1000);
 		int i=0;
 		while(i<this.leavescheckbox.size()) {
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
@@ -214,13 +216,13 @@ public class LeavesPage extends BaseAutomationPage {
 		this.leavesrejectbtn.click();
 	}
 	
-	public void enterLeaveRejectNote() throws InterruptedException {
+	public void enterLeaveRejectNote(String rejectnote) throws InterruptedException {
 		logger.info("Starting of enterLeaveRejectNote Method");
 		waitUntilElementVisible(driver, this.leaverejectnote);
-		this.leaverejectnote.sendKeys("Rejected");
+		this.leaverejectnote.sendKeys(rejectnote);
 		Thread.sleep(1000);
-		waitUntilElementVisible(driver, this.leavesrejectbtn);
-		this.leavesrejectbtn.click();
+		waitUntilElementVisible(driver, this.leaverejectnotebtn);
+		this.leaverejectnotebtn.click();
 	}
 	
 	
