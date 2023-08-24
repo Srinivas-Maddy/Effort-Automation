@@ -268,7 +268,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(id = "assignTo")
 	private WebElement ReAssign;
 
-	@FindBy(xpath = "//a[@class='select2-choice select2-default']")
+	@FindBy(xpath ="//div[@id='s2id_empId']")
 	private WebElement assignDrpDown;
 
 	@FindBy(xpath = "//div[@class='select2-search']/input[@id='s2id_autogen3_search']")
