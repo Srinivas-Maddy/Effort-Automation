@@ -96,8 +96,9 @@ public class EmployeeExportPage extends BaseAutomationPage{
 		}		
 	}
 
-	public String getConfirmationMessage() {
+	public String getConfirmationMessage() throws InterruptedException {
 		logger.info("Starting of getConfirmationMessage Method");
+		Thread.sleep(2000);
 		waitUntilElementVisible(driver, this.confirmationMessage);
 		String message=this.confirmationMessage.getText();
 		return message;

@@ -39,7 +39,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="(//div[@class='xdsoft_datepicker active'])[10]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
 	
-	@FindBy(xpath="//span[contains(text(),'Select Employee')]")
+	@FindBy(xpath="(//span[contains(text(),'Select Employee')])[3]")
 	private WebElement assigneeDropdown;
 	
 	@FindBy(xpath="/html[1]/body[1]/div[16]/div[1]/input[1]")

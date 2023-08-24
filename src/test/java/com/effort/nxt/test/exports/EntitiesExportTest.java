@@ -23,7 +23,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 	//private EntitiesExportPage entitiesExpt=null;
 
 	private String EXPORT_SELECTED_STUTUS="Data download process is successful.";
-	private String EXPORT_ALL_STATUS="Thank you";
+	private String EXPORT_ALL_STATUS="Click here to see the status of report";
 	
 
 	
@@ -66,7 +66,6 @@ public class EntitiesExportTest extends BaseAutomationTest{
 			logger.info("Starting of entityExportAll Method");
 			entitiesexportpage.clickOnDots();
 			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
-			entitiesexportpage.selectEntityExportAll();
 			String actualExportAllStatus=entitiesexportpage.selectEntityExportAll();	
 			Assert.assertEquals(actualExportAllStatus,EXPORT_ALL_STATUS);
 			logger.info("Ending of entityExportAll Method");		

@@ -40,7 +40,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Description("Test Case #1, Download Export All employees")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1, Downloading Employee Export All sheet")
-	public void employeeExportAll() {
+	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
 		this.empExport.clickOnEmployeeModule();
 		this.empExport.clickOnExportOptions();

@@ -59,37 +59,37 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[11]")
 	private WebElement fltrtextresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[8]")
+	@FindBy(xpath = "(//input[@class='form-control'])[7]")
 	private WebElement fltremailfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[16]")
 	private WebElement fltremailresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[9]")
+	@FindBy(xpath = "(//input[@class='form-control'])[8]")
 	private WebElement fltrlocfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[18]")
 	private WebElement fltrlocresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[10]")
+	@FindBy(xpath = "(//input[@class='form-control'])[9]")
 	private WebElement fltrphnfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[19]")
 	private WebElement fltrphnresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[11]")
+	@FindBy(xpath = "(//input[@class='form-control'])[10]")
 	private WebElement fltrcurrencyfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[20]")
 	private WebElement fltrcurrencyresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[12]")
+	@FindBy(xpath = "(//input[@class='form-control'])[11]")
 	private WebElement fltrurlfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[21]")
 	private WebElement fltrurlresult;
 
-	@FindBy(xpath = "(//input[@class='form-control'])[14]")
+	@FindBy(xpath = "(//input[@class='form-control'])[13]")
 	private WebElement fltrcountryfield;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[27]")
@@ -125,7 +125,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div")
 	private List<WebElement> fltrterritorydropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[5]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[5][text()='807090']")
 	private WebElement fltrterritoryresult;
 
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select")
@@ -467,9 +467,9 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	public String pickFilterYesOrNo(String filteryesorno) throws InterruptedException {
 		logger.info("Starting of pickFilterYesOrNo Method");
+		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.filtersbtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersbtn);
-		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.filtersreset);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersreset);
 		Thread.sleep(3000);

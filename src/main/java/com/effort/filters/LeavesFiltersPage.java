@@ -149,9 +149,6 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "((//a/span)[4]/span)[2]")
 	private WebElement userNameBtn;
 	
-//	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a[text()=' Logout']")
-//	private WebElement logoutBtn;
-
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a")
 	private List<WebElement> logoutBtn;
 
@@ -563,9 +560,6 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, userNameBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.userNameBtn);
-//		waitUntilElementVisible(driver, this.logoutBtn);
-//		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.logoutBtn);
-		
 		for(int i=0; i<this.logoutBtn.size();i++) {
 			String dropdownNames=this.logoutBtn.get(i).getText();
 			if (dropdownNames.equalsIgnoreCase("Logout")){

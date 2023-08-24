@@ -24,7 +24,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	private static final String EXPECTED_CANCELLED_LEAVES_STATUS ="Cancelled";
 	private static final String EXPECTED_REJECTED_EMPLOYEE_ID ="Rejected";
 	private static final String EXPECTED_REPORTING_IMMEDIATE_MANAGER = "Srinivas Maddy";
-	private static final String EXPECTED_LEAVES_APPLIED_DATE = "2023-08-21 10:43 AM";
+	private static final String EXPECTED_LEAVES_APPLIED_DATE = "2023-08-21 10:43:33 AM";
 	private static final String EXPECTED_LEAVES_TYPE="Leave";
 	private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
 	private static final String EXPECTED_MYLEAVES_FROM_DATE = "Leave";

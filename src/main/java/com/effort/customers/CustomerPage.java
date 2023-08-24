@@ -267,15 +267,15 @@ public class CustomerPage extends BaseAutomationPage {
 
 	@FindBy(id = "assignTo")
 	private WebElement ReAssign;
-
-	@FindBy(xpath ="//div[@id='s2id_empId']")
+	
+	@FindBy(xpath = "(//div[@class='select2-container form-control'])[2]")
 	private WebElement assignDrpDown;
-
-	@FindBy(xpath = "//div[@class='select2-search']/input[@id='s2id_autogen3_search']")
+	
+	@FindBy(xpath = "(//div[@class='select2-search'])[2]/input")
 	private WebElement enterFieldInput;
-
-	@FindBy(xpath = "(//ul[@class='select2-results'])[5]/li/div/span")
-	private WebElement empNameInDropDown;
+	
+	@FindBy(xpath = "(//ul[@class='select2-results'])[5]/li/div")
+	private List<WebElement> empNameInDropDown;
 
 	@FindBy(id = "assignCustomers")
 	private WebElement applyBtn;
@@ -937,19 +937,38 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Ending of AssignCustmrtoEmployee Method");
 
 	}
+	
 
-	public void ClickonAssign() {
+	public void ClickonAssign(String empname , String dropdownempname ) throws InterruptedException {
 		logger.info("Starting of ClickonAssign method");
 		waitUntilElementVisible(driver, assignDrpDown);
 		this.assignDrpDown.click();
+		Thread.sleep(1000);
 		waitUntilElementVisible(driver, enterFieldInput);
-		this.enterFieldInput.sendKeys("automation");
-		waitUntilElementVisible(driver, empNameInDropDown);
-		this.empNameInDropDown.click();
+		this.enterFieldInput.sendKeys(empname);
+		int count=0;
+		while(count<this.empNameInDropDown.size())
+		{
+			String dropdnempname = this.empNameInDropDown.get(count).getText();
+			if(dropdnempname.equalsIgnoreCase(dropdownempname)) {
+				waitUntilElementVisible(driver, this.empNameInDropDown.get(count));
+				this.empNameInDropDown.get(count).click();
+				break;
+			}
+			count++;
+		}
 		waitUntilElementVisible(driver, applyBtn);
 		this.applyBtn.click();
 		logger.info("Ending of ClickonAssign method");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void SelectCustmrtoDelete() throws InterruptedException {
 		logger.info("Starting of SelectCustmrtoDelete Method");

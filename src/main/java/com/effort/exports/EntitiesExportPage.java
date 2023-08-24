@@ -17,7 +17,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[contains(text(),'Web App')]")
 	private WebElement webApp;
 
-	@FindBy(id = "dots")
+	@FindBy(xpath = "(//ul[@id='orderedUl']/li)[10]/a")
 	private WebElement webappthreedots;
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[1]/li")
@@ -41,16 +41,11 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[3]")
 	private WebElement entityexportall;
 	
-
 	@FindBy(xpath = "(//div[@class='jconfirm-buttons']/button)[1]")
 	private WebElement entityexportallconfirmbtn;
-
-	@FindBy(xpath="//button[@class='btn btn-green']")
-	private WebElement confirmBtn;
 	
-	@FindBy(xpath="//div[@class='heading']")
+	@FindBy(xpath="//a[text()='Click here to see the status of report']")
 	private WebElement exportAllStatusMes;
-
 
 	@FindBy(id = "filters")
 	private WebElement filters;
@@ -135,8 +130,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	public String selectEntityExportAll() throws InterruptedException {
 		logger.info("Starting of entityExportAll Method");
-		scrollDown(100, entityexportimportoption);
-	    scrollDown(500, this.entityexportimportoption);
+	    scrollDown(100, this.entityexportimportoption);
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.entityexportall);
@@ -144,8 +138,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.entityexportallconfirmbtn);
 		this.entityexportallconfirmbtn.click();
 		Thread.sleep(2000);
-		waitUntilElementVisible(driver, this.confirmBtn);
-		this.confirmBtn.click();
+//		waitUntilElementVisible(driver, this.confirmBtn);
+//		this.confirmBtn.click();
+//		Thread.sleep(2000);
 		waitUntilElementVisible(driver, this.exportAllStatusMes);
 		String acutulExportAllStatus=this.exportAllStatusMes.getText();
 		logger.info("Ending of entityExportAll Method");
