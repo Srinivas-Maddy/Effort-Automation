@@ -138,7 +138,7 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Starting of CustmrtoEmployeeMapping");
 		custmrCreation.CustmrMaptoEmployee();
 		custmrCreation.AssignCustmrtoEmployee();
-		custmrCreation.ClickonAssign();
+		custmrCreation.ClickonAssign(custmrDataProp.getProperty("empname"),custmrDataProp.getProperty("dropdownempname"));
 		logger.info("Ending of CustmrtoEmployeeMapping");
 	}
 

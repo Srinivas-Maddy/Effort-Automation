@@ -235,7 +235,7 @@ public class ImportPages extends BaseAutomationPage{
 				this.chooseFileEmpCustTypeMappingBtn.sendKeys(filePath);
 				this.importBtn.click();
 				Thread.sleep(5000);
-				driver.navigate().refresh();
+				//driver.navigate().refresh();
 				waitUntilElementVisible(driver, this.empCustTypesheetUploadedStatuMsg);
 				empCustomerTypeMappingSheetStatusMsg=this.empCustTypesheetUploadedStatuMsg.getText();
 				break;

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
-	<parameter name="siteURL"
-		value="https://secure.spoors.io/effortx/login" />
+	<!-- <parameter name="siteURL"
+		value="https://secure.spoors.io/effortx/login" />-->
+		
+		 <parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
 
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 
@@ -22,7 +24,7 @@
 		</classes>
 	</test>
 	
-	 <test name="LeavesFilters">
+    <test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest"/>
 		</classes>
