@@ -3,6 +3,7 @@ package com.effort.filters;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,14 +37,32 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	@FindBy(xpath="//a[@id='filters']")
 	private WebElement filtersbtn;
 	
-	@FindBy(xpath="(((//table[@id='example']/tbody/tr)/td)[3])[text()='SR001']")
-	private WebElement actualEmpId;
-	
 	@FindBy(xpath="//a[contains(text(),'Reset')]")
 	private WebElement Resetbtn;
 	
+	@FindBy(xpath="//img[@src='/effortx/resources/img/gray.png']")
+	private WebElement actualactiveemp;
+	
 	@FindBy(xpath="//input[@id='activeStats']")
 	private WebElement activecheckbox;
+	
+	@FindBy(id="disabledStats")
+	private WebElement Disabledcheckbox;
+	
+	@FindBy(xpath="//input[@id='provisioned']")
+	private WebElement provisionedcheckbox;
+	
+	@FindBy(id ="notProvisioned")
+	private WebElement notprovisionedcheckbox;
+	
+	@FindBy(xpath="(//img[@src='/effortx/resources/img/red.png'])[1]")
+	private WebElement actualdisabledEmp;
+	
+	@FindBy(xpath="(//img[@src='/effortx/resources/img/green.png'])[1]")
+	private WebElement actualprovisionedEmp;
+	
+	@FindBy(xpath="(//img[@src='/effortx/resources/img/gray.png'])")
+	private WebElement actualnotprovisionedEmp;
 	
 	@FindBy(xpath="//input[@id='empNamefilt']")
 	private WebElement freetxtfield;
@@ -84,26 +103,80 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	}
 	
 	public String activeEmployeesValidation() {
-		logger.info("Starting of Click on employeesFiltersIDValidation Method");
-		waitUntilElementVisible(driver, this.actualEmpId);
-		String actualEmpId=this.actualEmpId.getText();
-        return actualEmpId;
+		logger.info("Starting of Click on activeEmployeesValidation Method");
+		WebElement disabledimageElement = this.actualactiveemp;
+		String actualactiveemp = disabledimageElement.getAttribute("src");
+       return actualactiveemp;
 	}
 	
-	public void selectDisabledCheckbox() {
+	public void selectDisabledCheckbox(String disabledempid) {
 		logger.info("Starting of Click on selectDisabledCheckbox Method");
 		waitUntilElementVisible(driver, this.filtersbtn);
 		this.filtersbtn.click();
 		waitUntilElementVisible(driver, this.Resetbtn);
 		this.Resetbtn.click();
-		
+		waitUntilElementVisible(driver, this.Disabledcheckbox);
+		this.Disabledcheckbox.click();
+		waitUntilElementVisible(driver, this.inputEmpId);
+		this.inputEmpId.sendKeys(disabledempid);
+		waitUntilElementVisible(driver, this.applyBtn);
+		this.applyBtn.click();
 		logger.info("Ending of Click on selectDisabledCheckbox Method ");
 	}
 	
+	public String disabledEmployeesValidation() throws InterruptedException {
+		logger.info("Starting of Click on disabledEmployeesValidation Method");
+		WebElement disabledimageElement = this.actualdisabledEmp;
+		String actualSrc = disabledimageElement.getAttribute("src");
+		return actualSrc;
+     
+	}
 	
+	public void selectProvisionedCheckbox(String provisionedempid) {
+		logger.info("Starting of Click on selectProvisionedCheckbox Method");
+		waitUntilElementVisible(driver, this.filtersbtn);
+		this.filtersbtn.click();
+		waitUntilElementVisible(driver, this.Resetbtn);
+		this.Resetbtn.click();
+		waitUntilElementVisible(driver, this.provisionedcheckbox);
+		this.provisionedcheckbox.click();
+		waitUntilElementVisible(driver, this.inputEmpId);
+		this.inputEmpId.sendKeys(provisionedempid);
+		waitUntilElementVisible(driver, this.applyBtn);
+		this.applyBtn.click();
+		logger.info("Ending of Click on selectProvisionedCheckbox Method ");
+	}
 	
+	public String provisionedEmployeesValidation() throws InterruptedException {
+		logger.info("Starting of Click on provisionedEmployeesValidation Method");
+		WebElement provisinedimageElement = this.actualprovisionedEmp;
+		String actualSrc = provisinedimageElement.getAttribute("src");
+		return actualSrc;
+     
+	}
 	
+	public void selectNotProvisionedCheckbox(String notprovisionedempid) {
+		logger.info("Starting of Click on selectNotProvisionedCheckbox Method");
+		waitUntilElementVisible(driver, this.filtersbtn);
+		this.filtersbtn.click();
+		waitUntilElementVisible(driver, this.Resetbtn);
+		this.Resetbtn.click();
+		waitUntilElementVisible(driver, this.notprovisionedcheckbox);
+		this.notprovisionedcheckbox.click();
+		waitUntilElementVisible(driver, this.inputEmpId);
+		this.inputEmpId.sendKeys(notprovisionedempid);
+		waitUntilElementVisible(driver, this.applyBtn);
+		this.applyBtn.click();
+		logger.info("Ending of Click on selectNotProvisionedCheckbox Method ");
+	}
 	
+	public String notProvisionedEmployeesValidation() throws InterruptedException {
+		logger.info("Starting of Click on notProvisionedEmployeesValidation Method");
+		WebElement notprovisinedimageElement = this.actualnotprovisionedEmp;
+		String actualSrc = notprovisinedimageElement.getAttribute("src");
+		return actualSrc;
+     
+	}
 	
 	
 	
@@ -130,7 +203,8 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	
 	public void employeeFiltersLogOut() throws InterruptedException {
 		logger.info("Starting of LogOut Method");
-		Thread.sleep(1000);
+		Thread.sleep(5000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",userNameBtn );
 		waitUntilElementVisible(driver, userNameBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.userNameBtn);
 		for(int i=0; i<this.logoutBtn.size();i++) {

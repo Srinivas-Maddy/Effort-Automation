@@ -60,12 +60,12 @@
 
 
 	<test name="Leaves">
+
 		<classes>
 			<class name="com.effort.nxt.test.leaves.LeavesTest" />
 		</classes>
 
 	</test>
-
 
 	<test name="Entities Module">
 		<classes>
@@ -77,9 +77,7 @@
 
 	<test name="Filters">
 		<classes>
-			<!--  <class
-			name="com.effort.nxt.test.filters.EmployeeFiltersTest"/>-->
-			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
+			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>

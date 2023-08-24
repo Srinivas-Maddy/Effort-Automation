@@ -175,7 +175,7 @@ public class CustomerExportPage extends BaseAutomationPage {
 	public void filterCustomerName() {
 		logger.info("Starting of filterCustomerName Method");
 		waitUntilElementVisible(driver, custmrnamefilter);
-		this.custmrnamefilter.sendKeys("customer");
+		this.custmrnamefilter.sendKeys("automation");
 		logger.info("Ending of filterCustomerName Method");	
 	}
 	
@@ -185,7 +185,7 @@ public class CustomerExportPage extends BaseAutomationPage {
 		while(i<customernameinput.size()) {
 			String customerName = this.customernameinput.get(i).getText();
 
-			if(customerName.contains("Customer")) {
+			if(customerName.contains("Automation_2023-07-03")) {
 				this.customernameinput.get(i).click();
 				break;
 			}

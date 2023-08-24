@@ -938,10 +938,6 @@ public class CustomerPage extends BaseAutomationPage {
 
 	}
 	
-	
-	
-	
-	
 
 	public void ClickonAssign(String empname , String dropdownempname ) throws InterruptedException {
 		logger.info("Starting of ClickonAssign method");

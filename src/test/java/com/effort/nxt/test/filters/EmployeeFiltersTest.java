@@ -1,5 +1,8 @@
 package com.effort.nxt.test.filters;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -21,7 +24,10 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	
 	private EmployeeFiltersPage employeefilterspage;
 	
-	private static final String EXPECTED_EMPLOYEE_ID="SR001";
+	private static final String EXPECTED_ACTIVE_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/gray.png";
+	private static final String EXPECTED_DISABLED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/red.png";
+	private static final String EXPECTED_PROVISIONED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/green.png";
+	private static final String EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/gray.png";
 	//private static final String EXPECTEDEMPLOYEEFREETEXT ="Automation_2023-02-23 Emp";
 	
 //	private String expectedEmpid=null;
@@ -48,21 +54,23 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	@Description("Employee Filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1,Employee Filters")
-	public void employeeFilters() {
+	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
 		employeefilterspage.ClickonEmployees();
 		employeefilterspage.selectActiveEmployee(filtersDataProp.getProperty("empID"));
-		String actualempfltrId= employeefilterspage.activeEmployeesValidation();
-		Assert.assertEquals(actualempfltrId, EXPECTED_EMPLOYEE_ID);
+		String actualactiveemp = employeefilterspage.activeEmployeesValidation();
+		assertEquals(actualactiveemp, EXPECTED_ACTIVE_EMPLOYEE_STATUS);
+		employeefilterspage.selectDisabledCheckbox(filtersDataProp.getProperty("disabledempid"));
+		String actualdisabledemp= employeefilterspage.disabledEmployeesValidation();
+		assertEquals(actualdisabledemp, EXPECTED_DISABLED_EMPLOYEE_STATUS);
+		employeefilterspage.selectProvisionedCheckbox(filtersDataProp.getProperty("provisionedempid"));
+		String actualprovisinedemp= employeefilterspage.provisionedEmployeesValidation();
+		assertEquals(actualprovisinedemp, EXPECTED_PROVISIONED_EMPLOYEE_STATUS);
+		employeefilterspage.selectNotProvisionedCheckbox(filtersDataProp.getProperty("notprovisionedempid"));
+		String actualnotprovisionedemp = employeefilterspage.notProvisionedEmployeesValidation();
+		assertEquals(actualnotprovisionedemp, EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS);
 		
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		
 		logger.info("Ending of employeeFilters Method");
 	}
