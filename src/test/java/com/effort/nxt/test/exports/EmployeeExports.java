@@ -19,7 +19,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	private static final Logger logger=Logger.getLogger(EmployeeExports.class);
 	private EmployeeExportPage empExport=null;
 	private static final String ExportAllConfirmationMsg="The report will be emailed to the registered email address when it is ready.";
-
+    private static final String  EXPORT_SELECTED_STATUS="Data download process is successful.";
 	//Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
 	@Parameters({"siteURL","browser"})
@@ -53,18 +53,21 @@ public class EmployeeExports extends BaseAutomationTest{
 	}
 	
 	
-	@Test(priority = 1, description="Go to Emplpyee module and select the employees and download xls", groups = {"sanity"})
+	@Test(priority = 2, description="Employee Selected export", groups = {"sanity"})
 	@Description("Test Case #1, Download Export selected employees")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1, Downloading selected employees sheet")
-	public void employeeExportSelected() {
+	public void employeeExportSelected() throws InterruptedException {
 		logger.info("Starting of the employee Export selected method");
-		
+		this.empExport.clickOnEmployeeModule();
+        this.empExport.selectedEmployees();
+		this.empExport.clickOnExportOptions();
+		String actualStatus=this.empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected"));
+        Assert.assertEquals(actualStatus,EXPORT_SELECTED_STATUS);
 		logger.info("Ending the Export selected Method");				
 	}
 	
 	
-
 	@AfterClass(alwaysRun = true)
 	public void logOutForm() {
 		logger.info("Starting of Log-out Method");

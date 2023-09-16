@@ -15,6 +15,8 @@ import com.effort.base.BaseAutomationPage;
 public class EmployeeExportPage extends BaseAutomationPage{
 
 	private static final Logger logger=Logger.getLogger(EmployeeExportPage.class);
+	
+	public String exportSelectedActual=null;
 
 	@FindBy(xpath="//a[contains(text(),'Web App')]")
 	private WebElement webApp;
@@ -39,6 +41,15 @@ public class EmployeeExportPage extends BaseAutomationPage{
 
 	@FindBy(xpath="//div[@class='centered']/div[2]")
 	private WebElement confirmationMessage;
+
+	@FindBy(xpath="//table[@class='table display dataTable no-footer']/thead/tr/th[1]/input")
+	private WebElement selectedAllCheckbox;
+
+	@FindBy(xpath="//ul[@id='additional-options']/li/form/a")
+	private List<WebElement> exportOptionsList;
+	
+	@FindBy(xpath="//div[@id='progress']")
+	private WebElement exportSelectedStatus;
 
 	public EmployeeExportPage(WebDriver driver){
 		super(driver);
@@ -102,6 +113,34 @@ public class EmployeeExportPage extends BaseAutomationPage{
 		waitUntilElementVisible(driver, this.confirmationMessage);
 		String message=this.confirmationMessage.getText();
 		return message;
+	}
+
+	//Selecting the employees
+	public void selectedEmployees() {
+		logger.info("Starting of SelcetEmployee Method");
+		scrollDown(500, this.selectedAllCheckbox);
+		waitUntilElementVisible(driver, this.selectedAllCheckbox);
+		this.selectedAllCheckbox.click();
+		logger.info("Starting of SelcetEmployee Method");
+	}
+
+	//Click on export Selected Option
+	public String clickOnExportSelected(String exportOptionName) throws InterruptedException {
+		logger.info("Starting of clickOnSelected Method");
+		for (int i = 0; i < this.exportOptionsList.size(); i++) {
+			String optionName=this.exportOptionsList.get(i).getText();
+			if (optionName.equalsIgnoreCase(exportOptionName)){
+              waitUntilElementVisible(driver, this.exportOptionsList.get(i));
+              this.exportOptionsList.get(i).click();
+              Thread.sleep(5000);
+              this.switchWindow();
+              waitUntilElementVisible(driver, this.exportSelectedStatus);
+              Thread.sleep(6000);
+              exportSelectedActual=this.exportSelectedStatus.getText();
+              break;
+			}
+		}
+		return exportSelectedActual;
 	}
 
 

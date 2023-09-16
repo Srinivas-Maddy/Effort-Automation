@@ -44,7 +44,8 @@ public class LeavesTest extends BaseAutomationTest{
 	public void applyLeaves() throws InterruptedException
 	{
 		logger.info("Starting of applyLeaves Method");
-		leavespage.clickOnLeaves();
+		leavespage.clickOnThreeDots();
+		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavespage.clickOnApplyLeaves();
 		leavespage.SwitchNewWindow();
 		leavespage.pickLeavesFromDate();
@@ -62,7 +63,8 @@ public class LeavesTest extends BaseAutomationTest{
 	public void approveLeaves() throws InterruptedException
 	{
 		logger.info("Starting of approveLeaves Method");
-		leavespage.clickOnLeaves();
+		leavespage.clickOnThreeDots();
+		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavespage.selectEmployeeToApprove();;
 		leavespage.clickOnApprove();
 		leavespage.enterLeaveApprovelNote(leavesDataProp.getProperty("approvalNote"));

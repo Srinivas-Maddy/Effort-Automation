@@ -38,7 +38,7 @@ public class BaseAutomationTest {
 	protected static Properties entityDataProp=null;
 	protected static Properties filtersDataProp=null;
 	protected static Properties leavesDataProp=null;
-
+	protected static Properties exportDataProp=null;	
 	protected static Properties importProp=null;
 
 
@@ -59,12 +59,11 @@ public class BaseAutomationTest {
 			FileReader empDataReader=null;
 			FileReader custmrDataReader=null;
 			FileReader formDataReader=null;
-
 			FileReader entityDataReader=null;
 			FileReader filtersDataReader=null;
 			FileReader leavesDataReader=null;
-
 			FileReader importsReader=null;
+			FileReader exportReader=null;
 
 
 			try {
@@ -75,13 +74,11 @@ public class BaseAutomationTest {
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties") ;
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
 				formDataReader = new FileReader("src/main/resources/FormData.properties");
-
 				entityDataReader = new FileReader("src/main/resources/EntitiesDetails.properties");
 				filtersDataReader = new FileReader("src/main/resources/FiltersDetails.properties");
 				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
-				
-
 				importsReader = new FileReader("src/main/resources/importCards.properties");
+				exportReader=new FileReader("src/main/resources/ExportDetails.properties");
 
 
 
@@ -100,21 +97,21 @@ public class BaseAutomationTest {
 				formDataProp = new Properties();
 				formDataProp.load(formDataReader);
 
-				
+
 				entityDataProp = new Properties();
 				entityDataProp.load(entityDataReader);
-				
+
 				filtersDataProp = new Properties();
 				filtersDataProp.load(filtersDataReader);
-				
+
 				leavesDataProp = new Properties();
 				leavesDataProp.load(leavesDataReader);
-				
-
 
 				importProp=new Properties();
 				importProp.load(importsReader);
 
+				exportDataProp=new Properties();
+				exportDataProp.load(exportReader);
 
 
 			} catch (IOException e) {
@@ -129,8 +126,8 @@ public class BaseAutomationTest {
 					entityDataProp.clone();
 					filtersDataProp.clone();
 					leavesDataProp.clone();
-					
-					
+
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

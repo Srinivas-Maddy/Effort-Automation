@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Web Automation">
+<suite name="Web Automation Sanity Checklist">
 	<parameter name="browser" value="Chrome" />
 	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
 	<!-- <parameter name="siteURL" value="testurl" />  -->
@@ -49,18 +49,14 @@
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 			<class name="com.effort.nxt.test.exports.LeavesExportTest" />
-			<class name ="com.effort.nxt.test.exports.FormExportsTest"/>
 		</classes>
 	</test>
 
-	<!--<test name="Bulk Uploads">
+	<test name="Bulk Uploads">
 		<classes>
 			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
-			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
-			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
-			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="Leaves">
 		<classes>

@@ -26,6 +26,7 @@ public class ImportPages extends BaseAutomationPage{
 	public static String cutomerBulkDeleteStatus;
 	public static String TerritoryUploadStatus;
 	public static String ListUploadStauts;
+	public static String routeUploadedStatus;
 
 	@FindBy(xpath="//a[contains(text(),'Web App')]")
 	private WebElement WebApp;
@@ -104,28 +105,43 @@ public class ImportPages extends BaseAutomationPage{
 
 	@FindBy(xpath="//div[@id='msg']/span")
 	private WebElement customerBulkDeleteStatus;
-	
+
 	@FindBy(xpath="//div[@class='Itembody col-md-12 pd-0']/ul/li/a[2]")
 	private List<WebElement> importsRemainigCardNames;
-	
+
 	@FindBy(xpath="//div[@style='color: orange;']")
-    private WebElement empTerritoryUploadStatus;
-	
+	private WebElement empTerritoryUploadStatus;
+
 	@FindBy(xpath="(//ul[@class='icons'])[4]/li/a[2]")
 	private WebElement importListCard;
-	
+
 	@FindBy(xpath="//div[@id='s2id_entitySpecId']")
 	private WebElement pickListDropDown;
-	
+
 	@FindBy(xpath="//ul[@id='select2-results-1']/li/div")
 	private List<WebElement> listSpecsNames;
-	
+
 	@FindBy(xpath="(//div[@class='form-group'])[3]/input")
 	private WebElement chooseFileOptionList;
-	
+
 	@FindBy(xpath="//table[@id='allWorkflows']/tbody/tr/td[7]")
 	private WebElement listUploadStatus;
+
+	@FindBy(xpath="(//ul[@class='icons'])[5]/li/a[2]")
+	private List<WebElement> routesMenuCard;
+
+	@FindBy(xpath="//div[@class='form-group']/input")
+	private WebElement routesChooseButton;
+
+	@FindBy(xpath="//label[@class='container-r'][2]/span")
+	private WebElement updateExistingRadioBtn;
 	
+	@FindBy(xpath="//label[@class='container-r'][3]/span")
+	private WebElement replaceRadioBtn;
+
+	@FindBy(xpath="//div[@style='color: orange;']")
+	private WebElement routesUploadStatus;
+
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -438,10 +454,10 @@ public class ImportPages extends BaseAutomationPage{
 				this.importBtn.click();
 				break;
 			}	
-		logger.info("ending of import customer ID update method");
+			logger.info("ending of import customer ID update method");
 		}
 	}
-	
+
 	//Employee Territory Mapping
 	public String importEmpTerritoryMapping(String cardName, String filePath) throws InterruptedException{
 		logger.info("Starting of import employee territory mapping");
@@ -462,7 +478,7 @@ public class ImportPages extends BaseAutomationPage{
 		}
 		return TerritoryUploadStatus;
 	}
-	
+
 	//Import List Moudle
 	public String importListUpload(String specNamePro, String filePath) throws InterruptedException {
 		logger.info("Starting of import list module");
@@ -490,7 +506,77 @@ public class ImportPages extends BaseAutomationPage{
 		logger.info("Ending of import list method");
 		return ListUploadStauts;		
 	}
-	
+
+	//Import Routes creation 
+	public String importRoutePlan(String cardName, String filePath) throws InterruptedException {
+		logger.info("Starting of import route plan");
+
+		for (int i = 0; i < this.routesMenuCard.size(); i++){
+			String routeCardName=this.routesMenuCard.get(i).getText();
+			if (routeCardName.equalsIgnoreCase(routeCardName)) {
+				this.routesMenuCard.get(i).click();
+				waitUntilElementVisible(driver, this.routesChooseButton);
+				this.routesChooseButton.sendKeys(filePath);
+				this.importBtn.click();
+				Thread.sleep(5000);
+				waitUntilElementVisible(driver, this.routesUploadStatus);
+				routeUploadedStatus=this.routesUploadStatus.getText();
+				break;
+			}
+
+		}
+		return routeUploadedStatus;
+
+	}
+
+	//Import Routes creation 
+	public String importRoutePlanUpdate(String cardName, String filePath) throws InterruptedException {
+		logger.info("Starting of import route plan");
+
+		for (int i = 0; i < this.routesMenuCard.size(); i++){
+			String routeCardName=this.routesMenuCard.get(i).getText();
+			if (routeCardName.equalsIgnoreCase(routeCardName)) {
+				this.routesMenuCard.get(i).click();
+				waitUntilElementVisible(driver, this.routesChooseButton);
+				this.routesChooseButton.sendKeys(filePath);
+				waitUntilElementVisible(driver, this.updateExistingRadioBtn);
+				this.updateExistingRadioBtn.click();
+				this.importBtn.click();
+				Thread.sleep(5000);
+				waitUntilElementVisible(driver, this.routesUploadStatus);
+				routeUploadedStatus=this.routesUploadStatus.getText();
+				break;
+			}
+
+		}
+		return routeUploadedStatus;
+
+	}
+
+	//Import Routes creation 
+	public String importRoutePlanReplace(String cardName, String filePath) throws InterruptedException {
+		logger.info("Starting of import route plan");
+
+		for (int i = 0; i < this.routesMenuCard.size(); i++){
+			String routeCardName=this.routesMenuCard.get(i).getText();
+			if (routeCardName.equalsIgnoreCase(routeCardName)) {
+				this.routesMenuCard.get(i).click();
+				waitUntilElementVisible(driver, this.routesChooseButton);
+				this.routesChooseButton.sendKeys(filePath);
+				waitUntilElementVisible(driver, this.replaceRadioBtn);
+				this.replaceRadioBtn.click();
+				this.importBtn.click();
+				Thread.sleep(5000);
+				waitUntilElementVisible(driver, this.routesUploadStatus);
+				routeUploadedStatus=this.routesUploadStatus.getText();
+				break;
+			}
+
+		}
+		return routeUploadedStatus;
+
+	}
+
 
 	public void logOut() {
 		logger.info("Starting of Logout method");

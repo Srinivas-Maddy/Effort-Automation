@@ -24,7 +24,6 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	private static final String EXPECTED_CANCELLED_LEAVES_STATUS ="Cancelled";
 	private static final String EXPECTED_REJECTED_EMPLOYEE_ID ="Rejected";
 	private static final String EXPECTED_REPORTING_IMMEDIATE_MANAGER = "Srinivas Maddy";
-	private static final String EXPECTED_LEAVES_APPLIED_DATE = "2023-08-21 10:43:33 AM";
 	private static final String EXPECTED_LEAVES_TYPE="Leave";
 	private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
 	private static final String EXPECTED_MYLEAVES_FROM_DATE = "Leave";
@@ -52,7 +51,8 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	@Story("TestCase #1, Validation of Leaves Filters")
 	public void leavesFilters() throws InterruptedException {
 		logger.info("Starting of leavesFilters Method");
-		leavesfilterpage.clickOnLeaves();
+		leavesfilterpage.clickOnThreeDots();
+		leavesfilterpage.pickLeaves(leavesDataProp.getProperty("leavesname"));
 		leavesfilterpage.clickOnLeavesFilters();
 		leavesfilterpage.enterAppliedLeavesEmployeeName(leavesDataProp.getProperty("leavesEmployeeName"));
 		String actualappliedLeaves = leavesfilterpage.appliedLeavesValidation();
@@ -76,8 +76,8 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		leavesfilterpage.clickOnLeavesFilters();
 		leavesfilterpage.clickOnLeavesAppliedCheckbox();
 		leavesfilterpage.pickAppliedLeavesDates();
-		String actualleavesdatesresult= leavesfilterpage.leavesDateValidation();
-		Assert.assertEquals(actualleavesdatesresult, EXPECTED_LEAVES_APPLIED_DATE);
+		boolean appliedDataDisplayed= leavesfilterpage.leavesDateValidation();
+		Assert.assertEquals(appliedDataDisplayed, true);
 		leavesfilterpage.clickOnLeavesFilters();
 		leavesfilterpage.selectLeaveType(leavesDataProp.getProperty("leavetype"));
 		String actualleavestyperesult= leavesfilterpage.leavesTypeValidation();

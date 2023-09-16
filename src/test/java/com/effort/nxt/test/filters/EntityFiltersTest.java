@@ -64,8 +64,8 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	public void filterEntityName() throws InterruptedException {
 		logger.info("Starting of filterEntityName Method");
 		
-		entityfilterpage.clickOnDots();
-		entityfilterpage.pickEntityName(filtersDataProp.getProperty("autoentityname"));
+		//entityfilterpage.clickOnDots();
+		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));
 		Assert.assertEquals(actualfltrentityname, EXPECTED_FILTER_ENTITY_NAME);
 		String actualfltrentityid=entityfilterpage.enterFilterEntityID(filtersDataProp.getProperty("filterentityid"));

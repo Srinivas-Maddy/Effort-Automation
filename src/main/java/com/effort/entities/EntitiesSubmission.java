@@ -31,8 +31,11 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	@FindBy(id="dots")
 	private WebElement webappthreedots;
 	
-	@FindBy(xpath="(//ul[@class='dropdown-menu'])[1]/li")
+	@FindBy(xpath="(//ul[@class='dropdown-menu'])[1]/li/a")
 	private List<WebElement> webappthreedotsdata;
+	
+	@FindBy(xpath="//ul[@id='orderedUl']/li/a")
+    private List<WebElement> navigationBar;	
 	
 	@FindBy(id="addEntity")
 	private WebElement addentity;
@@ -231,25 +234,19 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		logger.info("Ending of clickOnDots Method");	
 		
 	}
-	public void clickOnDots() throws InterruptedException {
-		logger.info("Starting of clickOnDots Method");
-		waitUntilElementVisible(driver, this.webappthreedots);
-		this.webappthreedots.click();	
-		Thread.sleep(500);
-		logger.info("Ending of clickOnDots Method");	
-	}
 	
-	public void pickEntityName(String autoentityname) {
-		logger.info("Starting of pickEntityName Method");
-		for(int i=0 ;i<this.webappthreedotsdata.size();i++) {
-			String EntityName = this.webappthreedotsdata.get(i).getText();
-			if(EntityName.equalsIgnoreCase(autoentityname)) {
-				waitUntilElementVisible(driver, this.webappthreedotsdata.get(i));
-				this.webappthreedotsdata.get(i).click();
+	public void clickOnEntityModule() {
+		logger.info("Starting of click On entity module");
+		for (int i = 0; i <this.navigationBar.size(); i++){
+			String navNames=this.navigationBar.get(i).getText();
+			if(navNames.equalsIgnoreCase("Automation Entity teju1")) {
+				waitUntilElementVisible(driver, this.navigationBar.get(i));
+				this.navigationBar.get(i).click();
 				break;
-			}			
-		}		
-		logger.info("Ending of pickEntityName Method");	
+			}
+			
+		}
+		logger.info("Ending of click On entity module");
 	}
 	
 	public void clickOnAddEntity() {

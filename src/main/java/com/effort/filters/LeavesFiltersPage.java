@@ -24,6 +24,12 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[text()=' Leaves']")
 	private WebElement leaves;
 
+	@FindBy(xpath = "//li[@id='dots']")
+	private WebElement threedots;
+
+	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[1]/li/a")
+	private List<WebElement> threedotsdata ;
+
 	@FindBy(id = "filters")
 	private WebElement leavesfilterbtn;
 
@@ -86,7 +92,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	//(//div[@class='xdsoft_datetimepicker xdsoft_noselect xdsoft_'])[1]/div[1]/div[2]/table/tbody/tr/td
 
-	@FindBy(xpath = "(((//table[@id='example']/tbody/tr)[3]/td)[11])/font")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr)[1]/td[11]/font")
 	private WebElement leavesdateresult;
 
 	@FindBy(xpath="//input[@id='toDateTime']")
@@ -148,7 +154,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "((//a/span)[4]/span)[2]")
 	private WebElement userNameBtn;
-	
+
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a")
 	private List<WebElement> logoutBtn;
 
@@ -166,11 +172,23 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of clickOnDots Method");
 	}
 
-	public void clickOnLeaves() {
-		logger.info("Starting of clickOnLeaves Method");
-		waitUntilElementVisible(driver, this.leaves);
-		this.leaves.click();
-		logger.info("Ending of clickOnLeaves Method");
+	public void clickOnThreeDots() {
+		logger.info("Starting of clickOnThreeDots Method");
+		waitUntilElementVisible(driver, this.threedots);
+		this.threedots.click();
+		logger.info("Ending of clickOnThreeDots Method");
+	}
+ 	
+	public void pickLeaves(String leavesName) {
+		logger.info("Starting if pick leave method");
+		for (int i = 0; i < this.threedotsdata.size(); i++) {
+			String threeDotsDate=this.threedotsdata.get(i).getText();
+			if (threeDotsDate.equalsIgnoreCase(leavesName)){
+				waitUntilElementVisible(driver, this.threedotsdata.get(i));
+				this.threedotsdata.get(i).click();
+				break;
+			}			
+		}
 	}
 
 	public void clickOnLeavesFilters() {
@@ -386,11 +404,11 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	}
 
-	public String leavesDateValidation() {
+	public boolean leavesDateValidation() {
 		logger.info("Starting of leavesDateValidation Method");
 		waitUntilElementVisible(driver, this.leavesdateresult);
-		String actualleavesdatesresult = this.leavesdateresult.getText();
-		return actualleavesdatesresult;
+		boolean  dateDataDisplayed= this.leavesdateresult.isDisplayed();
+		return dateDataDisplayed;
 
 	}
 

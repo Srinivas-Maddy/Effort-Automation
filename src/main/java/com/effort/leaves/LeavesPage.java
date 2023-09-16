@@ -1,20 +1,15 @@
 package com.effort.leaves;
 
-import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.effort.base.BaseAutomationPage;
 
@@ -27,6 +22,12 @@ public class LeavesPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[text()=' Leaves']")
 	private WebElement leaves;
 
+	@FindBy(id = "dots")
+	private WebElement threeDots;
+	
+	@FindBy(xpath="//ul[@class='dropdown-menu']/li/a")
+	private List<WebElement> dropdownList;
+	
 	@FindBy(xpath = "((//ul[@class='list-inline pull-right'])[1]/li)[1]/a/button")
 	private WebElement leavesbtn;
 
@@ -65,16 +66,16 @@ public class LeavesPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//input[@value='Approve'])[2]")
 	private WebElement leaveapprovalnotebtn;
-	
+
 	@FindBy(xpath = "//input[@id='reject']")
 	private WebElement leavesrejectbtn;
-	
+
 	@FindBy(xpath = "//textarea[@id='managerNoteForReject']")
 	private WebElement leaverejectnote;
 
 	@FindBy(xpath = "//input[@id='rejectLeaves']")
 	private WebElement leaverejectnotebtn;
-	
+
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -95,11 +96,21 @@ public class LeavesPage extends BaseAutomationPage {
 
 	}
 
-	public void clickOnLeaves() {
-		logger.info("Starting of clickOnLeaves Method");
-		waitUntilElementVisible(driver, this.leaves);
-		this.leaves.click();
-		logger.info("Ending of clickOnLeaves Method");
+	public void clickOnThreeDots(){
+		waitUntilElementVisible(driver, this.threeDots);
+		this.threeDots.click();
+	}
+
+
+	public void clickOnLeaves(String leaveSpecName) {
+		for (int i = 0; i < this.dropdownList.size(); i++){
+			String threeDotsData=this.dropdownList.get(i).getText();
+			if(threeDotsData.equalsIgnoreCase(leaveSpecName)) {
+				waitUntilElementVisible(driver, this.dropdownList.get(i));
+				this.dropdownList.get(i).click();
+				break;
+			}
+		}
 	}
 
 	public void clickOnApplyLeaves() {
@@ -175,20 +186,21 @@ public class LeavesPage extends BaseAutomationPage {
 
 	public void selectEmployeeToApprove() {
 		logger.info("Starting of selectEmployeeToApprove Method");
-		int i=0;
-		while(i<this.leavescheckbox.size()){
+		int i = 0;
+		while (i < this.leavescheckbox.size()) {
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
 			this.leavescheckbox.get(1).click();
 			break;
 		}
 		i++;
 	}
+
 	public void clickOnApprove() {
 		logger.info("Starting of clickOnApprove Method");
 		waitUntilElementVisible(driver, this.leavesapprovebtn);
 		this.leavesapprovebtn.click();
 	}
-	
+
 	public void enterLeaveApprovelNote(String approvalnote) throws InterruptedException {
 		logger.info("Starting of clickOnApprove Method");
 		waitUntilElementVisible(driver, this.leavapprovalnote);
@@ -201,21 +213,21 @@ public class LeavesPage extends BaseAutomationPage {
 	public void selectEmployeeToReject() throws InterruptedException {
 		logger.info("Starting of selectEmployeeToReject Method");
 		Thread.sleep(1000);
-		int i=0;
-		while(i<this.leavescheckbox.size()) {
+		int i = 0;
+		while (i < this.leavescheckbox.size()) {
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
 			this.leavescheckbox.get(i).click();
 			break;
 		}
 		i++;
-		}
-	
+	}
+
 	public void clickOnReject() {
 		logger.info("Starting of clickOnReject Method");
 		waitUntilElementVisible(driver, this.leavesrejectbtn);
 		this.leavesrejectbtn.click();
 	}
-	
+
 	public void enterLeaveRejectNote(String rejectnote) throws InterruptedException {
 		logger.info("Starting of enterLeaveRejectNote Method");
 		waitUntilElementVisible(driver, this.leaverejectnote);
@@ -224,11 +236,7 @@ public class LeavesPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leaverejectnotebtn);
 		this.leaverejectnotebtn.click();
 	}
-	
-	
-	
-	
-	
+
 	public void leavesLogOut() throws InterruptedException {
 
 		logger.info("Starting of leavesLogout Method");

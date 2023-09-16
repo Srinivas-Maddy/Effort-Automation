@@ -50,9 +50,9 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		{
 			logger.info("Starting of entityExportSelected Method");
 			entitiesexportpage.ClickonWebApp();
-			entitiesexportpage.clickOnDots();
-			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
-			entitiesexportpage.entitySelectionCheckbox();
+			entitiesexportpage.clickOnEntityModule();
+			//entitiesexportpage.entitySelectionCheckbox();
+			entitiesexportpage.selectAllEntityCheckBox();
 			String actualSelectedExportStatus=entitiesexportpage.selectEntityExportSelected();	
 			Assert.assertEquals(actualSelectedExportStatus, EXPORT_SELECTED_STUTUS);
 			logger.info("Ending of entity ExportSelected Method");
@@ -64,8 +64,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		@Story("Test Case #2 ,Downloading all Entities using Export All")
 		public void entityExportAll() throws InterruptedException {
 			logger.info("Starting of entityExportAll Method");
-			entitiesexportpage.clickOnDots();
-			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
+			entitiesexportpage.clickOnEntityModule();
 			String actualExportAllStatus=entitiesexportpage.selectEntityExportAll();	
 			Assert.assertEquals(actualExportAllStatus,EXPORT_ALL_STATUS);
 			logger.info("Ending of entityExportAll Method");		
@@ -77,11 +76,9 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		@Story("Test Case #3 ,Downloading Filtered Entities")
 		public void entityExportFiltered() throws InterruptedException  {
 			logger.info("Starting of entityExportAll Method");
-			entitiesexportpage.clickOnDots();
-			entitiesexportpage.pickEntityName(entityDataProp.getProperty("autoentityname"));
+			entitiesexportpage.clickOnEntityModule();
 			entitiesexportpage.clickOnFilters(entityDataProp.getProperty("filterentityname"));
-			entitiesexportpage.selectEntityExportFiltered();
-			
+			entitiesexportpage.selectEntityExportFiltered();			
 			logger.info("Ending of entityExportAll Method");		
 		}
 		

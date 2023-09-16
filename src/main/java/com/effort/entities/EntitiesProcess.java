@@ -107,8 +107,8 @@ public class EntitiesProcess extends BaseAutomationPage {
 	@FindBy(xpath="//div[@id='dataTypes_pannel']")
 	private WebElement scrolldown;
 	
-	@FindBy(xpath="(//ul[@class='formspecActionsConfig']/li)[9]")
-	private WebElement withdrawspecentitycard;
+	@FindBy(xpath="//ul[@class='formspecActionsConfig']/li/span[2]/a")
+	private List<WebElement> withdrawspecentitycard;
 	
 	@FindBy(xpath="(//div[@class='row'])[2]//ul/li")
 	private List<WebElement> entityspeccards;
@@ -279,38 +279,21 @@ public class EntitiesProcess extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.entitysearchbox);
 		this.entitysearchbox.sendKeys(name);
 		driver.findElement(By.xpath("//a[contains(text(),'"+ name +"')]")).click();
-		waitUntilElementVisible(driver, this.withdrawspecentitycard);
-		this.withdrawspecentitycard.click();
+		for (int i = 0; i < this.withdrawspecentitycard.size(); i++){
+			String cardName=withdrawspecentitycard.get(i).getText();
+			if(cardName.equalsIgnoreCase("Withdraw")) {
+				waitUntilElementVisible(driver, this.withdrawspecentitycard.get(i));
+				scrollDown(100, this.withdrawspecentitycard.get(i));
+				this.withdrawspecentitycard.get(i).click();
+				break;
+			}
+			
+		}
 		driver.switchTo().alert().accept();
 		logger.info("Ending of deleteEntitySpec Method");
 	}
 	
-	public void deleteEntityLoopSpec() {
-		logger.info("Starting of deleteEntityLoopSpec Method");
-		waitUntilElementVisible(driver, this.entities);
-		this.entities.click();
-		waitUntilElementVisible(driver, this.manageentity);
-		this.manageentity.click();
-		for(int i=0 ; i<19; i++) {
-			String activespeccardnames = this.entityspeccards.get(i).getText();
-			if (activespeccardnames.equalsIgnoreCase("Automation Entity teju")) {
-				continue;
-			}
-			else {
-				this.entityspeccards.get(i).click();
-				scrollDown(100, this.withdrawspecentitycard);
-				this.withdrawspecentitycard.click();
-				driver.switchTo().alert().accept();
-				
-			}
-			
-		}
-		
-		
-		
-		logger.info("Ending of deleteEntityLoopSpec Method");
-		
-	}
+
 	public void logOutEntitites() {
 		logger.info("Starting of logOutEntitites Method");	
 		waitUntilElementVisible(driver, userNameBtn);

@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -134,10 +136,17 @@ public class BaseAutomationPage {
 		logger.info("Ending of switchToNewWindow method");
 	}
 	
-	public void switchToNewOpenWin() {
-		logger.info("Starting of switchToNewOpenWin method");
-
-		
+	public void switchWindow(){
+		logger.info("Starting of swtich window method");
+		String parentWindow=driver.getWindowHandle();
+		Set<String> multipleWindows=driver.getWindowHandles();
+		Iterator<String> It= multipleWindows.iterator();
+		while(It.hasNext()){
+			String newWind=It.next();
+			if(!parentWindow.equals(newWind)){
+				driver.switchTo().window(newWind);
+			}
+		}		
 	}
 
 	public void closeWindow() {

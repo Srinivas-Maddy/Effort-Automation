@@ -19,6 +19,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//ul[@id='orderedUl']/li)[10]/a")
 	private WebElement webappthreedots;
+	
+	@FindBy(xpath="//ul[@id='orderedUl']/li/a")
+    private List<WebElement> navigationBar;	
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[1]/li")
 	private List<WebElement> webappthreedotsdata;
@@ -37,6 +40,9 @@ public class EntitiesExportPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//table[@id='example']/tbody/tr/td[1]")
 	private List<WebElement> entityselectcheckbox;
+	
+	@FindBy(xpath="(//input[@id='selecctall'])[1]")
+	private WebElement selctedAllCheckBox;
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[3]")
 	private WebElement entityexportall;
@@ -89,18 +95,19 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		Thread.sleep(500);
 		logger.info("Ending of clickOnDots Method");
 	}
-
-	public void pickEntityName(String autoentityname) {
-		logger.info("Starting of pickEntityName Method");
-		for (int i = 0; i < this.webappthreedotsdata.size(); i++) {
-			String EntityName = this.webappthreedotsdata.get(i).getText();
-			if (EntityName.equalsIgnoreCase(autoentityname)) {
-				waitUntilElementVisible(driver, this.webappthreedotsdata.get(i));
-				this.webappthreedotsdata.get(i).click();
+	
+	public void clickOnEntityModule() {
+		logger.info("Starting of click On entity module");
+		for (int i = 0; i <this.navigationBar.size(); i++){
+			String navNames=this.navigationBar.get(i).getText();
+			if(navNames.equalsIgnoreCase("Automation Entity teju1")) {
+				waitUntilElementVisible(driver, this.navigationBar.get(i));
+				this.navigationBar.get(i).click();
 				break;
 			}
+			
 		}
-		logger.info("Ending of pickEntityName Method");
+		logger.info("Ending of click On entity module");
 	}
 
 	public void entitySelectionCheckbox() throws InterruptedException {
@@ -111,8 +118,14 @@ public class EntitiesExportPage extends BaseAutomationPage {
 			waitUntilElementVisible(driver, this.entityselectcheckbox.get(i));
 			this.entityselectcheckbox.get(i).click();
 		}
-
 		logger.info("Ending of selectCustomertoExport Method");
+	}
+	
+	public void selectAllEntityCheckBox() throws InterruptedException {
+		Thread.sleep(2000);
+		waitUntilElementVisible(driver, this.selctedAllCheckBox);
+		scrollDown(0, this.selctedAllCheckBox);
+		this.selctedAllCheckBox.click();
 	}
 
 	public String selectEntityExportSelected() throws InterruptedException {
@@ -121,8 +134,8 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		this.entityexportimportoption.click();
 		waitUntilElementVisible(driver, this.exportSelected);
 		this.exportSelected.click();
-		Thread.sleep(10000);
 		waitUntilElementVisible(driver, this.exportSelectedStatusMsg);
+		Thread.sleep(5000);
 		String statusMsg=this.exportSelectedStatusMsg.getText();
 		logger.info("Ending of entityExportSelected Method");
 		return statusMsg;

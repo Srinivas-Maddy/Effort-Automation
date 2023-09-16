@@ -87,23 +87,9 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4 , Delete Entities Spec Process")
 	public void entitySpecDeletion() throws InterruptedException {
+		logger.info("Starting of entitySpecDeletion Method");		
+		entitiesprocess.deleteEntitySpec();		
 		logger.info("Starting of entitySpecDeletion Method");
-		
-		entitiesprocess.deleteEntitySpec();
-		
-		logger.info("Starting of entitySpecDeletion Method");
-	}
-	
-	@Test(priority= 5,description="Test Case #5 ,Entities Spec Loop Deletion" , groups= {"sanity"},enabled = false)
-	@Description("Test Case #5 , Delete Entities Spec Loop")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #5 , Delete Entities Spec Loop Process")
-	public void entitySpecLoopDeletion() {
-		logger.info("Starting of entitySpecLoopDeletion Method");
-		
-		entitiesprocess.deleteEntityLoopSpec();
-		logger.info("Ending of entitySpecLoopDeletion Method");
-		
 	}
 	
 	

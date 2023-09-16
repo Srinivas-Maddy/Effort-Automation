@@ -94,9 +94,11 @@ public class CustomerExportPage extends BaseAutomationPage {
 
 	}
 
-	public void ClickonExport() {
+	public void ClickonExport() throws InterruptedException {
 		logger.info("Starting of ClickonExport Method");
 		waitUntilElementVisible(driver, exportBtn);
+		Thread.sleep(5000);
+		scrollDown(10, this.exportBtn);
 		this.exportBtn.click();
 		logger.info("Ending of ClickonExport  Method");
 	}
