@@ -49,6 +49,7 @@ public class LeavesTest extends BaseAutomationTest{
 		leavespage.clickOnApplyLeaves();
 		leavespage.SwitchNewWindow();
 		leavespage.pickLeavesFromDate();
+		leavespage.clickOnToDate();
 		leavespage.pickLeaveType(leavesDataProp.getProperty("leavetype"));
 		leavespage.enterLeaveRemarks(leavesDataProp.getProperty("leaveRemark"));
 		leavespage.leavesSave();

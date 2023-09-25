@@ -31,19 +31,25 @@ public class LeavesPage extends BaseAutomationPage {
 	@FindBy(xpath = "((//ul[@class='list-inline pull-right'])[1]/li)[1]/a/button")
 	private WebElement leavesbtn;
 
-	@FindBy(xpath = "(//form[@id='leave']/div)[2]/ul/li")
+	@FindBy(xpath = "//input[@id='fromDate']")
 	private WebElement fromdatefield;
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td")
 	private List<WebElement> fromdatesdata;
-
-	@FindBy(xpath = "(//div[@class='select2-container form-control'])[2]")
+	
+	@FindBy(id="toDate")
+	private WebElement toDateField;
+	
+	@FindBy(xpath="(//div[@class='xdsoft_calendar'])[2]/table/tbody/tr/td")
+	private List<WebElement> toDateCalender;
+	
+	@FindBy(xpath = "//div[@id='s2id_leaveTp']")
 	private WebElement leavetypefield;
 
 	@FindBy(xpath = "(//div[@class='select2-search'])[2]/input")
 	private WebElement leavetypeinputfield;
 
-	@FindBy(xpath = "(//ul[@class='select2-results'])[2]/li/div")
+	@FindBy(xpath = "//ul[@class='select2-results']/li/div")
 	private List<WebElement> leavetypedropdowndata;
 
 	@FindBy(id = "employeeNote")
@@ -52,7 +58,7 @@ public class LeavesPage extends BaseAutomationPage {
 	@FindBy(xpath = "//div[@class='card-v']")
 	private WebElement leaveapplyformscroll;
 
-	@FindBy(xpath = "(//div[@style='text-align:right;']/span)[1]/input[@id='save']")
+	@FindBy(id = "save")
 	private WebElement leavessavebtn;
 
 	@FindBy(xpath = "//table[@id='example']/tbody/tr/td[1]")
@@ -152,6 +158,26 @@ public class LeavesPage extends BaseAutomationPage {
 
 		logger.info("Ending of pickLeavesFromDate Method");
 	}
+	
+	public void clickOnToDate() throws InterruptedException {
+		logger.info("Starting of clickToDate Method");
+		scrollDown(0, this.toDateField);
+		waitUntilElementVisible(driver, this.toDateField);
+		this.toDateField.click();
+		String tomorrowDate = getTomorrowDateAsNumber(1);
+		Thread.sleep(500);
+		for (int i = 1; i < toDateCalender.size(); i++) {
+			String fromactualdatetime = this.toDateCalender.get(i).getText();
+			if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
+				waitUntilElementVisible(driver, this.toDateCalender.get(i));
+				this.toDateCalender.get(i).click();
+				break;
+			}
+		}
+		this.toDateField.click();
+
+		
+	}
 
 	public void pickLeaveType(String leavetype) {
 		logger.info("Starting of pickLeaveType Method");
@@ -174,6 +200,16 @@ public class LeavesPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavesremarksarea);
 		this.leavesremarksarea.sendKeys(leaveRemark);
 		Thread.sleep(2000);
+		String presentdatetime = getCurrentDateAsNumber();
+		Thread.sleep(500);
+		for (int i = 0; i < fromdatesdata.size(); i++) {
+			String fromactualdatetime = this.fromdatesdata.get(i).getText();
+			if (fromactualdatetime.equalsIgnoreCase(presentdatetime)) {
+				waitUntilElementVisible(driver, this.fromdatesdata.get(i));
+				this.fromdatesdata.get(i).click();
+				break;
+			}
+		}
 
 	}
 

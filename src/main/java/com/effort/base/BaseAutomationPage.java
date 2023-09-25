@@ -28,10 +28,10 @@ public class BaseAutomationPage {
 	protected WebDriver driver = null;
 
 	private static final Logger logger = Logger.getLogger(BaseAutomationPage.class);
-	
+
 	public static String TEST_FILE_PATH = null;
-	
-	
+
+
 	public BaseAutomationPage(WebDriver driver) {
 		this.driver = driver;
 		if (TEST_FILE_PATH == null) {
@@ -54,7 +54,7 @@ public class BaseAutomationPage {
 		Select conditions = new Select(element);
 		conditions.selectByValue(value);
 		logger.info("Ending of selectDropdown method");
-	
+
 	}
 
 	public void scrollDown(int scroll,WebElement element) {
@@ -135,7 +135,7 @@ public class BaseAutomationPage {
 
 		logger.info("Ending of switchToNewWindow method");
 	}
-	
+
 	public void switchWindow(){
 		logger.info("Starting of swtich window method");
 		String parentWindow=driver.getWindowHandle();
@@ -286,28 +286,38 @@ public class BaseAutomationPage {
 	}
 
 	public static String getCurrentDateAsNumber() {
-
 		//Create a Calendar Object
 		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 		//Get Current Day as a number
 		int todayInt = calendar.get(Calendar.DAY_OF_MONTH);
-        String todayStr = Integer.toString(todayInt);
+		String todayStr = Integer.toString(todayInt);
 		return todayStr;
 
 	}
-	
-	
-	public static String getCurrentTime() {
-		
-		  Date currentDate = new Date();
-		  SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
-		  String timeIn24Hours = formatter.format(currentDate);
 
-		  return timeIn24Hours;
+	public static String getTomorrowDateAsNumber(int number) {
+		//Create a Calendar Object
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		//Get Current Day as a number
+		calendar.add(Calendar.DAY_OF_MONTH, number);
+		//Get the date as simple formate
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+		String tomorrowDate = dateFormat.format(calendar.getTime());
+        return tomorrowDate;
+	}
+
+
+	public static String getCurrentTime() {
+
+		Date currentDate = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
+		String timeIn24Hours = formatter.format(currentDate);
+
+		return timeIn24Hours;
 
 	}
-	
-	
+
+
 	/*
 	 * public static String getScreenshot(String testCaseName) throws IOException {
 	 * 

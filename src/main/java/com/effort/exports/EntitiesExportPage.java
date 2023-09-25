@@ -135,7 +135,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.exportSelected);
 		this.exportSelected.click();
 		waitUntilElementVisible(driver, this.exportSelectedStatusMsg);
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		String statusMsg=this.exportSelectedStatusMsg.getText();
 		logger.info("Ending of entityExportSelected Method");
 		return statusMsg;

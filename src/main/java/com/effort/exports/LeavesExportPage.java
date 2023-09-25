@@ -19,6 +19,12 @@ public class LeavesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[text()=' Leaves']")
 	private WebElement leaves;
 	
+	@FindBy(xpath="//li[@id='dots']/a")
+	private WebElement threeDots;
+	
+	@FindBy(xpath="(//ul[@class='dropdown-menu'])[1]/li/a")
+	private List<WebElement> threeDotList;
+	
 	@FindBy(xpath = "//button[contains(@class,'btn-block')]")
 	private WebElement leavesexportimportoption;
 
@@ -60,9 +66,6 @@ public class LeavesExportPage extends BaseAutomationPage {
 
 	@FindBy(xpath="//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
-
-
-	
 	
 	public LeavesExportPage(WebDriver driver) {
 		super(driver);
@@ -76,12 +79,31 @@ public class LeavesExportPage extends BaseAutomationPage {
 		logger.info("Ending of ClickonWebApp Method");
 	}
 	
-	public void clickOnLeaves() {
-		logger.info("Starting of clickOnLeaves Method");
-		waitUntilElementVisible(driver, this.leaves);
-		this.leaves.click();
-		logger.info("Ending of clickOnLeaves Method");
+	public void clickOnThreeDots() {
+		logger.info("Starting of clickOnThreeDots Method");
+		waitUntilElementVisible(driver, this.threeDots);
+		this.threeDots.click();
+		logger.info("Ending of clickOnThreeDots Method");
 	}
+	
+	public void clickOnLeaves(String leaves) {
+		logger.info("Starting of clickOnLeaves method");
+		for (int i = 0; i < this.threeDotList.size(); i++) {
+			String listNames=this.threeDotList.get(i).getText();
+			if(listNames.equalsIgnoreCase(leaves)){
+				waitUntilElementVisible(driver, this.threeDotList.get(i));
+				this.threeDotList.get(i).click();
+				break;
+			}
+		}
+	}
+	
+	/*
+	 * public void clickOnLeaves() {
+	 * logger.info("Starting of clickOnLeaves Method");
+	 * waitUntilElementVisible(driver, this.leaves); this.leaves.click();
+	 * logger.info("Ending of clickOnLeaves Method"); }
+	 */
 	
 	public void selectLeavesExportAll()  {
 		logger.info("Starting of selectLeavesExportAll Method");

@@ -23,18 +23,18 @@
 		</classes>		
 	</test> -->
 	
-	<test name ="Entity Exports">
+	<!--<test name ="Entity Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 		</classes> 
-	</test>
+	</test>-->
 		
-	<!--<test name ="Leaves Exports">
+	<test name ="Leaves Exports">
 		<classes>
 			<class name ="com.effort.nxt.test.exports.LeavesExportTest"/>
 		</classes> 
 	</test>
-	-->
+	
 	<!-- <test name ="Form Exports">
 		<classes>
 			<class name ="com.effort.nxt.test.exports.FormExportsTest"/>
