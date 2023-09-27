@@ -196,7 +196,7 @@ public class BaseAutomationTest {
 	 */
 
 	protected synchronized WebDriver getWebDriver(String browser, WEB_DRIVER webDriver) {
-		logger.info("Starting of method getWebDriver");
+		//logger.info("Starting of method getWebDriver");
 
 		WebDriver driver = webDriverPool.get(webDriver);
 
@@ -217,7 +217,7 @@ public class BaseAutomationTest {
 				options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
-			} else {
+			} else  {
 				logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
 				/*
 				 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
@@ -228,6 +228,8 @@ public class BaseAutomationTest {
 				ChromeOptions options = new ChromeOptions();
 				options.setHeadless(true);
 				options.addArguments("--no-sandbox");
+				options.addArguments("--remote-allow-origins=*");
+
 				driver = new ChromeDriver(options);
 
 				logger.debug("######### Driver is here  ###### " + driver);
@@ -246,7 +248,12 @@ public class BaseAutomationTest {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
 				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
+				ChromeOptions options = new ChromeOptions();
+				//options.setHeadless(true);
+				options.addArguments("--no-sandbox");
+				options.addArguments("--remote-allow-origins=*");
+				driver = new ChromeDriver(options);
+				
 
 			} else if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();

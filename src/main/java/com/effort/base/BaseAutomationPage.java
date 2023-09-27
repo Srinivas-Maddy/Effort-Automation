@@ -3,6 +3,7 @@ package com.effort.base;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,7 +69,7 @@ public class BaseAutomationPage {
 	public void explicitWait(WebElement webElement) {
 		logger.info("Staritng of explicitWait method");
 
-		WebDriverWait wait = new WebDriverWait(driver, 2);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(webElement));
 
 		logger.info("Ending of explicitWait method");
@@ -84,14 +85,14 @@ public class BaseAutomationPage {
 
 	public void waitUntilElementVisible(WebDriver driver, WebElement xpath) {
 		logger.info("Starting of waitUntilElementVisible method");
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(xpath));
 		logger.info("Ending of waitUntilElementVisible method");
 	}
 
 	public void waitUntilElementLoacted(By by) {
 		logger.info("Starting of waitUntilElementLoacted method");
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		logger.info("Ending of waitUntilElementVisible method");
 
@@ -100,7 +101,7 @@ public class BaseAutomationPage {
 	public void waitUntilConfiramtionAlert(WebDriver driver)
 	{
 		logger.info("Starting of waitUntilConfiramtionAlert method");
-		WebDriverWait wait= new WebDriverWait(driver, 200);
+		WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.alertIsPresent());
 		logger.info("Ending of waitUntilConfiramtionAlert method");
 
