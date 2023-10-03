@@ -147,6 +147,7 @@ public class Forms extends BaseAutomationPage{
 		ignoreDatatypes.add("Image (Read Only)");
 		ignoreDatatypes.add("URL (Read Only)");
 		ignoreDatatypes.add("Video (Read Only)");
+		ignoreDatatypes.add("Location To Address");
 		
 		int count=0;
 		for (int i=0; i<fieldLabels.size();i++) {
