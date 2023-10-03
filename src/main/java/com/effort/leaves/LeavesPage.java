@@ -154,7 +154,7 @@ public class LeavesPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		this.fromdatefield.click();
+		//this.fromdatefield.click();
 
 		logger.info("Ending of pickLeavesFromDate Method");
 	}

@@ -33,11 +33,17 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='fields0_fieldValue']")
 	private WebElement workNamefield;
 	
+	@FindBy(xpath="//input[@id='fields1_fieldValueDateTime']")
+	private WebElement workStartDate;
+	
 	@FindBy(xpath="//input[@id='fields2_fieldValueDateTime']")
 	private WebElement workEndDate;
 	
 	@FindBy(xpath="(//div[@class='xdsoft_datepicker active'])[10]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
+	
+	@FindBy(xpath="(//div[@class='xdsoft_timepicker active'])[8]/div/div/div")
+	private List<WebElement> timePickers;
 	
 	@FindBy(xpath="(//span[contains(text(),'Select Employee')])[3]")
 	private WebElement assigneeDropdown;
@@ -50,6 +56,9 @@ public class AddWorkProcess extends BaseAutomationPage{
 	
 	@FindBy(xpath="//input[@id='save1']")
 	private WebElement saveBtn;
+	
+	@FindBy(xpath="//span[contains(text(),'Proceed Anyway')]")
+	private WebElement btnProcessAnyway;
 
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -100,8 +109,9 @@ public class AddWorkProcess extends BaseAutomationPage{
 		logger.info("Starting of enterWorkName method");
 		waitUntilElementVisible(driver, this.workNamefield);
 		this.workNamefield.sendKeys(workName);
+		logger.info("Ending of enterWorkName menthod");
 	}
-	
+			
 	public void clickOnWorkEndDate() throws InterruptedException {
 		logger.info("Starting of clickOnWorkEndDate method");
 		waitUntilElementVisible(driver, this.workEndDate);
@@ -112,8 +122,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 	public void clickOnCurrentDateTime() throws InterruptedException {
 		logger.info("Starting of clickOnCurrentDateTime method");
 		//Get the current date as number
-		String presentDate=getCurrentDateAsNumber();
-		Thread.sleep(500);
+		String presentDate=getTomorrowDateAsNumber(1);
 		for(int i=0;i<=dateTimes.size()-1;i++) {
 			String actualDate = (String) ((JavascriptExecutor)driver).executeScript("return $(arguments[0]).text();", dateTimes.get(i));
 			if(actualDate.equalsIgnoreCase(presentDate)) {
@@ -125,6 +134,20 @@ public class AddWorkProcess extends BaseAutomationPage{
 		}
 		this.workEndDate.click();
 		logger.info("Ending of clickOnDatePicker method");
+	}
+	
+	public void pickWorkEndDate() {
+		logger.info("Starting of pickWorkEndDate Method");
+		String currentTime=getCurrentTimeAsFiveMinInterval();
+		for (int i = 0; i < timePickers.size(); i++){
+			String timeIntervals=(String) ((JavascriptExecutor)driver).executeScript("return $(arguments[0]).text();", timePickers.get(i));
+			if (timeIntervals.equalsIgnoreCase(currentTime)){
+              waitUntilElementVisible(driver, timePickers.get(i));
+              timePickers.get(i).click();
+              break;
+			}		
+		}
+		logger.info("Ending of pickerWorkEndDate Method");
 	}
 	
 	public void assignEmplpoyee(String assigneeName) {
@@ -150,6 +173,16 @@ public class AddWorkProcess extends BaseAutomationPage{
         waitUntilElementVisible(driver, this.saveBtn);
         this.saveBtn.click();
 		logger.info("Ending of clickOnSave method");
+	}
+	
+	public void clickOnProcessAnywayBtn() {
+		logger.info("Starting of clickOnProcessAnywayBtn");
+		try {
+		  waitUntilElementVisible(driver, this.btnProcessAnyway);
+		  this.btnProcessAnyway.click();
+		}catch(Exception e){
+			logger.info("Process Anyway Btn is not visible");
+		}
 	}
 	
 	

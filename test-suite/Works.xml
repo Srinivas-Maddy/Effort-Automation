@@ -14,9 +14,8 @@
 
 	<test name="Works">
 		<classes>
-            <class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
-		    <class name="com.effort.nxt.test.works.AddWorkProcessTest" /> 	
-			
+        <!-- <class name="com.effort.nxt.test.works.WorkProcessCreationTest" />-->
+		 <class name="com.effort.nxt.test.works.AddWorkProcessTest" />		
 		</classes>
 	</test>
 

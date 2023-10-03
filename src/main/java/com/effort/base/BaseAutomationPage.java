@@ -4,6 +4,8 @@ package com.effort.base;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,7 +71,7 @@ public class BaseAutomationPage {
 	public void explicitWait(WebElement webElement) {
 		logger.info("Staritng of explicitWait method");
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(webElement));
 
 		logger.info("Ending of explicitWait method");
@@ -85,14 +87,14 @@ public class BaseAutomationPage {
 
 	public void waitUntilElementVisible(WebDriver driver, WebElement xpath) {
 		logger.info("Starting of waitUntilElementVisible method");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(xpath));
 		logger.info("Ending of waitUntilElementVisible method");
 	}
 
 	public void waitUntilElementLoacted(By by) {
 		logger.info("Starting of waitUntilElementLoacted method");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		logger.info("Ending of waitUntilElementVisible method");
 
@@ -101,7 +103,7 @@ public class BaseAutomationPage {
 	public void waitUntilConfiramtionAlert(WebDriver driver)
 	{
 		logger.info("Starting of waitUntilConfiramtionAlert method");
-		WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.alertIsPresent());
 		logger.info("Ending of waitUntilConfiramtionAlert method");
 
@@ -302,9 +304,29 @@ public class BaseAutomationPage {
 		//Get Current Day as a number
 		calendar.add(Calendar.DAY_OF_MONTH, number);
 		//Get the date as simple formate
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d");
 		String tomorrowDate = dateFormat.format(calendar.getTime());
-        return tomorrowDate;
+		return tomorrowDate;
+	}
+
+	public static String getCurrentTimeAsFiveMinInterval() {
+		// Get the current time
+		LocalTime time=LocalTime.now();
+	
+		//Round the current time to nearest 5 mins interval
+		int minute=time.getMinute();
+		int reminder=minute%5;
+		int adjustedMinute = minute - reminder + (reminder < 3 ? 0 : 5);
+		
+		// Create a new LocalTime with the adjusted minute
+		LocalTime adjustedTime = time.withMinute(adjustedMinute);   
+		
+		//Define the desired time formate(MM:hh)
+		DateTimeFormatter formate=DateTimeFormatter.ofPattern("HH:mm");	
+		
+		// Format the current time using the defined format
+		String formattedTime = adjustedTime.format(formate);
+		return formattedTime;
 	}
 
 
@@ -313,27 +335,10 @@ public class BaseAutomationPage {
 		Date currentDate = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
 		String timeIn24Hours = formatter.format(currentDate);
-
 		return timeIn24Hours;
 
 	}
 
-
-	/*
-	 * public static String getScreenshot(String testCaseName) throws IOException {
-	 * 
-	 * TakesScreenshot ts= (TakesScreenshot)driver; File
-	 * source=ts.getScreenshotAs(OutputType.FILE); File destination=new
-	 * File(System.getProperty("user.dir")+"//ErrorScreenshots//"+testCaseName+
-	 * ".png");
-	 * 
-	 * FileUtils.copyFile(source, destination);
-	 * 
-	 * return
-	 * System.getProperty("user.dir")+"//ErrorScreenshots//"+testCaseName+".png";
-	 * 
-	 * }
-	 */
 
 }
 

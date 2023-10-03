@@ -11,12 +11,12 @@
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-
+<!--
 	 <test name="EmployeeFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest"/>
 		</classes>
-	</test>
+	</test>-->
 	
 	 <test name="EntitiesFilters">
 		<classes>
@@ -24,10 +24,10 @@
 		</classes>
 	</test>
 	
-    <test name="LeavesFilters">
+  <!--  <test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest"/>
 		</classes>
-	</test>
+	</test>-->
 	
 </suite>

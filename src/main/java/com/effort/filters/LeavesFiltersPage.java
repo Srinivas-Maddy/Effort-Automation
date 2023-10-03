@@ -152,7 +152,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//a[@id='reset']")
 	private WebElement leavesresetbtn;
 
-	@FindBy(xpath = "((//a/span)[4]/span)[2]")
+	@FindBy(xpath = "//span[@id='logoutGear']")
 	private WebElement userNameBtn;
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a")
