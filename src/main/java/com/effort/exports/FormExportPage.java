@@ -43,7 +43,6 @@ public class FormExportPage extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='progress']")
 	private WebElement exportSelectedStatus;
 
-	
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -139,9 +138,6 @@ public class FormExportPage extends BaseAutomationPage{
 		
 	}
 	
-	
-	
-
 	public void logOut() {
 		logger.info("Starting of Logout method");
 		waitUntilElementVisible(driver, userNameBtn);
@@ -151,8 +147,5 @@ public class FormExportPage extends BaseAutomationPage{
 		}
 		logger.info("Ending of Logout method");
 	}
-
-	
-	
 
 }

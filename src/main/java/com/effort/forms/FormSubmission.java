@@ -293,7 +293,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of enterDuration mentiond");
 		waitUntilElementVisible(driver, this.duration);
 		//this.duration.click();
-		clickOnWebElement(duration);
+		clickOnWebElementUsingJavascript(duration);
 		this.duration.sendKeys(durationValue);
 		logger.info("Ending of enterDuration mentiond");
 
@@ -303,7 +303,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of ClickOnMonthPicker method");
 		waitUntilElementVisible(driver, monthPicker);
 		//this.monthPicker.click();
-		clickOnWebElement(monthPicker);
+		clickOnWebElementUsingJavascript(monthPicker);
 		logger.info("Ending of ClickOnMonthPicker method");
 	}
 

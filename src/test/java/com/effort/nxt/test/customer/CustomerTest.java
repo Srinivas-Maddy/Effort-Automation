@@ -52,7 +52,7 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.SwitchNewWindow();
 		custmrCreation.EnterCustomerID();
 		custmrCreation.EnterCustomerName(custmrDataProp.getProperty("firstName"));
-		custmrCreation.CustmrPhone();
+		custmrCreation.customerPhoneNumber();
 		custmrCreation.CustmrLocationLat(custmrDataProp.getProperty("lat"));
 		custmrCreation.CustmrLocationlong(custmrDataProp.getProperty("log"));
 		custmrCreation.EnterCustmrStreet(custmrDataProp.getProperty("street"));
@@ -146,7 +146,6 @@ public class CustomerTest extends BaseAutomationTest {
 	@Description("Deleting Customers")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Deleting the Customers")
-
 	public void customerDeletion() throws InterruptedException {
 		logger.info("Starting of customerDeletion Method");
 		custmrCreation.SelectCustmrtoDelete();

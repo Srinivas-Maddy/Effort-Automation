@@ -70,12 +70,9 @@ public class CustomerExportPage extends BaseAutomationPage {
 	@FindBy(xpath="//div[@id='progress']")
 	private WebElement exportfilteredsuccesmsg;
 
-
-
 	public CustomerExportPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-
 	}
 
 	public void ClickonWebApp() {
