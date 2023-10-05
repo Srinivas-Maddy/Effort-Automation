@@ -314,13 +314,10 @@ public class BaseAutomationTest {
 		logger.info("Starting of LoginToApplication Method");
 
 		this.loginPage = new LoginPage(driver);		
-	
 		this.loginPage.enterUserName(userName);
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		this.loginPage.ClickonWebApp();
-		
-		
+	
 		logger.info("Ending of LoginToApplication Method");
 	}
 

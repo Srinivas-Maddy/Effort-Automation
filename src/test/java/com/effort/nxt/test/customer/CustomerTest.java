@@ -8,6 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.effort.base.LoginPage;
 import com.effort.customers.CustomerPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -34,9 +36,11 @@ public class CustomerTest extends BaseAutomationTest {
 		
 		LoginToApplication(userName, password);
 		/*
+		 * this.loginPage = new LoginPage(driver);	
 		 * this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		 * this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		 * this.loginPage.clickOnLoginButton(); this.custmrCreation.ClickonWebApp();
+		 * this.loginPage.clickOnLoginButton(); 
+		 * this.custmrCreation.ClickonWebApp();
 		 */
 		logger.info("Ending of initEffortLogin Method");
 	}
@@ -47,6 +51,7 @@ public class CustomerTest extends BaseAutomationTest {
 	@Story("Customer Creation on clicking add Customer button")
 	public void AddCustomer() throws InterruptedException, IOException {
 		logger.info("Starting of AddCustomer Method");
+		loginPage.ClickonWebApp();
 		custmrCreation.ClickonCustomer();
 		custmrCreation.ClickonAddCustomerBtn();
 		custmrCreation.SwitchNewWindow();
