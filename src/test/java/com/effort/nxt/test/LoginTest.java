@@ -21,7 +21,7 @@ import io.qameta.allure.Story;
 
 public class LoginTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(LoginTest.class.getName());
-	
+	private LoginPage loginpage =null;
 	private String expectedInvalidLoginMessage="Invalid Email/Password.";
 
 	@BeforeClass(alwaysRun = true)
@@ -30,7 +30,7 @@ public class LoginTest extends BaseAutomationTest {
 		logger.info("Starting of initEffortLogin method in LoginTest");
 		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
 		this.goToSite(siteURL, driver);
-		this.loginPage = new LoginPage(this.driver);
+		this.loginpage = new LoginPage(this.driver);
 		logger.info("Ending of initEffortLogin method in LoginTest");
 
 	}

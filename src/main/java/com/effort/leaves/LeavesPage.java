@@ -103,8 +103,10 @@ public class LeavesPage extends BaseAutomationPage {
 	}
 
 	public void clickOnThreeDots(){
+		logger.info("Starting of clickOnThreeDots Method");
 		waitUntilElementVisible(driver, this.threeDots);
 		this.threeDots.click();
+		logger.info("Ending of clickOnThreeDots Method");
 	}
 
 

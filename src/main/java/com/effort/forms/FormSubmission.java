@@ -162,10 +162,6 @@ public class FormSubmission extends BaseAutomationPage{
 	private List<WebElement> logoutBtn;
 
 
-
-
-
-	//Default constructor to initialized the driver
 	public FormSubmission(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -439,6 +435,7 @@ public class FormSubmission extends BaseAutomationPage{
 		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\Documentpicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
+		logger.info("Ending of documentUpload method");
 
 	}
 

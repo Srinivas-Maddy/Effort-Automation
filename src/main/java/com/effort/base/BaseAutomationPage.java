@@ -30,9 +30,7 @@ public class BaseAutomationPage {
 
 	private static final Logger logger = Logger.getLogger(BaseAutomationPage.class);
 	public static String TEST_FILE_PATH = null;
-	Actions action = new Actions(driver);
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
 	static Random random = new Random();
 	static Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 
@@ -72,6 +70,8 @@ public class BaseAutomationPage {
 	public void scrollDown(int scroll, WebElement element) {
 		logger.info("Starting of scrollDown method");
 
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
 		js.executeScript("arguments[0].scrollIntoView();", element);
 
@@ -81,6 +81,7 @@ public class BaseAutomationPage {
 	public void explicitWait(WebElement webElement) {
 		logger.info("Staritng of explicitWait method");
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(webElement));
 
 		logger.info("Ending of explicitWait method");
@@ -98,6 +99,7 @@ public class BaseAutomationPage {
 	public void waitUntilElementVisible(WebDriver driver, WebElement xpath) {
 		logger.info("Starting of waitUntilElementVisible method");
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(xpath));
 
 		logger.info("Ending of waitUntilElementVisible method");
@@ -106,6 +108,7 @@ public class BaseAutomationPage {
 	public void waitUntilElementLoacted(By by) {
 		logger.info("Starting of waitUntilElementLoacted method");
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 
 		logger.info("Ending of waitUntilElementVisible method");
@@ -115,6 +118,7 @@ public class BaseAutomationPage {
 	public void waitUntilConfiramtionAlert(WebDriver driver) {
 		logger.info("Starting of waitUntilConfiramtionAlert method");
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.alertIsPresent());
 
 		logger.info("Ending of waitUntilConfiramtionAlert method");
@@ -123,6 +127,8 @@ public class BaseAutomationPage {
 	public void clickOnWebElementUsingJavascript(WebElement webelement) {
 		logger.info("Starting of clickOnWebElementUsingJavascript method");
 
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", webelement);
 
 		logger.info("Ending of clickOnWebElementUsingJavascript method");
@@ -185,6 +191,7 @@ public class BaseAutomationPage {
 	public void mouseHoverActions(WebElement webElement) {
 		logger.info("Starting of mouseHoverActions method");
 
+		Actions action = new Actions(driver);
 		action.moveToElement(webElement).build().perform();
 
 		logger.info("Ending of mouseHoverActions method");
@@ -193,6 +200,7 @@ public class BaseAutomationPage {
 	public void mouseHoverAndClick(WebElement webElement) {
 		logger.info("Starting of mouseHoverAndClick method");
 
+		Actions action = new Actions(driver);
 		action.moveToElement(webElement).click().build().perform();
 
 		logger.info("Ending of mouseHoverAndClick method");
@@ -201,6 +209,7 @@ public class BaseAutomationPage {
 	public void slider(WebElement webElement, int xCoordinate) {
 		logger.info("Starting of slider method");
 
+		Actions action = new Actions(driver);
 		action.dragAndDropBy(webElement, xCoordinate, 0).perform();
 
 		logger.info("Ending of slider method");
@@ -258,7 +267,6 @@ public class BaseAutomationPage {
 		// Create a array for all email domains
 		String[] domains = { "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "spoors.in" };
 		// Create Random class
-		Random random = new Random();
 
 		// Get the count of the domains
 		int index = random.nextInt(domains.length);
@@ -320,7 +328,6 @@ public class BaseAutomationPage {
 		logger.info("Starting of getTomorrowDateAsNumber method");
 
 		// Create a Calendar Object
-
 		// Get Current Day as a number
 		calendar.add(Calendar.DAY_OF_MONTH, number);
 		// Get the date as simple formate
@@ -381,6 +388,7 @@ public class BaseAutomationPage {
 	public void clickOnWebElement(WebElement webElement) {
 		logger.info("Starting of clickOnWebElement method");
 
+		Actions action = new Actions(driver);
 		try {
 			webElement.click();
 		} catch (Exception e) {

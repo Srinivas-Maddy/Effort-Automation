@@ -108,6 +108,8 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.ClickonSaveButton();
 		String actualcapturedmsg = custmrCreation.customerCreatedSuccesMsg();
 		Assert.assertEquals(actualcapturedmsg, EXPECTEDCUSTOMERCREATEDSUCCESMSG);
+		
+		//Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(), expectedAssertionsProp.getProperty("customer.created.text"));
 		logger.info("Ending of AddCustomer Method");
 	}
 
