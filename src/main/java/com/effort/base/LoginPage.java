@@ -37,6 +37,9 @@ public class LoginPage extends BaseAutomationPage {
 
 	@FindBy(xpath="//button[contains(text(),'Sign out all other sessions')]")
 	private WebElement btnSignOutAllSessions;
+	
+	@FindBy(xpath = "//a[contains(text(),'Web App')]")
+	private WebElement webApp;
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -78,6 +81,16 @@ public class LoginPage extends BaseAutomationPage {
 		btnWebApp.click();
 		
 		logger.info("Ending of clickOnWebApp method");
+
+	}
+	
+	public void ClickonWebApp() {
+		logger.info("Starting of Click on Web App Method");
+		
+		waitUntilElementVisible(driver, webApp);
+		this.webApp.click();
+		
+		logger.info("Ending of Click on Web App Method ");
 
 	}
 	

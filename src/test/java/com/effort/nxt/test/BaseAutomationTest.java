@@ -32,17 +32,14 @@ public class BaseAutomationTest {
 
 	protected static Properties expectedAssertionsProp = null;
 	protected static Properties testDataProp = null;
-	protected static Properties empDataProp=null;
-	protected static Properties formDataProp=null;
-	protected static Properties custmrDataProp=null;
-	protected static Properties entityDataProp=null;
-	protected static Properties filtersDataProp=null;
-	protected static Properties leavesDataProp=null;
-	protected static Properties exportDataProp=null;	
-	protected static Properties importProp=null;
-
-
-
+	protected static Properties empDataProp = null;
+	protected static Properties formDataProp = null;
+	protected static Properties custmrDataProp = null;
+	protected static Properties entityDataProp = null;
+	protected static Properties filtersDataProp = null;
+	protected static Properties leavesDataProp = null;
+	protected static Properties exportDataProp = null;
+	protected static Properties importProp = null;
 
 	private static Map<WEB_DRIVER, WebDriver> webDriverPool = new Hashtable<WEB_DRIVER, WebDriver>();
 
@@ -51,36 +48,33 @@ public class BaseAutomationTest {
 		LOGIN_DRIVER, FORGOT_PASSWORD_DRIVER, BUY_INVESTMENT_DRIVER;
 	}
 
-	@BeforeSuite (alwaysRun = true)
+	@BeforeSuite(alwaysRun = true)
 	public void initTestData() {
 		if (testDataProp == null) {
 			FileReader testDataReader = null;
 			FileReader assertionsReader = null;
-			FileReader empDataReader=null;
-			FileReader custmrDataReader=null;
-			FileReader formDataReader=null;
-			FileReader entityDataReader=null;
-			FileReader filtersDataReader=null;
-			FileReader leavesDataReader=null;
-			FileReader importsReader=null;
-			FileReader exportReader=null;
-
+			FileReader empDataReader = null;
+			FileReader custmrDataReader = null;
+			FileReader formDataReader = null;
+			FileReader entityDataReader = null;
+			FileReader filtersDataReader = null;
+			FileReader leavesDataReader = null;
+			FileReader importsReader = null;
+			FileReader exportReader = null;
 
 			try {
 
 				testDataReader = new FileReader("src/main/resources/testdata.properties");
-				//testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
-				empDataReader= new FileReader("src/main/resources/EmployeeDetails.properties");
-				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties") ;
+				// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
+				empDataReader = new FileReader("src/main/resources/EmployeeDetails.properties");
+				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties");
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
 				formDataReader = new FileReader("src/main/resources/FormData.properties");
 				entityDataReader = new FileReader("src/main/resources/EntitiesDetails.properties");
 				filtersDataReader = new FileReader("src/main/resources/FiltersDetails.properties");
 				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
 				importsReader = new FileReader("src/main/resources/importCards.properties");
-				exportReader=new FileReader("src/main/resources/ExportDetails.properties");
-
-
+				exportReader = new FileReader("src/main/resources/ExportDetails.properties");
 
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
@@ -97,7 +91,6 @@ public class BaseAutomationTest {
 				formDataProp = new Properties();
 				formDataProp.load(formDataReader);
 
-
 				entityDataProp = new Properties();
 				entityDataProp.load(entityDataReader);
 
@@ -107,12 +100,11 @@ public class BaseAutomationTest {
 				leavesDataProp = new Properties();
 				leavesDataProp.load(leavesDataReader);
 
-				importProp=new Properties();
+				importProp = new Properties();
 				importProp.load(importsReader);
 
-				exportDataProp=new Properties();
+				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
-
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -126,7 +118,6 @@ public class BaseAutomationTest {
 					entityDataProp.clone();
 					filtersDataProp.clone();
 					leavesDataProp.clone();
-
 
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -196,7 +187,7 @@ public class BaseAutomationTest {
 	 */
 
 	protected synchronized WebDriver getWebDriver(String browser, WEB_DRIVER webDriver) {
-		//logger.info("Starting of method getWebDriver");
+		// logger.info("Starting of method getWebDriver");
 
 		WebDriver driver = webDriverPool.get(webDriver);
 
@@ -217,7 +208,7 @@ public class BaseAutomationTest {
 				options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
-			} else  {
+			} else {
 				logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
 				/*
 				 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
@@ -249,11 +240,10 @@ public class BaseAutomationTest {
 			if (browser.equalsIgnoreCase("Chrome")) {
 				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
-				//options.setHeadless(true);
+				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				driver = new ChromeDriver(options);
-				
 
 			} else if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();
@@ -304,13 +294,14 @@ public class BaseAutomationTest {
 		return tVersion;
 	}
 
-	//	protected void logIn(String siteURL, String userName, String password, WebDriver driver) throws Exception {
-	//		logger.debug("Login URL " + siteURL);
+	// protected void logIn(String siteURL, String userName, String password,
+	// WebDriver driver) throws Exception {
+	// logger.debug("Login URL " + siteURL);
 	//
-	//		driver.get(siteURL);
+	// driver.get(siteURL);
 	//
-	//		this.loginPage.logIn(userName, password);
-	//	}
+	// this.loginPage.logIn(userName, password);
+	// }
 
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {
 
@@ -318,5 +309,19 @@ public class BaseAutomationTest {
 
 	}
 
+	public void LoginToApplication(String userName, String password) {
+
+		logger.info("Starting of LoginToApplication Method");
+
+		this.loginPage = new LoginPage(driver);		
+	
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
+		this.loginPage.clickOnLoginButton();
+		this.loginPage.ClickonWebApp();
+		
+		
+		logger.info("Ending of LoginToApplication Method");
+	}
 
 }

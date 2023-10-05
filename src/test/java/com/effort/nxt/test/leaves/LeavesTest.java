@@ -76,7 +76,6 @@ public class LeavesTest extends BaseAutomationTest{
 	@Description("Afetr Appling Leave,Reject the Leave")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #3, Reject the Leave")
-	
 	public void rejectLeaves() throws InterruptedException {
 		logger.info("Starting of rejectLeaves Method");
 		leavespage.selectEmployeeToReject();

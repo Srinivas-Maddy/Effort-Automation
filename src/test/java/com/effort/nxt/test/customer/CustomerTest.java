@@ -8,8 +8,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.effort.base.LoginPage;
 import com.effort.customers.CustomerPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -22,22 +20,24 @@ public class CustomerTest extends BaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(CustomerTest.class.getName());
 	private CustomerPage custmrCreation;
-	private static final String EXPECTEDCUSTOMERCREATEDSUCCESMSG = "Customer Created Succesfully";
-	private static final String EXPECTEDMODIFIEDMSG = "Customer Modified Successfully";
-	private static final String EXPECTEDDELETEPOPUPMSG = "Customer Deleted Successfully";
+	//private static final String EXPECTEDCUSTOMERCREATEDSUCCESMSG = "Customer Created Succesfully";
+	//private static final String EXPECTEDMODIFIEDMSG = "Customer Modified Successfully";
+	//private static final String EXPECTEDDELETEPOPUPMSG = "Customer Deleted Successfully";
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser" ,"userName", "password"})
+	public void initEffortLogin(String siteURL, String browser, String userName, String password ) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
 		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.custmrCreation = new CustomerPage(driver);
-		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		this.loginPage.clickOnLoginButton();
-		this.custmrCreation.ClickonWebApp();
+		
+		LoginToApplication(userName, password);
+		/*
+		 * this.loginPage.enterUserName(testDataProp.getProperty("name"));
+		 * this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		 * this.loginPage.clickOnLoginButton(); this.custmrCreation.ClickonWebApp();
+		 */
 		logger.info("Ending of initEffortLogin Method");
 	}
 
@@ -106,10 +106,11 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.SecondryCustmrPhone();
 		custmrCreation.SecondryCustmrEmail();
 		custmrCreation.ClickonSaveButton();
-		String actualcapturedmsg = custmrCreation.customerCreatedSuccesMsg();
-		Assert.assertEquals(actualcapturedmsg, EXPECTEDCUSTOMERCREATEDSUCCESMSG);
+		//String actualcapturedmsg = custmrCreation.customerCreatedSuccesMsg();
+		//Assert.assertEquals(actualcapturedmsg, EXPECTEDCUSTOMERCREATEDSUCCESMSG);
 		
-		//Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(), expectedAssertionsProp.getProperty("customer.created.text"));
+		Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(), expectedAssertionsProp.getProperty("customer.created.text"));
+		
 		logger.info("Ending of AddCustomer Method");
 	}
 
@@ -127,8 +128,11 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.ModifiedPrimryFirstName(custmrDataProp.getProperty("modifiedprimryfirstname"));
 		custmrCreation.ModifiedsecondryFirstName(custmrDataProp.getProperty("modifiedsecondryfirstname"));
 		custmrCreation.ClickonSaveButton();
-		String actualMsg = custmrCreation.CaptureModifiedMsg();
-		Assert.assertEquals(actualMsg, EXPECTEDMODIFIEDMSG);
+		//String actualMsg = custmrCreation.CaptureModifiedMsg();
+		//Assert.assertEquals(actualMsg, EXPECTEDMODIFIEDMSG);
+		
+		Assert.assertEquals(custmrCreation.CaptureModifiedMsg(), expectedAssertionsProp.getProperty("customer.modified.text"));
+		
 		logger.info("Ending of modifyCustomer Method");
 	}
 
@@ -136,7 +140,7 @@ public class CustomerTest extends BaseAutomationTest {
 	@Description("Mapping Customer to Employee")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Mapping Customers to Employee to asign Work")
-	public void CustmrtoEmployeeMapping() throws InterruptedException {
+	public void CustmrtoEmployeeMapping()  throws InterruptedException{
 		logger.info("Starting of CustmrtoEmployeeMapping");
 		custmrCreation.CustmrMaptoEmployee();
 		custmrCreation.AssignCustmrtoEmployee();
@@ -151,15 +155,20 @@ public class CustomerTest extends BaseAutomationTest {
 	public void customerDeletion() throws InterruptedException {
 		logger.info("Starting of customerDeletion Method");
 		custmrCreation.SelectCustmrtoDelete();
-		String deletepopupmsg =custmrCreation.ClickonDeleteBtn();
-		Assert.assertEquals(deletepopupmsg, EXPECTEDDELETEPOPUPMSG);
+		//String deletepopupmsg =custmrCreation.ClickonDeleteBtn();
+		//Assert.assertEquals(deletepopupmsg, EXPECTEDDELETEPOPUPMSG);
+		
+		Assert.assertEquals(custmrCreation.ClickonDeleteBtn(), expectedAssertionsProp.getProperty("customer.deleted.text"));
+
 		logger.info("Ending of customerDeletion Method");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void LogOutCustomer() {
 		logger.info("Starting of LogOutCustomer Method");
+		
 		custmrCreation.LogOut();
+		
 		logger.info("Ending of LogOutCustomer Method");
 
 	}
