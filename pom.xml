@@ -8,9 +8,9 @@
 	<name>effort nxt</name>
 	<description>web automation for effort nxt</description>
 
-<properties>
-    <aspectj.version>1.8.10</aspectj.version>
-</properties>
+	<properties>
+		<aspectj.version>1.8.10</aspectj.version>
+	</properties>
 
 	<profiles>
 		<profile>
@@ -59,7 +59,6 @@
 	</profiles>
 
 
-
 	<build>
 		<plugins>
 			<plugin>
@@ -82,24 +81,24 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.20</version>
-            <configuration>
-                <argLine>
-                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                </argLine>
-            </configuration>
-            <dependencies>
-                <dependency>
-                    <groupId>org.aspectj</groupId>
-                    <artifactId>aspectjweaver</artifactId>
-                    <version>${aspectj.version}</version>
-                </dependency>
-            </dependencies>
-        </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -121,15 +120,15 @@
 			<version>7.6.0</version> <scope>test</scope> </dependency> -->
 
 
-
-
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-<dependency>
-    <groupId>io.github.bonigarcia</groupId>
-    <artifactId>webdrivermanager</artifactId>
-    <version>5.4.1</version>
-</dependency>
+		<!--
+		https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<!--
+		https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.4.1</version>
+		</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -182,13 +181,13 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-testng</artifactId>
 			<version>2.17.0</version>
 		</dependency>
-		
-		
+
+
 	</dependencies>
 </project>
