@@ -2,7 +2,6 @@ package com.effort.entities;
 
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -13,11 +12,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.effort.base.BaseAutomationPage;
 
-
 public class EntitiesProcess extends BaseAutomationPage {
 
-	public static final Logger logger = Logger.getLogger(EntitiesProcess.class.getName());
-	
+	public static final Logger logger = Logger.getLogger(EntitiesProcess.class.getName());	
 	public static String name;
 	
 	@FindBy(xpath = "//li[@id='logout_id']")
@@ -121,8 +118,6 @@ public class EntitiesProcess extends BaseAutomationPage {
 	
 	@FindBy(id="searchText")
 	private WebElement entitysearchbox;
-	
-
 	
 	public EntitiesProcess(WebDriver driver) {
 		super(driver);

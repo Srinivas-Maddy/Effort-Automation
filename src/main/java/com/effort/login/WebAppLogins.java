@@ -14,12 +14,6 @@ public class WebAppLogins extends BaseAutomationPage{
 
 	private static final Logger logger = Logger.getLogger(WebAppLogins.class.getName());
 
-
-	public WebAppLogins(WebDriver driver) {
-		super(driver);
-		PageFactory.initElements(driver, this);
-	}
-
 	@FindBy(xpath = "//input[@id=\"j_username\"]")
 	private WebElement username;
 
@@ -76,6 +70,11 @@ public class WebAppLogins extends BaseAutomationPage{
 	private WebElement signOutAllSessions;
 
 
+	public WebAppLogins(WebDriver driver) {
+		super(driver);
+		PageFactory.initElements(driver, this);
+	}
+	
 	public void enterUserName(String name) {
 		logger.info("Starting of enterUserName method");
 		waitUntilElementVisible(driver, this.username);

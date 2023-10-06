@@ -162,10 +162,6 @@ public class FormSubmission extends BaseAutomationPage{
 	private List<WebElement> logoutBtn;
 
 
-
-
-
-	//Default constructor to initialized the driver
 	public FormSubmission(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -293,7 +289,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of enterDuration mentiond");
 		waitUntilElementVisible(driver, this.duration);
 		//this.duration.click();
-		clickOnWebElement(duration);
+		clickOnWebElementUsingJavascript(duration);
 		this.duration.sendKeys(durationValue);
 		logger.info("Ending of enterDuration mentiond");
 
@@ -303,7 +299,7 @@ public class FormSubmission extends BaseAutomationPage{
 		logger.info("Starting of ClickOnMonthPicker method");
 		waitUntilElementVisible(driver, monthPicker);
 		//this.monthPicker.click();
-		clickOnWebElement(monthPicker);
+		clickOnWebElementUsingJavascript(monthPicker);
 		logger.info("Ending of ClickOnMonthPicker method");
 	}
 
@@ -439,6 +435,7 @@ public class FormSubmission extends BaseAutomationPage{
 		String pathExeFile=System.getProperty("user.dir")+"\\AutoIt\\Documentpicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
+		logger.info("Ending of documentUpload method");
 
 	}
 

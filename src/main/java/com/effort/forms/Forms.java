@@ -88,15 +88,12 @@ public class Forms extends BaseAutomationPage{
 	@FindBy(xpath="//h3[@class='list-title']")
 	private WebElement formName;
 	
-
-	//Default constructor 
 	public Forms(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
 
 	public void clickOnConfigurator() {
-
 		logger.info("Starting of clickOnConfigurator Method");
 		this.configurator.click();
 		logger.info("Ending of clickOnConfigurator Method");
@@ -177,7 +174,6 @@ public class Forms extends BaseAutomationPage{
 		waitUntilConfiramtionAlert(driver);
 		driver.switchTo().alert().accept();
 		logger.info("Ending of form spec creation");
-
 		
 	}
 	

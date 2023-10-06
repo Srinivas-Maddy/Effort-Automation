@@ -343,7 +343,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		this.modifiedFieldLabelInputField.sendKeys("New Field modification");
 		waitUntilElementVisible(driver, this.saveBtn);
 		scrollDown(1000, this.saveBtn);
-		clickOnWebElement(this.saveBtn);
+		clickOnWebElementUsingJavascript(this.saveBtn);
 		//this.saveBtn.click();
 		driver.switchTo().alert().accept();
 		logger.info("Ending of Modify work fields method");		

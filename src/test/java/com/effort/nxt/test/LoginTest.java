@@ -21,7 +21,6 @@ import io.qameta.allure.Story;
 
 public class LoginTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(LoginTest.class.getName());
-	
 	private String expectedInvalidLoginMessage="Invalid Email/Password.";
 
 	@BeforeClass(alwaysRun = true)

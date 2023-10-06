@@ -3,7 +3,6 @@ package com.effort.filters;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -167,6 +166,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 		this.inputEmpId.sendKeys(notprovisionedempid);
 		waitUntilElementVisible(driver, this.applyBtn);
 		this.applyBtn.click();
+		
 		logger.info("Ending of Click on selectNotProvisionedCheckbox Method ");
 	}
 	
