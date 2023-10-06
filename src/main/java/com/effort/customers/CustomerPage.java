@@ -23,7 +23,7 @@ public class CustomerPage extends BaseAutomationPage {
 	String CustomerFirstName = null;
 
 	@FindBy(xpath = "//a[contains(text(),'Web App')]")
-	private WebElement webApp;
+	private WebElement webAppCard;
 
 	@FindBy(xpath = "//a[contains(text(),'Customers')]")
 	private WebElement customers;
@@ -296,8 +296,8 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void ClickonWebApp() {
 		logger.info("Starting of Click on Web App Method");
-		waitUntilElementVisible(driver, webApp);
-		this.webApp.click();
+		waitUntilElementVisible(driver, webAppCard);
+		this.webAppCard.click();
 		logger.info("Ending of Click on Web App Method ");
 
 	}
