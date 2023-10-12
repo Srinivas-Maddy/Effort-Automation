@@ -32,7 +32,8 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		this.loginPage.clickOnLoginButton();		
+		this.loginPage.clickOnLoginButton();	
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
 	
@@ -78,8 +79,8 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	    entitiessubmission.pickEntityTerritory(entityDataProp.getProperty("territoryname"));
 	    entitiessubmission.pickYesorNo(entityDataProp.getProperty("entityyesorno"));
 	   // entitiessubmission.selectCustomerType(entityDataProp.getProperty("entitycustomertype"));
-		entitiessubmission.saveEntity();	
-		String actualcreationsuccesmsg = entitiessubmission.validateEntityCreationsuccusMessage();
+		//entitiessubmission.saveEntity();	
+		String actualcreationsuccesmsg = entitiessubmission.saveEntityAndValidateCreatedEntity();
 		Assert.assertEquals(actualcreationsuccesmsg, EXPECTEDCREATIONSUCCESMSG);
 		logger.info("Ending of addEntity Method");
 	}
@@ -94,8 +95,8 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		entitiessubmission.ClickonEditBtn();
 		entitiessubmission.modifyEntityName(entityDataProp.getProperty("modifiedentityname"));
 		entitiessubmission.modifyEntityID();
-		entitiessubmission.saveEntity();
-		String actualmodifiedsuccesmsg = entitiessubmission.modifiedSuccusMsg();
+		//entitiessubmission.saveEntity();
+		String actualmodifiedsuccesmsg = entitiessubmission.saveEntityAndValidateModifiedEntity();
 		Assert.assertEquals(actualmodifiedsuccesmsg, EXPECTEDMODIFIEDSUCCESMSG);
 		
 		logger.info("Ending of modifyEntity Method");

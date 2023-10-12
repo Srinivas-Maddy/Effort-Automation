@@ -39,7 +39,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	@FindBy(xpath="//a[contains(text(),'Reset')]")
 	private WebElement Resetbtn;
 	
-	@FindBy(xpath="//img[@src='/effortx/resources/img/gray.png']")
+	@FindBy(xpath="//img[@title='Activation Completed']")
 	private WebElement actualactiveemp;
 	
 	@FindBy(xpath="//input[@id='activeStats']")
@@ -54,13 +54,13 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	@FindBy(id ="notProvisioned")
 	private WebElement notprovisionedcheckbox;
 	
-	@FindBy(xpath="(//img[@src='/effortx/resources/img/red.png'])[1]")
+	@FindBy(xpath="//img[@title='Disabled']")
 	private WebElement actualdisabledEmp;
 	
-	@FindBy(xpath="(//img[@src='/effortx/resources/img/green.png'])[1]")
+	@FindBy(xpath="//img[@title='Activation Completed']")
 	private WebElement actualprovisionedEmp;
 	
-	@FindBy(xpath="(//img[@src='/effortx/resources/img/gray.png'])")
+	@FindBy(xpath="//img[@title='Activation Incomplete']")
 	private WebElement actualnotprovisionedEmp;
 	
 	@FindBy(xpath="//input[@id='empNamefilt']")
@@ -104,7 +104,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	public String activeEmployeesValidation() {
 		logger.info("Starting of Click on activeEmployeesValidation Method");
 		WebElement disabledimageElement = this.actualactiveemp;
-		String actualactiveemp = disabledimageElement.getAttribute("src");
+		String actualactiveemp = disabledimageElement.getAttribute("title");
        return actualactiveemp;
 	}
 	
@@ -126,7 +126,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	public String disabledEmployeesValidation() throws InterruptedException {
 		logger.info("Starting of Click on disabledEmployeesValidation Method");
 		WebElement disabledimageElement = this.actualdisabledEmp;
-		String actualSrc = disabledimageElement.getAttribute("src");
+		String actualSrc = disabledimageElement.getAttribute("title");
 		return actualSrc;
      
 	}
@@ -149,7 +149,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	public String provisionedEmployeesValidation() throws InterruptedException {
 		logger.info("Starting of Click on provisionedEmployeesValidation Method");
 		WebElement provisinedimageElement = this.actualprovisionedEmp;
-		String actualSrc = provisinedimageElement.getAttribute("src");
+		String actualSrc = provisinedimageElement.getAttribute("title");
 		return actualSrc;
      
 	}
@@ -173,7 +173,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 	public String notProvisionedEmployeesValidation() throws InterruptedException {
 		logger.info("Starting of Click on notProvisionedEmployeesValidation Method");
 		WebElement notprovisinedimageElement = this.actualnotprovisionedEmp;
-		String actualSrc = notprovisinedimageElement.getAttribute("src");
+		String actualSrc = notprovisinedimageElement.getAttribute("title");
 		return actualSrc;
      
 	}

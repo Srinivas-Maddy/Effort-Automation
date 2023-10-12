@@ -10,24 +10,24 @@
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-<!--
+
 	<test name="Employee Exports">
 		<classes>
 			 <class name="com.effort.nxt.test.exports.EmployeeExports" />
 		</classes>
-	</test>-->
+	</test>
 
-	<!--<test name="Customer Exports">
+	<test name="Customer Exports">
 		<classes>
 			 <class name="com.effort.nxt.test.exports.CustomerExports"/>
 		</classes>		
-	</test> -->
+	</test> 
 	
-	<!--<test name ="Entity Exports">
+	<test name ="Entity Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 		</classes> 
-	</test>-->
+	</test>
 		
 	<test name ="Leaves Exports">
 		<classes>
@@ -35,10 +35,10 @@
 		</classes> 
 	</test>
 	
-	<!-- <test name ="Form Exports">
+	 <test name ="Form Exports">
 		<classes>
 			<class name ="com.effort.nxt.test.exports.FormExportsTest"/>
 		</classes> 
-	</test>-->
+	</test>
 
 </suite>

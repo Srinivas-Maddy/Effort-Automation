@@ -152,9 +152,11 @@ public class Forms extends BaseAutomationPage{
 			if(ignoreDatatypes.contains(fieldLabels.get(i).getText())) {
 				continue;
 			}else {
+				hardWait(5);
 				waitUntilElementVisible(driver, fieldLabels.get(i));
 				Actions action=new Actions(driver);
 				waitUntilElementVisible(driver, dropedArea);
+				hardWait(3);
 				action.dragAndDrop(fieldLabels.get(i), dropedArea).perform();
 				scrollDown(100,dropedArea);
 				Thread.sleep(2000);

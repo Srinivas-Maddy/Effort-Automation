@@ -34,6 +34,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		this.entitiesprocess.clickonAppBuilder();
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}

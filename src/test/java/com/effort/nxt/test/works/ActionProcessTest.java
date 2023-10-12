@@ -46,6 +46,7 @@ public class ActionProcessTest extends BaseAutomationTest {
 		loginPage.enterUserName(testDataProp.getProperty("name"));
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		actionProcess.clickOnConfigurator();
 		// loginPage.clickOnWebApp();
 

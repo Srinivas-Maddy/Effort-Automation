@@ -317,6 +317,8 @@ public class BaseAutomationTest {
 		this.loginPage.enterUserName(userName);
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
+		
+		this.loginPage.clickOnSignOutFromAllSessions(userName, password);
 	
 		logger.info("Ending of LoginToApplication Method");
 	}

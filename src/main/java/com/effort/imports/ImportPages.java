@@ -432,6 +432,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
+				hardWait(3);
 				waitUntilElementVisible(driver, this.customerBulkDeleteStatus);
 				cutomerBulkDeleteStatus=this.customerBulkDeleteStatus.getText();
 				break;

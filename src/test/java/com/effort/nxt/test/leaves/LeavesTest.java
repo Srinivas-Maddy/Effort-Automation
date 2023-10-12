@@ -32,6 +32,7 @@ public class LeavesTest extends BaseAutomationTest{
 	    loginPage.enterUserName(testDataProp.getProperty("name"));
 	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 	    loginPage.clickOnLoginButton();
+	    loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 	    leavespage.clickOnWebApp();
 		logger.info("Ending of initEffortLogin Method");
 	}
@@ -51,6 +52,7 @@ public class LeavesTest extends BaseAutomationTest{
 		leavespage.pickLeavesFromDate();
 		leavespage.clickOnToDate();
 		leavespage.pickLeaveType(leavesDataProp.getProperty("leavetype"));
+		
 		leavespage.enterLeaveRemarks(leavesDataProp.getProperty("leaveRemark"));
 		leavespage.leavesSave();
 		logger.info("Ending of applyLeaves Method");

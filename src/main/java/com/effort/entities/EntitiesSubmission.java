@@ -296,7 +296,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		logger.info("Starting of enterEntityLog Method");
 		waitUntilElementVisible(driver, this.locationlog);
 		this.locationlog.sendKeys(Log);	
-		scrollDown(50, this.save);
+		scrollDown(50, save);
 		logger.info("Ending of enterEntityLog Method");
 	}
 	
@@ -589,7 +589,34 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		this.save.click();	
 		logger.info("Ending of saveEntity Method");
 	}
+	
+	public String saveEntityAndValidateCreatedEntity() {
+		logger.info("Starting of saveEntityAndValidateCreatedEntity Method");
+		scrollDown(100, this.save);
+		waitUntilElementVisible(driver, this.save);
+		this.save.click();	
+		
+		waitUntilElementVisible(driver, this.entitycreationsuccusmsg);
+		String entitycreationsuccusmsg = this.entitycreationsuccusmsg.getText();
+		logger.info("Ending of saveEntityAndValidateCreatedEntity Method");
+		
+		return entitycreationsuccusmsg;	
+	}
 
+
+	public String saveEntityAndValidateModifiedEntity() {
+		logger.info("Starting of saveEntityAndValidateModifiedEntity Method");
+		scrollDown(100, this.save);
+		waitUntilElementVisible(driver, this.save);
+		this.save.click();	
+		
+		waitUntilElementVisible(driver, modifiedsuccusmsg);
+		String EntityModifiedMsg = this.modifiedsuccusmsg.getText();
+		
+		logger.info("Ending of saveEntityAndValidateModifiedEntity Method");
+		
+		return EntityModifiedMsg;
+	}
 	public String validateEntityCreationsuccusMessage() {
 		logger.info("Starting of validateEntityCreationsuccusMessage Method");
 		waitUntilElementVisible(driver, this.entitycreationsuccusmsg);
@@ -630,7 +657,8 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	
 	public String modifiedSuccusMsg() {
 		logger.info("Starting of modifiedSuccusMsg Method");
-		waitUntilElementVisible(driver,this.modifiedsuccusmsg);
+
+		waitUntilElementVisible(driver, modifiedsuccusmsg);
 		String EntityModifiedMsg = this.modifiedsuccusmsg.getText();
 		return EntityModifiedMsg;
 	}
@@ -638,10 +666,11 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void selectEntitytoDelete() throws InterruptedException {
 		logger.info("Starting of selectEntitytoDelete Method");
 		Thread.sleep(500);
-		scrollDown(100, page);
-		for (int i = 0; i <this.checkbox.size() ; i++) {
-			this.checkbox.get(i).click();
-			break;
+		scrollIntoView(page);
+		int i = 0;
+		while (i < this.checkbox.size()) {
+		    this.checkbox.get(i).click();
+		    break;
 		}
 		logger.info("Ending of selectEntitytoDelete Method");
 	}

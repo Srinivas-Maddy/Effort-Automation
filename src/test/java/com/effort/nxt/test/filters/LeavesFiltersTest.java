@@ -41,6 +41,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		loginPage.enterUserName(testDataProp.getProperty("name"));
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		leavesfilterpage.clickOnWebApp();
 		logger.info("Ending of initEffortLogin Method");
 	}
@@ -73,10 +74,13 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		leavesfilterpage.enterReportingManager(leavesDataProp.getProperty("leavesEmployeeName"));
 		String actualreportingmangerresult= leavesfilterpage.reportingManagerValidation();
 		Assert.assertEquals(actualreportingmangerresult, EXPECTED_REPORTING_IMMEDIATE_MANAGER);
+		
 		leavesfilterpage.clickOnLeavesFilters();
+		
 		leavesfilterpage.clickOnLeavesAppliedCheckbox();
-		leavesfilterpage.pickAppliedLeavesDates();
-		boolean appliedDataDisplayed= leavesfilterpage.leavesDateValidation();
+		leavesfilterpage.pickAppliedLeavesDates(leavesDataProp.getProperty("leavedate"));
+		
+		boolean appliedDataDisplayed= leavesfilterpage.leavesDateValidation();//
 		Assert.assertEquals(appliedDataDisplayed, true);
 		leavesfilterpage.clickOnLeavesFilters();
 		leavesfilterpage.selectLeaveType(leavesDataProp.getProperty("leavetype"));
