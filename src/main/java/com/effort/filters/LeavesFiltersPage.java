@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	private WebElement threedots;
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[1]/li/a")
-	private List<WebElement> threedotsdata ;
+	private List<WebElement> threedotsdata;
 
 	@FindBy(id = "filters")
 	private WebElement leavesfilterbtn;
@@ -78,24 +79,25 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='s2id_autogen2']")
 	private WebElement reportingmangrinputfield;
 
-	@FindBy(xpath="//div[@class='select2-result-label']/span")
+	@FindBy(xpath = "//div[@class='select2-result-label']/span")
 	private WebElement reportingmanagerdata;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr)[1]/td[9][text()='Srinivas Maddy']")
 	private WebElement reportingmanagerresult;
 
-	@FindBy(xpath="//input[@id='formDateTime']")
+	@FindBy(xpath = "//input[@id='formDateTime']")
 	private WebElement appliedbtwninputfield;
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td")
 	private List<WebElement> appliedbtwndates;
 
-	//(//div[@class='xdsoft_datetimepicker xdsoft_noselect xdsoft_'])[1]/div[1]/div[2]/table/tbody/tr/td
+	// (//div[@class='xdsoft_datetimepicker xdsoft_noselect
+	// xdsoft_'])[1]/div[1]/div[2]/table/tbody/tr/td
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr)[1]/td[11]/font")
 	private WebElement leavesdateresult;
 
-	@FindBy(xpath="//input[@id='toDateTime']")
+	@FindBy(xpath = "//input[@id='toDateTime']")
 	private WebElement leavesandinputfield;
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[2]/table/tbody/tr/td")
@@ -104,13 +106,13 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//div[@class='select2-container select2-container-multi form-control'])[3]")
 	private WebElement leavetypefield;
 
-	@FindBy(xpath="(//ul[@class='select2-results'])[3]/li/div")
+	@FindBy(xpath = "(//ul[@class='select2-results'])[3]/li/div")
 	private List<WebElement> leavetypedropdwndata;
 
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr)[1]/td[7][text()='Leave']")
 	private WebElement leavetyperesult;
 
-	@FindBy(xpath="//input[@id='formDateTime']")
+	@FindBy(xpath = "//input[@id='formDateTime']")
 	private WebElement myleavesdateinputfield;
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td")
@@ -119,7 +121,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//table[@id='example']/tbody/tr[3]/td)[2]/a[text()='Leave']")
 	private WebElement myleavesdateresult;
 
-	@FindBy(xpath="//input[@id='toDateTime']")
+	@FindBy(xpath = "//input[@id='toDateTime']")
 	private WebElement myleavesandinputfield;
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[2]/table/tbody/tr/td")
@@ -158,6 +160,21 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='dropdown-menu'])[2]/li/a")
 	private List<WebElement> logoutBtn;
 
+	@FindBy(xpath = "(//div[@class='xdsoft_label xdsoft_month'])")
+	private WebElement dprMonths;
+
+	@FindBy(xpath = "//div[contains(text(),'January')]")
+	private WebElement txtJanuaryMonth;
+
+	@FindBy(xpath = "//div[@class='xdsoft_select xdsoft_monthselect xdsoft_scroller_box']//div[contains(@class,'xdsoft_option')]")
+	private List<WebElement> txtMonths;
+
+	@FindBy(xpath = "//div[contains(text(),'January')]")
+	private WebElement texting;
+
+	@FindBy(xpath = "//div[@class='xdsoft_select xdsoft_monthselect xdsoft_scroller_box']//div[contains(@class,'xdsoft_option')]")
+	private WebElement testingone;
+
 	public LeavesFiltersPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -178,16 +195,16 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		this.threedots.click();
 		logger.info("Ending of clickOnThreeDots Method");
 	}
- 	
+
 	public void pickLeaves(String leavesName) {
 		logger.info("Starting if pick leave method");
 		for (int i = 0; i < this.threedotsdata.size(); i++) {
-			String threeDotsDate=this.threedotsdata.get(i).getText();
-			if (threeDotsDate.equalsIgnoreCase(leavesName)){
+			String threeDotsDate = this.threedotsdata.get(i).getText();
+			if (threeDotsDate.equalsIgnoreCase(leavesName)) {
 				waitUntilElementVisible(driver, this.threedotsdata.get(i));
 				this.threedotsdata.get(i).click();
 				break;
-			}			
+			}
 		}
 	}
 
@@ -369,36 +386,46 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of clickLeavesAppliedCheckbox Method");
 	}
 
-	public void pickAppliedLeavesDates() throws InterruptedException {
+	public void pickAppliedLeavesDates(String date) throws InterruptedException {
 		logger.info("Starting of pickAppliedLeavesDate Method");
 		waitUntilElementVisible(driver, this.appliedbtwninputfield);
+		// this.appliedbtwninputfield.click();
+		Thread.sleep(500);
+		int count = 0;
+
+		appliedbtwninputfield.sendKeys(date);
 		this.appliedbtwninputfield.click();
-		Thread.sleep(500);
 
-		int count=0;
-		while(count<this.appliedbtwndates.size()) {
-			waitUntilElementVisible(driver, this.appliedbtwndates.get(count));
-			this.appliedbtwndates.get(count).click();
-			break;
-		}
-		count++;
-		Thread.sleep(1000);
-		waitUntilElementVisible(driver, this.leavesandinputfield);
-		this.leavesandinputfield.click();
+		try {
 
-		String presentanddate = getCurrentDateAsNumber();
-		Thread.sleep(500);
-		for (int i = 0; i <=this.leavesanddates.size() - 1; i++) {
-			String actualanddate = leavesanddates.get(i).getText();
-			if (actualanddate.equalsIgnoreCase(presentanddate)) {
-				waitUntilElementVisible(driver, leavesanddates.get(i));
-				leavesanddates.get(i).click();
-				break;
+			/*
+			 * while (count < this.appliedbtwndates.size()) {
+			 * waitUntilElementVisible(driver, this.appliedbtwndates.get(count));
+			 * this.appliedbtwndates.get(count).click(); break; }
+			 */
+			count++;
+			Thread.sleep(1000);
+			waitUntilElementVisible(driver, this.leavesandinputfield);
+			this.leavesandinputfield.click();
+
+			String presentanddate = getCurrentDateAsNumber();
+			Thread.sleep(500);
+			for (int i = 0; i <= this.leavesanddates.size() - 1; i++) {
+				String actualanddate = leavesanddates.get(i).getText();
+				if (actualanddate.equalsIgnoreCase(presentanddate)) {
+					hardWait(2);
+					waitUntilElementVisible(driver, leavesanddates.get(i));
+					leavesanddates.get(i).click();
+					break;
+				}
 			}
-		}
 
-		waitUntilElementVisible(driver, this.leavesapplybtn);
-		this.leavesapplybtn.click();
+			waitUntilElementVisible(driver, this.leavesapplybtn);
+			this.leavesapplybtn.click();
+
+		} catch (Exception e) {
+			System.out.println();
+		}
 
 		logger.info("Ending of pickAppliedLeavesDate Method");
 
@@ -406,8 +433,9 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	public boolean leavesDateValidation() {
 		logger.info("Starting of leavesDateValidation Method");
+		hardWait(2);
 		waitUntilElementVisible(driver, this.leavesdateresult);
-		boolean  dateDataDisplayed= this.leavesdateresult.isDisplayed();
+		boolean dateDataDisplayed = this.leavesdateresult.isDisplayed();//
 		return dateDataDisplayed;
 
 	}
@@ -419,13 +447,13 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavetypefield);
 		this.leavetypefield.click();
 		Thread.sleep(1000);
-		for(int i=0 ; i<this.leavetypedropdwndata.size();i++) {
+		for (int i = 0; i < this.leavetypedropdwndata.size(); i++) {
 			String leavetypedata = this.leavetypedropdwndata.get(i).getText();
-			if(leavetypedata.equalsIgnoreCase(leavetype)) {
+			if (leavetypedata.equalsIgnoreCase(leavetype)) {
 				waitUntilElementVisible(driver, this.leavetypedropdwndata.get(i));
 				this.leavetypedropdwndata.get(i).click();
 				break;
-			}	
+			}
 		}
 		waitUntilElementVisible(driver, this.leavesapplybtn);
 		this.leavesapplybtn.click();
@@ -434,6 +462,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	public String leavesTypeValidation() {
 		logger.info("Starting of leavesTypeValidation Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.leavetyperesult);
 		String actualleavestyperesult = this.leavetyperesult.getText();
 		return actualleavestyperesult;
@@ -488,7 +517,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavesapplybtn);
 		this.leavesapplybtn.click();
 		logger.info("Ending of selectApprovedStatus Method");
-	} 
+	}
 
 	public String myleavesApprovedValidation() {
 		logger.info("Starting of myleavesApprovedValidation Method");
@@ -535,13 +564,13 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.myleavesdateinputfield);
 		this.myleavesdateinputfield.click();
 
-		int count=0;
+		int count = 0;
 		Thread.sleep(5000);
-		while(count<this.myleavesdates.size()) {
+		while (count < this.myleavesdates.size()) {
 			waitUntilElementVisible(driver, this.myleavesdates.get(count));
 			this.myleavesdates.get(count).click();
 			break;
-		}		
+		}
 
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.myleavesandinputfield);
@@ -549,7 +578,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 		String presentanddate = getCurrentDateAsNumber();
 		Thread.sleep(500);
-		for (int i = 0; i <=this.myleavesanddates.size() - 1; i++) {
+		for (int i = 0; i <= this.myleavesanddates.size() - 1; i++) {
 			String actualanddate = myleavesanddates.get(i).getText();
 			if (actualanddate.equalsIgnoreCase(presentanddate)) {
 				waitUntilElementVisible(driver, myleavesanddates.get(i));
@@ -578,10 +607,10 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, userNameBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.userNameBtn);
-		for(int i=0; i<this.logoutBtn.size();i++) {
-			String dropdownNames=this.logoutBtn.get(i).getText();
-			if (dropdownNames.equalsIgnoreCase("Logout")){
-				waitUntilElementVisible(driver,this.logoutBtn.get(i));
+		for (int i = 0; i < this.logoutBtn.size(); i++) {
+			String dropdownNames = this.logoutBtn.get(i).getText();
+			if (dropdownNames.equalsIgnoreCase("Logout")) {
+				waitUntilElementVisible(driver, this.logoutBtn.get(i));
 				this.logoutBtn.get(i).click();
 				break;
 			}

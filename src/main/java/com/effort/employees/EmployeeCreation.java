@@ -342,12 +342,38 @@ public class EmployeeCreation extends BaseAutomationPage {
 		saveBtn.click();
 		logger.info("ending of qrCodeCheckBox method");
 	}
+	
+	public String saveAndValidateEmployeCreated(){
+		logger.info("Starting of saveAndValidateEmployeCreated method");
+		scrollDown(500, this.territoryDropdown);
+		waitUntilElementVisible(driver, saveBtn);
+		hardWait(2);
+		saveBtn.click();
+		
+		hardWait(2);
+		try {
+			waitUntilElementVisible(driver, EmpsavedMsg);
+		} catch (Exception e) {
+			waitUntilElementVisible(driver, EmpsavedMsg);
+		}
+		
+		String actualEmpSavedMsg = this.EmpsavedMsg.getText();
+		
+		logger.info("ending of saveAndValidateEmployeCreated method");
+		
+		return actualEmpSavedMsg;
+	}
 
 	public String EmpSavedSuccsusfullyMsg() {
 		logger.info("Starting of EmpSavedSuccsusfullyMsg Method");
 		
-		hardWait(5);
-		waitUntilElementVisible(driver, EmpsavedMsg);
+		hardWait(2);
+		try {
+			waitUntilElementVisible(driver, EmpsavedMsg);
+		} catch (Exception e) {
+			waitUntilElementVisible(driver, EmpsavedMsg);
+		}
+		
 		String actualEmpSavedMsg = this.EmpsavedMsg.getText();
 		return actualEmpSavedMsg;
 	}

@@ -38,6 +38,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		this.empCreation.clickOnWebApp();
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
@@ -68,8 +69,8 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 				                   empDataProp.getProperty("automapcustomer"),
 				                   empDataProp.getProperty("employeeterritory"));
 		
-		empCreation.clickOnSaveBtn();
-		String actualEmpSavedMsg = empCreation.EmpSavedSuccsusfullyMsg();
+		//empCreation.clickOnSaveBtn();
+		String actualEmpSavedMsg = empCreation.saveAndValidateEmployeCreated();
 		Assert.assertEquals(actualEmpSavedMsg, expectedEmpSavedMsg);
 		logger.info("Ending of AddEmployee Method");		
 	}

@@ -53,6 +53,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword(testDataProp.getProperty("password1"));
 		login.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		login.clickOnWebApp();
 		logger.info("Ending of clickOnWebApp method");
 
@@ -69,6 +70,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword(testDataProp.getProperty("password1"));
 		login.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		login.clickOnAppBuilder();
 		logger.info("Ending of clickOnWebApp method");
 
@@ -85,6 +87,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword(testDataProp.getProperty("password1"));
 		login.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		login.clickOnReportStudio();
 		logger.info("Ending of clickOnWebApp method");
 	}
@@ -100,6 +103,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword(testDataProp.getProperty("password1"));
 		login.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		login.inviteEmp("Srinivas", "Maddy Inv 01");
 		logger.info("Ending of clickOnWebApp method");
 	}
@@ -115,6 +119,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword("Test@123");
 		login.clickOnLoginButton();	
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		String actualError=login.getErrorMessage();
 		Assert.assertEquals(actualError, expectedInvalidLoginMessage);
 		logger.info("Ending of invalidCreditionals method");

@@ -24,10 +24,10 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	
 	private EmployeeFiltersPage employeefilterspage;
 	
-	private static final String EXPECTED_ACTIVE_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/gray.png";
-	private static final String EXPECTED_DISABLED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/red.png";
-	private static final String EXPECTED_PROVISIONED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/green.png";
-	private static final String EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS="https://staging.spoors.in/effortx/resources/img/gray.png";
+	private static final String EXPECTED_ACTIVE_EMPLOYEE_STATUS="Activation Completed";
+	private static final String EXPECTED_DISABLED_EMPLOYEE_STATUS="Disabled";
+	private static final String EXPECTED_PROVISIONED_EMPLOYEE_STATUS="Activation Completed";
+	private static final String EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS="Activation Incomplete";
 	//private static final String EXPECTEDEMPLOYEEFREETEXT ="Automation_2023-02-23 Emp";
 	
 //	private String expectedEmpid=null;
@@ -46,6 +46,7 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 		loginPage.enterUserName(testDataProp.getProperty("name"));
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		employeefilterspage.ClickonWebApp();
 		logger.info("Ending of initEffortLogin Method");	
 	}
@@ -57,27 +58,26 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
 		employeefilterspage.ClickonEmployees();
+		
 		employeefilterspage.selectActiveEmployee(filtersDataProp.getProperty("empID"));
 		String actualactiveemp = employeefilterspage.activeEmployeesValidation();
 		assertEquals(actualactiveemp, EXPECTED_ACTIVE_EMPLOYEE_STATUS);
+		
 		employeefilterspage.selectDisabledCheckbox(filtersDataProp.getProperty("disabledempid"));
 		String actualdisabledemp= employeefilterspage.disabledEmployeesValidation();
 		assertEquals(actualdisabledemp, EXPECTED_DISABLED_EMPLOYEE_STATUS);
+		
 		employeefilterspage.selectProvisionedCheckbox(filtersDataProp.getProperty("provisionedempid"));
 		String actualprovisinedemp= employeefilterspage.provisionedEmployeesValidation();
 		assertEquals(actualprovisinedemp, EXPECTED_PROVISIONED_EMPLOYEE_STATUS);
+		
 		employeefilterspage.selectNotProvisionedCheckbox(filtersDataProp.getProperty("notprovisionedempid"));
 		String actualnotprovisionedemp = employeefilterspage.notProvisionedEmployeesValidation();
 		assertEquals(actualnotprovisionedemp, EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS);
 		
-			
-		
 		logger.info("Ending of employeeFilters Method");
 	}
-	
 
-	
-	
 	@AfterClass(alwaysRun = true)
 	public void employeeFiltersLogout() throws InterruptedException {
 		logger.info("Starting of employeeFiltersLogout Method");

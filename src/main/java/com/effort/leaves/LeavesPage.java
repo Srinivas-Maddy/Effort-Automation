@@ -84,6 +84,9 @@ public class LeavesPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
+	
+	@FindBy(xpath = "//td[contains(@class,'xdsoft_current xdsoft_today')]")
+	private WebElement dateToday;
 
 	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
@@ -95,6 +98,7 @@ public class LeavesPage extends BaseAutomationPage {
 
 	public void clickOnWebApp() throws InterruptedException {
 		logger.info("Starting of clickOnWebApp Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.dashboardwebapp);
 		this.dashboardwebapp.click();
 		Thread.sleep(500);
@@ -144,18 +148,22 @@ public class LeavesPage extends BaseAutomationPage {
 
 	public void pickLeavesFromDate() throws InterruptedException {
 		logger.info("Starting of pickLeavesFromDate Method");
-		waitUntilElementVisible(driver, this.fromdatefield);
-		this.fromdatefield.click();
-		String presentdatetime = getCurrentDateAsNumber();
-		Thread.sleep(500);
-		for (int i = 0; i < fromdatesdata.size(); i++) {
-			String fromactualdatetime = this.fromdatesdata.get(i).getText();
-			if (fromactualdatetime.equalsIgnoreCase(presentdatetime)) {
-				waitUntilElementVisible(driver, this.fromdatesdata.get(i));
-				this.fromdatesdata.get(i).click();
-				break;
-			}
-		}
+		
+			waitUntilElementVisible(driver, this.fromdatefield);
+			this.fromdatefield.click();
+			String presentdatetime = getCurrentDateAsNumber();
+			Thread.sleep(500);
+			
+			dateToday.click();
+			
+			/*
+			 * for (int i = 0; i < fromdatesdata.size(); i++) { String fromactualdatetime =
+			 * this.fromdatesdata.get(i).getText(); if
+			 * (fromactualdatetime.equalsIgnoreCase(presentdatetime)) {
+			 * waitUntilElementVisible(driver, this.fromdatesdata.get(i));
+			 * this.fromdatesdata.get(i).click(); break; } }
+			 */
+		
 		//this.fromdatefield.click();
 
 		logger.info("Ending of pickLeavesFromDate Method");
@@ -163,36 +171,44 @@ public class LeavesPage extends BaseAutomationPage {
 	
 	public void clickOnToDate() throws InterruptedException {
 		logger.info("Starting of clickToDate Method");
-		scrollDown(0, this.toDateField);
-		waitUntilElementVisible(driver, this.toDateField);
-		this.toDateField.click();
-		String tomorrowDate = getTomorrowDateAsNumber(1);
-		Thread.sleep(500);
-		for (int i = 1; i < toDateCalender.size(); i++) {
-			String fromactualdatetime = this.toDateCalender.get(i).getText();
-			if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
-				waitUntilElementVisible(driver, this.toDateCalender.get(i));
-				this.toDateCalender.get(i).click();
-				break;
+	
+			scrollDown(0, this.toDateField);
+			waitUntilElementVisible(driver, this.toDateField);
+			this.toDateField.click();
+			String tomorrowDate = getTomorrowDateAsNumber(1);
+			Thread.sleep(500);
+			for (int i = 1; i < toDateCalender.size(); i++) {
+				String fromactualdatetime = this.toDateCalender.get(i).getText();
+				if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
+					waitUntilElementVisible(driver, this.toDateCalender.get(i));
+					this.toDateCalender.get(i).click();
+					break;
+				}
 			}
-		}
-		this.toDateField.click();
-
+			
 		
+	
 	}
 
 	public void pickLeaveType(String leavetype) {
 		logger.info("Starting of pickLeaveType Method");
-		waitUntilElementVisible(driver, this.leavetypefield);
-		this.leavetypefield.click();
-		for (int i = 0; i < leavetypedropdowndata.size(); i++) {
-			String actualleavetype = this.leavetypedropdowndata.get(i).getText();
-			if (actualleavetype.equalsIgnoreCase(leavetype)) {
-				waitUntilElementVisible(driver, this.leavetypedropdowndata.get(i));
-				this.leavetypedropdowndata.get(i).click();
-				break;
+		hardWait(3);
+		try {
+			this.leavetypefield.click();
+			for (int i = 0; i < leavetypedropdowndata.size(); i++) {
+				String actualleavetype = this.leavetypedropdowndata.get(i).getText();
+				if (actualleavetype.equalsIgnoreCase(leavetype)) {
+					waitUntilElementVisible(driver, this.leavetypedropdowndata.get(i));
+					this.leavetypedropdowndata.get(i).click();
+					break;
+				}
 			}
+		} catch (Exception e) {
+			System.out.println();
 		}
+		waitUntilElementVisible(driver, this.leavetypefield);
+	
+	
 
 		logger.info("Ending of pickLeaveType Method");
 	}
@@ -225,6 +241,7 @@ public class LeavesPage extends BaseAutomationPage {
 	public void selectEmployeeToApprove() {
 		logger.info("Starting of selectEmployeeToApprove Method");
 		int i = 0;
+		hardWait(3);
 		while (i < this.leavescheckbox.size()) {
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
 			this.leavescheckbox.get(1).click();

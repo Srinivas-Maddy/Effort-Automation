@@ -73,7 +73,22 @@ public class BaseAutomationPage {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
-		js.executeScript("arguments[0].scrollIntoView();", element);
+		js.executeScript("arguments[0].scrollIntoView(true);",element);
+		
+		//js.executeScript("arguments[0].scrollIntoView();", element);
+
+		logger.info("Ending of scrollDown method");
+	}
+	
+	public void scrollIntoView(WebElement element) {
+		logger.info("Starting of scrollDown method");
+
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		// js.executeScript("window.scrollBy(0, " + scroll + ")");
+		js.executeScript("arguments[0].scrollIntoView(true);",element);
+		
+		//js.executeScript("arguments[0].scrollIntoView();", element);
 
 		logger.info("Ending of scrollDown method");
 	}

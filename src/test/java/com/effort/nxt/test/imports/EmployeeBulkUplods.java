@@ -42,6 +42,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest{
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		this.importpage=new ImportPages(driver);
 		this.importpage.clickOnWebApp();
 		logger.info("Ending of initEffortLogin Method");

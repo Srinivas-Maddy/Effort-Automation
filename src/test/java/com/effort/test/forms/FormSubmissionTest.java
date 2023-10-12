@@ -33,6 +33,7 @@ public class FormSubmissionTest extends BaseAutomationTest{
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		logger.info("Ending of initEffortLogin method in Form Submission Class");			
 	}
 	
