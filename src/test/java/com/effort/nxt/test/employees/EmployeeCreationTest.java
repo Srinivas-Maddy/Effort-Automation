@@ -10,6 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.employees.EmployeeCreation;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -31,7 +32,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Parameters({"siteURL","browser"})
 	public void initEffortLogin(String siteUrl,String browser) throws Exception {
 		logger.info("starting of initEfforrt Login Method of Employee process");
-		this.driver=this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empCreation=new EmployeeCreation(driver);
 		this.loginPage = new LoginPage(driver);
@@ -39,7 +40,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
 		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
-		this.empCreation.clickOnWebApp();
+		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
 	
@@ -52,6 +53,8 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Story("Employee creation by clicking on add employee button")
 	public void AddEmployee() throws InterruptedException, IOException {
 		logger.info("Starting of AddEmployee Method");
+		
+		this.empCreation.clickOnWebApp();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
 		empCreation.switchNewWindow();
@@ -109,10 +112,29 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	public void logOutForm() {
 		logger.info("Starting of Log-out Method");
 		empCreation.logOut();	
+
 		logger.info("Ending of log-out Method");
 	}
 	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
 	
+		logger.info("Ending of quitDriver Method");
+
+	}
 
 
 }

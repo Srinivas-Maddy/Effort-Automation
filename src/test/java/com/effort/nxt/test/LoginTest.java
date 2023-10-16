@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -27,7 +28,7 @@ public class LoginTest extends BaseAutomationTest {
 	@Parameters({ "siteURL", "browser" })
 	public void initEffortLogin(String siteURL, String browser) throws Exception {
 		logger.info("Starting of initEffortLogin method in LoginTest");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LOGIN_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(this.driver);
 		logger.info("Ending of initEffortLogin method in LoginTest");
@@ -54,9 +55,28 @@ public class LoginTest extends BaseAutomationTest {
 	public void logout() {
 		logger.info("Starting of logout method");
 		loginPage.logOut();
+		
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
 	
+		logger.info("Ending of quitDriver Method");
+
+	}
 
 	
 }

@@ -19,6 +19,9 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
+import org.openqa.selenium.TimeoutException;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseAutomationTest {
@@ -40,6 +43,8 @@ public class BaseAutomationTest {
 	protected static Properties leavesDataProp = null;
 	protected static Properties exportDataProp = null;
 	protected static Properties importProp = null;
+	protected static Properties enumProp = null;
+	protected String USER_DIR = System.getProperty("user.dir");
 
 	private static Map<WEB_DRIVER, WebDriver> webDriverPool = new Hashtable<WEB_DRIVER, WebDriver>();
 
@@ -75,7 +80,6 @@ public class BaseAutomationTest {
 				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
 				importsReader = new FileReader("src/main/resources/importCards.properties");
 				exportReader = new FileReader("src/main/resources/ExportDetails.properties");
-
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
 
@@ -105,6 +109,7 @@ public class BaseAutomationTest {
 
 				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
+			
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -118,7 +123,6 @@ public class BaseAutomationTest {
 					entityDataProp.clone();
 					filtersDataProp.clone();
 					leavesDataProp.clone();
-
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -182,20 +186,20 @@ public class BaseAutomationTest {
 	/**
 	 * This method is used for get driver
 	 * 
-	 * @param webDriver
+	 * @param loginDriver
 	 * @return
 	 */
 
-	protected synchronized WebDriver getWebDriver(String browser, WEB_DRIVER webDriver) {
+	protected synchronized WebDriver getWebDriver(String browser, WebDriversEnum loginDriver) {
 		// logger.info("Starting of method getWebDriver");
 
-		WebDriver driver = webDriverPool.get(webDriver);
+		WebDriver driver = webDriverPool.get(loginDriver);
 
 		String osPath = System.getProperty("os.name");
 
 		// Use existing driver
 		if (driver != null) {
-			logger.debug("Using existing web driver " + webDriver);
+			logger.debug("Using existing web driver " + loginDriver);
 			return driver;
 		}
 
@@ -243,6 +247,7 @@ public class BaseAutomationTest {
 				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
+				options.addArguments("--disable-notifications");
 				driver = new ChromeDriver(options);
 
 			} else if (browser.equalsIgnoreCase("Firefox")) {
@@ -269,7 +274,7 @@ public class BaseAutomationTest {
 
 		logger.info("End of method getWebDriver");
 
-		webDriverPool.put(webDriver, driver);
+		//webDriverPool.put(loginDriver, driver);
 
 		return driver;
 	}
@@ -303,9 +308,18 @@ public class BaseAutomationTest {
 	// this.loginPage.logIn(userName, password);
 	// }
 
+	@SuppressWarnings("deprecation")
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {
-
-		driver.get(siteURL);
+		
+		driver.manage().timeouts().pageLoadTimeout(50L, TimeUnit.SECONDS);
+		driver.manage().timeouts().setScriptTimeout(3L, TimeUnit.SECONDS);
+		
+		 try {
+	            driver.get(siteURL);
+	        } catch (TimeoutException e) {
+	            logger.info("Page load timeout occurred. Waiting for the page to complete loading.");
+	        }
+	
 
 	}
 

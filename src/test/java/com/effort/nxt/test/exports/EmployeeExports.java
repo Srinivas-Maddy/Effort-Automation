@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.exports.EmployeeExportPage;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
@@ -25,14 +26,15 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Parameters({"siteURL","browser"})
 	public void initEffortLogin(String siteUrl,String browser) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
-		this.driver=this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empExport=new EmployeeExportPage(driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
-		this.empExport.clickOnWebApp();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
 	
@@ -42,6 +44,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Story("Test Case #1, Downloading Employee Export All sheet")
 	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
+		this.empExport.clickOnWebApp();
 		this.empExport.clickOnEmployeeModule();
 		this.empExport.clickOnExportOptions();
 		this.empExport.clickOnExportAll();
@@ -75,4 +78,23 @@ public class EmployeeExports extends BaseAutomationTest{
 		logger.info("Ending of log-out Method");
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 }

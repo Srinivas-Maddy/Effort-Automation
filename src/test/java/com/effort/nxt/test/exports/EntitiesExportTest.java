@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.exports.EntitiesExportPage;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
@@ -32,13 +33,14 @@ public class EntitiesExportTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_EXPORTS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiesexportpage = new EntitiesExportPage(driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
 		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		this.loginPage.clickOnLoginButton();
+		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		logger.info("Ending of initEffortLogin Method");
 	}
 		
@@ -86,9 +88,29 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		public void logOut(){
 			logger.info("Starting of Log-out Method");
 			this.entitiesexportpage.logOut();
+			
 			logger.info("Ending of log-out Method");
 		}
 		
+		@AfterClass(alwaysRun = true)
+		public void quitDriver() {
+			logger.info("Starting of quitDriver Method");
+			
+			try {
+
+				if (this.driver != null) {
+					Thread.sleep(5000);
+			       	driver.quit();
+		       
+					logger.info("Driver quit successfully");
+				}
+			} catch (Exception ex) {
+				logger.error(ex.getMessage());
+			}
+		
+			logger.info("Ending of quitDriver Method");
+
+		}
 		
 	}
 

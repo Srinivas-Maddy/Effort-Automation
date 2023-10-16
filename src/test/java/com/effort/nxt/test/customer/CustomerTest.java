@@ -10,6 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.customers.CustomerPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -30,7 +31,7 @@ public class CustomerTest extends BaseAutomationTest {
 	@Parameters({ "siteURL", "browser" ,"userName", "password"})
 	public void initEffortLogin(String siteURL, String browser, String userName, String password ) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTUMERTEST_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.custmrCreation = new CustomerPage(driver);
 		
@@ -51,6 +52,8 @@ public class CustomerTest extends BaseAutomationTest {
 	@Story("Customer Creation on clicking add Customer button")
 	public void AddCustomer() throws InterruptedException, IOException {
 		logger.info("Starting of AddCustomer Method");
+		
+		
 		loginPage.ClickonWebApp();
 		custmrCreation.ClickonCustomer();
 		custmrCreation.ClickonAddCustomerBtn();
@@ -168,14 +171,36 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Ending of customerDeletion Method");
 	}
 
+	
 	@AfterClass(alwaysRun = true)
 	public void LogOutCustomer() {
 		logger.info("Starting of LogOutCustomer Method");
 		
 		custmrCreation.LogOut();
-		
+	
 		logger.info("Ending of LogOutCustomer Method");
 
 	}
+	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
+	
 
 }

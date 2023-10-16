@@ -59,6 +59,7 @@ public class FormExportPage extends BaseAutomationPage{
 	//Click on the WebApp
 	public void clickOnWebApp() {
 		logger.info("Starting of clickOn WebApp method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
 		logger.info("Ending of clicOnWebApp Method");

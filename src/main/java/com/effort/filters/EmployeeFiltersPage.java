@@ -77,6 +77,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage{
 
 	public void ClickonWebApp() {
 		logger.info("Starting of ClickonWebApp Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, webApp);
 		this.webApp.click();
 		logger.info("Ending of ClickonWebApp Method ");

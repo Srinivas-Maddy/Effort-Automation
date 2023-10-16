@@ -182,6 +182,7 @@ public class Forms extends BaseAutomationPage{
 	
 	public String formSpecValidation() {
 		logger.info("Starting of formSpecValidation method");
+		hardWait(2);
 		String createdFormSpecName=driver.findElement(By.xpath("//h4[contains(text(),'"+formSpecName+"')]")).getText();
 		logger.info("Starting of formSpecValidation method");
 		return createdFormSpecName;				

@@ -1,6 +1,15 @@
 package com.effort.imports;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -152,9 +161,13 @@ public class ImportPages extends BaseAutomationPage{
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
+	
+	
+	
 
 	public void clickOnWebApp() {
 		logger.info("Starting of click on web app method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.WebApp);
 		this.WebApp.click();
 		logger.info("Ending of clickOnWebApp method");
@@ -214,7 +227,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 				waitUntilElementVisible(driver, this.mappingSheetValidationStatus);
 				empCustomerMappingStatus=this.mappingSheetValidationStatus.getText();	
 				break;

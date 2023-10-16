@@ -90,6 +90,7 @@ public class LoginPage extends BaseAutomationPage {
 	public void ClickonWebApp() {
 		logger.info("Starting of Click on Web App Method");
 
+		hardWait(3);
 		waitUntilElementVisible(driver, webApp);
 		this.webApp.click();
 
@@ -103,6 +104,7 @@ public class LoginPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, btnUserName);
 		btnUserName.click();
 		if (btnlogout.get(btnlogout.size() - 1).getText().equalsIgnoreCase("Logout")) {
+			hardWait(2);
 			btnlogout.get(btnlogout.size() - 1).click();
 		}
 
@@ -116,7 +118,7 @@ public class LoginPage extends BaseAutomationPage {
 			logger.info(driver.getTitle());
 			if (driver.getTitle().equalsIgnoreCase("Concurrent Login")) {
 				this.btnSignOutAllSessions.click();
-				hardWait(3);
+				hardWait(2);
 
 				this.enterUserName(userName);
 				this.clickOnPassword(password);

@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.filters.LeavesFiltersPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -34,7 +35,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	
 	public void initEffortLogin(String siteURL , String browser) throws InterruptedException {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_FILTERS_DRIVER);
 		driver.get(siteURL);
 		this.leavesfilterpage = new LeavesFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);
@@ -42,7 +43,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 		loginPage.clickOnLoginButton();
 		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
-		leavesfilterpage.clickOnWebApp();
+	
 		logger.info("Ending of initEffortLogin Method");
 	}
 	
@@ -52,6 +53,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	@Story("TestCase #1, Validation of Leaves Filters")
 	public void leavesFilters() throws InterruptedException {
 		logger.info("Starting of leavesFilters Method");
+		leavesfilterpage.clickOnWebApp();
 		leavesfilterpage.clickOnThreeDots();
 		leavesfilterpage.pickLeaves(leavesDataProp.getProperty("leavesname"));
 		leavesfilterpage.clickOnLeavesFilters();
@@ -119,7 +121,27 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	public void entityLeavesLogout() throws InterruptedException {
 		logger.info("Starting of entityLeavesLogout Method");
 		leavesfilterpage.filtersLeavesLogout();
+
 		logger.info("Ending of entityLeavesLogout Method");
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 }

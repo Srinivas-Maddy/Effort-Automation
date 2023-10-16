@@ -60,6 +60,7 @@ public class EmployeeExportPage extends BaseAutomationPage{
 
 	public void clickOnWebApp() {
 		logger.info("Starting of clickOn WebApp method");
+		this.hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
 		logger.info("Ending of clicOnWebApp Method");

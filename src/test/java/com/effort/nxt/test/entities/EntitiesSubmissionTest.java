@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.entities.EntitiesSubmission;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
@@ -26,7 +27,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Parameters({"siteURL" , "browser"})
 	public void initEffortLogin(String siteURL ,String browser ) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_SUBMISSION_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiessubmission = new EntitiesSubmission(driver);
 		this.loginPage = new LoginPage(driver);
@@ -122,7 +123,28 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		
 		entitiessubmission.LogOutEntity();
 		
+		
 		logger.info("Ending of logoutEntitites Method");
+	}
+	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
 	}
 }
 

@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.effort.common.WebDriversEnum;
 import com.effort.login.WebAppLogins;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
@@ -23,7 +25,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	@Parameters({ "siteURL", "browser" })
 	public void initEffortLogin(String siteURL, String browser) throws Exception {
 		logger.info("Starting of initEffortLogin method in LoginTest");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.WEB_APP_LOGIN_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.login = new WebAppLogins(this.driver);
 		logger.info("Ending of initEffortLogin method in LoginTest");
@@ -129,11 +131,13 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	@AfterMethod (groups = {"sanity"})
 	public void logout() {
 		logger.info("Starting of logout method");
+		
+		login.logOut(); 
 		if (currentTestMethodName.equals("invalidCreditionals")) {
-			driver.close();
+			driver.quit();
 			return;
 		}
-		login.logOut(); 
+		
 	}
 
 

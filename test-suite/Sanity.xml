@@ -3,9 +3,11 @@
 	<parameter name="browser" value="Chrome" />
 	<parameter name="siteURL"
 		value="https://secure.spoors.in/effortx/login" />
-		
-<!-- 		<parameter name="siteURL" -->
-<!-- 		value="https://testdev.spoors.dev/DateRestriction/login" /> -->
+	<parameter name="userName" value="automation@nmail.com" />
+	<parameter name="password" value="Automation@321" />
+
+	<!-- 		<parameter name="siteURL" -->
+	<!-- 		value="https://testdev.spoors.dev/DateRestriction/login" /> -->
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
@@ -22,11 +24,11 @@
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
 	</test>
-	
+
 	<test name="employee">
 		<classes>
 			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
-			
+
 		</classes>
 	</test>
 
@@ -42,6 +44,6 @@
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>
-	
-	
+
+
 </suite>

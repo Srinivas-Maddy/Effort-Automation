@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.filters.EntityFiltersPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -45,7 +46,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITY_FILTERS_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.entityfilterpage = new EntityFiltersPage(driver);
 	    this.loginPage = new LoginPage(driver);
@@ -53,7 +54,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 	    loginPage.clickOnLoginButton();
 	    loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
-	    entityfilterpage.clickOnWebApp();
+	  
 		logger.info("Ending of initEffortLogin Method");
 	}
 	
@@ -65,6 +66,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	public void filterEntityName() throws InterruptedException {
 		logger.info("Starting of filterEntityName Method");
 		
+		  entityfilterpage.clickOnWebApp();
 		//entityfilterpage.clickOnDots();
 		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));
@@ -112,4 +114,24 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Ending of filtersEntityLogout Method");
 	}
 	
+	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 }

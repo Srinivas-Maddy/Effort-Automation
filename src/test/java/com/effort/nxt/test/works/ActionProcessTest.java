@@ -4,10 +4,12 @@ import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.openqa.selenium.Alert;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.nxt.test.BaseAutomationTest;
 import com.effort.works.ActionProcess;
 import io.qameta.allure.Description;
@@ -25,7 +27,7 @@ public class ActionProcessTest extends BaseAutomationTest {
 	public void initEffortLogin(String siteURL, String browser) throws Exception {
 		logger.info("Starting of initEffortLogin method in creationOfCustomerTest");
 
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ACTION_PROCESS_DRIVER);
 
 		this.goToSite(siteURL, driver);
 
@@ -154,6 +156,13 @@ public class ActionProcessTest extends BaseAutomationTest {
 
 	}
 
-	
+	@AfterMethod (groups = {"sanity"})
+	public void logout() {
+		logger.info("Starting of logout method");
+		
+			driver.close();
+			
+		}
 
-}
+	}
+	

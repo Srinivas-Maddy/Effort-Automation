@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.nxt.test.BaseAutomationTest;
 import com.effort.works.WorkProcessCreation;
 import io.qameta.allure.Description;
@@ -24,7 +25,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Parameters({"siteURL","browser"})
 	public void initEffortLogin(String siteUrl,String browser) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
-		this.driver=this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.WORK_PROCESS_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.processCreation=new WorkProcessCreation(driver);
 		this.loginPage = new LoginPage(driver);
@@ -105,8 +106,28 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	public void logOutForm() throws InterruptedException {
 		logger.info("Starting of Log-out Method");
 		this.processCreation.logOut();
+	
 		logger.info("Ending of log-out Method");
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 
 }

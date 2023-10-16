@@ -75,6 +75,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 	
 	public void clickOnWebApp() {
 		logger.info("Starting of clickOn WebApp method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
 		logger.info("Ending of clicOnWebApp Method");
@@ -124,6 +125,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 		//Get the current date as number
 		String presentDate=getTomorrowDateAsNumber(1);
 		for(int i=0;i<=dateTimes.size()-1;i++) {
+			hardWait(2);
 			String actualDate = (String) ((JavascriptExecutor)driver).executeScript("return $(arguments[0]).text();", dateTimes.get(i));
 			if(actualDate.equalsIgnoreCase(presentDate)) {
 				//clickOnWebElement(dateTimes.get(i));
@@ -189,6 +191,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 	
 	public void logOut() {
 		logger.info("Starting of Logout method");
+		hardWait(3);
 		waitUntilElementVisible(driver, userNameBtn);
 		userNameBtn.click();
 		if(logoutBtn.get(logoutBtn.size()-1).getText().equalsIgnoreCase("Logout")) {

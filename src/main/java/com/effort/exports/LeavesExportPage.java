@@ -74,6 +74,7 @@ public class LeavesExportPage extends BaseAutomationPage {
 
 	public void ClickonWebApp() {
 		logger.info("Starting of ClickonWebApp Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
 		logger.info("Ending of ClickonWebApp Method");
@@ -136,6 +137,7 @@ public class LeavesExportPage extends BaseAutomationPage {
 		this.filtersresetbtn.click();
 		waitUntilElementVisible(driver, this.filtersapplybtn);
 		this.filtersapplybtn.click();
+		hardWait(3);
 		waitUntilElementVisible(driver, this.leavesfilters);
 		this.leavesfilters.click();
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);

@@ -178,6 +178,7 @@ public class LeavesPage extends BaseAutomationPage {
 			String tomorrowDate = getTomorrowDateAsNumber(1);
 			Thread.sleep(500);
 			for (int i = 1; i < toDateCalender.size(); i++) {
+				hardWait(3);
 				String fromactualdatetime = this.toDateCalender.get(i).getText();
 				if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
 					waitUntilElementVisible(driver, this.toDateCalender.get(i));

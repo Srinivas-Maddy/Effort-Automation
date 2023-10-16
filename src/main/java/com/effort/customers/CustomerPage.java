@@ -576,6 +576,7 @@ public class CustomerPage extends BaseAutomationPage {
 		String presentdatetime = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= datetimes1.size() - 1; i++) {
+			hardWait(3);
 			String actualdatetime = datetimes1.get(i).getText();
 			if (actualdatetime.equalsIgnoreCase(presentdatetime)) {
 				waitUntilElementVisible(driver, datetimes1.get(i));
@@ -1094,8 +1095,10 @@ public class CustomerPage extends BaseAutomationPage {
 			}
 			count++;
 		}
+		hardWait(3);
 		waitUntilElementVisible(driver, applyBtn);
-		this.applyBtn.click();
+		mouseHoverAndClick(applyBtn);
+		//this.applyBtn.click();
 		
 		logger.info("Ending of ClickonAssign method");
 	}
@@ -1129,9 +1132,10 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void LogOut() {
 		logger.info("Starting of LogOut Method");
-		
+		hardWait(3);
 		waitUntilElementVisible(driver, userNameBtn);
-		userNameBtn.click();
+		mouseHoverAndClick(userNameBtn);
+		//userNameBtn.click();
 		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("LogOut")) {
 			logoutBtn.get(logoutBtn.size() - 1).click();
 		}

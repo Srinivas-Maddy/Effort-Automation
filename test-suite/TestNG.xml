@@ -3,6 +3,8 @@
 	<parameter name="browser" value="Chrome" />
 	<!-- <parameter name="siteURL"
 		value="https://secure.spoors.io/effortx/login" /> -->
+	<parameter name="userName" value="automation@nmail.com" />
+	<parameter name="password" value="Automation@321" />
 
 	<!-- <parameter name="siteURL" value="" /> -->
 
@@ -15,13 +17,13 @@
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
 	</test>
-	
+
 	<test name="employee">
 		<classes>
 			<class
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
-	</test> 
+	</test>
 
 	<test name="works">
 		<classes>
@@ -31,10 +33,10 @@
 
 	<test name="forms">
 		<classes>
-			<class name="com.effort.test.forms.FormsTest" /> 
+			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
 	</test>
 
-	
+
 </suite>
