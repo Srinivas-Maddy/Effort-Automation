@@ -222,7 +222,8 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	public void clickOnFirstAddedField() {
 		logger.info("Starting of clickOnFirstAddedField Method");
 		waitUntilElementVisible(driver, this.firstAddedField);
-		this.firstAddedField.click();
+		mouseHoverAndClick(firstAddedField);
+		//this.firstAddedField.click();
 		logger.info("Ending of clickOnFirstAddedField Method");	
 	}
 	

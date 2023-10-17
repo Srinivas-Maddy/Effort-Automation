@@ -537,7 +537,8 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of clickOnDateTimePicker Method");
 		
 		waitUntilElementVisible(driver, datetimepicker);
-		this.datetimepicker.click();
+		mouseHoverAndClick(datetimepicker);
+	//	this.datetimepicker.click();
 		
 		logger.info("Ending of clickOnDateTimePicker Method");
 	}
