@@ -9,6 +9,7 @@
 
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 
+	<parameter name="headless" value="false" />
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
