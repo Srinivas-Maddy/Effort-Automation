@@ -25,10 +25,10 @@ public class FormExportsTest extends BaseAutomationTest{
 	
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser"})
-	public void initEffortLogin(String siteUrl,String browser) throws Exception {
+	@Parameters({"siteURL","browser", "headless"})
+	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
-		this.driver=this.getWebDriver(browser, WebDriversEnum.FORM_EXPORTS_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.FORM_EXPORTS_DRIVER, headless);
 		this.goToSite(siteUrl, driver);
 		this.formExportPage=new FormExportPage(driver);
 		this.loginPage = new LoginPage(driver);

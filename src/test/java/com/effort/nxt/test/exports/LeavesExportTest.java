@@ -20,11 +20,11 @@ public class LeavesExportTest extends BaseAutomationTest{
 	private LeavesExportPage leavesexportpage=null;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" ,"browser"})
+	@Parameters({"siteURL" ,"browser", "headless"})
 	
-	public void initEffortLogin(String siteURL , String browser) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_EXPORT_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_EXPORT_DRIVER, headless);
 		this.goToSite(siteURL, driver);
 		this.leavesexportpage = new LeavesExportPage(driver);
 		this.loginPage = new LoginPage(driver);

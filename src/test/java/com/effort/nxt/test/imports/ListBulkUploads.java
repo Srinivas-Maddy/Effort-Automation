@@ -24,10 +24,10 @@ public class ListBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_BULK_IMPORT_STATUS="Processed";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser", "headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LIST_BULKUPLOAD);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LIST_BULKUPLOAD, headless);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));

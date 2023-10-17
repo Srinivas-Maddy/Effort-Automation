@@ -25,10 +25,10 @@ public class LoginTest extends BaseAutomationTest {
 	private String expectedInvalidLoginMessage="Invalid Email/Password.";
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser","headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin method in LoginTest");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LOGIN_DRIVER, headless);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(this.driver);
 		logger.info("Ending of initEffortLogin method in LoginTest");

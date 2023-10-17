@@ -31,11 +31,11 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser"})
+	@Parameters({"siteURL" , "browser", "headless"})
 	
-	public void initEffortLogin(String siteURL , String browser) throws InterruptedException {
+	public void initEffortLogin(String siteURL , String browser, String headless ) throws InterruptedException {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_FILTERS_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_FILTERS_DRIVER, headless);
 		driver.get(siteURL);
 		this.leavesfilterpage = new LeavesFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);

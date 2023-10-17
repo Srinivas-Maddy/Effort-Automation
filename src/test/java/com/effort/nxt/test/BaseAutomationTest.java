@@ -190,7 +190,7 @@ public class BaseAutomationTest {
 	 * @return
 	 */
 
-	protected synchronized WebDriver getWebDriver(String browser, WebDriversEnum loginDriver) {
+	protected synchronized WebDriver getWebDriver(String browser, WebDriversEnum loginDriver, String headless) {
 		// logger.info("Starting of method getWebDriver");
 
 		WebDriver driver = webDriverPool.get(loginDriver);
@@ -248,6 +248,8 @@ public class BaseAutomationTest {
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--disable-notifications");
+				boolean isHeadless = Boolean.parseBoolean(headless);
+				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
 				driver = new ChromeDriver(options);
 
 			} else if (browser.equalsIgnoreCase("Firefox")) {

@@ -25,10 +25,10 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_CUSTOMER_BULK_DELETE_STATUS="An Email will be sent after successful Deletion of Customers";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser","headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER, headless);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));

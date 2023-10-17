@@ -25,10 +25,10 @@ public class CustomerExports extends BaseAutomationTest {
 	private static final String EXPECTEDEXPORTFILTEREDSUCCESMSG="Data download process is successful.";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser"})
-	public void initEffortLogin(String siteUrl , String browser) throws Exception {
+	@Parameters({"siteURL" , "browser", "headless"})
+	public void initEffortLogin(String siteUrl , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMERS_EXPORTS_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMERS_EXPORTS_DRIVER, headless);
 		this.goToSite(siteUrl, driver);
 		this.custmrExpt = new CustomerExportPage(driver);
 		this.loginPage = new LoginPage(driver);

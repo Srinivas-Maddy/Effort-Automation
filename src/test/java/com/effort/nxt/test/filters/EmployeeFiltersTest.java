@@ -36,11 +36,11 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser"})
+	@Parameters({"siteURL" , "browser", "headless"})
 	
-	public void initEffortLogin(String siteURL , String browser) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_FILTERS_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_FILTERS_DRIVER, headless);
 		this.goToSite(siteURL, driver);
 		this.employeefilterspage = new EmployeeFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);

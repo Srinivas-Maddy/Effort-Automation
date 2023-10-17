@@ -24,10 +24,10 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_ROUTE_PLAN_IMPORT_STATUS="We've received the sheet you uploaded. An email will be sent to you notifying the status of the update. The following are the files that were uploaded:";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser", "headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ROUTE_PLAN_BULKUPLOADS);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ROUTE_PLAN_BULKUPLOADS, headless);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));

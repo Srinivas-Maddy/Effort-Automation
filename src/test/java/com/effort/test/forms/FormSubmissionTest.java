@@ -24,10 +24,10 @@ public class FormSubmissionTest extends BaseAutomationTest{
 	private FormSubmission formSub;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser"})
-	public void initEffortLogin(String siteUrl,String browser) throws Exception {
+	@Parameters({"siteURL","browser", "headless"})
+	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method in Form Submission Class");
-		this.driver=this.getWebDriver(browser, WebDriversEnum.FORM_SUBMISSION_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.FORM_SUBMISSION_DRIVER, headless);
 		this.goToSite(siteUrl, driver);
 		this.formSub=new FormSubmission(driver);
 		this.loginPage = new LoginPage(driver);

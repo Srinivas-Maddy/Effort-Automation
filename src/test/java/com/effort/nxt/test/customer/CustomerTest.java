@@ -28,10 +28,10 @@ public class CustomerTest extends BaseAutomationTest {
 	//private static final String EXPECTEDDELETEPOPUPMSG = "Customer Deleted Successfully";
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" ,"userName", "password"})
-	public void initEffortLogin(String siteURL, String browser, String userName, String password ) throws Exception {
+	@Parameters({ "siteURL", "browser" ,"userName", "password", "headless"})
+	public void initEffortLogin(String siteURL, String browser, String userName, String password, String headless ) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTUMERTEST_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTUMERTEST_DRIVER, headless);
 		this.goToSite(siteURL, driver);
 		this.custmrCreation = new CustomerPage(driver);
 		
