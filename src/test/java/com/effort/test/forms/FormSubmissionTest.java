@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.forms.FormSubmission;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -26,7 +27,7 @@ public class FormSubmissionTest extends BaseAutomationTest{
 	@Parameters({"siteURL","browser"})
 	public void initEffortLogin(String siteUrl,String browser) throws Exception {
 		logger.info("starting of initEfforrt Login Method in Form Submission Class");
-		this.driver=this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver=this.getWebDriver(browser, WebDriversEnum.FORM_SUBMISSION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.formSub=new FormSubmission(driver);
 		this.loginPage = new LoginPage(driver);
@@ -64,10 +65,19 @@ public class FormSubmissionTest extends BaseAutomationTest{
 		this.formSub.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
 		this.formSub.phoneNumber(formDataProp.getProperty("MobileNumber"));
 		this.formSub.URL(formDataProp.getProperty("URL"));
-		this.formSub.audioData();
-		this.formSub.documentUpload();
-		this.formSub.imageUpload();
-		this.formSub.videoUpload();
+			
+		formSub.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+		//this.formSub.audioData();
+		
+		formSub.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+		//this.formSub.documentUpload();
+		
+		formSub.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+		//this.formSub.imageUpload();
+		
+		formSub.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+	   //this.formSub.videoUpload();
+		
 		this.formSub.pickCountry();
 		this.formSub.pickCustomer();
 		this.formSub.pickCustomerType();
@@ -86,5 +96,23 @@ public class FormSubmissionTest extends BaseAutomationTest{
 		logger.info("Ending of log-out Method");
 	}
 		
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
 
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 }

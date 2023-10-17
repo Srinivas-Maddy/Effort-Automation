@@ -141,6 +141,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void clickOnWebApp() {
 		logger.info("Starting of Click on web App method");
+		hardWait(3);
 		waitUntilElementVisible(driver, webApp);
 		this.webApp.click();
 		logger.info("Ending of Click on web App method");
@@ -350,7 +351,6 @@ public class EmployeeCreation extends BaseAutomationPage {
 		hardWait(2);
 		saveBtn.click();
 		
-		hardWait(2);
 		try {
 			waitUntilElementVisible(driver, EmpsavedMsg);
 		} catch (Exception e) {
@@ -422,6 +422,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 		this.actionMenu.click();
 		Thread.sleep(5000);
 		for (int i = 0; i < actionDropDowns.size(); i++) {
+			hardWait(3);
 			String ExpectedLabel = this.actionDropDowns.get(i).getText();
 			if (this.disableLabel.equalsIgnoreCase(ExpectedLabel)) {
 				waitUntilElementVisible(driver, this.actionDropDowns.get(i));

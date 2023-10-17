@@ -183,6 +183,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	public void clickOnWebApp() throws InterruptedException {
 		logger.info("Starting of clickOnWebApp Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.dashboardwebapp);
 		this.dashboardwebapp.click();
 		Thread.sleep(500);
@@ -217,6 +218,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	public void enterAppliedLeavesEmployeeName(String leavesempname) throws InterruptedException {
 		logger.info("Starting of enterAppliedLeavesEmployeeName Method");
+		hardWait(4);
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesempname);

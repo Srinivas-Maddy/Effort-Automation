@@ -178,6 +178,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	public void clickOnWebApp() throws InterruptedException {
 		logger.info("Starting of clickOnWebApp Method");
+		hardWait(3);
 		waitUntilElementVisible(driver, this.dashboardwebapp);
 		this.dashboardwebapp.click();
 		Thread.sleep(500);

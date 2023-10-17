@@ -7,6 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.leaves.LeavesPage;
 import com.effort.nxt.test.BaseAutomationTest;
 
@@ -25,7 +26,7 @@ public class LeavesTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.leavespage = new LeavesPage(driver);
 	    this.loginPage = new LoginPage(driver);
@@ -33,7 +34,7 @@ public class LeavesTest extends BaseAutomationTest{
 	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
 	    loginPage.clickOnLoginButton();
 	    loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
-	    leavespage.clickOnWebApp();
+	   
 		logger.info("Ending of initEffortLogin Method");
 	}
 	
@@ -45,6 +46,8 @@ public class LeavesTest extends BaseAutomationTest{
 	public void applyLeaves() throws InterruptedException
 	{
 		logger.info("Starting of applyLeaves Method");
+		
+		leavespage.clickOnWebApp();
 		leavespage.clickOnThreeDots();
 		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavespage.clickOnApplyLeaves();
@@ -94,4 +97,23 @@ public class LeavesTest extends BaseAutomationTest{
 		logger.info("Ending of leavesLogout Method");
 	}
 	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 }

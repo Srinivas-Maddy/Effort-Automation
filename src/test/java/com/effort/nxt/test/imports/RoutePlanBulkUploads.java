@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.imports.ImportPages;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
@@ -26,7 +27,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	@Parameters({ "siteURL", "browser" })
 	public void initEffortLogin(String siteURL, String browser) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ROUTE_PLAN_BULKUPLOADS);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
@@ -34,7 +35,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 		this.loginPage.clickOnLoginButton();
 		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		this.importpage=new ImportPages(driver);
-		this.importpage.clickOnWebApp();
+		
 		logger.info("Ending of initEffortLogin Method");
 	}	
 	
@@ -46,6 +47,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	@Story("Validating the Route Plan bulk upload through the imports")
 	public void routePlanCreation() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
+		this.importpage.clickOnWebApp();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Route_Plan_Creation.xls";
 		String acutalSatusMsg=this.importpage.importRoutePlan(importProp.getProperty("routePlan"),importSheetPath);
@@ -93,6 +95,24 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
 	
+		logger.info("Ending of quitDriver Method");
+
+	}
 
 }

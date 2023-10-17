@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
+import com.effort.common.WebDriversEnum;
 import com.effort.entities.EntitiesProcess;
 import com.effort.nxt.test.BaseAutomationTest;
 import com.effort.nxt.test.works.ActionProcessTest;
@@ -27,7 +28,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Parameters({"siteURL" , "browser"})
 	public void initEffortLogin(String siteURL ,String browser ) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
-		this.driver = this.getWebDriver(browser, WEB_DRIVER.LOGIN_DRIVER);
+		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_PROCESS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiesprocess = new EntitiesProcess(driver);
 		this.loginPage = new LoginPage(driver);
@@ -97,11 +98,30 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@AfterClass(alwaysRun = true)
 	public void logoutEntitites() {
 		logger.info("Starting of logoutEntitites Method");		
-		entitiesprocess.logOutEntitites();
+		entitiesprocess.logOutEntitites();	
+		
 		logger.info("Ending of logoutEntitites Method");
 	}
 	
+	@AfterClass(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
 
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 	
 
 }
