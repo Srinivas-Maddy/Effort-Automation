@@ -28,7 +28,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Parameters({"siteURL" , "browser", "headless"})
 	public void initEffortLogin(String siteURL ,String browser , String headless) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_PROCESS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_PROCESS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiesprocess = new EntitiesProcess(driver);
 		this.loginPage = new LoginPage(driver);

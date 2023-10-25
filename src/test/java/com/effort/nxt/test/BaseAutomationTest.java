@@ -190,7 +190,7 @@ public class BaseAutomationTest {
 	 * @return
 	 */
 
-	protected synchronized WebDriver getWebDriver(String browser, WebDriversEnum loginDriver, String headless) {
+	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum loginDriver) {
 		// logger.info("Starting of method getWebDriver");
 
 		WebDriver driver = webDriverPool.get(loginDriver);

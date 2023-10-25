@@ -26,7 +26,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		@Parameters({"siteURL","browser", "headless"})
 		public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 			logger.info("starting of initEfforrt Login Method in work creation process");
-			this.driver=this.getWebDriver(browser, WebDriversEnum.ADD_WORK_PROCESS_DRIVER, headless);
+			this.driver=this.getWebDriver(browser, headless, WebDriversEnum.ADD_WORK_PROCESS_DRIVER);
 			this.goToSite(siteUrl, driver);
 			this.addWork=new AddWorkProcess(driver);
 			this.loginPage = new LoginPage(driver);

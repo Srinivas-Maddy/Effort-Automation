@@ -33,7 +33,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_EXPORTS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_EXPORTS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiesexportpage = new EntitiesExportPage(driver);
 		this.loginPage = new LoginPage(driver);

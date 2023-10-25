@@ -27,7 +27,7 @@ public class ActionProcessTest extends BaseAutomationTest {
 	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin method in creationOfCustomerTest");
 
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ACTION_PROCESS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ACTION_PROCESS_DRIVER);
 
 		this.goToSite(siteURL, driver);
 

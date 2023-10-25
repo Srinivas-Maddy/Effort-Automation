@@ -15,9 +15,10 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Customers">
+	<test name="Route Plans">
 		<classes>
-			<class name="com.effort.nxt.test.customer.CustomerTest" />
+			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
+			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
 		</classes>
 	</test>
 

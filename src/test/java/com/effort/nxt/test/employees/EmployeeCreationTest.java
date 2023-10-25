@@ -32,7 +32,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Parameters({"siteURL","browser", "headless"})
 	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method of Employee process");
-		this.driver=this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_CREATION_DRIVER, headless);
+		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empCreation=new EmployeeCreation(driver);
 		this.loginPage = new LoginPage(driver);

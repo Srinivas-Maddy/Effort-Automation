@@ -28,7 +28,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Parameters({"siteURL" , "browser", "headless"})
 	public void initEffortLogin(String siteUrl , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMERS_EXPORTS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTOMERS_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.custmrExpt = new CustomerExportPage(driver);
 		this.loginPage = new LoginPage(driver);

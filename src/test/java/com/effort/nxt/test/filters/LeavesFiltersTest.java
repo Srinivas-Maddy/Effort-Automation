@@ -35,7 +35,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	
 	public void initEffortLogin(String siteURL , String browser, String headless ) throws InterruptedException {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_FILTERS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_FILTERS_DRIVER);
 		driver.get(siteURL);
 		this.leavesfilterpage = new LeavesFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);

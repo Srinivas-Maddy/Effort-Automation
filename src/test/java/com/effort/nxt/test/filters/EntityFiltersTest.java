@@ -46,7 +46,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITY_FILTERS_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITY_FILTERS_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.entityfilterpage = new EntityFiltersPage(driver);
 	    this.loginPage = new LoginPage(driver);

@@ -26,7 +26,7 @@ public class LeavesTest extends BaseAutomationTest{
 	
 	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.leavespage = new LeavesPage(driver);
 	    this.loginPage = new LoginPage(driver);

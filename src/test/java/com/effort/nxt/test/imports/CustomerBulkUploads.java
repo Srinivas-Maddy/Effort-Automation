@@ -28,7 +28,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	@Parameters({ "siteURL", "browser","headless" })
 	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER, headless);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
