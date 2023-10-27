@@ -54,6 +54,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	public void leavesFilters() throws InterruptedException {
 		logger.info("Starting of leavesFilters Method");
 		leavesfilterpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		leavesfilterpage.clickOnThreeDots();
 		leavesfilterpage.pickLeaves(leavesDataProp.getProperty("leavesname"));
 		leavesfilterpage.clickOnLeavesFilters();

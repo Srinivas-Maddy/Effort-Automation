@@ -52,6 +52,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		{
 			logger.info("Starting of entityExportSelected Method");
 			entitiesexportpage.ClickonWebApp();
+			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			entitiesexportpage.clickOnEntityModule();
 			//entitiesexportpage.entitySelectionCheckbox();
 			entitiesexportpage.selectAllEntityCheckBox();

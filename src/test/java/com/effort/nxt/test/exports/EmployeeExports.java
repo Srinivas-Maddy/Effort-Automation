@@ -46,6 +46,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
 		this.empExport.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.empExport.clickOnEmployeeModule();
 		this.empExport.clickOnExportOptions();
 		this.empExport.clickOnExportAll();

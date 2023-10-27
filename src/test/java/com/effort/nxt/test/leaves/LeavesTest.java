@@ -48,6 +48,7 @@ public class LeavesTest extends BaseAutomationTest{
 		logger.info("Starting of applyLeaves Method");
 		
 		leavespage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		leavespage.clickOnThreeDots();
 		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavespage.clickOnApplyLeaves();

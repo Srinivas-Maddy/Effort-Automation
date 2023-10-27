@@ -67,6 +67,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Starting of filterEntityName Method");
 		
 		  entityfilterpage.clickOnWebApp();
+		  loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		//entityfilterpage.clickOnDots();
 		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));

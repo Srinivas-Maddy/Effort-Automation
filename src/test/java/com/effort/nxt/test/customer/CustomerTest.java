@@ -55,6 +55,7 @@ public class CustomerTest extends BaseAutomationTest {
 		
 		
 		loginPage.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrCreation.ClickonCustomer();
 		custmrCreation.ClickonAddCustomerBtn();
 		custmrCreation.SwitchNewWindow();

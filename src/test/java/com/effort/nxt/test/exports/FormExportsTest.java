@@ -47,6 +47,7 @@ public class FormExportsTest extends BaseAutomationTest{
 	public void formExportSelected() throws InterruptedException {
 		logger.info("Starting of formExportSelected method");
 		formExportPage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.formExportPage.clickOnFormsModule();
 		this.formExportPage.clickOnForm(formDataProp.getProperty("formSpecName"));
 		//this.formExportPage.clickOnLast30DaysData(formDataProp.getProperty("last30DaysData"));

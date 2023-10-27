@@ -44,6 +44,9 @@ public class LoginPage extends BaseAutomationPage {
 	@FindBy(xpath = "//button[contains(text(),'Sign out all other sessions')]")
 	private WebElement btnSignOutSessions;
 
+	@FindBy(xpath = "//div[@id='cancel']//button")
+	private WebElement btnCancelOnWebAppHomeScreen;
+	
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -75,6 +78,15 @@ public class LoginPage extends BaseAutomationPage {
 		this.btnLogin.click();
 
 		logger.info("Ending of clickOnLoginButton method");
+	}
+	
+	public void clickOnCancelButtonOnWebAppHomeScreen() {
+		logger.info("Starting of clickOnCancelButtonOnWebAppHomeScreen method");
+
+		waitUntilElementVisible(driver, btnCancelOnWebAppHomeScreen);
+		this.btnCancelOnWebAppHomeScreen.click();
+
+		logger.info("Ending of clickOnCancelButtonOnWebAppHomeScreen method");
 	}
 
 	public void clickOnWebApp() {

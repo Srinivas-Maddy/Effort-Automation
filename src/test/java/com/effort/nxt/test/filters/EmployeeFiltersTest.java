@@ -59,6 +59,7 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
 		employeefilterspage.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		employeefilterspage.ClickonEmployees();
 		
 		employeefilterspage.selectActiveEmployee(filtersDataProp.getProperty("empID"));

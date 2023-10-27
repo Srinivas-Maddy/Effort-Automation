@@ -46,6 +46,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		public void AddWork() throws InterruptedException {			
 			logger.info("Starting of the AddWork method");
 			this.addWork.clickOnWebApp();
+			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			this.addWork.clickOnProcessModule();
 			this.addWork.clickOnWorkName();
 			this.addWork.clickOnAddWorkBtn();

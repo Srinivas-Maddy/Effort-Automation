@@ -48,6 +48,7 @@ public class RoutePlanFiltersTest extends BaseAutomationTest {
 		logger.info("Starting of verifyIncompleteRoutePlans Method");
 
 		this.loginPage.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		routeplanspage.clickOnRoutesModule(testDataProp.getProperty("routesname"));
 		routeplanfilterpage.clickOnFiltersButton();
 		routeplanfilterpage.clickOnResetButton();

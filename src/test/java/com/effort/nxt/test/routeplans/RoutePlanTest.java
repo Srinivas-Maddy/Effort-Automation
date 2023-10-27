@@ -41,6 +41,7 @@ public class RoutePlanTest extends BaseAutomationTest {
 		logger.info("Starting of verifyCreatingRoutePlan Method");
 
 		this.loginPage.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		routeplanspage.clickOnRoutesModule(testDataProp.getProperty("routesname"));
 		routeplanspage.clickOnCreateRoutesPlan();
 		routeplanspage.enterRoutesPlanName(testDataProp.getProperty("routesplanname"));

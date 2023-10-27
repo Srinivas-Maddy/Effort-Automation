@@ -48,6 +48,7 @@ public class ListBulkUploads extends BaseAutomationTest{
 	public void listImports() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\List_Template_TestList.xls";
 		String actualStatusMsg=this.importpage.importListUpload(importProp.getProperty("listSpecName"),importSheetPath);

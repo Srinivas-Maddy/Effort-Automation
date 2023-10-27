@@ -47,6 +47,7 @@ public class CustomerExports extends BaseAutomationTest {
 	public void CustmrExportAll() throws InterruptedException {
 		logger.info("Starting of CustmrExportAll Method");
 		this.custmrExpt.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrExpt.ClickonCustomerModule();
 		custmrExpt.ClickonExport();
 		custmrExpt.SelcetExportAll();

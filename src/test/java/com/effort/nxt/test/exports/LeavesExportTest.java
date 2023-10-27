@@ -42,6 +42,7 @@ public class LeavesExportTest extends BaseAutomationTest{
 	public void leavesExportAll() throws InterruptedException {
 		logger.info("Starting of entityExportAll Method");
 		leavesexportpage.ClickonWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		leavesexportpage.clickOnThreeDots();
 		leavesexportpage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavesexportpage.selectLeavesExportAll();

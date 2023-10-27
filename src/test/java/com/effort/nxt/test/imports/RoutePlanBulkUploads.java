@@ -48,6 +48,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	public void routePlanCreation() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Route_Plan_Creation.xls";
 		String acutalSatusMsg=this.importpage.importRoutePlan(importProp.getProperty("routePlan"),importSheetPath);

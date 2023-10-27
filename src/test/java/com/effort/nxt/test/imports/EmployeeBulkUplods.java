@@ -63,6 +63,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeBulkUpload() throws InterruptedException, EncryptedDocumentException, IOException {
 		logger.info("Starting of EmployeeBulkUpload Method");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\EmployeeSheet.xls";
 		String validationSheet = this.importpage.clickOnImportCard(importProp.getProperty("empImportCardName"),

@@ -55,6 +55,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Starting of AddEmployee Method");
 		
 		this.empCreation.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
 		empCreation.switchNewWindow();

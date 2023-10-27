@@ -45,6 +45,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
 		entitiessubmission.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
 		entitiessubmission.clickOnAddEntity();
 		entitiessubmission.switchToNewWindow();
