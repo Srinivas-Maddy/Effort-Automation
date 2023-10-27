@@ -46,7 +46,7 @@ public class BaseAutomationTest {
 	protected static Properties enumProp = null;
 	protected String USER_DIR = System.getProperty("user.dir");
 
-	private static Map<WEB_DRIVER, WebDriver> webDriverPool = new Hashtable<WEB_DRIVER, WebDriver>();
+	private static Map<WebDriversEnum, WebDriver> webDriverPool = new Hashtable<WebDriversEnum, WebDriver>();
 
 	public enum WEB_DRIVER {
 
@@ -109,7 +109,6 @@ public class BaseAutomationTest {
 
 				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
-			
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -156,7 +155,7 @@ public class BaseAutomationTest {
 
 		synchronized (webDriverPool) {
 			if (!webDriverPool.isEmpty()) {
-				for (WEB_DRIVER driverKey : webDriverPool.keySet()) {
+				for (WebDriversEnum driverKey : webDriverPool.keySet()) {
 					logger.debug("Quitting driver key: " + driverKey);
 					synchronized (webDriverPool) {
 						driver = webDriverPool.get(driverKey);
@@ -186,20 +185,20 @@ public class BaseAutomationTest {
 	/**
 	 * This method is used for get driver
 	 * 
-	 * @param loginDriver
+	 * @param WebDriver
 	 * @return
 	 */
 
-	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum loginDriver) {
-		// logger.info("Starting of method getWebDriver");
+	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum WebDriver) {
+		logger.info("Starting of method getWebDriver");
 
-		WebDriver driver = webDriverPool.get(loginDriver);
+		WebDriver driver = webDriverPool.get(WebDriver);
 
 		String osPath = System.getProperty("os.name");
 
 		// Use existing driver
 		if (driver != null) {
-			logger.debug("Using existing web driver " + loginDriver);
+			logger.debug("Using existing web driver " + WebDriver);
 			return driver;
 		}
 
@@ -219,15 +218,25 @@ public class BaseAutomationTest {
 				 * ChromeOptions(); options.setHeadless(true);
 				 * options.addArguments("--no-sandbox"); driver = new ChromeDriver(options);
 				 */
-				System.setProperty("webdriver.chrome.driver", browserDriverPath);
+				/*
+				 * System.setProperty("webdriver.chrome.driver", browserDriverPath);
+				 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
+				 * options.addArguments("--no-sandbox");
+				 * options.addArguments("--remote-allow-origins=*");
+				 * 
+				 * driver = new ChromeDriver(options);
+				 */
+				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
-				options.setHeadless(true);
+				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
-
+				options.addArguments("--disable-notifications");
+				boolean isHeadless = Boolean.parseBoolean(headless);
+				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
 				driver = new ChromeDriver(options);
 
-				logger.debug("######### Driver is here  ###### " + driver);
+				logger.debug("######### Driver is here  ###### " + driver);
 
 			}
 		} else if (osPath.contains("Mac OS X")) {
@@ -276,7 +285,7 @@ public class BaseAutomationTest {
 
 		logger.info("End of method getWebDriver");
 
-		//webDriverPool.put(loginDriver, driver);
+		// webDriverPool.put(loginDriver, driver);
 
 		return driver;
 	}
@@ -312,16 +321,15 @@ public class BaseAutomationTest {
 
 	@SuppressWarnings("deprecation")
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {
-		
+
 		driver.manage().timeouts().pageLoadTimeout(50L, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(3L, TimeUnit.SECONDS);
-		
-		 try {
-	            driver.get(siteURL);
-	        } catch (TimeoutException e) {
-	            logger.info("Page load timeout occurred. Waiting for the page to complete loading.");
-	        }
-	
+
+		try {
+			driver.get(siteURL);
+		} catch (Exception e) {
+			logger.info("Page load timeout occurred. Waiting for the page to complete loading.");
+		}
 
 	}
 
@@ -329,13 +337,13 @@ public class BaseAutomationTest {
 
 		logger.info("Starting of LoginToApplication Method");
 
-		this.loginPage = new LoginPage(driver);		
+		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(userName);
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		
+
 		this.loginPage.clickOnSignOutFromAllSessions(userName, password);
-	
+
 		logger.info("Ending of LoginToApplication Method");
 	}
 
