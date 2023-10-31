@@ -34,15 +34,8 @@ public class CustomerTest extends BaseAutomationTest {
 		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTUMERTEST_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.custmrCreation = new CustomerPage(driver);
-		
 		LoginToApplication(userName, password);
-		/*
-		 * this.loginPage = new LoginPage(driver);	
-		 * this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		 * this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		 * this.loginPage.clickOnLoginButton(); 
-		 * this.custmrCreation.ClickonWebApp();
-		 */
+		
 		logger.info("Ending of initEffortLogin Method");
 	}
 
