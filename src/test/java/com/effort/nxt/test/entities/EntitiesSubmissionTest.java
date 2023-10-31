@@ -24,10 +24,10 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	private static final String EXPECTEDMODIFIEDSUCCESMSG="Modified Successfully";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser"})
-	public void initEffortLogin(String siteURL ,String browser ) throws Exception {
+	@Parameters({"siteURL" , "browser", "headless"})
+	public void initEffortLogin(String siteURL ,String browser , String headless) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITIES_SUBMISSION_DRIVER);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_SUBMISSION_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiessubmission = new EntitiesSubmission(driver);
 		this.loginPage = new LoginPage(driver);
@@ -45,6 +45,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
 		entitiessubmission.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
 		entitiessubmission.clickOnAddEntity();
 		entitiessubmission.switchToNewWindow();

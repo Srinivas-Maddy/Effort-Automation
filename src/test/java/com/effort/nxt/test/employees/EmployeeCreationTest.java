@@ -29,11 +29,12 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	private static final String expectedEmpSavedMsg = "Saved successfully";
 
 	@BeforeClass (alwaysRun = true)
-	@Parameters({"siteURL","browser","userName", "password"})
-	public void initEffortLogin(String siteUrl,String browser,String userName, String password) throws Exception {
+
+	@Parameters({"siteURL","browser","userName", "password", "headless"})
+	public void initEffortLogin(String siteUrl,String browser,String userName, String password, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method of Employee process");
-		
-		this.driver=this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_CREATION_DRIVER);
+	
+		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empCreation=new EmployeeCreation(driver);
 		LoginToApplication(userName, password);
@@ -53,6 +54,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Starting of AddEmployee Method");
 		
 		this.empCreation.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
 		empCreation.switchNewWindow();

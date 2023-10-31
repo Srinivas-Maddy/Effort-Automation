@@ -42,11 +42,11 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	private EntityFiltersPage entityfilterpage;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser"})
+	@Parameters({"siteURL" , "browser", "headless"})
 	
-	public void initEffortLogin(String siteURL , String browser) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.ENTITY_FILTERS_DRIVER);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITY_FILTERS_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.entityfilterpage = new EntityFiltersPage(driver);
 	    this.loginPage = new LoginPage(driver);
@@ -67,6 +67,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Starting of filterEntityName Method");
 		
 		  entityfilterpage.clickOnWebApp();
+		  loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		//entityfilterpage.clickOnDots();
 		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));

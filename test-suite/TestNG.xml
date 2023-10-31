@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
-	<parameter name="siteURL"
-		value="https://secure.spoors.in/effortx/login" />
+	<!-- <parameter name="siteURL"
+		value="https://secure.spoors.io/effortx/login" /> -->
 
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Automation@321" />
 
-	<!-- 		<parameter name="siteURL" -->
-	<!-- 		value="https://testdev.spoors.dev/DateRestriction/login" /> -->
+	<!-- <parameter name="siteURL" value="" /> -->
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-
-	<groups>
-		<run>
-			<include name="sanity" />
-		</run>
-	</groups>
 
 	<test name="Login">
 		<classes>
@@ -29,8 +22,8 @@
 
 	<test name="employee">
 		<classes>
-			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
-
+			<class
+				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
 

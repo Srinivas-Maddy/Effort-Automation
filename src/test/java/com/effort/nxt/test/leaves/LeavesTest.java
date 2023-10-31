@@ -22,11 +22,11 @@ public class LeavesTest extends BaseAutomationTest{
 	private LeavesPage leavespage;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser"})
+	@Parameters({"siteURL","browser", "headless"})
 	
-	public void initEffortLogin(String siteURL , String browser) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LEAVES_DRIVER);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.leavespage = new LeavesPage(driver);
 	    this.loginPage = new LoginPage(driver);
@@ -48,6 +48,7 @@ public class LeavesTest extends BaseAutomationTest{
 		logger.info("Starting of applyLeaves Method");
 		
 		leavespage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		leavespage.clickOnThreeDots();
 		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavespage.clickOnApplyLeaves();

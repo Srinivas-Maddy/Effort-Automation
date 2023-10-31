@@ -38,10 +38,10 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	private final String EXPECTED_WORK_ASSIGNMENT_STATUS = "Successful";
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser" , "headless"})
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_BULKUPLOAD);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_BULKUPLOAD);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
@@ -63,6 +63,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeBulkUpload() throws InterruptedException, EncryptedDocumentException, IOException {
 		logger.info("Starting of EmployeeBulkUpload Method");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\EmployeeSheet.xls";
 		String validationSheet = this.importpage.clickOnImportCard(importProp.getProperty("empImportCardName"),

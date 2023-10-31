@@ -22,11 +22,12 @@ public class EmployeeExports extends BaseAutomationTest{
 	private static final String ExportAllConfirmationMsg="The report will be emailed to the registered email address when it is ready.";
     private static final String  EXPORT_SELECTED_STATUS="Data download process is successful.";
 	//Before class test case was execute once class loaded in the jvm
+    
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser"})
-	public void initEffortLogin(String siteUrl,String browser) throws Exception {
+	@Parameters({"siteURL","browser", "headless"})
+	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
-		this.driver=this.getWebDriver(browser, WebDriversEnum.EMPLOYEE_EXPORTS_DRIVER);
+		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empExport=new EmployeeExportPage(driver);
 		this.loginPage = new LoginPage(driver);
@@ -45,6 +46,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
 		this.empExport.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.empExport.clickOnEmployeeModule();
 		this.empExport.clickOnExportOptions();
 		this.empExport.clickOnExportAll();

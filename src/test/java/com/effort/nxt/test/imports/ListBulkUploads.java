@@ -24,10 +24,10 @@ public class ListBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_BULK_IMPORT_STATUS="Processed";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser", "headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.LIST_BULKUPLOAD);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LIST_BULKUPLOAD);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
@@ -48,6 +48,7 @@ public class ListBulkUploads extends BaseAutomationTest{
 	public void listImports() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\List_Template_TestList.xls";
 		String actualStatusMsg=this.importpage.importListUpload(importProp.getProperty("listSpecName"),importSheetPath);

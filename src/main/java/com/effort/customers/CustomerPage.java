@@ -298,7 +298,6 @@ public class CustomerPage extends BaseAutomationPage {
 		this.webAppCard.click();
 		
 		logger.info("Ending of Click on Web App Method ");
-
 	}
 
 	public void ClickonCustomer() {
@@ -513,7 +512,6 @@ public class CustomerPage extends BaseAutomationPage {
 		this.date1Picker.click();
 		
 		logger.info("Ending of clickOnDate1Picker Method");
-
 	}
 
 	public void pickCurrentDate1() throws InterruptedException {
@@ -537,7 +535,8 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of clickOnDateTimePicker Method");
 		
 		waitUntilElementVisible(driver, datetimepicker);
-		this.datetimepicker.click();
+		mouseHoverAndClick(datetimepicker);
+	//	this.datetimepicker.click();
 		
 		logger.info("Ending of clickOnDateTimePicker Method");
 	}

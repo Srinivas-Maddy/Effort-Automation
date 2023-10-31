@@ -23,10 +23,10 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 	
 	//Before class test case was execute once class loaded in the jvm
 		@BeforeClass(alwaysRun = true)
-		@Parameters({"siteURL","browser"})
-		public void initEffortLogin(String siteUrl,String browser) throws Exception {
+		@Parameters({"siteURL","browser", "headless"})
+		public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
 			logger.info("starting of initEfforrt Login Method in work creation process");
-			this.driver=this.getWebDriver(browser, WebDriversEnum.ADD_WORK_PROCESS_DRIVER);
+			this.driver=this.getWebDriver(browser, headless, WebDriversEnum.ADD_WORK_PROCESS_DRIVER);
 			this.goToSite(siteUrl, driver);
 			this.addWork=new AddWorkProcess(driver);
 			this.loginPage = new LoginPage(driver);
@@ -46,6 +46,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		public void AddWork() throws InterruptedException {			
 			logger.info("Starting of the AddWork method");
 			this.addWork.clickOnWebApp();
+			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			this.addWork.clickOnProcessModule();
 			this.addWork.clickOnWorkName();
 			this.addWork.clickOnAddWorkBtn();

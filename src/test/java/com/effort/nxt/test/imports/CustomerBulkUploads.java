@@ -25,10 +25,10 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_CUSTOMER_BULK_DELETE_STATUS="An Email will be sent after successful Deletion of Customers";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" })
-	public void initEffortLogin(String siteURL, String browser) throws Exception {
+	@Parameters({ "siteURL", "browser","headless" })
+	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
-		this.driver = this.getWebDriver(browser, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER);
+		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(testDataProp.getProperty("name"));
@@ -49,6 +49,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	public void customerBulkUpload() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Customer_bulk_upload.xls";
 		String actualStatusMsg=this.importpage.importCustomers(importProp.getProperty("customerBulkUpload"),importSheetPath);

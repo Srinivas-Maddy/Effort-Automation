@@ -201,7 +201,8 @@ public class EmployeeCreation extends BaseAutomationPage {
 	public void managerCheckBox() {
 		logger.info("Starting of managerCheckBox method");
 		waitUntilElementVisible(driver, managerCheckBox);
-		managerCheckBox.click();
+	//	managerCheckBox.click();
+		mouseHoverAndClick(managerCheckBox);
 		logger.info("ending of managerCheckBox method");
 	}
 
