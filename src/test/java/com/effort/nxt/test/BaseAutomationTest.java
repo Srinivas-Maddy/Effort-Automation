@@ -44,6 +44,7 @@ public class BaseAutomationTest {
 	protected static Properties exportDataProp = null;
 	protected static Properties importProp = null;
 	protected static Properties enumProp = null;
+	protected static Properties dayPlannerProp=null;
 	protected String USER_DIR = System.getProperty("user.dir");
 
 	private static Map<WebDriversEnum, WebDriver> webDriverPool = new Hashtable<WebDriversEnum, WebDriver>();
@@ -66,6 +67,7 @@ public class BaseAutomationTest {
 			FileReader leavesDataReader = null;
 			FileReader importsReader = null;
 			FileReader exportReader = null;
+			FileReader dayPlannerReader=null;
 
 			try {
 
@@ -80,6 +82,8 @@ public class BaseAutomationTest {
 				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
 				importsReader = new FileReader("src/main/resources/importCards.properties");
 				exportReader = new FileReader("src/main/resources/ExportDetails.properties");
+				dayPlannerReader=new FileReader("src/main/resources/DayPlanner.properties");
+				
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
 
@@ -110,6 +114,10 @@ public class BaseAutomationTest {
 				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
 
+				
+				dayPlannerProp=new Properties();
+				dayPlannerProp.load(dayPlannerReader);
+			
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {

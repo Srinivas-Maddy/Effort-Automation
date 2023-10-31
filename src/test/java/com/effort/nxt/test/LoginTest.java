@@ -41,11 +41,13 @@ public class LoginTest extends BaseAutomationTest {
 	@Story("Web App login")
 	public void logIn() {
 		logger.info("Starting of logIn method");
+		
 		loginPage.enterUserName(testDataProp.getProperty("name"));
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
         loginPage.clickOnLoginButton();
 		this.loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
         loginPage.clickOnWebApp();
+        
 		logger.info("Ending of logIn method");
 	}
 	

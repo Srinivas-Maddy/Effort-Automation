@@ -29,16 +29,15 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	private static final String expectedEmpSavedMsg = "Saved successfully";
 
 	@BeforeClass (alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
-	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
+
+	@Parameters({"siteURL","browser","userName", "password", "headless"})
+	public void initEffortLogin(String siteUrl,String browser,String userName, String password, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method of Employee process");
+	
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empCreation=new EmployeeCreation(driver);
-		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		this.loginPage.clickOnLoginButton();
+		LoginToApplication(userName, password);
 		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
@@ -76,6 +75,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		//empCreation.clickOnSaveBtn();
 		String actualEmpSavedMsg = empCreation.saveAndValidateEmployeCreated();
 		Assert.assertEquals(actualEmpSavedMsg, expectedEmpSavedMsg);
+		
 		logger.info("Ending of AddEmployee Method");		
 	}
 	
@@ -88,9 +88,11 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Story("Employee modification in list screen")
 	public void modifyEmployee() throws InterruptedException {
 		logger.info("Starting of modifyEmployee Method");
+		
 		empCreation.clickOnFilter();
 		empCreation.filterEmployeeName();
 		empCreation.clickOnEditButton();
+		
 		logger.info("Ending of modifyEmployee Method");
 	}
 	
@@ -102,8 +104,10 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Story("Employee Disable in list screen")
 	public void disableEmployee() throws InterruptedException {
 		logger.info("Starting of Employee Disable Method");
+		
 		empCreation.clickOnFilter();
 		empCreation.disableEmployee();	
+		
 		logger.info("Ending of Employee Disable Method");
 	}
 	
@@ -112,6 +116,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@AfterClass(alwaysRun = true)
 	public void logOutForm() {
 		logger.info("Starting of Log-out Method");
+		
 		empCreation.logOut();	
 
 		logger.info("Ending of log-out Method");
