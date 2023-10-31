@@ -51,7 +51,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 		this.importpage.clickOnWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Customer_bulk_upload.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_bulk_upload.xls";
 		String actualStatusMsg=this.importpage.importCustomers(importProp.getProperty("customerBulkUpload"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_CUSTOMER_BULK_IMPORT_STATUS);
 		logger.info("Ending of Customer Bulk Upload test case");
@@ -67,7 +67,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	public void customerBulkDelete(){
 		logger.info("Starting of Customer bulk delete test case");
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Customer_Bulk_Delete.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_Bulk_Delete.xls";
 		String actualStatusMsg=this.importpage.importCustomerBulkDelete(importProp.getProperty("customerBulkDelete"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_CUSTOMER_BULK_DELETE_STATUS);
 		logger.info("Ending of Customer Bulk Upload Method");
@@ -83,7 +83,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	public void customerIdBulkUpload(){
 		logger.info("Starting of Customer id updated test case");
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Customer_ID_Update.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_ID_Update.xls";
 		this.importpage.importCustomerIdUpadte(importProp.getProperty("customerIdUpload"),importSheetPath);
 		logger.info("Ending of Customer Bulk Upload Method");
 

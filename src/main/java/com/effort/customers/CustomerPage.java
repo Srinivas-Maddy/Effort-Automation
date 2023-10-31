@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -669,7 +670,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of selectAudio Method ");
 		
 		waitUntilElementVisible(driver, customfieldaudio);
-		String audiofilePath = System.getProperty("user.dir") + "\\MediaFiles\\Audofile.mp3";
+		String audiofilePath = System.getProperty("user.dir") + "/MediaFiles/Audofile.mp3";
 		this.customfieldaudio.sendKeys(audiofilePath);
 		
 		logger.info("Ending of selectAudio Method ");
@@ -679,7 +680,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of selectImage Method ");
 		
 		waitUntilElementVisible(driver, this.customfieldimage);
-		String imagefilepath = System.getProperty("user.dir") + "\\MediaFiles\\image.jpg";
+		String imagefilepath = System.getProperty("user.dir") + "/MediaFiles/image.jpg";
 		this.customfieldimage.sendKeys(imagefilepath);
 		
 		logger.info("Ending of selectImage Method ");
@@ -689,7 +690,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of selectSignature Method ");
 		
 		waitUntilElementVisible(driver, this.customfieldsignature);
-		String signatuerfilepath = System.getProperty("user.dir") + "\\MediaFiles\\Signature.jpg";
+		String signatuerfilepath = System.getProperty("user.dir") + "/MediaFiles/Signature.jpg";
 		this.customfieldsignature.sendKeys(signatuerfilepath);
 		
 		logger.info("Ending of selectSignature Method ");
@@ -699,7 +700,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of selectVideo Method ");
 		
 		waitUntilElementVisible(driver, this.customfieldvideo);
-		String videofilepath = System.getProperty("user.dir") + "\\MediaFiles\\Video.mp4";
+		String videofilepath = System.getProperty("user.dir") + "/MediaFiles/Video.mp4";
 		this.customfieldvideo.sendKeys(videofilepath);
 		
 		logger.info("Ending of selectVideo Method ");
@@ -1087,16 +1088,27 @@ public class CustomerPage extends BaseAutomationPage {
 		int count = 0;
 		while (count < this.empNameInDropDown.size()) {
 			String dropdnempname = this.empNameInDropDown.get(count).getText();
-			if (dropdnempname.equalsIgnoreCase(dropdownempname)) {
+			//if (dropdnempname.equalsIgnoreCase(dropdownempname)) {
 				waitUntilElementVisible(driver, this.empNameInDropDown.get(count));
 				this.empNameInDropDown.get(count).click();
 				break;
-			}
-			count++;
+		//	}
+			//count++;
 		}
 		hardWait(3);
 		waitUntilElementVisible(driver, applyBtn);
-		mouseHoverAndClick(applyBtn);
+		try {
+			applyBtn.click();
+		} catch (Exception e) {
+			mouseHoverAndClick(applyBtn);
+		}
+		
+		try {
+			Alert alert = driver.switchTo().alert();
+			alert.accept();
+		} catch (Exception e) {
+			logger.info("No alert displayed");
+		}
 		//this.applyBtn.click();
 		
 		logger.info("Ending of ClickonAssign method");
@@ -1106,6 +1118,7 @@ public class CustomerPage extends BaseAutomationPage {
 		logger.info("Starting of SelectCustmrtoDelete Method");
 		
 		Thread.sleep(500);
+
 		scrollDown(100, form);
 		for (int i = 0; i < 3; i++) {
 			this.custmrmapingcheckbox.get(i).click();

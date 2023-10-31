@@ -50,7 +50,7 @@ public class ListBulkUploads extends BaseAutomationTest{
 		this.importpage.clickOnWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\List_Template_TestList.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/List_Template_TestList.xls";
 		String actualStatusMsg=this.importpage.importListUpload(importProp.getProperty("listSpecName"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_BULK_IMPORT_STATUS);
 		logger.info("Ending of Customer Bulk Upload test case");

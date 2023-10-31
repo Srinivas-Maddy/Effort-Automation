@@ -85,7 +85,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		
 		boolean appliedDataDisplayed= leavesfilterpage.leavesDateValidation();//
 		Assert.assertEquals(appliedDataDisplayed, true);
-		leavesfilterpage.clickOnLeavesFilters();
+		//leavesfilterpage.clickOnLeavesFilters();
 		leavesfilterpage.selectLeaveType(leavesDataProp.getProperty("leavetype"));
 		String actualleavestyperesult= leavesfilterpage.leavesTypeValidation();
 		Assert.assertEquals(actualleavestyperesult, EXPECTED_LEAVES_TYPE);

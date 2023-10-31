@@ -2,6 +2,7 @@ package com.effort.nxt.test.login;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -134,11 +135,30 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		
 		login.logOut(); 
 		if (currentTestMethodName.equals("invalidCreditionals")) {
-			driver.quit();
+			//driver.quit();
 			return;
 		}
 		
 	}
 
+	@AfterMethod(alwaysRun = true)
+	public void quitDriver() {
+		logger.info("Starting of quitDriver Method");
+		
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+		       	driver.quit();
+	       
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	
+		logger.info("Ending of quitDriver Method");
+
+	}
 
 }

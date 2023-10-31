@@ -50,7 +50,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 		this.importpage.clickOnWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Route_Plan_Creation.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Route_Plan_Creation.xls";
 		String acutalSatusMsg=this.importpage.importRoutePlan(importProp.getProperty("routePlan"),importSheetPath);
 		Assert.assertEquals(acutalSatusMsg, EXPECTED_ROUTE_PLAN_IMPORT_STATUS);
 	    logger.info("Ending of Customer Bulk Upload test case");
@@ -65,7 +65,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	public void routePlanUpdation() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Route_Plan_Updation.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Route_Plan_Updation.xls";
 		String acutalSatusMsg=this.importpage.importRoutePlanUpdate(importProp.getProperty("routePlan"),importSheetPath);
 		Assert.assertEquals(acutalSatusMsg, EXPECTED_ROUTE_PLAN_IMPORT_STATUS);
 	    logger.info("Ending of Customer Bulk Upload test case");
@@ -80,7 +80,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	public void routePlanReplace() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		this.importpage.clickOnImports();
-		String importSheetPath=System.getProperty("user.dir")+"\\MediaFiles\\Route_Plan_Creation_Replace.xls";
+		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Route_Plan_Creation_Replace.xls";
 		String acutalSatusMsg=this.importpage.importRoutePlanReplace(importProp.getProperty("routePlan"),importSheetPath);
 		Assert.assertEquals(acutalSatusMsg, EXPECTED_ROUTE_PLAN_IMPORT_STATUS);
 	    logger.info("Ending of Customer Bulk Upload test case");

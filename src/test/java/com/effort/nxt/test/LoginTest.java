@@ -78,5 +78,4 @@ public class LoginTest extends BaseAutomationTest {
 
 	}
 
-	
 }

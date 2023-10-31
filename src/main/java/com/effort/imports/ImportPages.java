@@ -55,7 +55,7 @@ public class ImportPages extends BaseAutomationPage{
 	@FindBy(xpath="//div[contains(text(),'All rows have correct data')]")
 	private WebElement correctDataEmp;
 
-	@FindBy(xpath="//div[contains(text(),'Mapping successfully done')]")
+	@FindBy(xpath="//div[contains(text(),'Import Employee')]/following-sibling::div")
 	private WebElement mappingSheetValidationStatus;
 
 	@FindBy(xpath="//table[@id='empBulkUploads']/tbody/tr[1]/td[7]")

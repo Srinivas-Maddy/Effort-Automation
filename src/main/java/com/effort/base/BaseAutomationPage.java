@@ -407,7 +407,14 @@ public class BaseAutomationPage {
 		try {
 			webElement.click();
 		} catch (Exception e) {
+			try {
+				
 			action.moveToElement(webElement).click().build().perform();
+			} catch (Exception e2) {
+				JavascriptExecutor executor = (JavascriptExecutor)driver;
+				executor.executeScript("arguments[0].click();", webElement);
+			}
+			
 		}
 
 		logger.info("Ending of clickOnWebElement method");
