@@ -70,24 +70,24 @@ public class BaseAutomationPage {
 	public void scrollDown(int scroll, WebElement element) {
 		logger.info("Starting of scrollDown method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
 		js.executeScript("arguments[0].scrollIntoView(true);",element);
-		
+
 		//js.executeScript("arguments[0].scrollIntoView();", element);
 
 		logger.info("Ending of scrollDown method");
 	}
-	
+
 	public void scrollIntoView(WebElement element) {
 		logger.info("Starting of scrollDown method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
 		js.executeScript("arguments[0].scrollIntoView(true);",element);
-		
+
 		//js.executeScript("arguments[0].scrollIntoView();", element);
 
 		logger.info("Ending of scrollDown method");
@@ -142,7 +142,7 @@ public class BaseAutomationPage {
 	public void clickOnWebElementUsingJavascript(WebElement webelement) {
 		logger.info("Starting of clickOnWebElementUsingJavascript method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", webelement);
 
@@ -407,8 +407,13 @@ public class BaseAutomationPage {
 		try {
 			webElement.click();
 		} catch (Exception e) {
-			action.moveToElement(webElement).click().build().perform();
-		}
+			try {
+				action.moveToElement(webElement).click().build().perform();
+			}catch(Exception e2) {
+				JavascriptExecutor executor = (JavascriptExecutor)driver;
+				executor.executeScript("arguments[0].click();", webElement);
+			}
+		} 
 
 		logger.info("Ending of clickOnWebElement method");
 

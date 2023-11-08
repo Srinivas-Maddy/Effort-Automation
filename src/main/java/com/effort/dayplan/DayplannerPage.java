@@ -2,17 +2,17 @@ package com.effort.dayplan;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.log4testng.Logger;
 
 import com.effort.base.BaseAutomationPage;
 
 public class DayplannerPage extends BaseAutomationPage{
 
-	private static final Logger logger= Logger.getLogger(DayplannerPage.class.getClass());
+	private static final Logger logger= Logger.getLogger(DayplannerPage.class);
 
 	@FindBy(xpath="//ul[@id='orderedUl']/li[@id='dots']")
 	private WebElement meatBallsMenu;
@@ -37,6 +37,9 @@ public class DayplannerPage extends BaseAutomationPage{
 
 	@FindBy(id="save1")
 	private WebElement save_Btn;
+	
+	@FindBy(xpath="//input[@id='customEntityDialogButton']")
+	private List<WebElement> entityNames_Btn;
 
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -53,7 +56,7 @@ public class DayplannerPage extends BaseAutomationPage{
 		logger.info("Starting of clickOnMeatBallsMenu Method");
 
 		waitUntilElementVisible(driver, this.meatBallsMenu);
-		this.meatBallsMenu.click();
+		clickOnWebElement(this.meatBallsMenu);
 
 		logger.info("Ending of clickOnMeataBallsMenu Method");
 	}
@@ -65,7 +68,7 @@ public class DayplannerPage extends BaseAutomationPage{
 			String menuItemNames=this.menuItems.get(i).getText();
 			if (menuItemNames.equalsIgnoreCase("Day Plans")) {
 				waitUntilElementVisible(driver, this.menuItems.get(i));
-				this.menuItems.get(i).click();
+				clickOnWebElement(this.menuItems.get(i));
 				break;
 			}
 		}
@@ -82,7 +85,7 @@ public class DayplannerPage extends BaseAutomationPage{
 			String employeeName=this.employeesList.get(i).getText();
 			if (employeeName.equalsIgnoreCase(empName)) {
 				waitUntilElementVisible(driver, this.employeesList.get(i));
-				this.employeesList.get(i).click();
+				clickOnWebElement(this.employeesList.get(i));
 				break;
 			}
 		}
@@ -94,7 +97,7 @@ public class DayplannerPage extends BaseAutomationPage{
 		logger.info("Starting of clickOnAddCustomerButton Method");
 
 		waitUntilElementVisible(driver, this.addCustomer_Btn);
-		this.addCustomer_Btn.click();
+		clickOnWebElement(this.addCustomer_Btn);
 
 		logger.info("Ending of clickOnAddCustomerButton Method");
 	}
@@ -133,7 +136,7 @@ public class DayplannerPage extends BaseAutomationPage{
 		logger.info("Starting of clickOnOkButton Method");
 
 		waitUntilElementVisible(driver, this.ok_Btn);
-		this.ok_Btn.click();
+		clickOnWebElement(this.ok_Btn);
 
 		logger.info("Ending of clickOnOkButton Method");
 	}
@@ -150,9 +153,28 @@ public class DayplannerPage extends BaseAutomationPage{
 		
 		return message;
 	}
+	
+	public void clickOnEntityButton(String entityName) {
+		logger.info("Starting of clickOnEntityButton Method");
+		
+		for (int i = 0; i < this.entityNames_Btn.size(); i++) {
+			String entitySpecName=this.entityNames_Btn.get(i).getAttribute("value");
+			if (entitySpecName.equalsIgnoreCase(entityName)) {
+				waitUntilElementVisible(driver, this.entityNames_Btn.get(i));
+				clickOnWebElement(this.entityNames_Btn.get(i));
+				break;
+			}
+		}
+		
+		logger.info("Ending of clickOnEntityButton Method");;
+	}
+	
+	
+	
 
 	public void LogOut() {
 		logger.info("Starting of LogOut Method");
+		
 		hardWait(3);
 		waitUntilElementVisible(driver, userNameBtn);
 		mouseHoverAndClick(userNameBtn);
