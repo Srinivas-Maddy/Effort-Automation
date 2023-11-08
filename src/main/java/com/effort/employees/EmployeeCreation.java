@@ -264,7 +264,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 			// Employee Id Photo image
 			else if (labelName.equalsIgnoreCase("Employee Photo:")) {
 				waitUntilElementVisible(driver, this.chooseEmpImage);
-				String pathFile = System.getProperty("user.dir") + "\\MediaFiles\\IDCardPhoto.jpg";
+				String pathFile = System.getProperty("user.dir") + "/MediaFiles/IDCardPhoto.jpg";
 				this.chooseEmpImage.sendKeys(pathFile);
 
 			}

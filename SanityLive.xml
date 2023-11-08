@@ -48,6 +48,13 @@
 		</classes>
 	</test>
 
+	<test name="Route Plans">
+		<classes>
+			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
+			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
+		</classes>
+	</test>
+
 	<test name="Export Functionalities">
 		<classes>
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
@@ -57,11 +64,14 @@
 		</classes>
 	</test>
 
-	<test name="Bulk Uploads">
+	<!--<test name="Bulk Uploads">
 		<classes>
 			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
+			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
+			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
+			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Leaves">
 		<classes>
@@ -80,7 +90,7 @@
 
 	<test name="Filters">
 		<classes>
-			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
+			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>

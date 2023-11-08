@@ -65,7 +65,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		this.importpage.clickOnWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\EmployeeSheet.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/EmployeeSheet.xls";
 		String validationSheet = this.importpage.clickOnImportCard(importProp.getProperty("empImportCardName"),
 				importSheetPath);
 		Assert.assertEquals(validationSheet, EXPECTED_SHEET_VALIDATION);
@@ -83,7 +83,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeCustomerMapping() throws InterruptedException {
 		logger.info("Starting of Emp Customer Mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\EmployeeCustomerMapping.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/EmployeeCustomerMapping.xls";
 		String validationSheet = this.importpage.importCustomerMapping(importProp.getProperty("empCustomerMapping"),
 				importSheetPath);
 		Assert.assertEquals(validationSheet, EXPECTED_EMP_CUSTOMER_MAPPING_STATUS);
@@ -100,7 +100,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeCustomerTypeMapping() throws InterruptedException {
 		logger.info("Starting of Emp Customer type Mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\EmployeeCustomerTypeMapping.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/EmployeeCustomerTypeMapping.xls";
 		String actualStatusMsg = this.importpage
 				.importEmployeeCustomerTypeMapping(importProp.getProperty("empCustomer"), importSheetPath);
 		Assert.assertEquals(actualStatusMsg, EXPECTED_EMP_CUSTOMER_TYPE_MAPPING_STATUS);
@@ -116,7 +116,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeRoutePlanMapping() throws InterruptedException {
 		logger.info("Starting of Emp Route Plan mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_Route_Plan_Mapping.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_Route_Plan_Mapping.xls";
 		String actualStatusMsg = this.importpage.importRoutePlanMapping(importProp.getProperty("empRouteMapping"),
 				importSheetPath);
 		Assert.assertEquals(actualStatusMsg, EXPECTED_ROUTE_MAPPING_STATUS);
@@ -132,7 +132,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeRouteAssignment() throws InterruptedException {
 		logger.info("Starting of Emp Route Plan Assignment Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_Route_Plan_Assignment.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_Route_Plan_Assignment.xls";
 		String actualStatusMsg = this.importpage.importRouteAssignment(importProp.getProperty("empRoutePlanAssignment"),
 				importSheetPath);
 		Assert.assertEquals(actualStatusMsg, EXPECTED_ROUTE_ASSIGNMENT);
@@ -148,7 +148,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeLeaveBalance() throws InterruptedException {
 		logger.info("Starting of Emp Leave Balance Mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_leave_balance.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_leave_balance.xls";
 		String actualStatusMsg = this.importpage.importEmployeeLeaveBalance(importProp.getProperty("empLeaveBalance"),
 				importSheetPath);
 		Assert.assertEquals(actualStatusMsg, EXPECTED_EMP_LEAVE_BALANCE_STATUS);
@@ -164,7 +164,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeIDUpdate() throws InterruptedException {
 		logger.info("Starting of Emp Id Update Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_ID_Update.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_ID_Update.xls";
 		String actualStatusMsg = this.importpage.importEmployeeIDUpdate(importProp.getProperty("empIdUpdate"),
 				importSheetPath);
 		Assert.assertEquals(actualStatusMsg, EXPECTED_EMP_ID_UPDATE_STATUS);
@@ -180,7 +180,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeWorkReassignment() throws InterruptedException {
 		logger.info("Starting of Work Reassignment Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_Work_Reassignment.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_Work_Reassignment.xls";
 		String actualStatusMsg = this.importpage.importEmployeeWorkReassignment(
 				importProp.getProperty("empBulkWorkReassignment"), importSheetPath,
 				importProp.getProperty("workSpecName"));
@@ -197,7 +197,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeTerriotryMapping() throws InterruptedException {
 		logger.info("Starting of Emp Terriotry Mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\Employee_Territory_Mapping.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/Employee_Territory_Mapping.xls";
 		String actualEmpTerritoryStatus = this.importpage
 				.importEmpTerritoryMapping(importProp.getProperty("employeeTerritoryMapping"), importSheetPath);
 		Assert.assertEquals(actualEmpTerritoryStatus, EXPECTED_TERRITORY_MAPPING_STATUS);
@@ -214,7 +214,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	public void employeeListMapping() throws InterruptedException {
 		logger.info("Starting of Emp List Mapping Method");
 		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "\\MediaFiles\\ListItemsEmployeeMapping.xls";
+		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/ListItemsEmployeeMapping.xls";
 		this.importpage.importEmployeeListMapping(importProp.getProperty("empListMapping"), importSheetPath,
 				importProp.getProperty("listSpecName"));
 		logger.info("Ending of Emp List Mapping Method");

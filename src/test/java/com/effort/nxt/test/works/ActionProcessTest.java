@@ -160,7 +160,7 @@ public class ActionProcessTest extends BaseAutomationTest {
 	public void logout() {
 		logger.info("Starting of logout method");
 		
-			driver.close();
+			driver.quit();
 			
 		}
 

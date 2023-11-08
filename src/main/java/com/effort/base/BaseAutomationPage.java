@@ -415,6 +415,7 @@ public class BaseAutomationPage {
 			}
 		} 
 
+
 		logger.info("Ending of clickOnWebElement method");
 
 	}

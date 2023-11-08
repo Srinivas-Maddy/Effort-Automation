@@ -427,7 +427,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void pickEntityAudio() {
 		logger.info("Starting of pickEntityAudio Method");
 		waitUntilElementVisible(driver, this.entityaudio);
-		String audiopath= System.getProperty("user.dir")+ "\\MediaFiles\\Audofile.mp3";
+		String audiopath= System.getProperty("user.dir")+ "/MediaFiles/Audofile.mp3";
 		this.entityaudio.sendKeys(audiopath);	
 		logger.info("Ending of pickEntityAudio Method");
 	}
@@ -435,7 +435,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void pickEntityDocument() {
 		logger.info("Starting of pickDocument Method");
 		waitUntilElementVisible(driver, this.entitydocument);
-		String documentpath= System.getProperty("user.dir")+ "\\MediaFiles\\Documentfile.xlsx";
+		String documentpath= System.getProperty("user.dir")+ "/MediaFiles/Documentfile.xlsx";
 		this.entitydocument.sendKeys(documentpath);		
 		logger.info("Ending of pickDocument Method");
 	}
@@ -443,21 +443,21 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void pickEntityImage() {
 		logger.info("Starting of pickEntityImage Method");
 		waitUntilElementVisible(driver, this.entityimage);
-		String imagepath= System.getProperty("user.dir")+ "\\MediaFiles\\image.jpg";
+		String imagepath= System.getProperty("user.dir")+ "/MediaFiles/image.jpg";
 		this.entityimage.sendKeys(imagepath);		
 		logger.info("Ending of pickEntityImage Method");
 	}
 	public void pickEntitySignature() {
 		logger.info("Starting of pickEntitySignature Method");
 		waitUntilElementVisible(driver, this.entitysignature);
-		String signaturepath= System.getProperty("user.dir")+ "\\MediaFiles\\Signature.jpg";
+		String signaturepath= System.getProperty("user.dir")+ "/MediaFiles/Signature.jpg";
 		this.entitysignature.sendKeys(signaturepath);		
 		logger.info("Ending of pickEntitySignature Method");
 	}
 	public void pickEntityVideo() {
 		logger.info("Starting of pickEntityVideo Method");
 		waitUntilElementVisible(driver, this.entityvideo);
-		String videopath= System.getProperty("user.dir")+ "\\MediaFiles\\Video.mp4";
+		String videopath= System.getProperty("user.dir")+ "/MediaFiles/Video.mp4";
 		this.entityvideo.sendKeys(videopath);		
 		logger.info("Ending of pickEntityVideo Method");
 	}

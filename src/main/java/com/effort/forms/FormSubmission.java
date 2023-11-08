@@ -447,7 +447,7 @@ public class FormSubmission extends BaseAutomationPage {
 		logger.info("Starting of audioData method");
 		waitUntilElementVisible(driver, this.audioField);
 		this.audioField.click();
-		String pathExeFile = System.getProperty("user.dir") + "\\AutoIt\\AudioScript.exe";
+		String pathExeFile = System.getProperty("user.dir") + "/AutoIt/AudioScript.exe";
 		// String pathExeFile=System.getProperty("user.dir")+
 		// "\\Autoit\\AudioScript.exe";
 		Runtime.getRuntime().exec(pathExeFile);
@@ -461,7 +461,7 @@ public class FormSubmission extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.documentField);
 		this.documentField.click();
 		Thread.sleep(5000);
-		String pathExeFile = System.getProperty("user.dir") + "\\AutoIt\\Documentpicker.exe";
+		String pathExeFile = System.getProperty("user.dir") + "/AutoIt/Documentpicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of documentUpload method");
@@ -473,7 +473,7 @@ public class FormSubmission extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.imageField);
 		this.imageField.click();
 		Thread.sleep(3000);
-		String pathExeFile = System.getProperty("user.dir") + "\\AutoIt\\ImagePicker.exe";
+		String pathExeFile = System.getProperty("user.dir") + "/AutoIt/ImagePicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of imageUpload method");
@@ -485,7 +485,7 @@ public class FormSubmission extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.videoField);
 		this.videoField.click();
 		Thread.sleep(3000);
-		String pathExeFile = System.getProperty("user.dir") + "\\AutoIt\\VideoPicker.exe";
+		String pathExeFile = System.getProperty("user.dir") + "/AutoIt/VideoPicker.exe";
 		Runtime.getRuntime().exec(pathExeFile);
 		Thread.sleep(5000);
 		logger.info("Ending of videoUpload method");
