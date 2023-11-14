@@ -102,13 +102,6 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	}
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() throws InterruptedException {
-		logger.info("Starting of Log-out Method");
-		this.processCreation.logOut();
-	
-		logger.info("Ending of log-out Method");
-	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

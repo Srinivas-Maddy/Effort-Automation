@@ -95,13 +95,13 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	}
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logoutEntitites() {
-		logger.info("Starting of logoutEntitites Method");		
-		entitiesprocess.logOutEntitites();	
-		
-		logger.info("Ending of logoutEntitites Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logoutEntitites() {
+//		logger.info("Starting of logoutEntitites Method");		
+//		entitiesprocess.logOutEntitites();	
+//		
+//		logger.info("Ending of logoutEntitites Method");
+//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

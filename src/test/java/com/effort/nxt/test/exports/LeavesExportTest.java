@@ -71,14 +71,14 @@ public class LeavesExportTest extends BaseAutomationTest{
 		
 		logger.info("Ending of leavesExportFiltered Method");		
 	}
-	
-	@AfterClass(alwaysRun=true)
-	public void leavesLogOut(){
-		logger.info("Starting of leavesLogOut Method");
-		this.leavesexportpage.logOut();
-		
-		logger.info("Ending of leavesLogOut Method");
-	}
+//	
+//	@AfterClass(alwaysRun=true)
+//	public void leavesLogOut(){
+//		logger.info("Starting of leavesLogOut Method");
+//		this.leavesexportpage.logOut();
+//		
+//		logger.info("Ending of leavesLogOut Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

@@ -176,7 +176,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//ul[@class='select2-results']//li//div")
 	private List<WebElement> Yesvalue;
 
-	@FindBy(xpath = "//a[text()='					Click here to Select Lists']")
+	@FindBy(xpath = "//a[contains(text(),'Click here to Select Lists')]")
 	private WebElement multipicklistfield;
 
 	@FindBy(xpath = "((//div[@class='pq-cont']/table/tbody/tr)[3]/td)[2]")
@@ -780,7 +780,8 @@ public class CustomerPage extends BaseAutomationPage {
 		
 		scrollDown(100, multipicklistfield);
 		waitUntilElementVisible(driver, this.multipicklistfield);
-		this.multipicklistfield.click();
+		clickOnWebElement(this.multipicklistfield);
+		hardWait(5);
 		waitUntilElementVisible(driver, this.multipicklistvalues);
 		this.multipicklistvalues.click();
 		waitUntilElementVisible(driver, this.multipickokbtn);
@@ -791,11 +792,21 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
+		try {
+			scrollIntoView(multiselectdropdownfield);
+			waitUntilElementVisible(driver, this.multiselectdropdownfield);
+			clickOnWebElement(multiselectdropdownfield);
+			waitUntilElementVisible(driver, this.multiselectdropdownvalue);
+			clickOnWebElement(multiselectdropdownvalue);
+			
+		}catch (Exception e) {
+			scrollIntoView(multiselectdropdownfield);
+			waitUntilElementVisible(driver, this.multiselectdropdownfield);
+			clickOnWebElement(multiselectdropdownfield);
+			waitUntilElementVisible(driver, this.multiselectdropdownvalue);
+			clickOnWebElement(multiselectdropdownvalue);
+		}
 		
-		waitUntilElementVisible(driver, this.multiselectdropdownfield);
-		this.multiselectdropdownfield.click();
-		waitUntilElementVisible(driver, this.multiselectdropdownvalue);
-		this.multiselectdropdownvalue.click();
 		
 		logger.info("Ending of pickMultiSelectDropDown Method");
 	}

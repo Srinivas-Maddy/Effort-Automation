@@ -166,16 +166,16 @@ public class CustomerTest extends BaseAutomationTest {
 	}
 
 	
-	@AfterClass(alwaysRun = true)
-	public void LogOutCustomer() {
-		logger.info("Starting of LogOutCustomer Method");
-		
-		custmrCreation.LogOut();
-	
-		logger.info("Ending of LogOutCustomer Method");
-
-	}
-	
+//	@AfterClass(alwaysRun = true)
+//	public void LogOutCustomer() {
+//		logger.info("Starting of LogOutCustomer Method");
+//		
+//		custmrCreation.LogOut();
+//	
+//		logger.info("Ending of LogOutCustomer Method");
+//
+//	}
+//	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");

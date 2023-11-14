@@ -113,14 +113,14 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() {
-		logger.info("Starting of Log-out Method");
-		
-		empCreation.logOut();	
-
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutForm() {
+//		logger.info("Starting of Log-out Method");
+//		
+//		empCreation.logOut();	
+//
+//		logger.info("Ending of log-out Method");
+//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

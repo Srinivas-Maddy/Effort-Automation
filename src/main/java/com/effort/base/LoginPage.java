@@ -29,7 +29,7 @@ public class LoginPage extends BaseAutomationPage {
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement btnUserName;
 
-	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
+	@FindBy(xpath = "//ul[@class='profile-list']/li/a")
 	private List<WebElement> btnlogout;
 
 	@FindBy(xpath = "//span[contains(text(),'Multiple active sessions detected')]")
@@ -115,7 +115,7 @@ public class LoginPage extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, btnUserName);
 		btnUserName.click();
-		if (btnlogout.get(btnlogout.size() - 1).getText().equalsIgnoreCase("Logout")) {
+		if (btnlogout.get(btnlogout.size() - 1).getText().equalsIgnoreCase("LogOut")) {
 			hardWait(2);
 			btnlogout.get(btnlogout.size() - 1).click();
 		}

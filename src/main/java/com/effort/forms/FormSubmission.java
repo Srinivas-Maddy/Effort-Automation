@@ -533,14 +533,30 @@ public class FormSubmission extends BaseAutomationPage {
 
 	public void pickMultiPickCustomer() {
 		logger.info("Starting of pick Multi-Select Customer method");
-		waitUntilElementVisible(driver, this.multiPicker);
-		this.multiPicker.click();
-		hardWait(2);
-		waitUntilElementVisible(driver, this.multiCustomerlistFirstItem);
-		this.multiCustomerlistFirstItem.click();
-		waitUntilElementVisible(driver, this.multiCustomerlistSecondItem);
-		this.multiCustomerlistSecondItem.click();
-		this.okBtn.click();
+		
+		
+		try {
+			waitUntilElementVisible(driver, this.multiPicker);
+			scrollIntoView(multiPicker);
+			this.multiPicker.click();
+			hardWait(2);
+			waitUntilElementVisible(driver, this.multiCustomerlistFirstItem);
+			this.multiCustomerlistFirstItem.click();
+			waitUntilElementVisible(driver, this.multiCustomerlistSecondItem);
+			this.multiCustomerlistSecondItem.click();
+			this.okBtn.click();
+			
+			
+		}catch (Exception e) {
+			waitUntilElementVisible(driver, this.multiPicker);
+			this.multiPicker.click();
+			hardWait(2);
+			waitUntilElementVisible(driver, this.multiCustomerlistFirstItem);
+			this.multiCustomerlistFirstItem.click();
+			waitUntilElementVisible(driver, this.multiCustomerlistSecondItem);
+			this.multiCustomerlistSecondItem.click();
+			this.okBtn.click();		}
+		
 		logger.info("Ending of pick Multi-Select Customer method");
 	}
 

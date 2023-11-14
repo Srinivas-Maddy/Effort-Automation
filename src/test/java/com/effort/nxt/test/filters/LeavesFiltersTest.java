@@ -118,13 +118,13 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void entityLeavesLogout() throws InterruptedException {
-		logger.info("Starting of entityLeavesLogout Method");
-		leavesfilterpage.filtersLeavesLogout();
-
-		logger.info("Ending of entityLeavesLogout Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void entityLeavesLogout() throws InterruptedException {
+//		logger.info("Starting of entityLeavesLogout Method");
+//		leavesfilterpage.filtersLeavesLogout();
+//
+//		logger.info("Ending of entityLeavesLogout Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

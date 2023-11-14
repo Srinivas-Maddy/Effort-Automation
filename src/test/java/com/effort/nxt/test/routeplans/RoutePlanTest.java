@@ -124,14 +124,14 @@ public class RoutePlanTest extends BaseAutomationTest {
 		logger.info("Ending of verifyEditingAssignedRoutePlan Method");
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void logOutRoutes() throws InterruptedException {
-		logger.info("Starting of logOutRoutes Method");
-
-		routeplanspage.routesLogOut();
-
-		logger.info("Ending of logOutRoutes Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutRoutes() throws InterruptedException {
+//		logger.info("Starting of logOutRoutes Method");
+//
+//		routeplanspage.routesLogOut();
+//
+//		logger.info("Ending of logOutRoutes Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

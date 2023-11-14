@@ -91,13 +91,13 @@ public class LeavesTest extends BaseAutomationTest{
 		
 	}
 	
-	@AfterClass(alwaysRun = true)
-	public void leavesLogout() throws InterruptedException {
-		logger.info("Starting of leavesLogout Method");
-		leavespage.leavesLogOut();
-		logger.info("Ending of leavesLogout Method");
-	}
-	
+//	@AfterClass(alwaysRun = true)
+//	public void leavesLogout() throws InterruptedException {
+//		logger.info("Starting of leavesLogout Method");
+//		leavespage.leavesLogOut();
+//		logger.info("Ending of leavesLogout Method");
+//	}
+//	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");

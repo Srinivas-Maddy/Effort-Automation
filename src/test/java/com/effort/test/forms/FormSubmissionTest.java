@@ -89,12 +89,12 @@ public class FormSubmissionTest extends BaseAutomationTest{
 		
 	}
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() {
-		logger.info("Starting of Log-out Method");
-		formSub.logOut();	
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutForm() {
+//		logger.info("Starting of Log-out Method");
+//		formSub.logOut();	
+//		logger.info("Ending of log-out Method");
+//	}
 		
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

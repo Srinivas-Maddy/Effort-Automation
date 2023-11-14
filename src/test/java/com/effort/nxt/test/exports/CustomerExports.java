@@ -96,13 +96,13 @@ public class CustomerExports extends BaseAutomationTest {
 		
 	}
 	
-	@AfterClass(alwaysRun=true)
-	public void logOut(){
-		logger.info("Starting of Log-out Method");
-		this.custmrExpt.logOut();	
-		
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun=true)
+//	public void logOut(){
+//		logger.info("Starting of Log-out Method");
+//		this.custmrExpt.logOut();	
+//		
+//		logger.info("Ending of log-out Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

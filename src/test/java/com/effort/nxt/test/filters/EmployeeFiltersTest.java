@@ -81,15 +81,15 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 		logger.info("Ending of employeeFilters Method");
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void employeeFiltersLogout() throws InterruptedException {
-		logger.info("Starting of employeeFiltersLogout Method");
-		
-		employeefilterspage.employeeFiltersLogOut();
-		
-		logger.info("Ending of employeeFiltersLogout Method");
-		
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void employeeFiltersLogout() throws InterruptedException {
+//		logger.info("Starting of employeeFiltersLogout Method");
+//		
+//		employeefilterspage.employeeFiltersLogOut();
+//		
+//		logger.info("Ending of employeeFiltersLogout Method");
+//		
+//	}
 	
 	
 	@AfterClass(alwaysRun = true)

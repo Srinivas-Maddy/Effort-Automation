@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
-	<!-- <parameter name="siteURL"
-		value="https://secure.spoors.io/effortx/login" /> -->
+	<!--<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />-->
+	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@123" />
-
 	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
 
 	<listeners>
@@ -18,7 +17,7 @@
 		</classes>
 	</test>
 
-	<test name="Employee Module">
+  <test name="Employee Module">
 		<classes>
 			<class
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
@@ -55,14 +54,14 @@
 		</classes>
 	</test>
 
-	<!--<test name="Bulk Uploads">
+	<test name="Bulk Uploads">
 		<classes>
 			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
 			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
 			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
 			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="Leaves">
 		<classes>
@@ -85,12 +84,20 @@
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
 	</test>
+	
+	<test name="Route Plans">
+		<classes>
+			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
+			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
+		</classes>
+	</test>
 
 	<test name="Web Logins">
 		<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
 		</classes>
 	</test>
+
 
 
 </suite>

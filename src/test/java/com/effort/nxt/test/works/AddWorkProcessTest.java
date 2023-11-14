@@ -60,13 +60,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 			logger.info("Ending the Addwork Method");					
 		}
 		
-		@AfterClass(alwaysRun = true)
-		public void logOutForm() {
-			logger.info("Starting of Log-out Method");
-			addWork.logOut();	
-		
-			logger.info("Ending of log-out Method");
-		}
+
 
 		@AfterClass(alwaysRun = true)
 		public void quitDriver() {

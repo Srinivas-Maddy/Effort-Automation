@@ -56,14 +56,8 @@ public class LoginTest extends BaseAutomationTest {
 	@AfterClass (alwaysRun = true)
 	public void logout() {
 		logger.info("Starting of logout method");
-		loginPage.logOut();
-		
-	}
+		loginPage.logOut();	
 
-	@AfterClass(alwaysRun = true)
-	public void quitDriver() {
-		logger.info("Starting of quitDriver Method");
-		
 		try {
 
 			if (this.driver != null) {
@@ -77,7 +71,27 @@ public class LoginTest extends BaseAutomationTest {
 		}
 	
 		logger.info("Ending of quitDriver Method");
-
+		
 	}
+
+//	@AfterClass(alwaysRun = true)
+//	public void quitDriver() {
+//		logger.info("Starting of quitDriver Method");
+//		
+//		try {
+//
+//			if (this.driver != null) {
+//				Thread.sleep(5000);
+//		       	driver.quit();
+//	       
+//				logger.info("Driver quit successfully");
+//			}
+//		} catch (Exception ex) {
+//			logger.error(ex.getMessage());
+//		}
+//	
+//		logger.info("Ending of quitDriver Method");
+//
+//	}
 
 }
