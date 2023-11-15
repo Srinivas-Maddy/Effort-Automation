@@ -53,6 +53,8 @@ public class LoginTest extends BaseAutomationTest {
 	
 	
 	
+	
+	
 	@AfterClass (alwaysRun = true)
 	public void logout() {
 		logger.info("Starting of logout method");
