@@ -2,6 +2,7 @@ package com.effort.nxt.test.login;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,6 +22,7 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	private String expectedInvalidLoginMessage="Invalid Email/Password.";
 	private WebAppLogins login=null;
 	private String currentTestMethodName =null;
+	private String currentMethodName =null;
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters({ "siteURL", "browser", "headless" })
@@ -35,94 +37,98 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	@Test(priority = 1, description = " Test Case #1 , LogIn", groups = {"sanity"})
 	@Description("Test Case #1, Valid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({ "siteURL", "browser", "headless" , "userName", "password"})
 	@Story("Web App login")
-	public void WelcomScreen() {
+	public void WelcomScreen(String siteURL, String browser, String headless,String userName, String password) {
 		logger.info("Starting of logIn method");
-		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		login.enterUserName(testDataProp.getProperty("name"));
-		login.clickOnPassword(testDataProp.getProperty("password1"));
-		login.clickOnLoginButton();
+		
+		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
+
+		LoginToApplication(userName, password);
+
 		logger.info("Ending of logIn method");
 	}
 
-	@Test(priority = 2, description = " Test Case #3 , Validating Web App Page", groups = {"sanity"})
+	@Test(priority = 2, description = " Test Case #2 , Validating Web App Page", groups = {"sanity"})
 	@Description("Test Case #2, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({ "siteURL", "browser", "headless" , "userName", "password"})
 	@Story("Web App login")
-	public void WebAppHomeScree(){
+	public void WebAppHomeScreen(String siteURL, String browser, String headless,String userName, String password){
   
 		logger.info("Starting of clickOnWebApp method");
-		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		login.enterUserName(testDataProp.getProperty("name"));
-		login.clickOnPassword(testDataProp.getProperty("password1"));
-		login.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+
+		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
+
+		LoginToApplication(userName, password);
 		login.clickOnWebApp();
+		
 		logger.info("Ending of clickOnWebApp method");
 
 	}
 	
 
 	@Test(priority = 3, description = " Test Case #3 , Validating AppBuilder Page", groups = {"sanity"})
-	@Description("Test Case #2, Click on WebApp")
+	@Description("Test Case #3, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({ "siteURL", "browser", "headless" , "userName", "password"})
 	@Story("Web App login")
-	public void AppBuilderHomeScreen(){
+	public void AppBuilderHomeScreen(String siteURL, String browser, String headless,String userName, String password){
 		logger.info("Starting of clickOnWebApp method");
-		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		login.enterUserName(testDataProp.getProperty("name"));
-		login.clickOnPassword(testDataProp.getProperty("password1"));
-		login.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		
+		currentTestMethodName = Thread.currentThread().getStackTrace()[0].getMethodName();
+		LoginToApplication(userName, password);
 		login.clickOnAppBuilder();
+		
 		logger.info("Ending of clickOnWebApp method");
 
 	}
 	
 
-	@Test(priority = 4, description = " Test Case #3 , Validating Report studio Page", groups = {"sanity"})
-	@Description("Test Case #2, Click on Report Studio")
+	@Test(priority = 4, description = " Test Case #4 , Validating Report studio Page", groups = {"sanity"})
+	@Description("Test Case #4, Click on Report Studio")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({ "siteURL", "browser", "headless" , "userName", "password"})
 	@Story("Web App login")
-	public void ReportStudioHomeScreen(){
+	public void ReportStudioHomeScreen(String siteURL, String browser, String headless,String userName, String password){
 		logger.info("Starting of clickOnWebApp method");
+		
+		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
 		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		login.enterUserName(testDataProp.getProperty("name"));
-		login.clickOnPassword(testDataProp.getProperty("password1"));
-		login.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		LoginToApplication(userName, password);
 		login.clickOnReportStudio();
+		
 		logger.info("Ending of clickOnWebApp method");
 	}
 	
 
-	@Test(priority = 5, description = " Test Case #3 , Click on App Builder", groups = {"sanity"})
-	@Description("Test Case #2, Click on WebApp")
+	@Test(priority = 5, description = " Test Case #5 , Click on App Builder", groups = {"sanity"})
+	@Description("Test Case #5, Click on WebApp")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({ "siteURL", "browser", "headless" , "userName", "password"})
 	@Story("Web App login")
-	public void InviteEmployeeScreen(){
+	public void InviteEmployeeScreen(String siteURL, String browser, String headless,String userName, String password){
 		logger.info("Starting of clickOnWebApp method");
-		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		login.enterUserName(testDataProp.getProperty("name"));
-		login.clickOnPassword(testDataProp.getProperty("password1"));
-		login.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
+		
+		LoginToApplication(userName, password);
 		login.inviteEmp("Srinivas", "Maddy Inv 01");
+		
 		logger.info("Ending of clickOnWebApp method");
 	}
 	
 
-	@Test(priority = 6, description = " Test Case #2 , Invalid LogIn Details")
-	@Description("Test Case #2, Invalid Username and password")
+	@Test(priority = 6, description = " Test Case #6 , Invalid LogIn Details", groups = {"NA"})
+	@Description("Test Case #6, Invalid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
 	public void invalidCreditionals(){
 		logger.info("Starting of invalidCreditionals method");
-		currentTestMethodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		currentMethodName = new Throwable().getStackTrace()[0].getMethodName();
+
 		login.enterUserName(testDataProp.getProperty("name"));
 		login.clickOnPassword("Test@123");
 		login.clickOnLoginButton();	
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
 		String actualError=login.getErrorMessage();
 		Assert.assertEquals(actualError, expectedInvalidLoginMessage);
 		logger.info("Ending of invalidCreditionals method");
@@ -133,13 +139,13 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 	public void logout() {
 		logger.info("Starting of logout method");
 		
-		login.logOut(); 
-		if (currentTestMethodName.equals("invalidCreditionals")) {
-			//driver.quit();
-			return;
-		}
+		logger.debug(currentMethodName);
+		if (!currentMethodName.equals("invalidCreditionals")) {
+		loginPage.logOut();
 		
+		}
 	}
+
 
 	@AfterMethod(alwaysRun = true)
 	public void quitDriver() {
@@ -160,5 +166,4 @@ public class WebAppLoginTest  extends BaseAutomationTest{
 		logger.info("Ending of quitDriver Method");
 
 	}
-
 }

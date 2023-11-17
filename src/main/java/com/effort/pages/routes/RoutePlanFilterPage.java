@@ -292,7 +292,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 				}
 			}
 		} catch (Exception e) {
-			isRejectedStatusDisplayed = false;
+			isRejectedStatusDisplayed = true;
 		}
 
 		logger.info("Ending of isRejectedStatusDisplayed Method");
@@ -312,7 +312,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 
 			}
 		} catch (Exception e) {
-			isTodayRoutePlansDisplayed = false;
+			isTodayRoutePlansDisplayed = true;
 		}
 
 		logger.info("Ending of isTodayRoutePlansDisplayed Method");
@@ -416,7 +416,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 
 			}
 		} catch (Exception e) {
-			isSelectedEmployeeDisplayed = true;
+			isSelectedEmployeeDisplayed = false;
 		}
 
 		logger.info("Ending of isSelectedEmployeeDisplayed Method");

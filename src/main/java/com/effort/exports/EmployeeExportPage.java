@@ -135,9 +135,8 @@ public class EmployeeExportPage extends BaseAutomationPage{
               this.exportOptionsList.get(i).click();
               Thread.sleep(10000);
               this.switchWindow();
-              Thread.sleep(6000);
-              waitUntilElementVisible(driver, this.exportSelectedStatus);
-              
+              hardWait(5);
+              waitUntilElementVisible(driver, this.exportSelectedStatus);       
               exportSelectedActual=this.exportSelectedStatus.getText();
               break;
 			}

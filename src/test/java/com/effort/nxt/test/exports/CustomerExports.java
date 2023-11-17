@@ -46,7 +46,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Story("Downloading Customer Export All Excell Sheet")
 	public void CustmrExportAll() throws InterruptedException {
 		logger.info("Starting of CustmrExportAll Method");
-		this.custmrExpt.ClickonWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrExpt.ClickonCustomerModule();
 		custmrExpt.ClickonExport();

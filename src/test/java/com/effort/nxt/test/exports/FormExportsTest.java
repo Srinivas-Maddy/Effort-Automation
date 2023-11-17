@@ -46,7 +46,7 @@ public class FormExportsTest extends BaseAutomationTest{
 	@Story("Export Forms Selected Functionalioty")
 	public void formExportSelected() throws InterruptedException {
 		logger.info("Starting of formExportSelected method");
-		formExportPage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.formExportPage.clickOnFormsModule();
 		this.formExportPage.clickOnForm(formDataProp.getProperty("formSpecName"));

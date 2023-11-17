@@ -22,10 +22,10 @@ import io.qameta.allure.Story;
 
 public class LoginTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(LoginTest.class.getName());
-	private String expectedInvalidLoginMessage="Invalid Email/Password.";
+	private String expectedInvalidLoginMessage = "Invalid Email/Password.";
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser","headless" })
+	@Parameters({ "siteURL", "browser", "headless" })
 	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
 		logger.info("Starting of initEffortLogin method in LoginTest");
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LOGIN_DRIVER);
@@ -35,43 +35,53 @@ public class LoginTest extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 1, description = " Test Case #1 , LogIn", groups = {"sanity"})
+	@Test(priority = 1, description = " Test Case #1 , LogIn", groups = { "sanity" })
 	@Description("Test Case #1, Valid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Web App login")
 	public void logIn() {
 		logger.info("Starting of logIn method");
-		
+
 		loginPage.enterUserName(testDataProp.getProperty("name"));
 		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-        loginPage.clickOnLoginButton();
-		this.loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
-        loginPage.clickOnWebApp();
-        
+		loginPage.clickOnLoginButton();
+		this.loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"),
+				testDataProp.getProperty("password1"));
+		loginPage.clickOnWebApp();
+
 		logger.info("Ending of logIn method");
 	}
-	
-	
-	
-	@AfterClass (alwaysRun = true)
+
+	@Test(priority = 2, description = " Test Case #2 , LogOut", groups = { "sanity" })
+	@Description("Test Case #2, LogOut")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Web App LogOut")
+	public void logOut() {
+		logger.info("Starting of logOut method");
+
+		loginPage.logOut();
+
+		logger.info("Ending of logOut method");
+	}
+
+	@AfterClass(alwaysRun = true)
 	public void logout() {
 		logger.info("Starting of logout method");
-		loginPage.logOut();	
 
 		try {
 
 			if (this.driver != null) {
 				Thread.sleep(5000);
-		       	driver.quit();
-	       
+				driver.quit();
+
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		}
-	
+
 		logger.info("Ending of quitDriver Method");
-		
+
 	}
 
 //	@AfterClass(alwaysRun = true)

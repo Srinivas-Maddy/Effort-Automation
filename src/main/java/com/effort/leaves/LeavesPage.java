@@ -259,11 +259,13 @@ public class LeavesPage extends BaseAutomationPage {
 
 	public void enterLeaveApprovelNote(String approvalnote) throws InterruptedException {
 		logger.info("Starting of clickOnApprove Method");
-		waitUntilElementVisible(driver, this.leavapprovalnote);
-		this.leavapprovalnote.sendKeys(approvalnote);
+		
+		//waitUntilElementVisible(driver, this.leavapprovalnote);
+		//this.leavapprovalnote.sendKeys(approvalnote);
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.leaveapprovalnotebtn);
 		this.leaveapprovalnotebtn.click();
+		
 	}
 
 	public void selectEmployeeToReject() throws InterruptedException {

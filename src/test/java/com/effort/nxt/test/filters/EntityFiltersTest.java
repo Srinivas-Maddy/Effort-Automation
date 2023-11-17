@@ -66,7 +66,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	public void filterEntityName() throws InterruptedException {
 		logger.info("Starting of filterEntityName Method");
 		
-		  entityfilterpage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		  loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		//entityfilterpage.clickOnDots();
 		this.entityfilterpage.clickOnEntityModule();

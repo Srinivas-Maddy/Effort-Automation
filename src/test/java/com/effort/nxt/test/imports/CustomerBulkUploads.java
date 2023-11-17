@@ -48,7 +48,7 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	@Story("Validating the customer bulk upload")
 	public void customerBulkUpload() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
-		this.importpage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_bulk_upload.xls";

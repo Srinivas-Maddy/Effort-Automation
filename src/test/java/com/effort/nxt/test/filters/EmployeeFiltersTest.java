@@ -58,7 +58,7 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	@Story("Test Case #1,Employee Filters")
 	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
-		employeefilterspage.ClickonWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		employeefilterspage.ClickonEmployees();
 		

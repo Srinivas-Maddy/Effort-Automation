@@ -7,7 +7,7 @@
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 	
 	<parameter name="userName" value="automation@nmail.com"/>
-	<parameter name="password" value="Automation@321"/>
+	<parameter name="password" value="Spoors@123" />
 	
 
 	<parameter name="headless" value="false" />

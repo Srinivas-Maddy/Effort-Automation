@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -193,7 +194,8 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	public void clickOnThreeDots() {
 		logger.info("Starting of clickOnThreeDots Method");
 		waitUntilElementVisible(driver, this.threedots);
-		this.threedots.click();
+		clickOnWebElement(threedots);
+		// this.threedots.click();
 		logger.info("Ending of clickOnThreeDots Method");
 	}
 
@@ -509,11 +511,34 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	}
 
 	public void selectApprovedStatus() {
+		
+		logger.info("Starting of selectApprovedStatus Method");
+		try {
+			//myleavesapprovedcheckbox.sendKeys(Keys.ARROW_RIGHT);
+
+			//WebElement body = driver.findElement(By.tagName("body")); // or By.tagName("html")
+
+	         new Actions(driver).keyUp(Keys.SHIFT).sendKeys("b").build().perform();
+
+	        //actions.sendKeys(Keys.ARROW_RIGHT).build().perform();
+
+	     // actions.sendKeys(Keys.ENTER).build().perform();
+		} catch (Exception e) {
+			System.out.println("No alert");
+		}
 		logger.info("Starting of selectApprovedStatus Method");
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
 		waitUntilElementVisible(driver, this.leavesresetbtn);
 		this.leavesresetbtn.click();
+		try {
+			WebElement systemDialogButton = driver.findElement(By.id("systemDialogButton"));
+	        systemDialogButton.click();
+			Alert alert = driver.switchTo().alert();
+			alert.accept();
+		} catch (Exception e) {
+			System.out.println("No alert");
+		}
 		waitUntilElementVisible(driver, this.myleavesapprovedcheckbox);
 		this.myleavesapprovedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -530,7 +555,15 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	}
 
 	public void selectCancelledStatus() {
+
 		logger.info("Starting of selectCancelledStatus Method");
+
+		try {
+			Alert alert = driver.switchTo().alert();
+			alert.accept();
+		} catch (Exception e) {
+			System.out.println("No alert");
+		}
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
 		waitUntilElementVisible(driver, this.leavesresetbtn);
@@ -546,6 +579,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Starting of selectRejectedStatus Method");
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
+		hardWait(10);
 		waitUntilElementVisible(driver, this.leavesresetbtn);
 		this.leavesresetbtn.click();
 		waitUntilElementVisible(driver, this.myleavesrejectedcheckbox);

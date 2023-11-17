@@ -97,14 +97,14 @@ public class DayplannerTest extends BaseAutomationTest{
 	
 
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutDayPlanner() {
-		logger.info("Starting of logOutDayPlanner Method");
-		
-		this.dayPlanner.LogOut();
-		
-		logger.info("Ending of logOutDayPlanner Method");
-	}
+	/*
+	 * @AfterClass(alwaysRun = true) public void logOutDayPlanner() {
+	 * logger.info("Starting of logOutDayPlanner Method");
+	 * 
+	 * this.dayPlanner.LogOut();
+	 * 
+	 * logger.info("Ending of logOutDayPlanner Method"); }
+	 */
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

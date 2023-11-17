@@ -51,7 +51,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		public void entityExportSelected() throws InterruptedException
 		{
 			logger.info("Starting of entityExportSelected Method");
-			entitiesexportpage.ClickonWebApp();
+			loginPage.ClickonWebApp();
 			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			entitiesexportpage.clickOnEntityModule();
 			//entitiesexportpage.entitySelectionCheckbox();
