@@ -45,7 +45,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	public void workSpecCreation() throws InterruptedException {
 		
 		logger.info("Starting of the workSpecCreation method");
-		logger.info("Click on the Process Option Menu bar and creating the process");
+		
 		processCreation.clickOnProcess();
 		processCreation.clickOnActionProcess();
 		processCreation.clickOnCreateProcess();
@@ -63,6 +63,9 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		processCreation.clickNextSetting();
 		processCreation.clickOtherSetting();
 		
+		logger.info("Ending of the workSpecCreation method");
+
+		
 	}
 	
 	@Test(priority = 2, description="Validating Created Process Spec", groups = {"sanity"} )
@@ -71,9 +74,11 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Story("Test Case #2, Validate Process")
 	public void validationWorkSpec() {
 		logger.info("Starting of validateCreateProcess method");
+		
 		String expectedWorkSpecName=processCreation.WorkSpecName+" Process Activities";
 		String actualWorkSpecName=processCreation.getWorkProcessName();
 		Assert.assertEquals(actualWorkSpecName, expectedWorkSpecName);
+		
 		logger.info("Ending of validateCreateProcess method");
 	}
 	
@@ -84,13 +89,44 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Story("Test Case #3, Modifying the Process")
 	public void modificationWorkSpec() {
 		logger.info("Starting of modificationWorkSpec method");
+		
 		this.processCreation.ModifyWorkFields();
+		
 		logger.info("Ending of modificationWorkSpec method");
 
 	}
 	
+	@Test(priority = 4, description="Manage fields Card Validation", groups = {"sanity"} )
+	@Description("Test Case #4, Manage fields Card is able to save without any exceptions")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage fields Cards Validation")
+	public void manageFieldsCardValidation() {
+		logger.info("Starting of manageFieldsCardValidation method");
+		
+		String expectedStatus=this.processCreation.modifyManageFieldsCard(expectedAssertionsProp.getProperty("work.process.card.text"));
+		Assert.assertEquals(expectedStatus,expectedAssertionsProp.getProperty("work.process.managefields.status"));
+		
+		logger.info("Ending of manageFieldsCardValidation method");
+
+	}
 	
-	@Test(priority = 4, description="Withdraw Work Spec", groups = {"sanity"} )
+	@Test(priority = 5, description="Manage activities Cards Validation", groups = {"sanity"} )
+	@Description("Test Case #4, Manage activities Cards is able to save without any exceptions")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage activities Cards Validation")
+	public void manageActivitiesCardValidation() {
+		logger.info("Starting of manageActivitiesCardValidation method");
+		
+		String expectedStatus=this.processCreation.modifyManageActivitiesCard(expectedAssertionsProp.getProperty("work.process.manage.activies.card.text"));
+		Assert.assertEquals(expectedStatus,expectedAssertionsProp.getProperty("work.process.manage.activies.card.status"));
+		
+		logger.info("Ending of manageActivitiesCardValidation method");
+
+	}
+	
+	
+	
+	@Test(priority = 6, description="Withdraw Work Spec", groups = {"sanity"} )
 	@Description("Test Case #4, Withdrawn work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Withdrawn Process")

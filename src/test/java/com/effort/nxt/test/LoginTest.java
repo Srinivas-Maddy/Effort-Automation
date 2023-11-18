@@ -52,6 +52,7 @@ public class LoginTest extends BaseAutomationTest {
 		logger.info("Ending of logIn method");
 	}
 
+
 	@Test(priority = 2, description = " Test Case #2 , LogOut", groups = { "sanity" })
 	@Description("Test Case #2, LogOut")
 	@Severity(SeverityLevel.BLOCKER)
@@ -64,7 +65,8 @@ public class LoginTest extends BaseAutomationTest {
 		logger.info("Ending of logOut method");
 	}
 
-	@AfterClass(alwaysRun = true)
+
+	@AfterClass (alwaysRun = true)
 	public void logout() {
 		logger.info("Starting of logout method");
 
