@@ -46,7 +46,7 @@ public class LoginPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//div[@id='cancel']//button")
 	private WebElement btnCancelOnWebAppHomeScreen;
-	
+
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -79,7 +79,7 @@ public class LoginPage extends BaseAutomationPage {
 
 		logger.info("Ending of clickOnLoginButton method");
 	}
-	
+
 	public void clickOnCancelButtonOnWebAppHomeScreen() {
 		logger.info("Starting of clickOnCancelButtonOnWebAppHomeScreen method");
 
@@ -112,7 +112,7 @@ public class LoginPage extends BaseAutomationPage {
 
 	public void logOut() {
 		logger.info("Starting of Logout method");
-
+		hardWait(2);
 		waitUntilElementVisible(driver, btnUserName);
 		btnUserName.click();
 		if (btnlogout.get(btnlogout.size() - 1).getText().equalsIgnoreCase("LogOut")) {

@@ -53,7 +53,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	public void AddEmployee() throws InterruptedException, IOException {
 		logger.info("Starting of AddEmployee Method");
 		
-		this.empCreation.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();

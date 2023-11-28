@@ -44,7 +44,7 @@ public class FormSubmissionTest extends BaseAutomationTest{
 	@Story("Add Form")
 	public void submitForm() throws InterruptedException, IOException {
 		logger.info("Starting of form submit method");
-		this.formSub.clickWebApp();
+		loginPage.ClickonWebApp();
 		this.formSub.clickOnForms();
 		this.formSub.sendFormName(testDataProp.getProperty("formName"));
 		this.formSub.clickOnFormName();

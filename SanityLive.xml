@@ -64,14 +64,6 @@
 		</classes>
 	</test>
 
-	<!--<test name="Bulk Uploads">
-		<classes>
-			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
-			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
-			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
-			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
-		</classes>
-	</test>-->
 
 	<test name="Leaves">
 		<classes>
@@ -95,6 +87,12 @@
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
 	</test>
+	
+		<test name="DayPlan Module">
+		<classes>
+			<class name="com.effort.nxt.test.dayplan.DayplannerTest" />
+		</classes>
+	</test>
 
 	<test name="Web Logins">
 		<classes>
@@ -102,5 +100,13 @@
 		</classes>
 	</test>
 
+	<test name="Bulk Uploads">
+		<classes>
+			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
+			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
+			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
+			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
+		</classes>
+	</test>
 
 </suite>

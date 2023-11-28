@@ -44,7 +44,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Story("Test Case #1 , Add Entity Details")
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
-		entitiessubmission.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
 		entitiessubmission.clickOnAddEntity();

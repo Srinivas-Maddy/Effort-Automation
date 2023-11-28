@@ -45,15 +45,15 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Story("Test Case #1, Downloading Employee Export All sheet")
 	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
-		this.empExport.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.empExport.clickOnEmployeeModule();
 		this.empExport.clickOnExportOptions();
 		this.empExport.clickOnExportAll();
 		this.empExport.clickOnConfirm();
 		this.empExport.switchWindow();
-		String actualMessage=this.empExport.getConfirmationMessage();
-		Assert.assertEquals(actualMessage, ExportAllConfirmationMsg);
+		//String actualMessage=this.empExport.getConfirmationMessage();
+		Assert.assertEquals(empExport.getConfirmationMessage(), ExportAllConfirmationMsg);
 		logger.info("Ending the employeeExportAll Method");				
 	}
 	
@@ -67,8 +67,8 @@ public class EmployeeExports extends BaseAutomationTest{
 		this.empExport.clickOnEmployeeModule();
         this.empExport.selectedEmployees();
 		this.empExport.clickOnExportOptions();
-		String actualStatus=this.empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected"));
-        Assert.assertEquals(actualStatus,EXPORT_SELECTED_STATUS);
+		//String actualStatus=this.empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected"));
+        Assert.assertEquals(empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected")),EXPORT_SELECTED_STATUS);
 		logger.info("Ending the Export selected Method");				
 	}
 	

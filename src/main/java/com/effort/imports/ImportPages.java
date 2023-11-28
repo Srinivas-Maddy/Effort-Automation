@@ -204,8 +204,8 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.correctDataEmp);
 				sheetValidationStatus=this.correctDataEmp.getText();
 				driver.navigate().refresh();
-				hardWait(20);
-				driver.navigate().refresh();
+                hardWait(20);
+                driver.navigate().refresh();
 				waitUntilElementVisible(driver, this.dataValiation);
 				SheetProcessingStatus=this.dataValiation.getText();
 				break;
@@ -230,7 +230,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
-				hardWait(15);
+				hardWait(20);
 				waitUntilElementVisible(driver, this.mappingSheetValidationStatus);
 				empCustomerMappingStatus=this.mappingSheetValidationStatus.getText();	
 				break;
@@ -309,7 +309,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileRouteMapping);
 				this.chooseFileRouteMapping.sendKeys(filePath);
 				this.importBtn.click();
-				hardWait(15);
+				hardWait(30);
 				waitUntilElementVisible(driver, this.routeMappingStatusMsg);
 				routeMappingStatus=this.routeMappingStatusMsg.getText();
 				break;
@@ -377,7 +377,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileLeaveBalance);
 				this.chooseFileLeaveBalance.sendKeys(filePath);
 				this.importBtn.click();
-				hardWait(10);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.empIdUpdateStatus);
 				empIdUpdateMsg=this.empIdUpdateStatus.getText();
 				break;
@@ -431,7 +431,7 @@ public class ImportPages extends BaseAutomationPage{
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
 				driver.navigate().refresh();
-				Thread.sleep(5000);
+				hardWait(60);
 				driver.navigate().refresh();
 				customerBulkUploadStatus=this.customerImportSheetStatus.getText();
 				break;
@@ -452,7 +452,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
-				hardWait(3);
+				hardWait(20);
 				waitUntilElementVisible(driver, this.customerBulkDeleteStatus);
 				cutomerBulkDeleteStatus=this.customerBulkDeleteStatus.getText();
 				break;
@@ -518,7 +518,7 @@ public class ImportPages extends BaseAutomationPage{
 				this.importBtn.click();
 				Thread.sleep(4000);
 				driver.navigate().refresh();
-				Thread.sleep(5000);
+				hardWait(15);
 				driver.navigate().refresh();
 				waitUntilElementVisible(driver,this.listUploadStatus);
 				ListUploadStauts=this.listUploadStatus.getText();
@@ -540,7 +540,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.routesChooseButton);
 				this.routesChooseButton.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.routesUploadStatus);
 				routeUploadedStatus=this.routesUploadStatus.getText();
 				break;
@@ -564,7 +564,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.updateExistingRadioBtn);
 				this.updateExistingRadioBtn.click();
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.routesUploadStatus);
 				routeUploadedStatus=this.routesUploadStatus.getText();
 				break;
@@ -588,7 +588,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.replaceRadioBtn);
 				this.replaceRadioBtn.click();
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.routesUploadStatus);
 				routeUploadedStatus=this.routesUploadStatus.getText();
 				break;

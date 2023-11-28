@@ -151,6 +151,7 @@ public class WebAppLogins extends BaseAutomationPage{
 
 	public void clickOnAppBuilder() {
 		logger.info("Starting of app builder");
+		hardWait(20);
 		waitUntilElementVisible(driver, this.appBuilder);
 		this.appBuilder.click();
 		logger.info("Ending of app builder");
@@ -158,6 +159,7 @@ public class WebAppLogins extends BaseAutomationPage{
 
 	public void logOut() {
 		logger.info("Starting of Logout method");
+		hardWait(2);
 		waitUntilElementVisible(driver, userNameBtn);
 		userNameBtn.click();
 		if(logoutBtn.get(logoutBtn.size()-1).getText().equalsIgnoreCase("Logout")) {

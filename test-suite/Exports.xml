@@ -3,12 +3,15 @@
 	<parameter name="browser" value="Chrome" />
 
 	<parameter name="siteURL"
-		value="https://secure.spoors.io/effortx/login" />
+		value="https://staging.spoors.in/effortx/login" />
 	<!-- <parameter name="siteURL"
 	value="https://staging.spoors.in/effortx/login" />-->
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 
+
 	<parameter name="headless" value="false" />
+	<parameter name="userName" value="automation@nmail.com" />
+	<parameter name="password" value="Spoors@123" />
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
