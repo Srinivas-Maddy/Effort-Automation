@@ -126,13 +126,13 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="(//input[@value='+ Add Field'])[2]")
 	private WebElement addFieldsButton;
 
-	@FindBy(xpath="//input[@id='formFieldSpecs50_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
 	private WebElement modifiedFieldLabelInputField;
 
 	@FindBy(xpath="//ul[@class='workspecActionsConfig']/li/span[2]/a")
 	private List<WebElement> workProcessCardList;
 
-	@FindBy(xpath="//input[@id='formFieldSpecs51_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs53_fieldLabel']")
 	private WebElement addNewWorkField;
 
 	@FindBy(xpath="//span[@class='success']")
@@ -376,8 +376,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		this.modifiedFieldLabelInputField.sendKeys("New Field modification");
 		waitUntilElementVisible(driver, this.saveBtn);
 		scrollDown(1000, this.saveBtn);
-		clickOnWebElementUsingJavascript(this.saveBtn);
-		//this.saveBtn.click();
+		this.saveBtn.click();
 		driver.switchTo().alert().accept();
 
 		logger.info("Ending of Modify work fields method");		
@@ -410,7 +409,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 				this.addNewWorkField.sendKeys("New Field modification");
 				waitUntilElementVisible(driver, this.saveBtn);
 				scrollDown(1000, this.saveBtn);
-				clickOnWebElementUsingJavascript(this.saveBtn);
+				clickOnWebElement(saveBtn);
 				driver.switchTo().alert().accept();
 				waitUntilElementVisible(driver, this.modifyWorkFieldsStatusMsg);
 				statusMsg=this.modifyWorkFieldsStatusMsg.getText();

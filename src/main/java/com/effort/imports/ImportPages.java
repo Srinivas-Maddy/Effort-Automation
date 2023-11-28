@@ -45,6 +45,9 @@ public class ImportPages extends BaseAutomationPage{
 
 	@FindBy(xpath="//div[@class='Itembody']/ul/li/a[2]")
 	private List<WebElement> employeeMenu;
+	
+	@FindBy(xpath="//a[contains(text(),'Reset Employee Leave Balance')]")
+	private WebElement leaveBalanceCard;
 
 	@FindBy(xpath="//div[@class='col-md-12']/div[2]/input")
 	private WebElement chooseBtnEmpImport;
@@ -187,7 +190,7 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee bulk upload
-	public String clickOnImportCard(String card, String filePath) throws InterruptedException{
+	public String clickOnImportCard(String card, String filePath){
 		logger.info("Starting on import employee card");
 		for (int i = 0; i <employeeMenu.size(); i++){
 			String cardName=employeeMenu.get(i).getText();
@@ -197,11 +200,11 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(10);
 				waitUntilElementVisible(driver, this.correctDataEmp);
 				sheetValidationStatus=this.correctDataEmp.getText();
 				driver.navigate().refresh();
-				Thread.sleep(5000);
+				hardWait(20);
 				driver.navigate().refresh();
 				waitUntilElementVisible(driver, this.dataValiation);
 				SheetProcessingStatus=this.dataValiation.getText();
@@ -215,7 +218,7 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee Customer Bulk import
-	public String importCustomerMapping(String card, String filePath) throws InterruptedException {
+	public String importCustomerMapping(String card, String filePath) {
 		logger.info("Starting  on import Customer bulk upload method");
 
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -227,7 +230,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(2000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.mappingSheetValidationStatus);
 				empCustomerMappingStatus=this.mappingSheetValidationStatus.getText();	
 				break;
@@ -269,7 +272,7 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee Customer type mapping
-	public String importEmployeeCustomerTypeMapping(String card, String filePath) throws InterruptedException {
+	public String importEmployeeCustomerTypeMapping(String card, String filePath) {
 		logger.info("Starting on Employee customer type Mapping Method");
 
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -280,7 +283,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileEmpCustTypeMappingBtn);
 				this.chooseFileEmpCustTypeMappingBtn.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(20);
 				//driver.navigate().refresh();
 				waitUntilElementVisible(driver, this.empCustTypesheetUploadedStatuMsg);
 				empCustomerTypeMappingSheetStatusMsg=this.empCustTypesheetUploadedStatuMsg.getText();
@@ -295,7 +298,7 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee Route Plan mapping
-	public String importRoutePlanMapping(String card, String filePath) throws InterruptedException {
+	public String importRoutePlanMapping(String card, String filePath){
 		logger.info("Starting  on Route Plan Mapping Method");
 
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -306,7 +309,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileRouteMapping);
 				this.chooseFileRouteMapping.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.routeMappingStatusMsg);
 				routeMappingStatus=this.routeMappingStatusMsg.getText();
 				break;
@@ -316,7 +319,7 @@ public class ImportPages extends BaseAutomationPage{
 		return routeMappingStatus;
 	}
 
-	public String importRouteAssignment(String card, String filePath) throws InterruptedException {
+	public String importRouteAssignment(String card, String filePath){
 		logger.info("Starting  on Route Plan Assignment Method");
 
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -327,7 +330,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileRouteMapping);
 				this.chooseFileRouteMapping.sendKeys(filePath);
 				this.importBtn.click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.empRoutePlanAssignmentMsg);
 				routePlanAssignemetStatus=this.empRoutePlanAssignmentMsg.getText();
 				break;
@@ -338,7 +341,7 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee Leave Balance update mapping
-	public String importEmployeeLeaveBalance(String card, String filePath) throws InterruptedException {
+	public String importEmployeeLeaveBalance(String card, String filePath) {
 		logger.info("Starting  on Employee Leave Balance Method");
 
 		for (int i = 0; i <employeeMenu.size(); i++){
@@ -346,9 +349,12 @@ public class ImportPages extends BaseAutomationPage{
 			if(cardName.equalsIgnoreCase(card)) {
 				waitUntilElementVisible(driver, employeeMenu.get(i));
 				employeeMenu.get(i).click();
+				waitUntilElementVisible(driver, this.leaveBalanceCard);
+				clickOnWebElement(this.leaveBalanceCard);
 				waitUntilElementVisible(driver, this.chooseFileLeaveBalance);
 				this.chooseFileLeaveBalance.sendKeys(filePath);
 				this.importBtn.click();
+				hardWait(10);
 				waitUntilElementVisible(driver, this.empLeaveUplodStatus);
 				empLeaveBalanceStatus=this.empLeaveUplodStatus.getText();
 				break;
@@ -371,6 +377,7 @@ public class ImportPages extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.chooseFileLeaveBalance);
 				this.chooseFileLeaveBalance.sendKeys(filePath);
 				this.importBtn.click();
+				hardWait(10);
 				waitUntilElementVisible(driver, this.empIdUpdateStatus);
 				empIdUpdateMsg=this.empIdUpdateStatus.getText();
 				break;
@@ -399,7 +406,7 @@ public class ImportPages extends BaseAutomationPage{
 						waitUntilElementVisible(driver, this.chooseBtnWorkAssignemt);
 						this.chooseBtnWorkAssignemt.sendKeys(filePath);
 						this.importBtn.click();
-						Thread.sleep(500);
+						hardWait(15);
 						workAssignmentStatus=this.AssignmentStatus.getText();
 						break;
 					}
@@ -473,17 +480,18 @@ public class ImportPages extends BaseAutomationPage{
 	}
 
 	//Employee Territory Mapping
-	public String importEmpTerritoryMapping(String cardName, String filePath) throws InterruptedException{
+	public String importEmpTerritoryMapping(String cardName, String filePath){
 		logger.info("Starting of import employee territory mapping");
 		for (int i = 0; i < this.importsRemainigCardNames.size(); i++){
 			String importActualCardName=this.importsRemainigCardNames.get(i).getText();
 			if(importActualCardName.equalsIgnoreCase(cardName)){
 				waitUntilElementVisible(driver, this.importsRemainigCardNames.get(i));
 				this.importsRemainigCardNames.get(i).click();
-				Thread.sleep(5000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.chooseBtnEmpImport);
 				this.chooseBtnEmpImport.sendKeys(filePath);
 				this.importBtn.click();
+				hardWait(15);
 				waitUntilElementVisible(driver, this.empTerritoryUploadStatus);
 				TerritoryUploadStatus=this.empTerritoryUploadStatus.getText();
 				break;

@@ -221,13 +221,6 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 
 	}
 
-//	@AfterClass(alwaysRun = true)
-//	public void LogOutImports() {
-//		logger.info("Starting of LogOutCustomer Method");
-//		this.importpage.logOut();
-//		logger.info("Ending of LogOutCustomer Method");
-//
-//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
