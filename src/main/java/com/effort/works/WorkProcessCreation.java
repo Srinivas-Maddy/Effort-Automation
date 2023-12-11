@@ -144,7 +144,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_formSpecAction_6']")
 	private WebElement actionFormDropDown;
 	
-	@FindBy(xpath="//ul[@id='select2-results-19']/li[3]")
+	@FindBy(xpath="//ul[@id='select2-results-20']/li[3]")
 	private WebElement select_ActionSpec;
 	
 	@FindBy(xpath="//div[@id='attachButton']/button")
@@ -153,7 +153,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_attachmentFormSpecUniqueIdRow_0']/a/span[1]")
 	private WebElement addActachment_DropDown;
 	
-	@FindBy(xpath="//ul[@id='select2-results-29']/li[3]")
+	@FindBy(xpath="//ul[@id='select2-results-30']/li[3]")
 	private WebElement select_Attachment_Form;
 	
 	@FindBy(xpath="(//input[@value='Save'])[2]")
@@ -307,7 +307,8 @@ public class WorkProcessCreation extends BaseAutomationPage{
 
 		for(int i=0;i<=5;i++) {
 			waitUntilElementVisible(driver, this.addActionBtn);
-			addActionBtn.click();
+			scrollIntoView(addActionBtn);
+			clickOnWebElement(addActionBtn);
 			driver.findElement(By.xpath("//input[@name='workActionSpec["+i+"].actionName']")).sendKeys("Action_"+i);
 			//ActionName.sendKeys("Action_"+i);
 			selectForms.click();

@@ -41,7 +41,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@id='example']/tbody/tr/td[1]")
 	private List<WebElement> entityselectcheckbox;
 	
-	@FindBy(xpath="(//input[@id='selecctall'])[1]")
+	@FindBy(xpath="(//input[contains(@id,'selecctall')])[1]")
 	private WebElement selctedAllCheckBox;
 
 	@FindBy(xpath = "(//ul[@class='dropdown-menu btn-block'])[2]/li[3]")
@@ -101,7 +101,7 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		logger.info("Starting of click On entity module");
 		for (int i = 0; i <this.navigationBar.size(); i++){
 			String navNames=this.navigationBar.get(i).getText();
-			if(navNames.equalsIgnoreCase("Automation Entity teju1")) {
+			if(navNames.equalsIgnoreCase("Automation Entity teju")) {
 				waitUntilElementVisible(driver, this.navigationBar.get(i));
 				this.navigationBar.get(i).click();
 				break;
@@ -123,9 +123,10 @@ public class EntitiesExportPage extends BaseAutomationPage {
 	}
 	
 	public void selectAllEntityCheckBox() throws InterruptedException {
-		Thread.sleep(2000);
-		waitUntilElementVisible(driver, this.selctedAllCheckBox);
+		
 		scrollDown(0, this.selctedAllCheckBox);
+		hardWait(5);
+		waitUntilElementVisible(driver, this.selctedAllCheckBox);
 		this.selctedAllCheckBox.click();
 	}
 
