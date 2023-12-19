@@ -124,17 +124,65 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 
 	}
 	
+	@Test(priority = 6, description="Restrict Employee Groups", groups = {"sanity"} )
+	@Description("Test Case #4, Employee Group Restriction")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Employee Group Restiction in app builder")
+	public void restrictEmployeeGroup() {
+		logger.info("Starting of restrictEmployeeGroup method");
+		
+		this.processCreation.restrictAccessGroups(expectedAssertionsProp.getProperty("work.process.restrictEmpGroup"),
+				                                  expectedAssertionsProp.getProperty("wor.process.empGroupName"));
+		
+		logger.info("Ending of restrictEmployeeGroup method");
+	}
 	
+	@Test(priority = 7, description="manage permission configuration", groups = {"sanity"} )
+	@Description("Test Case #4, manage employee groups")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage employee group permission")
+	public void managePermissions() {
+		logger.info("Starting of managePermissions method");
+		
+		this.processCreation.managePermission_Configuration(expectedAssertionsProp.getProperty("work.process.manageEmployeeGroup"));
+		
+		logger.info("Ending of managePermissions method");
+	}	
 	
-	@Test(priority = 6, description="Withdraw Work Spec", groups = {"sanity"} )
+	@Test(priority = 8, description="manage activity submission visiblity", groups = {"sanity"} )
+	@Description("Test Case #4, manage activity submission visiblity")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, manage activity submission visiblity")
+	public void manageActivitySubmissionVisiblityConfiguration() {
+		logger.info("Starting of manageActivitySubmissionVisiblityConfiguration method");
+		
+		this.processCreation.manageActivitySubmissionVisibility_Configuration(expectedAssertionsProp.getProperty("work.process.manageActivitySubmissions"));
+		
+		logger.info("Ending of managePermissions method");
+	}
+	
+	@Test(priority = 9, description="wotk settings configuration", groups = {"sanity"} )
+	@Description("Test Case #4, We can able to save the configuration")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Work Setting card save functionality")
+	public void workSettingsConfiguration() {
+		logger.info("Starting of workSettingsConfiguration method");
+		
+		this.processCreation.settingsConfiguration(expectedAssertionsProp.getProperty("work.process.settings"));
+		
+		logger.info("Ending of workSettingsConfiguration method");
+	}		
+	
+	@Test(priority = 10, description="Withdraw Work Spec", groups = {"sanity"} )
 	@Description("Test Case #4, Withdrawn work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Withdrawn Process")
 	public void withDrawWorkSpec() {
-		logger.info("Starting of modificationWorkSpec method");
+		logger.info("Starting of withDrawWorkSpec method");
+		
 		this.processCreation.withDrawWorkSpec();
-		logger.info("Ending of modificationWorkSpec method");
-
+		
+		logger.info("Ending of withDrawWorkSpec method");
 	}
 	
 	
@@ -148,7 +196,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 			if (this.driver != null) {
 				Thread.sleep(5000);
 		       	driver.quit();
-	       
+	  
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {

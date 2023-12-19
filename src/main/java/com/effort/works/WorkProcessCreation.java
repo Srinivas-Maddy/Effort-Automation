@@ -162,6 +162,39 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//a[contains(text(),'Withdraw')]")
 	private WebElement withDrawnBtn;
 
+	@FindBy (xpath="//select[@class='unselected']")
+	private WebElement employeeGroups;
+	
+	@FindBy(xpath="(//span[@class='glyphicon glyphicon-chevron-right'])[2]")
+	private WebElement moveEmpGrp_Btn;
+	
+	@FindBy(xpath="//input[@id='save']")
+	private WebElement save_Btn;
+	
+	@FindBy(id="viewCheckBox")
+	private WebElement viewCheckBox;
+	
+	@FindBy(id="s2id_viewGroupIds")
+	private WebElement empGroupDropdown;
+	
+	@FindBy(xpath="//div[@id='select2-drop']/ul/li[1]")
+	private WebElement empGroup;
+	
+	@FindBy(xpath="//a[contains(text(),'Go back to Work Activity Process Screen')]")
+	private WebElement backToWorkCards;
+	
+	@FindBy(xpath="(//div[contains(@id, 's2id_empWorkField')])[1]")
+	private WebElement actionSelection_Dropdown;
+	
+	@FindBy(xpath="(//div[@id='select2-drop']/ul/li)[1]")
+	private WebElement selectEmployee;
+	
+	@FindBy(id="enableWorkCheckIn")
+	private WebElement workCheckIn_Checkbox;
+	
+	@FindBy(xpath="(//input[@value='Save'])[1]")
+	private WebElement settingsSave_btn;
+	
 	@FindBy(xpath="(//input[@value='Save'])[2]")
 	private WebElement saveBtn;
 
@@ -462,5 +495,98 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		}
 		return statusMsg;
 	}
+	
+	public void restrictAccessGroups(String cardName, String groupName) {
+		logger.info("Starting of restrictAccessGroups");
+		
+		for (int i = 0; i <this.workProcessCardList.size(); i++) {
+			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
+			String actualCardName=this.workProcessCardList.get(i).getText();
+			if (actualCardName.equalsIgnoreCase(cardName)) {
+				clickOnWebElement(this.workProcessCardList.get(i));
+				hardWait(2);
+				waitUntilElementVisible(driver, this.employeeGroups);
+				selectDropdown(this.employeeGroups, groupName);
+				waitUntilElementVisible(driver, this.moveEmpGrp_Btn);
+				this.moveEmpGrp_Btn.click();
+				clickOnWebElement(this.save_Btn);
+				
+			}
+		}
+		
+		logger.info("Ending of restrictAccessGroups");
+
+		
+	}
+	
+	public void managePermission_Configuration(String cardName) {
+		logger.info("Starting of managePermissionCard_Configuration");
+		
+		for (int i = 0; i <this.workProcessCardList.size(); i++) {
+			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
+			String actualCardName=this.workProcessCardList.get(i).getText();
+			if (actualCardName.equalsIgnoreCase(cardName)) {
+				clickOnWebElement(this.workProcessCardList.get(i));
+				hardWait(2);
+				waitUntilElementVisible(driver, this.viewCheckBox);
+				clickOnWebElement(this.viewCheckBox);
+				clickOnWebElement(this.empGroupDropdown);
+				waitUntilElementVisible(driver, this.empGroup);
+				clickOnWebElement(this.empGroup);
+				clickOnWebElement(this.saveBtn);
+				waitUntilElementVisible(driver, this.backToWorkCards);
+				clickOnWebElement(this.backToWorkCards);				
+			}
+		}
+		
+		logger.info("Ending of managePermissionCard_Configuration");		
+	}
+	
+	public void manageActivitySubmissionVisibility_Configuration(String cardName) {
+		logger.info("Starting of manageActivitySubmissionVisibility_Configuration");
+		
+		for (int i = 0; i <this.workProcessCardList.size(); i++) {
+			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
+			String actualCardName=this.workProcessCardList.get(i).getText();
+			if (actualCardName.equalsIgnoreCase(cardName)) {
+				clickOnWebElement(this.workProcessCardList.get(i));
+				hardWait(2);
+				waitUntilElementVisible(driver, this.actionSelection_Dropdown);
+				clickOnWebElement(this.actionSelection_Dropdown);
+				waitUntilElementVisible(driver, this.selectEmployee);
+				clickOnWebElement(this.selectEmployee);
+				waitUntilElementVisible(driver, this.backToWorkCards);
+				clickOnWebElement(this.backToWorkCards);				
+			}
+		}
+		
+		logger.info("Ending of managePermissionCard_Configuration");
+
+		
+	}
+	
+	public void settingsConfiguration(String cardName) {
+		logger.info("Starting of settingsConfiguration");
+		
+		for (int i = 0; i <this.workProcessCardList.size(); i++) {
+			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
+			String actualCardName=this.workProcessCardList.get(i).getText();
+			if (actualCardName.equalsIgnoreCase(cardName)) {
+				clickOnWebElement(this.workProcessCardList.get(i));
+				hardWait(2);
+				waitUntilElementVisible(driver, this.workCheckIn_Checkbox);
+				clickOnWebElement(this.workCheckIn_Checkbox);
+				waitUntilElementVisible(driver, this.settingsSave_btn);
+				clickOnWebElement(this.settingsSave_btn);
+							
+			}
+		}
+		
+		logger.info("Ending of settingsConfiguration");
+
+		
+	}
+	
+	
 
 }
