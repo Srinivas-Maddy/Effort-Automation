@@ -3,7 +3,9 @@ package com.effort.base;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -415,8 +417,26 @@ public class BaseAutomationPage {
 			}
 		} 
 
-
 		logger.info("Ending of clickOnWebElement method");
 
 	}
+	
+	public String getCurrentMonthAsString() {
+		logger.info("Starting of getCurrentMonthAsString Method");
+		
+	      // Get the current date
+        LocalDate currentDate = LocalDate.now();        
+        // Get the current month
+        Month currentMonth = currentDate.getMonth();
+        // Get the month value (1 for January, 2 for February, ..., 12 for December)
+        int monthValue = currentMonth.getValue();        
+        //Conver current month as a String
+        int monthAsArrayFormate=monthValue-1;
+        String Month=Integer.toString(monthAsArrayFormate);
+		logger.info("Ending of getCurrentMonthAsString Method");
+    
+	    return Month;
+	}
+	
+	
 }
