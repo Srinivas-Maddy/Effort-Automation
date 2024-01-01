@@ -33,6 +33,7 @@
 	<test name="Works Module">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
+			<class name="com.effort.nxt.test.works.CheckListProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
 		</classes>
 	</test>

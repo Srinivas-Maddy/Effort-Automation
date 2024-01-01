@@ -73,7 +73,36 @@ public class CheckListProcessCeationPage extends BaseAutomationPage{
 	
 	@FindBy(id="successMsg")
 	private WebElement successMessage;
+	
+	@FindBy(xpath="//a[contains(text(),'Manage Fields')]")
+	private WebElement manageFields_Card;
+	
+	@FindBy(xpath="(//input[contains(@value,'+ Add Field')])[2]")
+	private WebElement addFieldButton;
 
+	
+	@FindBy(xpath="(//input[contains(@value, 'Save')])[2]")
+	private WebElement saveBtn2;
+	
+	@FindBy(xpath="//a[contains(text(),'Withdraw')]")
+	private WebElement withDrawCard;
+	
+	
+	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
+	private WebElement newTextFieldInput;
+	
+	@FindBy(id="home")
+	private WebElement homeModule_MenuBar;
+	
+	@FindBy(xpath="//a[contains(text(),'Create Process')]")
+	private WebElement createProcess_Card;
+	
+	@FindBy(xpath="//div[@id='workSpecspopup']/div/div[1]/div[2]")
+	private WebElement activityProcessOption;
+	
+	@FindBy(xpath="(//a[contains(text(), 'Create On My Own')])[3]")
+	private WebElement createMyownOptionInHomeScreen;
+	
 	public CheckListProcessCeationPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -258,6 +287,59 @@ public class CheckListProcessCeationPage extends BaseAutomationPage{
 		logger.info("Ending settings method ");
 
 		return sucessMessage;
+	}
+	
+	
+	public void modifyWorkFields() {
+		logger.info("Starting of modifyWorkFields method");
+		
+		hardWait(5);
+		waitUntilElementVisible(driver, this.manageFields_Card);
+		clickOnWebElement(this.manageFields_Card);
+		
+		hardWait(5);
+		scrollIntoView(this.addFieldButton);
+		waitUntilElementVisible(driver, this.addFieldButton);
+		clickOnWebElement(this.addFieldButton);
+		
+		waitUntilElementVisible(driver, this.newTextFieldInput);
+		this.newTextFieldInput.sendKeys("Add new Field");;
+		
+		scrollIntoView(saveBtn2);
+		waitUntilElementVisible(driver, this.saveBtn2);
+		clickOnWebElement(this.saveBtn2);
+		driver.switchTo().alert().accept();
+		
+		logger.info("Ending od modifyWorkFields method");
+	}
+	
+	
+	public void withDrawWorkSpec() {
+		logger.info("Starting of withDrawWorkSpec Method");
+		
+		hardWait(3);
+		waitUntilElementVisible(driver, this.withDrawCard);
+		clickOnWebElement(this.withDrawCard);
+		driver.switchTo().alert().accept();
+
+		logger.info("Ending of withDrawWorkSpec Method");
+
+	}
+	
+	public void specCreationInHome() {
+		logger.info("Starting of specCreationInHome Method");
+		
+		hardWait(3);
+		waitUntilElementVisible(driver, this.homeModule_MenuBar);
+		clickOnWebElement(this.homeModule_MenuBar);
+		waitUntilElementVisible(driver, this.createProcess_Card);
+		clickOnWebElement(this.createProcess_Card);
+		waitUntilElementVisible(driver, activityProcessOption);
+		clickOnWebElement(this.activityProcessOption);
+		waitUntilElementVisible(driver, this.createMyownOptionInHomeScreen);
+		clickOnWebElementUsingJavascript(this.createMyownOptionInHomeScreen);
+			
+		logger.info("Ending of specCreationInHome Method");
 	}
 	
 	
