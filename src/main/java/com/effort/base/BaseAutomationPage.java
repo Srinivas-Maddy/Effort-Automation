@@ -4,6 +4,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -419,4 +421,20 @@ public class BaseAutomationPage {
 		logger.info("Ending of clickOnWebElement method");
 
 	}
+	
+	public int  getCurrentMont() {
+		logger.info("Starting of getCurrentMont");
+		
+//		YearMonth currentYearMonth = YearMonth.now();
+//        Month currentMonthAsNumber = currentYearMonth.getMonth();    
+        
+        Calendar calendar = Calendar.getInstance();
+        int currentMonthAsNum = calendar.get(Calendar.MONTH) + 1;
+        
+        
+       // String currentMonth=String.valueOf(currentMonthAsNum);
+       
+        return currentMonthAsNum;
+	}
+	
 }

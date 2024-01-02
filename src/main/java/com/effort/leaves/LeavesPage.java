@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -87,6 +88,9 @@ public class LeavesPage extends BaseAutomationPage {
 	
 	@FindBy(xpath = "//td[contains(@class,'xdsoft_current xdsoft_today')]")
 	private WebElement dateToday;
+	
+	@FindBy(xpath = "//td[contains(@class,'xdsoft_current xdsoft_today')]/following-sibling::td//div")
+	private WebElement tommarowsDate;
 
 	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
@@ -153,18 +157,15 @@ public class LeavesPage extends BaseAutomationPage {
 			this.fromdatefield.click();
 			String presentdatetime = getCurrentDateAsNumber();
 			Thread.sleep(500);
-			
 			dateToday.click();
 			
-			/*
-			 * for (int i = 0; i < fromdatesdata.size(); i++) { String fromactualdatetime =
-			 * this.fromdatesdata.get(i).getText(); if
-			 * (fromactualdatetime.equalsIgnoreCase(presentdatetime)) {
-			 * waitUntilElementVisible(driver, this.fromdatesdata.get(i));
-			 * this.fromdatesdata.get(i).click(); break; } }
-			 */
-		
-		//this.fromdatefield.click();
+			
+//			  for (int i = 0; i < fromdatesdata.size(); i++) { String fromactualdatetime =
+//			  this.fromdatesdata.get(i).getText(); if
+//			  (fromactualdatetime.equalsIgnoreCase(presentdatetime)) {
+//			  waitUntilElementVisible(driver, this.fromdatesdata.get(i));
+//			  this.fromdatesdata.get(i).click(); break; } }
+//			  this.fromdatefield.click();
 
 		logger.info("Ending of pickLeavesFromDate Method");
 	}
@@ -175,20 +176,33 @@ public class LeavesPage extends BaseAutomationPage {
 			scrollDown(0, this.toDateField);
 			waitUntilElementVisible(driver, this.toDateField);
 			this.toDateField.click();
-			String tomorrowDate = getTomorrowDateAsNumber(1);
-			Thread.sleep(500);
-			for (int i = 1; i < toDateCalender.size(); i++) {
-				hardWait(3);
-				String fromactualdatetime = this.toDateCalender.get(i).getText();
-				if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
-					waitUntilElementVisible(driver, this.toDateCalender.get(i));
-					this.toDateCalender.get(i).click();
-					break;
-				}
-			}
+			//this.hardWait(6);
+		//	clickOnWebElement(tommarowsDate);
 			
 		
-	
+		  String tomorrowDate = getTomorrowDateAsNumber(1);
+		  int  currentmonth=getCurrentMont()-1;
+		  String  currentMonth=String.valueOf(currentmonth); 
+		  List<WebElement>  calenderDates=driver.findElements(By.xpath( "(//div[@class='xdsoft_calendar'])[2]/table/tbody/tr/td[@data-month="+  currentMonth+"]")); 
+		  Thread.sleep(500);
+		  for (int i = 0; i < calenderDates.size(); i++) {
+			  hardWait(4);
+			  try {
+				  String fromactualdatetime = calenderDates.get(i).getText();
+				  
+				  if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
+				  waitUntilElementVisible(driver, calenderDates.get(i));
+				  calenderDates.get(i).click(); break; }
+				
+			} catch (Exception e) {
+				 String fromactualdatetime = calenderDates.get(i).getText();
+				  
+				  if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
+				  waitUntilElementVisible(driver, calenderDates.get(i));
+				  calenderDates.get(i).click(); break; }
+			}
+		  }
+
 	}
 
 	public void pickLeaveType(String leavetype) {
@@ -273,6 +287,7 @@ public class LeavesPage extends BaseAutomationPage {
 		Thread.sleep(1000);
 		int i = 0;
 		while (i < this.leavescheckbox.size()) {
+			this.hardWait(3);
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
 			this.leavescheckbox.get(i).click();
 			break;
