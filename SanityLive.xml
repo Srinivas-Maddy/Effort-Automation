@@ -7,9 +7,9 @@
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@123" />
 
-	<!-- <parameter name="siteURL" value="testurl" />  -->
+	<!-- <parameter name="siteURL" value="testurl" />  --> 
 	<!-- <parameter name="siteURL"
-	value="https://staging.spoors.in/effortx/login" /> -->
+	value="https://staging.spoors.in/effortx/login"k /l> -->
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>

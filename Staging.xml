@@ -54,8 +54,6 @@
 		</classes>
 	</test>
 
-	
-
 	<test name="Leaves">
 		<classes>
 			<class name="com.effort.nxt.test.leaves.LeavesTest" />
