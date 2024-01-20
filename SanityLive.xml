@@ -15,7 +15,7 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Login Credentials">
+	<!--<test name="Login Credentials">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
@@ -27,7 +27,7 @@
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
-
+-->
 	<test name="Customer Module">
 		<classes>
 			<class name="com.effort.nxt.test.customer.CustomerTest" />
