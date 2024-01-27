@@ -6,13 +6,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.entities.EntitiesProcess;
 import com.effort.nxt.test.BaseAutomationTest;
-import com.effort.nxt.test.works.ActionProcessTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -25,18 +22,20 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
-	public void initEffortLogin(String siteURL ,String browser , String headless) throws Exception {
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
+	public void initEffortLogin(String siteURL ,String browser , String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_PROCESS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiesprocess = new EntitiesProcess(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		this.loginPage.clickOnSignOutFromAllSessions(userName,password);
 		this.entitiesprocess.clickonAppBuilder();
+		
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
 	
@@ -46,6 +45,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Story("Test Case #1 , Create Entities Spec Process")
 	public void entitySpecCreation() throws InterruptedException {
 		logger.info("Starting of entitySpecCreation Method");
+		
 		entitiesprocess.clickonEntities();
 		entitiesprocess.clickonCreateEntity();
 		entitiesprocess.enterEntityName(entityDataProp.getProperty("entityname"));
@@ -55,7 +55,8 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		entitiesprocess.selectEntityCheckboxs();
 		entitiesprocess.clickOnSkipButton();
 		entitiesprocess.selectCheckinActivitytoPerform();	
-		entitiesprocess.selectWebandMobileCheckbox();		
+		entitiesprocess.selectWebandMobileCheckbox();	
+		
 		logger.info("Ending of entitySpecCreation Method");
 	}
 	
@@ -65,9 +66,11 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Story("Test Case #2 , Validating Entities Spec")
 	public void entitySpecValidation() {
 		logger.info("Starting of entitySpecValidation Method");
+		
 		String expectedentityspecmsg= EntitiesProcess.name+" Created Successfully.";
 		String actualentityspecmsg =entitiesprocess.entitySpecValidation();
 		Assert.assertEquals(expectedentityspecmsg, actualentityspecmsg);
+		
 		logger.info("Ending of entitySpecValidation Method");
 	}
 	
@@ -89,20 +92,14 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4 , Delete Entities Spec Process")
 	public void entitySpecDeletion() throws InterruptedException {
-		logger.info("Starting of entitySpecDeletion Method");		
+		logger.info("Starting of entitySpecDeletion Method");
+		
 		entitiesprocess.deleteEntitySpec();		
+		
 		logger.info("Starting of entitySpecDeletion Method");
 	}
 	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logoutEntitites() {
-//		logger.info("Starting of logoutEntitites Method");		
-//		entitiesprocess.logOutEntitites();	
-//		
-//		logger.info("Ending of logoutEntitites Method");
-//	}
-	
+
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");

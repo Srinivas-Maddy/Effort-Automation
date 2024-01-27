@@ -42,18 +42,18 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	private EntityFiltersPage entityfilterpage;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
 	
-	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String passWord) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITY_FILTERS_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.entityfilterpage = new EntityFiltersPage(driver);
 	    this.loginPage = new LoginPage(driver);
-	    loginPage.enterUserName(testDataProp.getProperty("name"));
-	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+	    loginPage.enterUserName(userName);
+	    loginPage.clickOnPassword(passWord);
 	    loginPage.clickOnLoginButton();
-	    loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+	    loginPage.clickOnSignOutFromAllSessions(userName, passWord);
 	  
 		logger.info("Ending of initEffortLogin Method");
 	}
@@ -67,8 +67,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Starting of filterEntityName Method");
 		
 		loginPage.ClickonWebApp();
-		  loginPage.clickOnCancelButtonOnWebAppHomeScreen();
-		//entityfilterpage.clickOnDots();
+	    loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));
 		Assert.assertEquals(actualfltrentityname, EXPECTED_FILTER_ENTITY_NAME);
@@ -102,19 +101,11 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		Assert.assertEquals(actualfltryesornoresult, EXPECTED_FILTER_ENTITY_YESORNO);
 		String actualfltrcustomertyperesult=entityfilterpage.enterFiltersCustomerType(filtersDataProp.getProperty("filtercustomertype"));
 		Assert.assertEquals(actualfltrcustomertyperesult, EXPECTED_FILTER_ENTITY_CUSTOMERTYPE);
-		//String actualfltrfilledbyresult=entityfilterpage.pickFilterFilledBy(filtersDataProp.getProperty("filterentityfilledby"));
-		//Assert.assertEquals(actualfltrfilledbyresult, EXPECTED_FILTER_ENTITY_FILLEDBY);
+		
 		
 		logger.info("Ending of filterEntityName Method");
 	}
-	
-//	@AfterClass(alwaysRun = true)
-//	public void entityFiltersLogout() throws InterruptedException {
-//		logger.info("Starting of filtersEntityLogout Method");
-//		entityfilterpage.filtersEntityLogout();
-//		logger.info("Ending of filtersEntityLogout Method");
-//	}
-	
+
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

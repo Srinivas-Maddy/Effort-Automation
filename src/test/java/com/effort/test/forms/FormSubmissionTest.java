@@ -24,17 +24,19 @@ public class FormSubmissionTest extends BaseAutomationTest{
 	private FormSubmission formSub;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
-	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
+	@Parameters({"siteURL","browser", "headless","userName","password"})
+	public void initEffortLogin(String siteUrl,String browser, String headless, String userName, String password) throws Exception {
 		logger.info("starting of initEfforrt Login Method in Form Submission Class");
+		
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.FORM_SUBMISSION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.formSub=new FormSubmission(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName,password);
+		
 		logger.info("Ending of initEffortLogin method in Form Submission Class");			
 	}
 	
@@ -44,6 +46,7 @@ public class FormSubmissionTest extends BaseAutomationTest{
 	@Story("Add Form")
 	public void submitForm() throws InterruptedException, IOException {
 		logger.info("Starting of form submit method");
+		
 		loginPage.ClickonWebApp();
 		this.formSub.clickOnForms();
 		this.formSub.sendFormName(testDataProp.getProperty("formName"));
@@ -88,13 +91,6 @@ public class FormSubmissionTest extends BaseAutomationTest{
 		this.formSub.clickOnSave();
 		
 	}
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logOutForm() {
-//		logger.info("Starting of Log-out Method");
-//		formSub.logOut();	
-//		logger.info("Ending of log-out Method");
-//	}
 		
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

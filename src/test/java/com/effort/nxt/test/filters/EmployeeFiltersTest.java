@@ -29,25 +29,23 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	private static final String EXPECTED_DISABLED_EMPLOYEE_STATUS="Disabled";
 	private static final String EXPECTED_PROVISIONED_EMPLOYEE_STATUS="Activation Completed";
 	private static final String EXPECTED_NOTPROVISIONED_EMPLOYEE_STATUS="Activation Incomplete";
-	//private static final String EXPECTEDEMPLOYEEFREETEXT ="Automation_2023-02-23 Emp";
-	
-//	private String expectedEmpid=null;
-//	private String expectedEmpfreetxt=null;
+
 	
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
 	
-	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String passWord) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_FILTERS_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.employeefilterspage = new EmployeeFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);
-		loginPage.enterUserName(testDataProp.getProperty("name"));
-		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		loginPage.enterUserName(userName);
+		loginPage.clickOnPassword(passWord);
 		loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, passWord);
 		
 		logger.info("Ending of initEffortLogin Method");	
 	}
@@ -58,6 +56,7 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	@Story("Test Case #1,Employee Filters")
 	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		employeefilterspage.ClickonEmployees();
@@ -80,17 +79,6 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 		
 		logger.info("Ending of employeeFilters Method");
 	}
-
-//	@AfterClass(alwaysRun = true)
-//	public void employeeFiltersLogout() throws InterruptedException {
-//		logger.info("Starting of employeeFiltersLogout Method");
-//		
-//		employeefilterspage.employeeFiltersLogOut();
-//		
-//		logger.info("Ending of employeeFiltersLogout Method");
-//		
-//	}
-	
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

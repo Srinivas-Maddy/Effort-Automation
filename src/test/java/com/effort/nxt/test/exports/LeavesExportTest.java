@@ -20,18 +20,20 @@ public class LeavesExportTest extends BaseAutomationTest{
 	private LeavesExportPage leavesexportpage=null;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" ,"browser", "headless"})
+	@Parameters({"siteURL" ,"browser", "headless","userName","password"})
 	
-	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_EXPORT_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.leavesexportpage = new LeavesExportPage(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, password);
+		
 		logger.info("Ending of initEffortLogin Method");
 	}
 	
@@ -41,11 +43,13 @@ public class LeavesExportTest extends BaseAutomationTest{
 	@Story("Test Case #1 ,Downloading all Leaves Information using Export All")
 	public void leavesExportAll() throws InterruptedException {
 		logger.info("Starting of entityExportAll Method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		leavesexportpage.clickOnThreeDots();
 		leavesexportpage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
 		leavesexportpage.selectLeavesExportAll();
+		
 		logger.info("Ending of entityExportAll Method");		
 	}
 	
@@ -55,7 +59,9 @@ public class LeavesExportTest extends BaseAutomationTest{
 	@Story("Test Case #2 ,Downloading all Leaves Information using Export Selected")
 	public void leavesExportSelected() throws InterruptedException {
 		logger.info("Starting of leavesExportSelected Method");
+		
 		leavesexportpage.selectLeavesExportSelected();
+		
 		logger.info("Ending of leavesExportSelected Method");		
 	}
 	
@@ -71,14 +77,7 @@ public class LeavesExportTest extends BaseAutomationTest{
 		
 		logger.info("Ending of leavesExportFiltered Method");		
 	}
-//	
-//	@AfterClass(alwaysRun=true)
-//	public void leavesLogOut(){
-//		logger.info("Starting of leavesLogOut Method");
-//		this.leavesexportpage.logOut();
-//		
-//		logger.info("Ending of leavesLogOut Method");
-//	}
+	
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
