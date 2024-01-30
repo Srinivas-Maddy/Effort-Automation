@@ -30,7 +30,7 @@ public class LoginTest extends BaseAutomationTest {
 		logger.info("Starting of initEffortLogin method in LoginTest");
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LOGIN_DRIVER);
 		this.goToSite(siteURL, driver);
-		this.loginPage = new LoginPage(this.driver);
+		//this.loginPage = new LoginPage(this.driver);
 		logger.info("Ending of initEffortLogin method in LoginTest");
 
 	}
@@ -38,13 +38,15 @@ public class LoginTest extends BaseAutomationTest {
 	@Test(priority = 1, description = " Test Case #1 , LogIn", groups = { "sanity" })
 	@Description("Test Case #1, Valid Username and password")
 	@Severity(SeverityLevel.BLOCKER)
+	@Parameters({"userName", "password"})
 	@Story("Web App login")
-	public void logIn() {
+	public void logIn(String userName, String password) {
 		logger.info("Starting of logIn method");
 
-		loginPage.enterUserName(testDataProp.getProperty("name"));
-		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		loginPage.clickOnLoginButton();
+		LoginToApplication(userName, password);
+//		loginPage.enterUserName(testDataProp.getProperty("name"));
+//		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+//		loginPage.clickOnLoginButton();
 		this.loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"),
 				testDataProp.getProperty("password1"));
 		loginPage.clickOnWebApp();

@@ -3,23 +3,20 @@ package com.effort.works;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.log4testng.Logger;
 
 import com.effort.base.BaseAutomationPage;
 
 
 public class WorkProcessCreation extends BaseAutomationPage{
 
-	private static final Logger logger = Logger.getLogger(WorkProcessCreation.class.getName());
+	private static final Logger logger = Logger.getLogger(WorkProcessCreation.class);
 
 	public static WebDriverWait waitElementVisiblity=null; 
 
@@ -203,6 +200,18 @@ public class WorkProcessCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
+	
+	@FindBy(id="home")
+	private WebElement homeModule;
+	
+	@FindBy(xpath="//a[contains(text(),'Create Process')]")
+	private WebElement createProcess_Card;
+	
+	@FindBy(xpath="//div[@id='workSpecspopup']/div/div[1]/div[1]")
+	private WebElement activityProcessOption;
+	
+	@FindBy(xpath="(//a[contains(text(),'Create On My Own')])[2]")
+	private WebElement createMyOwnOption;
 
 	//Parameterized cunstructor
 	public WorkProcessCreation(WebDriver driver) {
@@ -582,9 +591,32 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			}
 		}
 		
-		logger.info("Ending of settingsConfiguration");
-
+		logger.info("Ending of settingsConfiguration");	
+	}
+	
+	public void clickOnHome() {
+		logger.info("Starting of clickOnHome method");
 		
+		hardWait(3);
+		waitUntilElementVisible(driver, this.homeModule);
+		clickOnWebElement(this.homeModule);
+		
+		logger.info("Ending of clickOnHome method");
+	}
+	
+	public void clickOnCreateProcessInHomeScreen() {
+		logger.info("Starting of clickOnCreateProcessInHomeScreen Method");
+		
+		hardWait(2);
+		waitUntilElementVisible(driver, this.createProcess_Card);
+		clickOnWebElement(this.createProcess_Card);
+		waitUntilElementVisible(driver, this.activityProcessOption);
+		clickOnWebElement(this.activityProcessOption);
+		waitUntilElementVisible(driver, this.createMyOwnOption);
+		clickOnWebElement(this.createMyOwnOption);
+		
+		logger.info("Ending of clickOnCreateProcessInHomeScreen Method");
+
 	}
 	
 	

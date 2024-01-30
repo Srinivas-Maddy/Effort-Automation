@@ -74,7 +74,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='appliedOnLeaves']")
 	private WebElement appliedcheckbox;
 
-	@FindBy(xpath = "(//div[@class='select2-container select2-container-multi form-control'])[2]")
+	@FindBy(xpath = "//input[@id='s2id_autogen2']")
 	private WebElement reportingmangrfield;
 
 	@FindBy(xpath = "//input[@id='s2id_autogen2']")
@@ -218,14 +218,14 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of clickOnLeavesFilters Method");
 	}
 
-	public void enterAppliedLeavesEmployeeName(String leavesempname) throws InterruptedException {
+	public void enterAppliedLeavesEmployeeName(String leavesempname) {
 		logger.info("Starting of enterAppliedLeavesEmployeeName Method");
 		hardWait(4);
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesempname);
-		Thread.sleep(1000);
 		int i = 0;
+		hardWait(4);
 		while (i < this.leavesempnamesdata.size()) {
 			String leaveemployeesnames = this.leavesempnamesdata.get(i).getText();
 			if (leaveemployeesnames.equalsIgnoreCase("Srinivas Maddy")) {
@@ -235,7 +235,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 			}
 			i++;
 		}
-		Thread.sleep(1000);
+		hardWait(4);
 		waitUntilElementVisible(driver, this.leavesappliedcheckbox);
 		this.leavesappliedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -250,7 +250,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		return actualleavesappliedresult;
 	}
 
-	public void enterApprovedLeavesEmployeeName(String leavesempname) throws InterruptedException {
+	public void enterApprovedLeavesEmployeeName(String leavesempname) {
 		logger.info("Starting of enterApprovedLeavesEmployeeName Method");
 
 		waitUntilElementVisible(driver, this.leavesresetbtn);
@@ -259,7 +259,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesempname);
-		Thread.sleep(1000);
+		hardWait(3);
 		int i = 0;
 		while (i < this.secondTimeLeaveEmpName.size()) {
 			String leaveemployeesnames = this.secondTimeLeaveEmpName.get(i).getText();
@@ -271,7 +271,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 			i++;
 		}
 
-		Thread.sleep(1000);
+		hardWait(2);
 		waitUntilElementVisible(driver, this.leavesapprovedcheckbox);
 		this.leavesapprovedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -286,7 +286,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		return actualleavesapprovedresult;
 	}
 
-	public void enterCancelledLeavesEmployeeName(String leavesempname) throws InterruptedException {
+	public void enterCancelledLeavesEmployeeName(String leavesempname){
 		logger.info("Starting of enterCancelledLeavesEmployeeName Method");
 
 		waitUntilElementVisible(driver, this.leavesresetbtn);
@@ -295,7 +295,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesempname);
-		Thread.sleep(1000);
+		hardWait(3);
 		int i = 0;
 		while (i < this.secondTimeLeaveEmpName.size()) {
 			String leaveemployeesnames = this.secondTimeLeaveEmpName.get(i).getText();
@@ -307,7 +307,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 			i++;
 		}
 
-		Thread.sleep(1000);
+		hardWait(3);
 		waitUntilElementVisible(driver, this.leavescancelledcheckbox);
 		this.leavescancelledcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -322,7 +322,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		return actualleavescancelledresult;
 	}
 
-	public void enterRejectedLeavesEmployeeName(String leavesempname) throws InterruptedException {
+	public void enterRejectedLeavesEmployeeName(String leavesempname){
 		logger.info("Starting of enterRejectedLeavesEmployeeName Method");
 
 		waitUntilElementVisible(driver, this.leavesresetbtn);
@@ -331,7 +331,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesempname);
-		Thread.sleep(1000);
+		hardWait(3);
 		int i = 0;
 		while (i < this.secondTimeLeaveEmpName.size()) {
 			String leaveemployeesnames = this.secondTimeLeaveEmpName.get(i).getText();
@@ -343,7 +343,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 			i++;
 		}
 
-		Thread.sleep(1000);
+		hardWait(3);
 		waitUntilElementVisible(driver, this.leavesrejectedcheckbox);
 		this.leavesrejectedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -359,22 +359,27 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	}
 
-	public void enterReportingManager(String leavesempname) throws InterruptedException {
+	public void enterReportingManager(String reportManagerName) {
+		
 		logger.info("Starting of enterReportingManager Method");
+		
 		waitUntilElementVisible(driver, this.leavesresetbtn);
 		this.leavesresetbtn.click();
 		waitUntilElementVisible(driver, this.reportingmangrfield);
-		this.reportingmangrfield.click();
-		this.reportingmangrinputfield.sendKeys(leavesempname);
+		clickOnWebElement(this.reportingmangrfield);
+		this.reportingmangrinputfield.sendKeys(reportManagerName);
+		hardWait(2);
 		waitUntilElementVisible(driver, this.reportingmanagerdata);
 		this.reportingmanagerdata.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
 		this.leavesapplybtn.click();
+		
 		logger.info("Ending of enterReportingManager Method");
 	}
 
 	public String reportingManagerValidation() {
 		logger.info("Starting of reportingManagerValidation Method");
+		
 		waitUntilElementVisible(driver, this.reportingmanagerresult);
 		String actualreportingmangerresult = this.reportingmanagerresult.getText();
 		return actualreportingmangerresult;

@@ -185,6 +185,32 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		logger.info("Ending of withDrawWorkSpec method");
 	}
 	
+	@Test(priority = 11, description="Create the activity process in the home screen", groups = {"sanity"} )
+	@Description("Test Case #4, Created the activity process in home screen")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("ACTION PROCESS CONFIGURATION")	
+	public void createActionProcessInHomeScreen() throws InterruptedException {
+		logger.info("Starting of createActionProcessInHomeScreen Method");
+		
+		this.processCreation.clickOnHome();
+		this.processCreation.clickOnCreateProcessInHomeScreen();
+		processCreation.workProcessTitle(testDataProp.getProperty("workTitleName"));
+		processCreation.workProcessDiscription(testDataProp.getProperty("description"));
+		processCreation.clickOnNextBtn();
+		processCreation.clickOnAddFieldBtn();
+		processCreation.clickOnFirstAddedField();
+		processCreation.addUserDefinedFields();
+		processCreation.selectActionForms();
+		processCreation.clickNextCloneFieldData();
+		processCreation.clickNextManageFlow();
+		processCreation.clickSkipAutoAllocation();
+		processCreation.clickNextSetting();
+		processCreation.clickOtherSetting();
+		
+		logger.info("Ending of createActionProcessInHomeScreen Method");
+
+	}
+	
 	
 
 	@AfterClass(alwaysRun = true)

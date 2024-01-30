@@ -54,15 +54,15 @@ public class LeavesTest extends BaseAutomationTest{
 		leavespage.clickOnApplyLeaves();
 		leavespage.SwitchNewWindow();
 		leavespage.pickLeavesFromDate();
-		leavespage.clickOnToDate();
-		leavespage.pickLeaveType(leavesDataProp.getProperty("leavetype"));
-		
+		leavespage.clickOnTo();
+		leavespage.pickLeaveType(leavesDataProp.getProperty("leavetype"));	
 		leavespage.enterLeaveRemarks(leavesDataProp.getProperty("leaveRemark"));
 		leavespage.leavesSave();
+		
 		logger.info("Ending of applyLeaves Method");
 	}
 	
-	@Test(priority = 2, description = "Test Case #2, Approve Leaves" ,groups = {"Sanity"})
+	@Test(priority = 2, description = "Test Case #2, Approve Leaves" ,groups = {"Sanity"}, enabled=true)
 	@Description("After Appling Leaves,Approve the Leave")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1 , Approve Leaves")
@@ -70,11 +70,11 @@ public class LeavesTest extends BaseAutomationTest{
 	public void approveLeaves() throws InterruptedException
 	{
 		logger.info("Starting of approveLeaves Method");
+		
 		leavespage.clickOnThreeDots();
 		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
-		leavespage.selectEmployeeToApprove();;
-		leavespage.clickOnApprove();
-		leavespage.enterLeaveApprovelNote(leavesDataProp.getProperty("approvalNote"));
+		leavespage.approvedPendingLeave();
+		
 		logger.info("Ending of approveLeaves Method");
 	}
 	
@@ -84,20 +84,16 @@ public class LeavesTest extends BaseAutomationTest{
 	@Story("Test Case #3, Reject the Leave")
 	public void rejectLeaves() throws InterruptedException {
 		logger.info("Starting of rejectLeaves Method");
-		leavespage.selectEmployeeToReject();
-		leavespage.clickOnReject();
-		leavespage.enterLeaveRejectNote(leavesDataProp.getProperty("rejectNote"));
+		
+		leavespage.clickOnThreeDots();
+		leavespage.clickOnLeaves(leavesDataProp.getProperty("leavesname"));
+		leavespage.rejectPendingLeave();
+		
 		logger.info("Ending of rejectLeaves Method");
 		
 	}
 	
-//	@AfterClass(alwaysRun = true)
-//	public void leavesLogout() throws InterruptedException {
-//		logger.info("Starting of leavesLogout Method");
-//		leavespage.leavesLogOut();
-//		logger.info("Ending of leavesLogout Method");
-//	}
-//	
+	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
