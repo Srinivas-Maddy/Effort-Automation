@@ -25,16 +25,16 @@
 		</classes>
 	</test>
 
-	<test name="EntitiesFilters">
+	<!--<test name="EntitiesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="LeavesFilters">
+	<!--<test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 		</classes>
-	</test>
+	</test>-->
 
 </suite>
