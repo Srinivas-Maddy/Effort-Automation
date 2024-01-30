@@ -25,17 +25,18 @@ public class FormExportsTest extends BaseAutomationTest{
 	
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
-	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
+	@Parameters({"siteURL","browser", "headless","userName","password"})
+	public void initEffortLogin(String siteUrl,String browser, String headless, String userName, String password) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
+		
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.FORM_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.formExportPage=new FormExportPage(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, password);
 	
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
@@ -46,6 +47,7 @@ public class FormExportsTest extends BaseAutomationTest{
 	@Story("Export Forms Selected Functionalioty")
 	public void formExportSelected() throws InterruptedException {
 		logger.info("Starting of formExportSelected method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.formExportPage.clickOnFormsModule();
@@ -55,16 +57,11 @@ public class FormExportsTest extends BaseAutomationTest{
 		this.formExportPage.clickOnExportDrodDown();
 		String actulStatusMsg=this.formExportPage.clickOnExportSelected(formDataProp.getProperty("exportSelected"));
 		Assert.assertEquals(actulStatusMsg, EXPECTED_EXPORT_SELECTED_STATUS);
+		
 		logger.info("Ending of formExportSelected method");
 		
 	}
 	
-//	@AfterClass(alwaysRun = true)
-//	public void logOutForm() {
-//		logger.info("Starting of Log-out Method");
-//		this.formExportPage.logOut();	
-//		logger.info("Ending of log-out Method");
-//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

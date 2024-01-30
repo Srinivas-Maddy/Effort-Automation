@@ -24,16 +24,17 @@ public class ListBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_BULK_IMPORT_STATUS="Processed";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser", "headless" })
-	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
+	@Parameters({ "siteURL", "browser", "headless","userName","password" })
+	public void initEffortLogin(String siteURL, String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LIST_BULKUPLOAD);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, password);
 		this.importpage=new ImportPages(driver);
 		
 		logger.info("Ending of initEffortLogin Method");
@@ -47,23 +48,18 @@ public class ListBulkUploads extends BaseAutomationTest{
 	@Story("Validating the List bulk upload through the imports")
 	public void listImports() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/List_Template_TestList.xls";
 		String actualStatusMsg=this.importpage.importListUpload(importProp.getProperty("listSpecName"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_BULK_IMPORT_STATUS);
+		
 		logger.info("Ending of Customer Bulk Upload test case");
 
 	}	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void LogOutImports() {
-//		logger.info("Starting of LogOutCustomer Method");
-//		this.importpage.logOut();
-//		logger.info("Ending of LogOutCustomer Method");
-//
-//	}
+
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

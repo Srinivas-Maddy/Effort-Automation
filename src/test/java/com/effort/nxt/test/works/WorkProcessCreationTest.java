@@ -22,18 +22,20 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	
 	//Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
-	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
+	@Parameters({"siteURL","browser", "headless", "userName","password"})
+	public void initEffortLogin(String siteUrl,String browser, String headless, String userName, String password) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
+		
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.WORK_PROCESS_CREATION_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.processCreation=new WorkProcessCreation(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName,password);
 		this.processCreation.clickOnConfigurator();
+		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
 

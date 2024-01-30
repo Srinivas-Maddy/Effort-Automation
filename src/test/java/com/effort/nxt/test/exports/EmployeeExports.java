@@ -24,17 +24,18 @@ public class EmployeeExports extends BaseAutomationTest{
 	//Before class test case was execute once class loaded in the jvm
     
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
-	public void initEffortLogin(String siteUrl,String browser, String headless) throws Exception {
+	@Parameters({"siteURL","browser", "headless","userName","password"})
+	public void initEffortLogin(String siteUrl,String browser, String headless, String userName, String password) throws Exception {
 		logger.info("starting of initEfforrt Login Method in work creation process");
+		
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.EMPLOYEE_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.empExport=new EmployeeExportPage(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName,password);
 		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}
@@ -45,6 +46,7 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Story("Test Case #1, Downloading Employee Export All sheet")
 	public void employeeExportAll() throws InterruptedException {
 		logger.info("Starting of the employeeExportAll method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.empExport.clickOnEmployeeModule();
@@ -54,6 +56,7 @@ public class EmployeeExports extends BaseAutomationTest{
 		this.empExport.switchWindow();
 		//String actualMessage=this.empExport.getConfirmationMessage();
 		Assert.assertEquals(empExport.getConfirmationMessage(), ExportAllConfirmationMsg);
+		
 		logger.info("Ending the employeeExportAll Method");				
 	}
 	
@@ -64,21 +67,17 @@ public class EmployeeExports extends BaseAutomationTest{
 	@Story("Test Case #1, Downloading selected employees sheet")
 	public void employeeExportSelected() throws InterruptedException {
 		logger.info("Starting of the employee Export selected method");
+		
 		this.empExport.clickOnEmployeeModule();
         this.empExport.selectedEmployees();
 		this.empExport.clickOnExportOptions();
 		//String actualStatus=this.empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected"));
         Assert.assertEquals(empExport.clickOnExportSelected(exportDataProp.getProperty("exportSelected")),EXPORT_SELECTED_STATUS);
+        
 		logger.info("Ending the Export selected Method");				
 	}
 	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logOutForm() {
-//		logger.info("Starting of Log-out Method");
-//		this.empExport.logOut();	
-//		logger.info("Ending of log-out Method");
-//	}
+
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

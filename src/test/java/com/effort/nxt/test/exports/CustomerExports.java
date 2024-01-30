@@ -25,17 +25,18 @@ public class CustomerExports extends BaseAutomationTest {
 	private static final String EXPECTEDEXPORTFILTEREDSUCCESMSG="Data download process is successful.";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
-	public void initEffortLogin(String siteUrl , String browser, String headless) throws Exception {
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
+	public void initEffortLogin(String siteUrl , String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTOMERS_EXPORTS_DRIVER);
 		this.goToSite(siteUrl, driver);
 		this.custmrExpt = new CustomerExportPage(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, password);
 	
 		logger.info("Ending of initEffortLogin Method");
 	}
@@ -46,6 +47,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Story("Downloading Customer Export All Excell Sheet")
 	public void CustmrExportAll() throws InterruptedException {
 		logger.info("Starting of CustmrExportAll Method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrExpt.ClickonCustomerModule();
@@ -55,6 +57,7 @@ public class CustomerExports extends BaseAutomationTest {
 		custmrExpt.SwitchtoNewWindow();
 		String actualExptCnfrmMsg = custmrExpt.ExportConfirmMsg();
 		Assert.assertEquals(actualExptCnfrmMsg, EXPECTEDEXPORTCNFRMMSG);
+		
 		logger.info("Ending of CustmrExportAll Method");
 		
 	}
@@ -65,6 +68,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Story("Downloading the Export Selected Excell Sheet")
 	public void customerExportSelected() throws InterruptedException {
 		logger.info("Starting of customerExportSelected Method");
+		
 		custmrExpt.ClickonCustomerModule();
 		custmrExpt.customerSelectionCheckbox();
 		custmrExpt.ClickonExport();
@@ -72,6 +76,7 @@ public class CustomerExports extends BaseAutomationTest {
 		custmrExpt.SwitchtoNewWindow();
 		String actualexportselectedscuccessmsg = custmrExpt.exportSelectedSuccessMsg();
 		Assert.assertEquals(actualexportselectedscuccessmsg, EXPECTEDEXPORTSELECTEDSUCCESSMSG);	
+		
 		logger.info("Ending of customerExportSelected Method");
 	}
 	
@@ -82,6 +87,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Story("Downloading the ExportFiltered Excell Sheet")
 	public void customerExportFiltered() throws InterruptedException {
 		logger.info("Starting of customerExportFiltered Method");
+		
 		custmrExpt.ClickonCustomerModule();
 		custmrExpt.ClickOnFilter();
 		custmrExpt.filterCustomerName();
@@ -92,17 +98,11 @@ public class CustomerExports extends BaseAutomationTest {
 		custmrExpt.SwitchtoNewWindow();
 		String actualexportfilteredsuccesmsg = custmrExpt.exportFilteredConfirmMessage();
 		Assert.assertEquals(actualexportfilteredsuccesmsg, EXPECTEDEXPORTFILTEREDSUCCESMSG);
+		
 		logger.info("Ending of customerExportFiltered Method");
 		
 	}
 	
-//	@AfterClass(alwaysRun=true)
-//	public void logOut(){
-//		logger.info("Starting of Log-out Method");
-//		this.custmrExpt.logOut();	
-//		
-//		logger.info("Ending of log-out Method");
-//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

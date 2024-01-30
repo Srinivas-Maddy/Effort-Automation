@@ -100,6 +100,9 @@ public class CustomerPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[3]/table/tbody/tr/td")
 	private List<WebElement> datetimes1;
+	
+	@FindBy(xpath="(//label[contains(text(),'Number')])[1]")
+	private WebElement numberLabel;
 
 	@FindBy(xpath = "(//input[@class='sysField form-control numeric'])[2]")
 	private WebElement number;
@@ -563,8 +566,9 @@ public class CustomerPage extends BaseAutomationPage {
 	public void clickOnDateTime1Picker() throws InterruptedException {
 		logger.info("Starting of clickOnDateTime1Picker Method");
 		
-		scrollDown(100, datetime1picker);
+		scrollIntoView(this.datetime1picker);	
 		waitUntilElementVisible(driver, this.datetime1picker);
+		hardWait(5);
 		this.datetime1picker.click();
 		
 		logger.info("Ending of clickOnDateTime1Picker Method");
@@ -576,7 +580,6 @@ public class CustomerPage extends BaseAutomationPage {
 		String presentdatetime = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= datetimes1.size() - 1; i++) {
-			hardWait(3);
 			String actualdatetime = datetimes1.get(i).getText();
 			if (actualdatetime.equalsIgnoreCase(presentdatetime)) {
 				waitUntilElementVisible(driver, datetimes1.get(i));
@@ -584,7 +587,10 @@ public class CustomerPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		this.datetime1picker.click();
+		
+		waitUntilElementVisible(driver, this.numberLabel);
+		clickOnWebElement(this.numberLabel);
+		//this.datetime1picker.click();
 		
 		logger.info("Ending of pickCurrentDateTime1 Method");
 	}
@@ -722,7 +728,7 @@ public class CustomerPage extends BaseAutomationPage {
 	public void pickCustomer() throws InterruptedException {
 		logger.info("Starting of customPicker Method");
 		
-		scrollDown(100, customerpickfield);
+		scrollIntoView(customerpickfield);
 		waitUntilElementVisible(driver, customerpickfield);
 		this.customerpickfield.click();
 		waitUntilElementVisible(driver, customerpicker);
@@ -736,7 +742,7 @@ public class CustomerPage extends BaseAutomationPage {
 	public void pickEmployee() {
 		logger.info("Starting of employeePicker Method");
 		
-		scrollDown(100, employeepickfield);
+		scrollIntoView(employeepickfield);
 		waitUntilElementVisible(driver, employeepickfield);
 		this.employeepickfield.click();
 		waitUntilElementVisible(driver, employeepicker);
