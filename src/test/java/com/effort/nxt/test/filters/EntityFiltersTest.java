@@ -6,12 +6,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.filters.EntityFiltersPage;
 import com.effort.nxt.test.BaseAutomationTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -20,24 +18,6 @@ import io.qameta.allure.Story;
 public class EntityFiltersTest extends BaseAutomationTest{
 	
 	private static final Logger logger = Logger.getLogger(EntityFiltersTest.class.getName());
-	
-	private static final String EXPECTED_FILTER_ENTITY_NAME="Entity07";
-	private static final String EXPECTED_FILTER_ENTITY_ID="163126725381";
-	private static final String EXPECTED_FILTER_ENTITY_LOCATION="17.443190433765462,78.36599349975586";
-	private static final String EXPECTED_FILTER_ENTITY_NUMBER ="987654678";
-	private static final String EXPECTED_FILTER_ENTITY_TEXT="Entity Automation Text";
-	private static final String EXPECTED_FILTER_ENTITY_EMAIL="entitytext@nmail.com";
-	private static final String EXPECTED_FILTER_ENTITY_LOC ="17.43236927611689,78.37943538650313";
-	private static final String EXPECTED_FILTER_ENTITY_PHONE="987654567";
-	private static final String EXPECTED_FILTER_ENTITY_CURRENCY="60000.00";
-	private static final String EXPECTED_FILTER_ENTITY_URL="https://mail.google.com/mail/u/0/?tabrm&ogbl#chat/space/AAAAszuKn-I";
-	private static final String EXPECTED_FILTER_ENTITY_COUNTRY="India";
-	private static final String EXPECTED_FILTER_ENTITY_CUSTOMERNAME ="Entity07";
-	private static final String EXPECTED_FILTER_ENTITY_MULTIPICKCUSTOMERNAME ="Entity07";
-	private static final String EXPECTED_FILTER_ENTITY_TERRITORY="807090";
-	private static final String EXPECTED_FILTER_ENTITY_YESORNO="Entity07";
-	private static final String EXPECTED_FILTER_ENTITY_CUSTOMERTYPE ="Retailers";
-	private static final String EXPECTED_FILTER_ENTITY_FILLEDBY="Bulkfilledtype";
 	
 	private EntityFiltersPage entityfilterpage;
 	
@@ -61,49 +41,219 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	@Test(priority = 1, description = "Test Case #1, Validation of Entity Filters" ,groups = {"Sanity"})
 	@Description("Validation of Entity Filters")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #1 , Validating Entity filters")
-		
-	public void filterEntityName() throws InterruptedException {
+	@Story("Test Case #1 , Validating Entity filters")		
+	public void entityNameFilter() throws InterruptedException {
 		logger.info("Starting of filterEntityName Method");
 		
 		loginPage.ClickonWebApp();
 	    loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.entityfilterpage.clickOnEntityModule();
 		String actualfltrentityname=entityfilterpage.enterFiltersEntityName(filtersDataProp.getProperty("filterentityname"));
-		Assert.assertEquals(actualfltrentityname, EXPECTED_FILTER_ENTITY_NAME);
-		String actualfltrentityid=entityfilterpage.enterFilterEntityID(filtersDataProp.getProperty("filterentityid"));
-		Assert.assertEquals(actualfltrentityid, EXPECTED_FILTER_ENTITY_ID);
-		String actualfltrentitylocation = entityfilterpage.enterFilterEntityLocation(filtersDataProp.getProperty("filterlocation"));
-		Assert.assertEquals(actualfltrentitylocation, EXPECTED_FILTER_ENTITY_LOCATION);
-		String actualfltrentitynumber = entityfilterpage.enterFilterNumber(filtersDataProp.getProperty("filternumber"));
-		Assert.assertEquals(actualfltrentitynumber, EXPECTED_FILTER_ENTITY_NUMBER);
-		String actualfltrentitytext = entityfilterpage.enterFilterText(filtersDataProp.getProperty("filtertext"));
-		Assert.assertEquals(actualfltrentitytext, EXPECTED_FILTER_ENTITY_TEXT);
-		String actualfltrentityemail = entityfilterpage.enterFilterEmail(filtersDataProp.getProperty("filteremail"));
-		Assert.assertEquals(actualfltrentityemail, EXPECTED_FILTER_ENTITY_EMAIL);
-		String actualfltrentityloc = entityfilterpage.enterFilterLoc(filtersDataProp.getProperty("filterloc"));
-		Assert.assertEquals(actualfltrentityloc, EXPECTED_FILTER_ENTITY_LOC);
-		String actualfltrentityphone = entityfilterpage.enterFilterPhone(filtersDataProp.getProperty("filterphone"));
-		Assert.assertEquals(actualfltrentityphone, EXPECTED_FILTER_ENTITY_PHONE);
-		String actualfltrentitycurrency = entityfilterpage.enterFilterCurrency(filtersDataProp.getProperty("filtercurrency"));
-		Assert.assertEquals(actualfltrentitycurrency, EXPECTED_FILTER_ENTITY_CURRENCY);
-		String actualfltrentityurl = entityfilterpage.enterFilterUrl(filtersDataProp.getProperty("filterURL"));
-		Assert.assertEquals(actualfltrentityurl, EXPECTED_FILTER_ENTITY_URL);
-		String actualfltrentitycountry = entityfilterpage.enterFilterCountry(filtersDataProp.getProperty("filtercountry"));
-		Assert.assertEquals(actualfltrentitycountry, EXPECTED_FILTER_ENTITY_COUNTRY);
-		String actualfltrcustomerresult = entityfilterpage.pickFilterCustomer(filtersDataProp.getProperty("filterentitycustomer"));
-		Assert.assertEquals(actualfltrcustomerresult, EXPECTED_FILTER_ENTITY_CUSTOMERNAME);
-		String actualfltrmultipickcustomerresult = entityfilterpage.pickFilterMultiPickCustomer(filtersDataProp.getProperty("filterentitymultipickcustomer"));
-		Assert.assertEquals(actualfltrmultipickcustomerresult, EXPECTED_FILTER_ENTITY_MULTIPICKCUSTOMERNAME);
-		String actualfltrterritoryresult = entityfilterpage.pickFilterTerritory(filtersDataProp.getProperty("filterterritory"));
-		Assert.assertEquals(actualfltrterritoryresult, EXPECTED_FILTER_ENTITY_TERRITORY);
-		String actualfltryesornoresult=entityfilterpage.pickFilterYesOrNo(filtersDataProp.getProperty("filteryesorno"));
-		Assert.assertEquals(actualfltryesornoresult, EXPECTED_FILTER_ENTITY_YESORNO);
-		String actualfltrcustomertyperesult=entityfilterpage.enterFiltersCustomerType(filtersDataProp.getProperty("filtercustomertype"));
-		Assert.assertEquals(actualfltrcustomertyperesult, EXPECTED_FILTER_ENTITY_CUSTOMERTYPE);
-		
-		
+		Assert.assertEquals(actualfltrentityname,expectedAssertionsProp.getProperty("EntityFiltersTest.entityName"));
+	
 		logger.info("Ending of filterEntityName Method");
+	}
+	
+
+	@Test(priority = 2, description = "Test Case #2, Validation of Entity ID filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity ID Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityIdFilter() {
+		logger.info("Starting of entityIdFiltering method");
+		
+		String actualfltrentityid=entityfilterpage.enterFilterEntityID(filtersDataProp.getProperty("filterentityid"));
+		Assert.assertEquals(actualfltrentityid, expectedAssertionsProp.getProperty("EntityFiltersTest.entityId"));
+		
+		logger.info("Ending of entityIdFiltering method");
+	}
+	
+	@Test(priority = 3, description = "Test Case #3, Validation of Entity location filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Location Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityLocationFilter() {
+		logger.info("Starting of entityLocationFilter method");
+		
+		String actualfltrentityid=entityfilterpage.enterFilterEntityID(filtersDataProp.getProperty("filterentityid"));
+		Assert.assertEquals(actualfltrentityid, expectedAssertionsProp.getProperty("EntityFiltersTest.entityId"));
+		
+		logger.info("Ending of entityLocationFilter method");
+	}
+	
+	@Test(priority = 4, description = "Test Case #4, Validation of Entity number filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity number Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityNumberFilter() throws InterruptedException {
+		logger.info("Starting of entityNumberFilter method");
+		
+		String actualfltrentitynumber = entityfilterpage.enterFilterNumber(filtersDataProp.getProperty("filternumber"));
+		Assert.assertEquals(actualfltrentitynumber,expectedAssertionsProp.getProperty("EntityFiltersTest.number"));
+		
+		logger.info("Ending of entityNumberFilter method");		
+	}
+	
+	@Test(priority = 5, description = "Test Case #5, Validation of Entity Text filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity text Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityTextFilter() throws InterruptedException {
+		logger.info("Starting of entityTextFilter method");
+		
+		String actualfltrentitytext = entityfilterpage.enterFilterText(filtersDataProp.getProperty("filtertext"));
+		Assert.assertEquals(actualfltrentitytext,expectedAssertionsProp.getProperty("EntityFiltersTest.text") );
+		
+		logger.info("Ending of entityTextFilter method");		
+	}
+	
+	@Test(priority = 6, description = "Test Case #6, Validation of Entity Email filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Email Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityEmailFilter() throws InterruptedException {
+		logger.info("Starting of entityEmailFilter method");
+		
+		String actualfltrentityemail = entityfilterpage.enterFilterEmail(filtersDataProp.getProperty("filteremail"));
+		Assert.assertEquals(actualfltrentityemail,expectedAssertionsProp.getProperty("EntityFiltersTest.email") );
+		
+		logger.info("Ending of entityEmailFilter method");
+	}
+	
+	@Test(priority = 7, description = "Test Case #7, Validation of Entity location filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Location Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityUserLocationFilter() throws InterruptedException {
+		logger.info("Starting of entityLocationFilter Method");
+		
+		String actualfltrentityloc = entityfilterpage.enterFilterLoc(filtersDataProp.getProperty("filterloc"));
+		Assert.assertEquals(actualfltrentityloc,expectedAssertionsProp.getProperty("EntityFiltersTest.loc") );
+		
+		logger.info("Ending of entityLocationFilter Method");
+	}
+	
+
+	@Test(priority = 8, description = "Test Case #8, Validation of Entity Phone filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Phone Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityPhoneFilter() throws InterruptedException {
+		logger.info("Starting of entityPhoneFilter Method");
+		
+		String actualfltrentityphone = entityfilterpage.enterFilterPhone(filtersDataProp.getProperty("filterphone"));
+		Assert.assertEquals(actualfltrentityphone,expectedAssertionsProp.getProperty("EntityFiltersTest.phone"));
+		
+		logger.info("Ending of entityPhoneFilter Method");	
+	}
+	
+	@Test(priority = 9, description = "Test Case #9, Validation of Entity Currency filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Currency Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityCurrencyFilter() throws InterruptedException {
+		logger.info("Starting of entityCurrencyFilter Method");
+
+		String actualfltrentitycurrency = entityfilterpage.enterFilterCurrency(filtersDataProp.getProperty("filtercurrency"));
+		Assert.assertEquals(actualfltrentitycurrency, expectedAssertionsProp.getProperty("EntityFiltersTest.currency"));
+		
+		logger.info("Ending of entityCurrencyFilter Method");
+	}
+	
+	
+	@Test(priority = 10, description = "Test Case #10, Validation of Entity URL filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity URL Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityUrlFilter() throws InterruptedException {
+		logger.info("Starting of entityUrlFilter Method");
+
+		String actualfltrentityurl = entityfilterpage.enterFilterUrl(filtersDataProp.getProperty("filterURL"));
+		Assert.assertEquals(actualfltrentityurl,expectedAssertionsProp.getProperty("EntityFiltersTest.url"));
+		
+		logger.info("Ending of entityUrlFilter Method");
+	}
+	
+	@Test(priority = 11, description = "Test Case #11, Validation of Entity Country filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity Country Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityCountryFiler() throws InterruptedException {
+		logger.info("Starting of entityCountryFiler Method");
+		
+		String actualfltrentitycountry = entityfilterpage.enterFilterCountry(filtersDataProp.getProperty("filtercountry"));
+		Assert.assertEquals(actualfltrentitycountry,expectedAssertionsProp.getProperty("EntityFiltersTest.country"));
+		
+		logger.info("Ending of entityCountryFiler Method");
+	}
+	
+	@Test(priority = 12, description = "Test Case #12, Validation of Entity customer filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity customer Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityCustomerFilter() throws InterruptedException {
+		logger.info("Starting of entityCustomerFilter Method");
+
+		String actualfltrcustomerresult = entityfilterpage.pickFilterCustomer(filtersDataProp.getProperty("filterentitycustomer"));
+		Assert.assertEquals(actualfltrcustomerresult,expectedAssertionsProp.getProperty("EntityFiltersTest.customer") );
+		
+		logger.info("Ending of entityCustomerFilter Method");
+	}
+	
+	@Test(priority = 13, description = "Test Case #13, Validation of Entity multipick customer filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity multipick customer Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityMultiCustomerFilter() throws InterruptedException {
+		
+		logger.info("Starting of entityMultiCustomerFilter Method");
+
+		String actualfltrmultipickcustomerresult = entityfilterpage.pickFilterMultiPickCustomer(filtersDataProp.getProperty("filterentitymultipickcustomer"));
+		Assert.assertEquals(actualfltrmultipickcustomerresult,expectedAssertionsProp.getProperty("EntityFiltersTest.customer") );
+		
+		logger.info("Ending of entityMultiCustomerFilter Method");
+	}
+	
+	@Test(priority = 14, description = "Test Case #14, Validation of Entity territory filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity territory Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityTerritoryFilter() throws InterruptedException {
+		
+		logger.info("Starting of entityTerritoryFilter Method");
+
+		String actualfltrterritoryresult = entityfilterpage.pickFilterTerritory(filtersDataProp.getProperty("filterterritory"));
+		Assert.assertEquals(actualfltrterritoryresult, expectedAssertionsProp.getProperty("EntityFiltersTest.territory"));
+		
+		logger.info("Ending of entityTerritoryFilter Method");
+	}
+	
+
+	@Test(priority = 15, description = "Test Case #15, Validation of Entity yes or no filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity yes or no Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityYesOrNoFilter() throws InterruptedException {
+		
+		logger.info("Starting of entityYesOrNoFilter Method");
+
+		String actualfltryesornoresult=entityfilterpage.pickFilterYesOrNo(filtersDataProp.getProperty("filteryesorno"));
+		Assert.assertEquals(actualfltryesornoresult, expectedAssertionsProp.getProperty("EntityFiltersTest.yes"));
+		
+		logger.info("Ending of entityYesOrNoFilter Method");
+	}
+	
+	@Test(priority = 16, description = "Test Case #16, Validation of Entity customer type filtering" ,groups = {"Sanity"})
+	@Description("Validation of Entity customer type  Filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Entity filters")
+	public void entityCustomerTypeFilter() throws InterruptedException {
+		logger.info("Starting of entityCustomerTypeFilter Method");
+
+		String actualfltrcustomertyperesult=entityfilterpage.enterFiltersCustomerType(filtersDataProp.getProperty("filtercustomertype"));
+		Assert.assertEquals(actualfltrcustomertyperesult, expectedAssertionsProp.getProperty("EntityFiltersTest.type"));
+		
+		logger.info("Ending of entityCustomerTypeFilter Method");
 	}
 
 	

@@ -7,7 +7,7 @@
 		
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
-	<parameter name="password" value="Spoors@123" />
+	<parameter name="password" value="Spoors@321" />
 
 	<!--<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />-->
 
@@ -16,23 +16,21 @@
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-
-	<!--<test name="EmployeeFilters">
+    <test name="EmployeeFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 		</classes>
 	</test>
 
-	<test name="EntitiesFilters">
+	<!--<test name="EntitiesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
 	</test>-->
 
-	<test name="LeavesFilters">
+	<!--<test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 		</classes>
-	</test>
-
+	</test> -->
 </suite>

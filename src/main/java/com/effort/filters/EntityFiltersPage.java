@@ -102,7 +102,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div/span")
 	private List<WebElement> fltrcustomerdropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[4]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[28]")
 	private WebElement fltrcustmrresult;
 
 	@FindBy(xpath = "(//div[text()='Multi Pick Customer'])[2]/div")
@@ -114,7 +114,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div/span")
 	private List<WebElement> fltrmultipickcustomerdropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[4]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[28]")
 	private WebElement fltrmultipickcustomerresult;
 
 	@FindBy(xpath = "(//div[text()='Territory'])[2]/div")
@@ -123,7 +123,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div")
 	private List<WebElement> fltrterritorydropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[5][text()='807090']")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[30]")
 	private WebElement fltrterritoryresult;
 
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select")
@@ -132,7 +132,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select/option")
 	private List<WebElement> fltryesornodata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[4]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[31]")
 	private WebElement fltryesornoresult;
 
 	@FindBy(xpath = "(//div[text()='Customer Type'])[2]/input")
@@ -190,7 +190,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 		logger.info("Starting of click On entity module");
 		for (int i = 0; i <this.navigationBar.size(); i++){
 			String navNames=this.navigationBar.get(i).getText();
-			if(navNames.equalsIgnoreCase("Automation Entity teju1")) {
+			if(navNames.equalsIgnoreCase("Automation Entity teju")) {
 				waitUntilElementVisible(driver, this.navigationBar.get(i));
 				this.navigationBar.get(i).click();
 				break;
@@ -203,13 +203,14 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	public String enterFiltersEntityName(String filterentityname) {
 		logger.info("Starting of enterFiltersEntityName Method");
-		scrollDown(100, this.filtersbtn);
+		
+		scrollIntoView(filtersbtn);
 		waitUntilElementVisible(driver, this.filtersbtn);
-		this.filtersbtn.click();
+		clickOnWebElement(filtersbtn);
 		waitUntilElementVisible(driver, this.entityName);
 		this.entityName.sendKeys(filterentityname);
 		waitUntilElementVisible(driver, this.filterapply);
-		this.filterapply.click();
+		clickOnWebElement(this.filterapply);
 		waitUntilElementVisible(driver, this.entityNameResult);
 		String actualfltrname = this.entityNameResult.getText();
 		return actualfltrname;
