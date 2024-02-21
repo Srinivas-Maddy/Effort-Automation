@@ -240,7 +240,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		logger.info("Starting of click On entity module");
 		for (int i = 0; i <this.navigationBar.size(); i++){
 			String navNames=this.navigationBar.get(i).getText();
-			if(navNames.equalsIgnoreCase("Automation Entity teju1")) {
+			if(navNames.equalsIgnoreCase("Automation Entity teju")) {
 				waitUntilElementVisible(driver, this.navigationBar.get(i));
 				this.navigationBar.get(i).click();
 				break;
@@ -502,6 +502,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		logger.info("Starting of selectEntityMultiPickCustomer Method");
 		waitUntilElementVisible(driver, this.entitymultipickcustomerfield);
 		this.entitymultipickcustomerfield.click();
+		this.hardWait(3);
 		waitUntilElementVisible(driver, this.entitymultipickcustomersdata);
 		this.entitymultipickcustomersdata.click();
 		waitUntilElementVisible(driver, this.entitymultipickcustomerokbtn);

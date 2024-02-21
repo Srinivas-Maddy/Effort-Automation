@@ -24,17 +24,19 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	private static final String EXPECTEDMODIFIEDSUCCESMSG="Modified Successfully";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
-	public void initEffortLogin(String siteURL ,String browser , String headless) throws Exception {
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
+	public void initEffortLogin(String siteURL ,String browser , String headless, String userName,String password) throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_SUBMISSION_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiessubmission = new EntitiesSubmission(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();	
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName,password);
+		
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
 	
@@ -44,6 +46,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Story("Test Case #1 , Add Entity Details")
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
@@ -84,6 +87,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		//entitiessubmission.saveEntity();	
 		String actualcreationsuccesmsg = entitiessubmission.saveEntityAndValidateCreatedEntity();
 		Assert.assertEquals(actualcreationsuccesmsg, EXPECTEDCREATIONSUCCESMSG);
+		
 		logger.info("Ending of addEntity Method");
 	}
 	
@@ -94,6 +98,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Story("Test Case 2 , Modify Entity")
 	public void modifyEntity() throws InterruptedException {
 		logger.info("Starting of modifyEntity Method");
+		
 		entitiessubmission.ClickonEditBtn();
 		entitiessubmission.modifyEntityName(entityDataProp.getProperty("modifiedentityname"));
 		entitiessubmission.modifyEntityID();
@@ -112,21 +117,13 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Story("Test Case 3 , Delete Entity")
 	public void deleteEntity() throws InterruptedException {
 		logger.info("Starting of deleteEntity Method");
+		
 		entitiessubmission.selectEntitytoDelete();
 		entitiessubmission.ClickonDeleteBtn();	
+		
 		logger.info("Ending of deleteEntity Method");	
 	}	
 	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logoutEntitites() throws InterruptedException {
-//		logger.info("Starting of logoutEntitites Method");
-//		
-//		entitiessubmission.LogOutEntity();
-//		
-//		
-//		logger.info("Ending of logoutEntitites Method");
-//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

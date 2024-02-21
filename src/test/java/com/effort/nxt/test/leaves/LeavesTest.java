@@ -22,18 +22,19 @@ public class LeavesTest extends BaseAutomationTest{
 	private LeavesPage leavespage;
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL","browser", "headless"})
+	@Parameters({"siteURL","browser", "headless","userName","password"})
 	
-	public void initEffortLogin(String siteURL , String browser, String headless) throws Exception {
+	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_DRIVER);
 	    this.goToSite(siteURL, driver);
 	    this.leavespage = new LeavesPage(driver);
 	    this.loginPage = new LoginPage(driver);
-	    loginPage.enterUserName(testDataProp.getProperty("name"));
-	    loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+	    loginPage.enterUserName(userName);
+	    loginPage.clickOnPassword(password);
 	    loginPage.clickOnLoginButton();
-	    loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+	    loginPage.clickOnSignOutFromAllSessions(userName,password);
 	   
 		logger.info("Ending of initEffortLogin Method");
 	}

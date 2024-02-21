@@ -88,7 +88,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//input[@id='formDateTime']")
 	private WebElement appliedbtwninputfield;
-
+	
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td")
 	private List<WebElement> appliedbtwndates;
 
@@ -175,6 +175,34 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//div[@class='xdsoft_select xdsoft_monthselect xdsoft_scroller_box']//div[contains(@class,'xdsoft_option')]")
 	private WebElement testingone;
+	
+	@FindBy(id="appliedOnLeaves")
+	private WebElement appliedOnLeaveCheckBox;
+	
+	@FindBy(id="formDateTime")
+	private WebElement fromDatePicker;
+	
+	@FindBy(id="toDateTime")
+	private WebElement toDatePicker;
+	
+	@FindBy(xpath="//td[contains(@class, 'xdsoft_current xdsoft_today')]")
+	private WebElement currentDate;
+	
+	@FindBy(id="fromDateLabel")
+	private WebElement fromDateLabelText;
+	
+	@FindBy(id="search")
+	private WebElement applyBtn;
+	
+	@FindBy(id="reset")
+	private WebElement resetBtn;
+	
+	@FindBy(xpath="//*[@id='s2id_leaveTypeEntityIds']")
+	private WebElement leaveTypeDropDown;
+	
+	@FindBy(xpath="//div[@id='select2-drop']/ul/li/div")
+	private List<WebElement> leaveTypes;
+
 
 	public LeavesFiltersPage(WebDriver driver) {
 		super(driver);
@@ -395,23 +423,18 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of clickLeavesAppliedCheckbox Method");
 	}
 
-	public void pickAppliedLeavesDates(String date) throws InterruptedException {
+	public void pickAppliedLeavesDates(String date)  {
 		logger.info("Starting of pickAppliedLeavesDate Method");
+		
 		waitUntilElementVisible(driver, this.appliedbtwninputfield);
 		// this.appliedbtwninputfield.click();
-		Thread.sleep(500);
+		hardWait(3);
 		int count = 0;
 
 		appliedbtwninputfield.sendKeys(date);
 		this.appliedbtwninputfield.click();
 
 		try {
-
-			/*
-			 * while (count < this.appliedbtwndates.size()) {
-			 * waitUntilElementVisible(driver, this.appliedbtwndates.get(count));
-			 * this.appliedbtwndates.get(count).click(); break; }
-			 */
 			count++;
 			Thread.sleep(1000);
 			waitUntilElementVisible(driver, this.leavesandinputfield);
@@ -439,7 +462,64 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of pickAppliedLeavesDate Method");
 
 	}
+	
+	
+	public void clickOnAppliedOnCheckBox() {
+		logger.info("Starting of clickOnAppliedOnCheckBox method");
+		
+		hardWait(2);
+		waitUntilElementVisible(driver, this.appliedOnLeaveCheckBox);
+		clickOnWebElement(this.appliedOnLeaveCheckBox);
+		
+		logger.info("Ending of clickOnAppliedOnCheckBox method");
 
+	}
+	
+	public void selectFromDate(String fromDate) {
+		logger.info("Starting of selectFromDate Method");
+		
+		waitUntilElementVisible(driver, this.fromDatePicker);
+		this.fromDatePicker.sendKeys(fromDate);
+		waitUntilElementVisible(driver, this.fromDateLabelText);
+		clickOnWebElement(this.fromDateLabelText);
+		
+		logger.info("Ending of selectFromDate Menthod");
+	}
+	
+	public void selectToDate() {
+		logger.info("Starting of selectToDate Method");
+		
+		hardWait(3);
+		scrollIntoView(toDatePicker);
+		waitUntilElementVisible(driver, this.toDatePicker);
+		clickOnWebElement(this.toDatePicker);
+		hardWait(10);
+		waitUntilElementVisible(driver, this.currentDate);
+		clickOnWebElement(this.currentDate);
+		
+		logger.info("Ending of selectToDate Method");
+	}
+	
+	public void leaveTypeFilter(String typeName) {
+		logger.info("Starting of leaveTypeFilter Method");
+		
+		hardWait(2);
+		waitUntilElementVisible(driver, this.leaveTypeDropDown);
+		clickOnWebElement(this.leaveTypeDropDown);
+		for (int i = 0; i < leaveTypes.size(); i++) {
+			String leaveSpecNames=leaveTypes.get(i).getText();
+			if (leaveSpecNames.equalsIgnoreCase(typeName)) {
+				hardWait(1);
+				waitUntilElementVisible(driver, this.leaveTypes.get(i));
+				clickOnWebElement(this.leaveTypes.get(i));
+				break;
+			}
+		}
+		
+		logger.info("Ending of leaveTypeFilter Method");
+	}
+	
+	
 	public boolean leavesDateValidation() {
 		logger.info("Starting of leavesDateValidation Method");
 		hardWait(2);
@@ -451,6 +531,8 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 	public void selectLeaveType(String leavetype) throws InterruptedException {
 		logger.info("Starting of selectLeaveType Method");
+		
+		hardWait(3);
 		waitUntilElementVisible(driver, this.leavesresetbtn);
 		this.leavesresetbtn.click();
 		waitUntilElementVisible(driver, this.leavetypefield);
@@ -660,5 +742,26 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filtersLeavesLogout Method");
 	}
+	
+	public void clickOnApply() {
+		logger.info("Starting of clickOnApply Method");
+	
+		hardWait(3);
+		waitUntilElementVisible(driver, this.applyBtn);
+		clickOnWebElement(this.applyBtn);
+		
+		logger.info("Ending of clickOnApply Method");
+	}
+	
+	public void clickOnRest() {
+		logger.info("Starting of clickOnRest method");
+		
+		hardWait(2);
+		waitUntilElementVisible(driver, this.resetBtn);
+		clickOnWebElement(this.resetBtn);
+		
+		logger.info("Ending of clickOnRest method");
+	}
 
 }
+

@@ -119,6 +119,9 @@ public class LeavesPage extends BaseAutomationPage {
 	@FindBy(xpath = "//td[contains(@class,'xdsoft_current xdsoft_today')]")
 	private WebElement dateToday;
 	
+	@FindBy(xpath = "//td[contains(@class,'xdsoft_current xdsoft_today')]/following-sibling::td//div")
+	private WebElement tommarowsDate;
+	
 	@FindBy(xpath="//div[@id='title-content']")
 	private WebElement leaveTitle;
 
@@ -180,50 +183,51 @@ public class LeavesPage extends BaseAutomationPage {
 	}
 
 	public void pickLeavesFromDate() throws InterruptedException {
-		logger.info("Starting of pickLeavesFromDate Method");
+        logger.info("Starting of pickLeavesFromDate Method");
 
-		waitUntilElementVisible(driver, this.fromdatefield);
-		clickOnWebElement(fromdatefield);
-		String presentdatetime = getCurrentDateAsNumber();
-		String currentMonth = getCurrentMonthAsString();
-		hardWait(5);
-		List<WebElement> currentMonthDates = driver.findElements(
-				By.xpath("(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td[@data-month="+currentMonth+"]"));
+        waitUntilElementVisible(driver, this.fromdatefield);
+        clickOnWebElement(fromdatefield);
+        String presentdatetime = getCurrentDateAsNumber();
+        String currentMonth = getCurrentMonthAsString();
+        hardWait(5);
+        List<WebElement> currentMonthDates = driver.findElements(
+                By.xpath("(//div[@class='xdsoft_calendar'])[1]/table/tbody/tr/td[@data-month="+currentMonth+"]"));
 
-		for (int i = 0; i < currentMonthDates.size(); i++) { 
-			String fromactualdatetime = currentMonthDates.get(i).getText();
-			if(fromactualdatetime.equalsIgnoreCase(presentdatetime)) 
-			{
-			 waitUntilElementVisible(driver, currentMonthDates.get(i));
-			 clickOnWebElement(currentMonthDates.get(i));
-			 break; 
-			 } 
-			
-		}
-		clickOnWebElement(leaveTitle);
-		hardWait(10);
-		logger.info("Ending of pickLeavesFromDate Method");
-	}
+        for (int i = 0; i < currentMonthDates.size(); i++) { 
+            String fromactualdatetime = currentMonthDates.get(i).getText();
+            if(fromactualdatetime.equalsIgnoreCase(presentdatetime)) 
+            {
+             waitUntilElementVisible(driver, currentMonthDates.get(i));
+             clickOnWebElement(currentMonthDates.get(i));
+             break; 
+             } 
+            
+        }
+        clickOnWebElement(leaveTitle);
+        hardWait(10);
+        logger.info("Ending of pickLeavesFromDate Method");
+    }
+
 
 	public void clickOnToDate() throws InterruptedException {
-		logger.info("Starting of clickToDate Method");
+        logger.info("Starting of clickToDate Method");
 
-		scrollDown(0, this.toDateField);
-		waitUntilElementVisible(driver, this.toDateField);
-		this.toDateField.click();
-		String tomorrowDate = getTomorrowDateAsNumber(1);
-		Thread.sleep(500);
-		for (int i = 1; i < toDateCalender.size(); i++) {
-			hardWait(3);
-			String fromactualdatetime = this.toDateCalender.get(i).getText();
-			if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
-				waitUntilElementVisible(driver, this.toDateCalender.get(i));
-				this.toDateCalender.get(i).click();
-				break;
-			}
-		}
+        scrollDown(0, this.toDateField);
+        waitUntilElementVisible(driver, this.toDateField);
+        this.toDateField.click();
+        String tomorrowDate = getTomorrowDateAsNumber(1);
+        Thread.sleep(500);
+        for (int i = 1; i < toDateCalender.size(); i++) {
+            hardWait(3);
+            String fromactualdatetime = this.toDateCalender.get(i).getText();
+            if (fromactualdatetime.equalsIgnoreCase(tomorrowDate)) {
+                waitUntilElementVisible(driver, this.toDateCalender.get(i));
+                this.toDateCalender.get(i).click();
+                break;
+            }
+        }
 
-	}
+    }
 
 	public void clickOnTo() {
 		logger.info("Starting of clickOnTo Method");
@@ -350,6 +354,7 @@ public class LeavesPage extends BaseAutomationPage {
 		Thread.sleep(1000);
 		int i = 0;
 		while (i < this.leavescheckbox.size()) {
+			this.hardWait(3);
 			waitUntilElementVisible(driver, this.leavescheckbox.get(i));
 			this.leavescheckbox.get(i).click();
 			break;

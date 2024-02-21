@@ -21,79 +21,31 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(LeavesFiltersTest.class.getName());
 	private LeavesFiltersPage leavesfilterpage;
 	
-	
-	private static final String EXPECTED_LEAVES_TYPE="Leave";
-	private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
+		private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
 	private static final String EXPECTED_MYLEAVES_FROM_DATE = "Leave";
 		
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless"})
+	@Parameters({"siteURL" , "browser", "headless","userName","password"})
 	
-	public void initEffortLogin(String siteURL , String browser, String headless ) throws InterruptedException {
+	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String password ) throws InterruptedException {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.LEAVES_FILTERS_DRIVER);
 		driver.get(siteURL);
 		this.leavesfilterpage = new LeavesFiltersPage(driver);
 		this.loginPage = new LoginPage(driver);
-		loginPage.enterUserName(testDataProp.getProperty("name"));
-		loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		loginPage.enterUserName(userName);
+		loginPage.clickOnPassword(password);
 		loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName,password);
 	
 		logger.info("Ending of initEffortLogin Method");
 	}
 	
-	@Test(priority = 1 ,description = "TestCase#1 ,Validation of Leaves Filters" , groups = {"sanity"} ,enabled=false)
-	@Description("Validation of Leaves Filters")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("TestCase #1, Validation of Leaves Filters")
-	public void leavesFilters() throws InterruptedException {
-		logger.info("Starting of leavesFilters Method");
-		loginPage.ClickonWebApp();
-		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
-		leavesfilterpage.clickOnThreeDots();
-		leavesfilterpage.pickLeaves(leavesDataProp.getProperty("leavesname"));
-		leavesfilterpage.clickOnLeavesFilters();
-		leavesfilterpage.enterAppliedLeavesEmployeeName(leavesDataProp.getProperty("leavesEmployeeName"));
-		String actualappliedLeaves = leavesfilterpage.appliedLeavesValidation();
-		//Assert.assertEquals(actualappliedLeaves, EXPECTED_APPLIED_LEAVES_STATUS);
-		
-//		leavesfilterpage.clickOnLeavesFilters();
-//		leavesfilterpage.enterApprovedLeavesEmployeeName(leavesDataProp.getProperty("leavesEmployeeName"));
-//		String actualapprovedLeaves = leavesfilterpage.approvedLeavesValidation();
-//		Assert.assertEquals(actualapprovedLeaves, EXPECTED_APPROVED_LEAVES_STATUS);
-//		
-//		leavesfilterpage.clickOnLeavesFilters();
-//		leavesfilterpage.enterCancelledLeavesEmployeeName(leavesDataProp.getProperty("leavesEmployeeName"));
-//		String actualcancelledLeaves = leavesfilterpage.cancelledLeavesValidation();
-//		Assert.assertEquals(actualcancelledLeaves, EXPECTED_CANCELLED_LEAVES_STATUS);
-		
-//		leavesfilterpage.clickOnLeavesFilters();
-//		leavesfilterpage.enterRejectedLeavesEmployeeName(leavesDataProp.getProperty("leavesEmployeeName"));
-//		String actualrejectedLeaves= leavesfilterpage.rejectedLeavesValidation();
-//		Assert.assertEquals(actualrejectedLeaves, EXPECTED_REJECTED_EMPLOYEE_ID);
-//		
-//		leavesfilterpage.clickOnLeavesFilters();
-//		leavesfilterpage.enterReportingManager(leavesDataProp.getProperty("leavesEmployeeName"));
-//		String actualreportingmangerresult= leavesfilterpage.reportingManagerValidation();
-//		Assert.assertEquals(actualreportingmangerresult, EXPECTED_REPORTING_IMMEDIATE_MANAGER);
-		
-		leavesfilterpage.clickOnLeavesFilters();
-		leavesfilterpage.clickOnLeavesAppliedCheckbox();
-		leavesfilterpage.pickAppliedLeavesDates(leavesDataProp.getProperty("leavedate"));
-		
-		boolean appliedDataDisplayed= leavesfilterpage.leavesDateValidation();//
-		Assert.assertEquals(appliedDataDisplayed, true);
-		//leavesfilterpage.clickOnLeavesFilters();
-		leavesfilterpage.selectLeaveType(leavesDataProp.getProperty("leavetype"));
-		String actualleavestyperesult= leavesfilterpage.leavesTypeValidation();
-		Assert.assertEquals(actualleavestyperesult, EXPECTED_LEAVES_TYPE);
-		logger.info("Ending of leavesFilters Method");
-	}
 	
 	@Test(priority = 1 ,description = "TestCase#1 ,Applied Leave filter validation" , groups = {"sanity"} )
-	@Description("Checking the applied leave filter function in leaves filters")
+	@Description("Checking the applied leave filter functionality in leaves filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("LEAVE FILTER FUNCTIONALITY")
 	public void appliedFilter() {
@@ -112,11 +64,10 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	}
 	
 	@Test(priority = 2 ,description = "TestCase#2 ,Approved Leave filter validation" , groups = {"sanity"} )
-	@Description("Checking the Approved leave filter function in leaves filters")
+	@Description("Checking the Approved leave filter functionality in leaves filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("LEAVE FILTER FUNCTIONALITY")
-	public void approvedFilter() {
-		
+	public void approvedFilter() {		
 		logger.info("Starting of approvedLeaveFilter functionality");
 		
 		leavesfilterpage.clickOnLeavesFilters();
@@ -129,7 +80,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	}
 	
 	@Test(priority = 3 ,description = "TestCase#3 ,Cancelled Leave filter validation" , groups = {"sanity"} )
-	@Description("Checking the Cancelled leave filter function in leaves filters")
+	@Description("Checking the Cancelled leave filter functionality in leaves filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("LEAVE FILTER FUNCTIONALITY")
 	public void cancelledFilter() {
@@ -144,7 +95,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	}
 	
 	@Test(priority = 4 ,description = "TestCase#4 ,Rejected Leave filter validation" , groups = {"sanity"} )
-	@Description("Checking the Rejected leave filter function in leaves filters")
+	@Description("Checking the Rejected leave filter functionality in leaves filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("LEAVE FILTER FUNCTIONALITY")
 	public void rejectedFilter() {
@@ -160,11 +111,10 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	}
 	
 	@Test(priority = 5 ,description = "TestCase#5 ,Reporting Manager Leave filter validation" , groups = {"sanity"} )
-	@Description("Checking the Reporting Manager leave filter function in leaves filters")
+	@Description("Checking the Reporting Manager leave filter functionality in leaves filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("LEAVE FILTER FUNCTIONALITY")
 	public void reportingManagerFilter() {
-		
 		logger.info("Starting of reportingManagerFilter Method");
 		
 		leavesfilterpage.clickOnLeavesFilters();
@@ -174,6 +124,41 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		
 		logger.info("Ending of reportingManagerFilter Method");
 
+	}
+	
+	@Test(priority = 6 ,description = "TestCase#6 ,Applied on filter validation" , groups = {"sanity"} )
+	@Description("Checking the Applied on leave filter functionality in leaves filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("LEAVE FILTER FUNCTIONALITY")
+	public void LeaveAppliedOnFilter() {
+		logger.info("Starting of LeaveAppliedOnFilter Method");
+		
+		leavesfilterpage.clickOnLeavesFilters();
+		leavesfilterpage.clickOnRest();
+		leavesfilterpage.clickOnAppliedOnCheckBox();
+		leavesfilterpage.selectFromDate(expectedAssertionsProp.getProperty("LeavesFiltersTest.fromDate"));
+		leavesfilterpage.selectToDate();
+		leavesfilterpage.clickOnApply();
+		
+		logger.info("Ending of LeaveAppliedOnFilter Method");
+	}
+	
+	
+	@Test(priority = 7 ,description = "TestCase#7 ,Leave type filters validation ", groups = {"sanity"})
+	@Description("Checking the Leave type filter functionality in leaves filters")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("LEAVE FILTER FUNCTIONALITY")
+	public void leaveTypeFilter() {
+		logger.info("Starting of leaveTypeFilter");
+		
+		leavesfilterpage.clickOnLeavesFilters();
+		leavesfilterpage.clickOnRest();
+		leavesfilterpage.leaveTypeFilter(expectedAssertionsProp.getProperty("LeavesFiltersTest.type"));
+		leavesfilterpage.clickOnApply();
+		String actualleavestyperesult= leavesfilterpage.leavesTypeValidation();
+		Assert.assertEquals(actualleavestyperesult, expectedAssertionsProp.getProperty("LeavesFiltersTest.type.expectedStatus"));
+		
+		logger.info("Ending of leaveTypeFilter");
 	}
 	
 	
@@ -200,6 +185,8 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		
 		logger.info("Ending of myLeavesFilters Method");
 	}
+	
+	
 	
 
 	@AfterClass(alwaysRun = true)

@@ -25,16 +25,17 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	private final String EXPECTED_CUSTOMER_BULK_DELETE_STATUS="An Email will be sent after successful Deletion of Customers";
 	
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser","headless" })
-	public void initEffortLogin(String siteURL, String browser, String headless) throws Exception {
+	@Parameters({ "siteURL", "browser","headless","userName","password"})
+	public void initEffortLogin(String siteURL, String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
+		
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTOMER_BULKUPLOAD_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
+		this.loginPage.enterUserName(userName);
+		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"), testDataProp.getProperty("password1"));
+		loginPage.clickOnSignOutFromAllSessions(userName, password);
 		this.importpage=new ImportPages(driver);
 	
 		logger.info("Ending of initEffortLogin Method");
@@ -48,12 +49,14 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	@Story("Validating the customer bulk upload")
 	public void customerBulkUpload() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
+		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_bulk_upload.xls";
 		String actualStatusMsg=this.importpage.importCustomers(importProp.getProperty("customerBulkUpload"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_CUSTOMER_BULK_IMPORT_STATUS);
+		
 		logger.info("Ending of Customer Bulk Upload test case");
 
 	}
@@ -66,10 +69,12 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	@Story("Validating the customer bulk delete")
 	public void customerBulkDelete(){
 		logger.info("Starting of Customer bulk delete test case");
+		
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_Bulk_Delete.xls";
 		String actualStatusMsg=this.importpage.importCustomerBulkDelete(importProp.getProperty("customerBulkDelete"),importSheetPath);
 		Assert.assertEquals(actualStatusMsg,EXPECTED_CUSTOMER_BULK_DELETE_STATUS);
+		
 		logger.info("Ending of Customer Bulk Upload Method");
 
 	}
@@ -82,21 +87,15 @@ public class CustomerBulkUploads extends BaseAutomationTest{
 	@Story("Validating the customer id update through imports")
 	public void customerIdBulkUpload(){
 		logger.info("Starting of Customer id updated test case");
+		
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/Customer_ID_Update.xls";
 		this.importpage.importCustomerIdUpadte(importProp.getProperty("customerIdUpload"),importSheetPath);
+		
 		logger.info("Ending of Customer Bulk Upload Method");
 
 	}
 		
-	
-	/*
-	 * @AfterClass(alwaysRun = true) public void LogOutImports() {
-	 * logger.info("Starting of LogOutCustomer Method"); this.importpage.logOut();
-	 * logger.info("Ending of LogOutCustomer Method");
-	 * 
-	 * }
-	 */
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

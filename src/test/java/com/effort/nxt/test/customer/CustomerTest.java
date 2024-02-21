@@ -23,12 +23,6 @@ public class CustomerTest extends BaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(CustomerTest.class.getName());
 	private CustomerPage custmrCreation;
-	// private static final String EXPECTEDCUSTOMERCREATEDSUCCESMSG = "Customer
-	// Created Succesfully";
-	// private static final String EXPECTEDMODIFIEDMSG = "Customer Modified
-	// Successfully";
-	// private static final String EXPECTEDDELETEPOPUPMSG = "Customer Deleted
-	// Successfully";
 
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "siteURL", "browser", "userName", "password", "headless" })
@@ -111,9 +105,6 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.SecondryCustmrPhone();
 		custmrCreation.SecondryCustmrEmail();
 		custmrCreation.ClickonSaveButton();
-		// String actualcapturedmsg = custmrCreation.customerCreatedSuccesMsg();
-		// Assert.assertEquals(actualcapturedmsg, EXPECTEDCUSTOMERCREATEDSUCCESMSG);
-
 		Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(),
 				expectedAssertionsProp.getProperty("customer.created.text"));
 
