@@ -428,6 +428,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 		Thread.sleep(2000);
 		waitUntilElementVisible(driver, this.filterapply);
 		this.filterapply.click();
+		hardWait(5);
 		waitUntilElementVisible(driver, this.fltrmultipickcustomerresult);
 		String actualfltrmultipickcustomerresult = this.fltrmultipickcustomerresult.getText();
 		return actualfltrmultipickcustomerresult;

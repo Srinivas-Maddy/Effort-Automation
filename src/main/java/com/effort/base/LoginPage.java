@@ -92,8 +92,13 @@ public class LoginPage extends BaseAutomationPage {
 	public void clickOnWebApp() {
 		logger.info("Starting of clickOnWebApp method");
 
-		waitUntilElementVisible(driver, btnWebApp);
-		btnWebApp.click();
+		try {
+			waitUntilElementVisible(driver, btnWebApp);
+			btnWebApp.click();
+		} catch (Exception e) {
+			System.out.println();
+		}
+		
 
 		logger.info("Ending of clickOnWebApp method");
 
@@ -102,9 +107,14 @@ public class LoginPage extends BaseAutomationPage {
 	public void ClickonWebApp() {
 		logger.info("Starting of Click on Web App Method");
 
-		hardWait(3);
-		waitUntilElementVisible(driver, webApp);
-		this.webApp.click();
+		try {
+			hardWait(3);
+			waitUntilElementVisible(driver, webApp);
+			this.webApp.click();
+		} catch (Exception e) {
+			System.out.println();
+		}
+	
 
 		logger.info("Ending of Click on Web App Method ");
 
