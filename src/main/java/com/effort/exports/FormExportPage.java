@@ -129,7 +129,7 @@ public class FormExportPage extends BaseAutomationPage{
 				waitUntilElementVisible(driver, this.exportOptions.get(i));
 				this.exportOptions.get(i).click();
 				this.switchWindow();
-				Thread.sleep(8000);
+				hardWait(15);
 				waitUntilElementVisible(driver, this.exportSelectedStatus);
 				exportSelectedStatusMsg=this.exportSelectedStatus.getText();
 				break;

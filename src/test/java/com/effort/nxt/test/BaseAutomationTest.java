@@ -44,7 +44,7 @@ public class BaseAutomationTest {
 	protected static Properties exportDataProp = null;
 	protected static Properties importProp = null;
 	protected static Properties enumProp = null;
-	protected static Properties dayPlannerProp=null;
+	protected static Properties dayPlannerProp = null;
 	protected String USER_DIR = System.getProperty("user.dir");
 
 	private static Map<WebDriversEnum, WebDriver> webDriverPool = new Hashtable<WebDriversEnum, WebDriver>();
@@ -67,12 +67,12 @@ public class BaseAutomationTest {
 			FileReader leavesDataReader = null;
 			FileReader importsReader = null;
 			FileReader exportReader = null;
-			FileReader dayPlannerReader=null;
+			FileReader dayPlannerReader = null;
 
 			try {
 
 				testDataReader = new FileReader("src/main/resources/testdata.properties");
-				// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
+// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
 				empDataReader = new FileReader("src/main/resources/EmployeeDetails.properties");
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties");
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
@@ -82,8 +82,8 @@ public class BaseAutomationTest {
 				leavesDataReader = new FileReader("src/main/resources/LeavesDetails.properties");
 				importsReader = new FileReader("src/main/resources/importCards.properties");
 				exportReader = new FileReader("src/main/resources/ExportDetails.properties");
-				dayPlannerReader=new FileReader("src/main/resources/DayPlanner.properties");
-				
+				dayPlannerReader = new FileReader("src/main/resources/DayPlanner.properties");
+
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
 
@@ -114,10 +114,9 @@ public class BaseAutomationTest {
 				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
 
-				
-				dayPlannerProp=new Properties();
+				dayPlannerProp = new Properties();
 				dayPlannerProp.load(dayPlannerReader);
-			
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
@@ -192,7 +191,7 @@ public class BaseAutomationTest {
 
 	/**
 	 * This method is used for get driver
-	 * 
+	 *
 	 * @param WebDriver
 	 * @return
 	 */
@@ -204,7 +203,7 @@ public class BaseAutomationTest {
 
 		String osPath = System.getProperty("os.name");
 
-		// Use existing driver
+// Use existing driver
 		if (driver != null) {
 			logger.debug("Using existing web driver " + WebDriver);
 			return driver;
@@ -216,7 +215,7 @@ public class BaseAutomationTest {
 			if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();
 				FirefoxOptions options = new FirefoxOptions();
-				options.setHeadless(true);
+//options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
 			} else {
@@ -231,12 +230,12 @@ public class BaseAutomationTest {
 				 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
 				 * options.addArguments("--no-sandbox");
 				 * options.addArguments("--remote-allow-origins=*");
-				 * 
+				 *
 				 * driver = new ChromeDriver(options);
 				 */
 				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
-				// options.setHeadless(true);
+// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--disable-notifications");
@@ -244,7 +243,7 @@ public class BaseAutomationTest {
 				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
 				driver = new ChromeDriver(options);
 
-				logger.debug("######### Driver is here  ###### " + driver);
+				logger.debug("######### Driver is here  ###### " + driver);
 
 			}
 		} else if (osPath.contains("Mac OS X")) {
@@ -259,7 +258,8 @@ public class BaseAutomationTest {
 		} else {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
-				WebDriverManager.chromedriver().setup();
+//WebDriverManager.chromedriver().setup();
+				WebDriverManager.chromedriver().clearDriverCache().setup();
 				ChromeOptions options = new ChromeOptions();
 				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
@@ -293,14 +293,14 @@ public class BaseAutomationTest {
 
 		logger.info("End of method getWebDriver");
 
-		// webDriverPool.put(loginDriver, driver);
+// webDriverPool.put(loginDriver, driver);
 
 		return driver;
 	}
 
 	/**
 	 * This method is used for returning chrome browser version.
-	 * 
+	 *
 	 * @param driverInfo
 	 * @return
 	 */
@@ -318,14 +318,14 @@ public class BaseAutomationTest {
 		return tVersion;
 	}
 
-	// protected void logIn(String siteURL, String userName, String password,
-	// WebDriver driver) throws Exception {
-	// logger.debug("Login URL " + siteURL);
-	//
-	// driver.get(siteURL);
-	//
-	// this.loginPage.logIn(userName, password);
-	// }
+// protected void logIn(String siteURL, String userName, String password,
+// WebDriver driver) throws Exception {
+// logger.debug("Login URL " + siteURL);
+//
+// driver.get(siteURL);
+//
+// this.loginPage.logIn(userName, password);
+// }
 
 	@SuppressWarnings("deprecation")
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {

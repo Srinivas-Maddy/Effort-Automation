@@ -66,7 +66,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 	public void filterEntityName() throws InterruptedException {
 		logger.info("Starting of filterEntityName Method");
 		
-		  entityfilterpage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		  loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		//entityfilterpage.clickOnDots();
 		this.entityfilterpage.clickOnEntityModule();
@@ -108,12 +108,12 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Ending of filterEntityName Method");
 	}
 	
-	@AfterClass(alwaysRun = true)
-	public void entityFiltersLogout() throws InterruptedException {
-		logger.info("Starting of filtersEntityLogout Method");
-		entityfilterpage.filtersEntityLogout();
-		logger.info("Ending of filtersEntityLogout Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void entityFiltersLogout() throws InterruptedException {
+//		logger.info("Starting of filtersEntityLogout Method");
+//		entityfilterpage.filtersEntityLogout();
+//		logger.info("Ending of filtersEntityLogout Method");
+//	}
 	
 	
 	@AfterClass(alwaysRun = true)

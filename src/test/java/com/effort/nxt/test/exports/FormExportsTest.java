@@ -46,7 +46,7 @@ public class FormExportsTest extends BaseAutomationTest{
 	@Story("Export Forms Selected Functionalioty")
 	public void formExportSelected() throws InterruptedException {
 		logger.info("Starting of formExportSelected method");
-		formExportPage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.formExportPage.clickOnFormsModule();
 		this.formExportPage.clickOnForm(formDataProp.getProperty("formSpecName"));
@@ -59,12 +59,12 @@ public class FormExportsTest extends BaseAutomationTest{
 		
 	}
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() {
-		logger.info("Starting of Log-out Method");
-		this.formExportPage.logOut();	
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutForm() {
+//		logger.info("Starting of Log-out Method");
+//		this.formExportPage.logOut();	
+//		logger.info("Ending of log-out Method");
+//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

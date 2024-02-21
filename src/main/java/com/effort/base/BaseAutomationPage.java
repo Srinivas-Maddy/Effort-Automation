@@ -3,7 +3,9 @@ package com.effort.base;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -70,24 +72,24 @@ public class BaseAutomationPage {
 	public void scrollDown(int scroll, WebElement element) {
 		logger.info("Starting of scrollDown method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
 		js.executeScript("arguments[0].scrollIntoView(true);",element);
-		
+
 		//js.executeScript("arguments[0].scrollIntoView();", element);
 
 		logger.info("Ending of scrollDown method");
 	}
-	
+
 	public void scrollIntoView(WebElement element) {
 		logger.info("Starting of scrollDown method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		// js.executeScript("window.scrollBy(0, " + scroll + ")");
 		js.executeScript("arguments[0].scrollIntoView(true);",element);
-		
+
 		//js.executeScript("arguments[0].scrollIntoView();", element);
 
 		logger.info("Ending of scrollDown method");
@@ -142,7 +144,7 @@ public class BaseAutomationPage {
 	public void clickOnWebElementUsingJavascript(WebElement webelement) {
 		logger.info("Starting of clickOnWebElementUsingJavascript method");
 
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", webelement);
 
@@ -408,16 +410,33 @@ public class BaseAutomationPage {
 			webElement.click();
 		} catch (Exception e) {
 			try {
-				
-			action.moveToElement(webElement).click().build().perform();
-			} catch (Exception e2) {
+				action.moveToElement(webElement).click().build().perform();
+			}catch(Exception e2) {
 				JavascriptExecutor executor = (JavascriptExecutor)driver;
 				executor.executeScript("arguments[0].click();", webElement);
 			}
-			
-		}
+		} 
 
 		logger.info("Ending of clickOnWebElement method");
 
 	}
+	
+	public String getCurrentMonthAsString() {
+		logger.info("Starting of getCurrentMonthAsString Method");
+		
+	      // Get the current date
+        LocalDate currentDate = LocalDate.now();        
+        // Get the current month
+        Month currentMonth = currentDate.getMonth();
+        // Get the month value (1 for January, 2 for February, ..., 12 for December)
+        int monthValue = currentMonth.getValue();        
+        //Conver current month as a String
+        int monthAsArrayFormate=monthValue-1;
+        String Month=Integer.toString(monthAsArrayFormate);
+		logger.info("Ending of getCurrentMonthAsString Method");
+    
+	    return Month;
+	}
+	
+	
 }

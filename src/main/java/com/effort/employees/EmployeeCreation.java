@@ -234,7 +234,9 @@ public class EmployeeCreation extends BaseAutomationPage {
 	public void clickOnAdvanceDetails() {
 		logger.info("Starting of click on Advance details method");
 		waitUntilElementVisible(driver, this.advanceDetails);
-		this.advanceDetails.click();
+		scrollDown(0, advanceDetails);
+		clickOnWebElement(this.advanceDetails);
+		//this.advanceDetails.click();
 		logger.info("Ending of click on Advance details method");
 	}
 

@@ -47,7 +47,7 @@ public class ListBulkUploads extends BaseAutomationTest{
 	@Story("Validating the List bulk upload through the imports")
 	public void listImports() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
-		this.importpage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath=System.getProperty("user.dir")+"/MediaFiles/List_Template_TestList.xls";
@@ -57,13 +57,13 @@ public class ListBulkUploads extends BaseAutomationTest{
 
 	}	
 	
-	@AfterClass(alwaysRun = true)
-	public void LogOutImports() {
-		logger.info("Starting of LogOutCustomer Method");
-		this.importpage.logOut();
-		logger.info("Ending of LogOutCustomer Method");
-
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void LogOutImports() {
+//		logger.info("Starting of LogOutCustomer Method");
+//		this.importpage.logOut();
+//		logger.info("Ending of LogOutCustomer Method");
+//
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

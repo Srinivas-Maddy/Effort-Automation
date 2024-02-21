@@ -58,7 +58,7 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	@Story("Test Case #1,Employee Filters")
 	public void employeeFilters() throws InterruptedException {
 		logger.info("Starting of employeeFilters Method");
-		employeefilterspage.ClickonWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		employeefilterspage.ClickonEmployees();
 		
@@ -81,15 +81,15 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 		logger.info("Ending of employeeFilters Method");
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void employeeFiltersLogout() throws InterruptedException {
-		logger.info("Starting of employeeFiltersLogout Method");
-		
-		employeefilterspage.employeeFiltersLogOut();
-		
-		logger.info("Ending of employeeFiltersLogout Method");
-		
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void employeeFiltersLogout() throws InterruptedException {
+//		logger.info("Starting of employeeFiltersLogout Method");
+//		
+//		employeefilterspage.employeeFiltersLogOut();
+//		
+//		logger.info("Ending of employeeFiltersLogout Method");
+//		
+//	}
 	
 	
 	@AfterClass(alwaysRun = true)

@@ -51,7 +51,7 @@ public class EntitiesExportTest extends BaseAutomationTest{
 		public void entityExportSelected() throws InterruptedException
 		{
 			logger.info("Starting of entityExportSelected Method");
-			entitiesexportpage.ClickonWebApp();
+			loginPage.ClickonWebApp();
 			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			entitiesexportpage.clickOnEntityModule();
 			//entitiesexportpage.entitySelectionCheckbox();
@@ -85,13 +85,13 @@ public class EntitiesExportTest extends BaseAutomationTest{
 			logger.info("Ending of entityExportAll Method");		
 		}
 		
-		@AfterClass(alwaysRun=true)
-		public void logOut(){
-			logger.info("Starting of Log-out Method");
-			this.entitiesexportpage.logOut();
-			
-			logger.info("Ending of log-out Method");
-		}
+//		@AfterClass(alwaysRun=true)
+//		public void logOut(){
+//			logger.info("Starting of Log-out Method");
+//			this.entitiesexportpage.logOut();
+//			
+//			logger.info("Ending of log-out Method");
+//		}
 		
 		@AfterClass(alwaysRun = true)
 		public void quitDriver() {

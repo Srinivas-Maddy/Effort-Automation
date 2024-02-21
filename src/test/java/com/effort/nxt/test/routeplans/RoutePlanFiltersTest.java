@@ -182,14 +182,14 @@ public class RoutePlanFiltersTest extends BaseAutomationTest {
 		logger.info("Ending of verifyManulSelect Method");
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void logOutRoutes() throws InterruptedException {
-		logger.info("Starting of logOutRoutes Method");
-
-		custmrCreation.LogOut();
-
-		logger.info("Ending of logOutRoutes Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutRoutes() throws InterruptedException {
+//		logger.info("Starting of logOutRoutes Method");
+//
+//		custmrCreation.LogOut();
+//
+//		logger.info("Ending of logOutRoutes Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

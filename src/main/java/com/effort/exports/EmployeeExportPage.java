@@ -119,6 +119,7 @@ public class EmployeeExportPage extends BaseAutomationPage{
 	//Selecting the employees
 	public void selectedEmployees() {
 		logger.info("Starting of SelcetEmployee Method");
+		hardWait(15);
 		scrollDown(500, this.selectedAllCheckbox);
 		waitUntilElementVisible(driver, this.selectedAllCheckbox);
 		this.selectedAllCheckbox.click();
@@ -135,9 +136,8 @@ public class EmployeeExportPage extends BaseAutomationPage{
               this.exportOptionsList.get(i).click();
               Thread.sleep(10000);
               this.switchWindow();
-              Thread.sleep(6000);
-              waitUntilElementVisible(driver, this.exportSelectedStatus);
-              
+              hardWait(30);
+              waitUntilElementVisible(driver, this.exportSelectedStatus);       
               exportSelectedActual=this.exportSelectedStatus.getText();
               break;
 			}

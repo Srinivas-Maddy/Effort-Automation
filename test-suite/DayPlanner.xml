@@ -9,6 +9,8 @@
 
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@123" />
+	<parameter name="headless" value="false" />
+
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>

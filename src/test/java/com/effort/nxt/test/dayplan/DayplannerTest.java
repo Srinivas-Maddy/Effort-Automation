@@ -27,6 +27,7 @@ public class DayplannerTest extends BaseAutomationTest{
 		logger.info("Starting of initEffortLogin menthod in DayplannerTest");
 		
 		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.DAY_PLANNER_DRIVER);
+
 		this.goToSite(siteURL, driver);
 		this.dayPlanner=new DayplannerPage(driver);
 		LoginToApplication(userName, password);
@@ -37,7 +38,7 @@ public class DayplannerTest extends BaseAutomationTest{
 	@Test(priority = 1, description="Creating day planner in the web application", groups = {"sanity"})
 	@Description("Assign the Day Plan to the employee through web application")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Day Plann Assignment")
+	@Story("Day Planner Assignment")
 	public void createDayPlan() {
 		logger.info("Starting of createDayPlan Method");
 		
@@ -57,7 +58,7 @@ public class DayplannerTest extends BaseAutomationTest{
 	@Test(priority = 2, description="Modifying the day planner in the web application", groups = {"sanity"})
 	@Description("Modifying the Day Plan to the employee through web application")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Day Plann Modification")
+	@Story("Day Planner Modification")
 	public void modifyDayPlan() {
 		logger.info("Starting of modifyDayPlan Method");
 		
@@ -73,16 +74,38 @@ public class DayplannerTest extends BaseAutomationTest{
 		
 	}
 	
+	@Test(priority = 3, description="Creating the dayplanner with custom entity", groups = {"sanity"})
+	@Description("Dayplanner creation with entities")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Day Planner creation with custom entities")
+	public void createDayPlannerEntity() {
+		logger.info("Starting of createDayPlannerEntity Method");
+		
+		this.dayPlanner.clickOnMeatBallsMenu();
+		this.dayPlanner.clickOnDayPlan();
+		this.dayPlanner.selectEmployeeInSearchBar(dayPlannerProp.getProperty("employeeName"));
+		this.dayPlanner.clickOnEntityButton(dayPlannerProp.getProperty("entitySpecName"));
+		this.dayPlanner.selectCustomerCheckBoxes();
+		this.dayPlanner.clickOnOkButton();
+		this.dayPlanner.clickOnSaveButton();
+		Assert.assertEquals(this.dayPlanner.clickOnSaveButton(),expectedAssertionsProp.getProperty("dayplanner.created.text"));
+			
+		logger.info("Ending of createDayPlan Method");
+		
+	}
+	
+	
+	
 
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutDayPlanner() {
-		logger.info("Starting of logOutDayPlanner Method");
-		
-		this.dayPlanner.LogOut();
-		
-		logger.info("Ending of logOutDayPlanner Method");
-	}
+	/*
+	 * @AfterClass(alwaysRun = true) public void logOutDayPlanner() {
+	 * logger.info("Starting of logOutDayPlanner Method");
+	 * 
+	 * this.dayPlanner.LogOut();
+	 * 
+	 * logger.info("Ending of logOutDayPlanner Method"); }
+	 */
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

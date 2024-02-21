@@ -62,7 +62,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 	@Story("Validating the employee bulk upload through the bulk upload")
 	public void employeeBulkUpload() throws InterruptedException, EncryptedDocumentException, IOException {
 		logger.info("Starting of EmployeeBulkUpload Method");
-		this.importpage.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.importpage.clickOnImports();
 		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/EmployeeSheet.xls";
@@ -221,13 +221,6 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void LogOutImports() {
-		logger.info("Starting of LogOutCustomer Method");
-		this.importpage.logOut();
-		logger.info("Ending of LogOutCustomer Method");
-
-	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

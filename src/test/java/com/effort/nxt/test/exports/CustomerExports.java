@@ -46,7 +46,7 @@ public class CustomerExports extends BaseAutomationTest {
 	@Story("Downloading Customer Export All Excell Sheet")
 	public void CustmrExportAll() throws InterruptedException {
 		logger.info("Starting of CustmrExportAll Method");
-		this.custmrExpt.ClickonWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrExpt.ClickonCustomerModule();
 		custmrExpt.ClickonExport();
@@ -96,13 +96,13 @@ public class CustomerExports extends BaseAutomationTest {
 		
 	}
 	
-	@AfterClass(alwaysRun=true)
-	public void logOut(){
-		logger.info("Starting of Log-out Method");
-		this.custmrExpt.logOut();	
-		
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun=true)
+//	public void logOut(){
+//		logger.info("Starting of Log-out Method");
+//		this.custmrExpt.logOut();	
+//		
+//		logger.info("Ending of log-out Method");
+//	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

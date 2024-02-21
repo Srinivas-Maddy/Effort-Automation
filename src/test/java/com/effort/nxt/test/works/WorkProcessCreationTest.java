@@ -45,7 +45,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	public void workSpecCreation() throws InterruptedException {
 		
 		logger.info("Starting of the workSpecCreation method");
-		logger.info("Click on the Process Option Menu bar and creating the process");
+		
 		processCreation.clickOnProcess();
 		processCreation.clickOnActionProcess();
 		processCreation.clickOnCreateProcess();
@@ -63,6 +63,9 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		processCreation.clickNextSetting();
 		processCreation.clickOtherSetting();
 		
+		logger.info("Ending of the workSpecCreation method");
+
+		
 	}
 	
 	@Test(priority = 2, description="Validating Created Process Spec", groups = {"sanity"} )
@@ -71,9 +74,11 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Story("Test Case #2, Validate Process")
 	public void validationWorkSpec() {
 		logger.info("Starting of validateCreateProcess method");
+		
 		String expectedWorkSpecName=processCreation.WorkSpecName+" Process Activities";
 		String actualWorkSpecName=processCreation.getWorkProcessName();
 		Assert.assertEquals(actualWorkSpecName, expectedWorkSpecName);
+		
 		logger.info("Ending of validateCreateProcess method");
 	}
 	
@@ -84,31 +89,129 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	@Story("Test Case #3, Modifying the Process")
 	public void modificationWorkSpec() {
 		logger.info("Starting of modificationWorkSpec method");
+		
 		this.processCreation.ModifyWorkFields();
+		
 		logger.info("Ending of modificationWorkSpec method");
 
 	}
 	
+	@Test(priority = 4, description="Manage fields Card Validation", groups = {"sanity"} )
+	@Description("Test Case #4, Manage fields Card is able to save without any exceptions")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage fields Cards Validation")
+	public void manageFieldsCardValidation() {
+		logger.info("Starting of manageFieldsCardValidation method");
+		
+		String expectedStatus=this.processCreation.modifyManageFieldsCard(expectedAssertionsProp.getProperty("work.process.card.text"));
+		Assert.assertEquals(expectedStatus,expectedAssertionsProp.getProperty("work.process.managefields.status"));
+		
+		logger.info("Ending of manageFieldsCardValidation method");
+
+	}
 	
-	@Test(priority = 4, description="Withdraw Work Spec", groups = {"sanity"} )
+	@Test(priority = 5, description="Manage activities Cards Validation", groups = {"sanity"} )
+	@Description("Test Case #4, Manage activities Cards is able to save without any exceptions")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage activities Cards Validation")
+	public void manageActivitiesCardValidation() {
+		logger.info("Starting of manageActivitiesCardValidation method");
+		
+		String expectedStatus=this.processCreation.modifyManageActivitiesCard(expectedAssertionsProp.getProperty("work.process.manage.activies.card.text"));
+		Assert.assertEquals(expectedStatus,expectedAssertionsProp.getProperty("work.process.manage.activies.card.status"));
+		
+		logger.info("Ending of manageActivitiesCardValidation method");
+
+	}
+	
+	@Test(priority = 6, description="Restrict Employee Groups", groups = {"sanity"} )
+	@Description("Test Case #4, Employee Group Restriction")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Employee Group Restiction in app builder")
+	public void restrictEmployeeGroup() {
+		logger.info("Starting of restrictEmployeeGroup method");
+		
+		this.processCreation.restrictAccessGroups(expectedAssertionsProp.getProperty("work.process.restrictEmpGroup"),
+				                                  expectedAssertionsProp.getProperty("wor.process.empGroupName"));
+		
+		logger.info("Ending of restrictEmployeeGroup method");
+	}
+	
+	@Test(priority = 7, description="manage permission configuration", groups = {"sanity"} )
+	@Description("Test Case #4, manage employee groups")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Manage employee group permission")
+	public void managePermissions() {
+		logger.info("Starting of managePermissions method");
+		
+		this.processCreation.managePermission_Configuration(expectedAssertionsProp.getProperty("work.process.manageEmployeeGroup"));
+		
+		logger.info("Ending of managePermissions method");
+	}	
+	
+	@Test(priority = 8, description="manage activity submission visiblity", groups = {"sanity"} )
+	@Description("Test Case #4, manage activity submission visiblity")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, manage activity submission visiblity")
+	public void manageActivitySubmissionVisiblityConfiguration() {
+		logger.info("Starting of manageActivitySubmissionVisiblityConfiguration method");
+		
+		this.processCreation.manageActivitySubmissionVisibility_Configuration(expectedAssertionsProp.getProperty("work.process.manageActivitySubmissions"));
+		
+		logger.info("Ending of managePermissions method");
+	}
+	
+	@Test(priority = 9, description="wotk settings configuration", groups = {"sanity"} )
+	@Description("Test Case #4, We can able to save the configuration")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Work Setting card save functionality")
+	public void workSettingsConfiguration() {
+		logger.info("Starting of workSettingsConfiguration method");
+		
+		this.processCreation.settingsConfiguration(expectedAssertionsProp.getProperty("work.process.settings"));
+		
+		logger.info("Ending of workSettingsConfiguration method");
+	}		
+	
+	@Test(priority = 10, description="Withdraw Work Spec", groups = {"sanity"} )
 	@Description("Test Case #4, Withdrawn work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Withdrawn Process")
 	public void withDrawWorkSpec() {
-		logger.info("Starting of modificationWorkSpec method");
+		logger.info("Starting of withDrawWorkSpec method");
+		
 		this.processCreation.withDrawWorkSpec();
-		logger.info("Ending of modificationWorkSpec method");
+		
+		logger.info("Ending of withDrawWorkSpec method");
+	}
+	
+	@Test(priority = 11, description="Create the activity process in the home screen", groups = {"sanity"} )
+	@Description("Test Case #4, Created the activity process in home screen")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("ACTION PROCESS CONFIGURATION")	
+	public void createActionProcessInHomeScreen() throws InterruptedException {
+		logger.info("Starting of createActionProcessInHomeScreen Method");
+		
+		this.processCreation.clickOnHome();
+		this.processCreation.clickOnCreateProcessInHomeScreen();
+		processCreation.workProcessTitle(testDataProp.getProperty("workTitleName"));
+		processCreation.workProcessDiscription(testDataProp.getProperty("description"));
+		processCreation.clickOnNextBtn();
+		processCreation.clickOnAddFieldBtn();
+		processCreation.clickOnFirstAddedField();
+		processCreation.addUserDefinedFields();
+		processCreation.selectActionForms();
+		processCreation.clickNextCloneFieldData();
+		processCreation.clickNextManageFlow();
+		processCreation.clickSkipAutoAllocation();
+		processCreation.clickNextSetting();
+		processCreation.clickOtherSetting();
+		
+		logger.info("Ending of createActionProcessInHomeScreen Method");
 
 	}
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() throws InterruptedException {
-		logger.info("Starting of Log-out Method");
-		this.processCreation.logOut();
-	
-		logger.info("Ending of log-out Method");
-	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
@@ -119,7 +222,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 			if (this.driver != null) {
 				Thread.sleep(5000);
 		       	driver.quit();
-	       
+	  
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {

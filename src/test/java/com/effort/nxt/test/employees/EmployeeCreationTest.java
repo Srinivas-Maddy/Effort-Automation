@@ -53,7 +53,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	public void AddEmployee() throws InterruptedException, IOException {
 		logger.info("Starting of AddEmployee Method");
 		
-		this.empCreation.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
@@ -113,14 +113,14 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logOutForm() {
-		logger.info("Starting of Log-out Method");
-		
-		empCreation.logOut();	
-
-		logger.info("Ending of log-out Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logOutForm() {
+//		logger.info("Starting of Log-out Method");
+//		
+//		empCreation.logOut();	
+//
+//		logger.info("Ending of log-out Method");
+//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

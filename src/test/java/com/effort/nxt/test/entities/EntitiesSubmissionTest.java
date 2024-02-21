@@ -44,7 +44,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	@Story("Test Case #1 , Add Entity Details")
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
-		entitiessubmission.clickOnWebApp();
+		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
 		entitiessubmission.clickOnAddEntity();
@@ -118,15 +118,15 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 	}	
 	
 	
-	@AfterClass(alwaysRun = true)
-	public void logoutEntitites() throws InterruptedException {
-		logger.info("Starting of logoutEntitites Method");
-		
-		entitiessubmission.LogOutEntity();
-		
-		
-		logger.info("Ending of logoutEntitites Method");
-	}
+//	@AfterClass(alwaysRun = true)
+//	public void logoutEntitites() throws InterruptedException {
+//		logger.info("Starting of logoutEntitites Method");
+//		
+//		entitiessubmission.LogOutEntity();
+//		
+//		
+//		logger.info("Ending of logoutEntitites Method");
+//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

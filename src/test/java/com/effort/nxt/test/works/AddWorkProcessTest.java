@@ -45,7 +45,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		@Story("Test Case #1, Assign the work to the user")
 		public void AddWork() throws InterruptedException {			
 			logger.info("Starting of the AddWork method");
-			this.addWork.clickOnWebApp();
+			loginPage.ClickonWebApp();
 			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			this.addWork.clickOnProcessModule();
 			this.addWork.clickOnWorkName();
@@ -60,13 +60,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 			logger.info("Ending the Addwork Method");					
 		}
 		
-		@AfterClass(alwaysRun = true)
-		public void logOutForm() {
-			logger.info("Starting of Log-out Method");
-			addWork.logOut();	
-		
-			logger.info("Ending of log-out Method");
-		}
+
 
 		@AfterClass(alwaysRun = true)
 		public void quitDriver() {
