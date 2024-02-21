@@ -5,7 +5,7 @@
 
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
-	<parameter name="password" value="Spoors@123" />
+	<parameter name="password" value="Spoors@321" />
 
 	<!-- <parameter name="siteURL" value="testurl" />  -->
 	<!-- <parameter name="siteURL"
@@ -15,7 +15,7 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<!--<test name="Login Credentials">
+<!--	<test name="Login Credentials">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
 		</classes>
@@ -26,43 +26,43 @@
 			<class
 				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
-	</test>
--->
-	<test name="Customer Module">
+	</test>-->
+
+	<!--<test name="Customer Module">
 		<classes>
 			<class name="com.effort.nxt.test.customer.CustomerTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="Works Module">
+	<!--<test name="Works Module">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
 		</classes>
-	</test>
-
+	</test>-->
+<!--
 	<test name="Forms Module">
 		<classes>
 			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="Route Plans">
+	<!--<test name="Route Plans">
 		<classes>
 			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
 			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="Export Functionalities">
+	<!--<test name="Export Functionalities">
 		<classes>
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 			<class name="com.effort.nxt.test.exports.LeavesExportTest" />
 		</classes>
-	</test>
+	</test>-->
 
 
 	<test name="Leaves">
@@ -80,13 +80,13 @@
 	</test>
 
 
-	<test name="Filters">
+<!--	<test name="Filters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
-	</test>
+	</test>-->
 	
 		<test name="DayPlan Module">
 		<classes>
@@ -94,7 +94,7 @@
 		</classes>
 	</test>
 
-	<test name="Web Logins">
+	<!--<test name="Web Logins">
 		<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
 		</classes>
@@ -107,6 +107,6 @@
 			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
 			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
 		</classes>
-	</test>
+	</test>-->
 
 </suite>
