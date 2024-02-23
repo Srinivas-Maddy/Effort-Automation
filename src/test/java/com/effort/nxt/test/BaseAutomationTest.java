@@ -216,7 +216,7 @@ public class BaseAutomationTest {
 			if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();
 				FirefoxOptions options = new FirefoxOptions();
-				options.setHeadless(true);
+				//options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
 			} else {
@@ -259,9 +259,11 @@ public class BaseAutomationTest {
 		} else {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
-				WebDriverManager.chromedriver().setup();
+				
+				//WebDriverManager.chromedriver().setup();
+				WebDriverManager.chromedriver().clearDriverCache().setup();
 				ChromeOptions options = new ChromeOptions();
-				// options.setHeadless(true);
+			    //options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--disable-notifications");

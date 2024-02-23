@@ -150,7 +150,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_attachmentFormSpecUniqueIdRow_0']/a/span[1]")
 	private WebElement addActachment_DropDown;
 	
-	@FindBy(xpath="//ul[@id='select2-results-30']/li[3]")
+	@FindBy(xpath="//div[@role='option'][contains(text(),'Field Form Auto')]")
 	private WebElement select_Attachment_Form;
 	
 	@FindBy(xpath="(//input[@value='Save'])[2]")

@@ -493,7 +493,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		scrollIntoView(toDatePicker);
 		waitUntilElementVisible(driver, this.toDatePicker);
 		clickOnWebElement(this.toDatePicker);
-		hardWait(2);
+		hardWait(3);
 		waitUntilElementVisible(driver, this.currentDate);
 		clickOnWebElement(this.currentDate);
 		
