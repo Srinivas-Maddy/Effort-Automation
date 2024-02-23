@@ -18,8 +18,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
+
 import org.openqa.selenium.TimeoutException;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -215,8 +217,14 @@ public class BaseAutomationTest {
 			logger.debug("######### In linux condition Using existing web driver Linux ###### ");
 			if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();
+				//WebDriverManager.firefoxdriver ().clearDriverCache ();
 				FirefoxOptions options = new FirefoxOptions();
 				//options.setHeadless(true);
+<<<<<<< HEAD
+=======
+				boolean isHeadless = Boolean.parseBoolean(headless);
+				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+>>>>>>> a2adc412be5333244472ce903202842e45fcc5e1
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
 			} else {
@@ -234,7 +242,9 @@ public class BaseAutomationTest {
 				 * 
 				 * driver = new ChromeDriver(options);
 				 */
-				WebDriverManager.chromedriver().setup();
+			//	WebDriverManager.chromedriver().setup();
+				
+				WebDriverManager.chromedriver().clearDriverCache().setup();
 				ChromeOptions options = new ChromeOptions();
 				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
@@ -259,9 +269,14 @@ public class BaseAutomationTest {
 		} else {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
+<<<<<<< HEAD
 				
 				//WebDriverManager.chromedriver().setup();
 				WebDriverManager.chromedriver().clearDriverCache().setup();
+=======
+				WebDriverManager.chromedriver().setup();
+				//WebDriverManager.chromedriver ().clearDriverCache ();
+>>>>>>> a2adc412be5333244472ce903202842e45fcc5e1
 				ChromeOptions options = new ChromeOptions();
 			    //options.setHeadless(true);
 				options.addArguments("--no-sandbox");
@@ -273,10 +288,12 @@ public class BaseAutomationTest {
 
 			} else if (browser.equalsIgnoreCase("Firefox")) {
 				WebDriverManager.firefoxdriver().setup();
+				//WebDriverManager.firefoxdriver ().clearDriverCache ();
 				driver = new FirefoxDriver();
 
 			} else if (browser.equalsIgnoreCase("Chromium")) {
 				WebDriverManager.chromiumdriver().setup();
+				//WebDriverManager.chromedriver ().clearDriverCache ();
 				driver = new EdgeDriver();
 
 			} else if (browser.equalsIgnoreCase("IEDriverServer")) {

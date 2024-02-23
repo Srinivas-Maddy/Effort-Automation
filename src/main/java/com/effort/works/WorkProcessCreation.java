@@ -150,7 +150,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_attachmentFormSpecUniqueIdRow_0']/a/span[1]")
 	private WebElement addActachment_DropDown;
 	
-	@FindBy(xpath="//div[@role='option'][contains(text(),'Field Form Auto')]")
+	@FindBy(xpath="//div[@role='option'][contains(text(),'All Field Form Auto')]")
 	private WebElement select_Attachment_Form;
 	
 	@FindBy(xpath="(//input[@value='Save'])[2]")
@@ -427,7 +427,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 
 	public void withDrawWorkSpec() {
 		logger.info("Starting of withDrawWorkSpec method");
-
+        hardWait(5);
 		waitUntilElementVisible(driver, this.withDrawnBtn);
 		this.withDrawnBtn.click();
 		driver.switchTo().alert().accept();
@@ -607,7 +607,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	public void clickOnCreateProcessInHomeScreen() {
 		logger.info("Starting of clickOnCreateProcessInHomeScreen Method");
 		
-		hardWait(2);
+		hardWait(10);
 		waitUntilElementVisible(driver, this.createProcess_Card);
 		clickOnWebElement(this.createProcess_Card);
 		waitUntilElementVisible(driver, this.activityProcessOption);
