@@ -219,7 +219,6 @@ public class BaseAutomationTest {
 				WebDriverManager.firefoxdriver().setup();
 				//WebDriverManager.firefoxdriver ().clearDriverCache ();
 				FirefoxOptions options = new FirefoxOptions();
-				//options.setHeadless(true);
 				boolean isHeadless = Boolean.parseBoolean(headless);
 				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
 				options.addArguments("--no-sandbox");
@@ -266,10 +265,11 @@ public class BaseAutomationTest {
 		} else {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
-				WebDriverManager.chromedriver().setup();
-				//WebDriverManager.chromedriver ().clearDriverCache ();
+
+				//WebDriverManager.chromedriver().setup();
+				WebDriverManager.chromedriver().clearDriverCache().setup();
+
 				ChromeOptions options = new ChromeOptions();
-				// options.setHeadless(true);
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("--disable-notifications");
