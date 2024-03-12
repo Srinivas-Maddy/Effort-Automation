@@ -74,6 +74,21 @@ public class EmployeeFiltersPage extends BaseAutomationPage {
 	
 	@FindBy(xpath="//div[@id='select2-drop']/ul/li/div")
 	private List<WebElement> managersList;
+	
+	@FindBy(id="s2id_employeeGroupId")
+	private WebElement empGroupsField;
+	
+	@FindBy(xpath="(//div[@id='select2-drop']/ul/li/div)[1]")
+	private WebElement groupsItem;
+	
+	@FindBy(id="s2id_roleId")
+	private WebElement empRoleDropdown;
+	
+	@FindBy(xpath="//div[@id='select2-drop']/ul/li[1]")
+	private WebElement employeeRole;
+	
+	@FindBy(xpath="(//img[@title='Disabled'])[1]")
+	private WebElement disableIcon;
 
 	@FindBy(xpath = "//a[@id='filters']")
 	private WebElement filtersbtn;
@@ -319,6 +334,38 @@ public class EmployeeFiltersPage extends BaseAutomationPage {
 		
 		return managerName;
 
+	}
+	
+	public void empGroupFilter() {
+		logger.info("Starting of selectGroupName Method");
+		
+		waitUntilElementVisible(driver, this.empGroupsField);
+		clickOnWebElement(this.empGroupsField);
+		waitUntilElementVisible(driver, this.groupsItem);
+		clickOnWebElement(this.groupsItem);
+		clickOnApplyButton();
+		
+		logger.info("Ending of selectGroupName Method");
+	}
+	
+	public void empRoleFilter() {
+		logger.info("Starting of empRoleFilter Method");
+		
+		waitUntilElementVisible(driver, this.empRoleDropdown);
+		clickOnWebElement(this.empRoleDropdown);
+		waitUntilElementVisible(driver, this.employeeRole);
+		clickOnWebElement(this.employeeRole);
+		clickOnApplyButton();
+		
+		logger.info("Ending of empRoleFilter Method");
+	}
+	
+	public String disableEmpFilter() {
+		logger.info("Starting of disableEmpFilter Method");
+		
+		clickOnApplyButton();
+		waitUntilElementVisible(driver, this.disableIcon);
+		return this.disableIcon.getAttribute("title");
 	}
 
 	public String activeEmployeesValidation() {

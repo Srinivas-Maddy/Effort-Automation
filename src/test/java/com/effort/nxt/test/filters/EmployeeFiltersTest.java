@@ -1,20 +1,15 @@
 package com.effort.nxt.test.filters;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.filters.EmployeeFiltersPage;
 import com.effort.nxt.test.BaseAutomationTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -51,7 +46,8 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 	public void employeeIdFilters(){
 		logger.info("Starting of employeeIdFilters Method");
 		
-		empPage.clickOnWebApp();
+		loginPage.clickOnWebApp();
+		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empPage.clickOnEmplpyeeModule();
 		empPage.clickOnFilter();
 		Assert.assertEquals(expectedAssertionsProp.getProperty("EmployeeFilterTest.empId"), empPage.enterEmpId(expectedAssertionsProp.getProperty("EmployeeFilterTest.empId")));
@@ -127,7 +123,49 @@ public class EmployeeFiltersTest extends BaseAutomationTest {
 		Assert.assertEquals(expectedAssertionsProp.getProperty("EmployeeFilterTest.Manager"),empPage.selectEmpManagerName(expectedAssertionsProp.getProperty("EmployeeFilterTest.Manager")));
 		
 		logger.info("Ending of employeeManagerFilter Method");
+	}
+	
+	@Test(priority = 7,description = "Test Case#7, Employee Group based Filters" , groups = {"sanity"})
+	@Description("Filter employee based on employee group based filtering")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Employee Filter Functionality")
+	public void employeeGroupFilter() {
+		logger.info("Starting of employeeGroupFilter Method");
+		
+		empPage.clickOnFilter();
+		empPage.clickOnReset("Active");
+		empPage.empGroupFilter();
+		
+		logger.info("Ending of employeeGroupFilter Method");
+	}
+	
+	@Test(priority = 8,description = "Test Case#8, Employee role based Filters" , groups = {"sanity"})
+	@Description("Filter employee based on employee role")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Employee Filter Functionality")
+	public void employeeRoleFilter() {
+		logger.info("Starting of employeeRoleFilter Method");
 
+		empPage.clickOnFilter();
+		empPage.clickOnReset("Active");
+		empPage.empRoleFilter();
+		
+		logger.info("Ending of employeeRoleFilter Method");
+
+	}
+	
+	@Test(priority = 9,description = "Test Case#9, Employee disable filter" , groups = {"sanity"})
+	@Description("Filter employee disabled filter")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Employee Filter Functionality")
+	public void disableEmployeeFilter() {
+		logger.info("Starting of disableEmployeeFilter Method");
+		
+		empPage.clickOnFilter();
+		empPage.clickOnReset("Disabled");
+		Assert.assertEquals(expectedAssertionsProp.getProperty("EmployeeFilterTest.disable"),empPage.disableEmpFilter());
+
+		logger.info("Starting of disableEmployeeFilter Method");
 	}
 	
 	

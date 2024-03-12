@@ -219,12 +219,8 @@ public class BaseAutomationTest {
 				WebDriverManager.firefoxdriver().setup();
 				//WebDriverManager.firefoxdriver ().clearDriverCache ();
 				FirefoxOptions options = new FirefoxOptions();
-				//options.setHeadless(true);
-<<<<<<< HEAD
-=======
 				boolean isHeadless = Boolean.parseBoolean(headless);
 				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
->>>>>>> a2adc412be5333244472ce903202842e45fcc5e1
 				options.addArguments("--no-sandbox");
 				driver = new FirefoxDriver(options);
 			} else {
@@ -269,14 +265,9 @@ public class BaseAutomationTest {
 		} else {
 
 			if (browser.equalsIgnoreCase("Chrome")) {
-<<<<<<< HEAD
-				
+
 				//WebDriverManager.chromedriver().setup();
 				WebDriverManager.chromedriver().clearDriverCache().setup();
-=======
-				WebDriverManager.chromedriver().setup();
-				//WebDriverManager.chromedriver ().clearDriverCache ();
->>>>>>> a2adc412be5333244472ce903202842e45fcc5e1
 				ChromeOptions options = new ChromeOptions();
 			    //options.setHeadless(true);
 				options.addArguments("--no-sandbox");
