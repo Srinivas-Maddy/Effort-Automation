@@ -34,7 +34,7 @@ public class TestListener  implements ITestListener {
         // Set email content with test results
         StringBuilder emailContent = new StringBuilder();
         emailContent.append("Hi Team,").append("\n\n");
-        emailContent.append("Sanity Checklist for ").append(context.getName()).append("is Completed").append("\n\n");
+        emailContent.append("Sanity Checklist for ").append(context.getName()).append(" is Completed").append("\n\n");
         emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
         emailContent.append("Module Name :").append(context.getName()).append("\n\n");
         emailContent.append("========================").append("\n\n");
