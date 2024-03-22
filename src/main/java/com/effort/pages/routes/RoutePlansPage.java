@@ -239,7 +239,7 @@ public class RoutePlansPage extends BaseAutomationPage {
 		this.btnOk.click();
 		waitUntilElementVisible(driver, this.btnCustomerSave);
 		this.btnCustomerSave.click();
-
+		
 		logger.info("Ending of editPickedCustomers Method");
 	}
 
@@ -405,6 +405,7 @@ public class RoutePlansPage extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, this.btnOkOnApplyChangesPopUp);
 		this.btnOkOnApplyChangesPopUp.click();
+		driver.switchTo().alert().accept();
 
 		logger.info("Ending of clickOnOkayButtonOnApplyChanges Method");
 	}

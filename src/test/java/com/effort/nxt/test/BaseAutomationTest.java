@@ -268,7 +268,6 @@ public class BaseAutomationTest {
 
 				//WebDriverManager.chromedriver().setup();
 				WebDriverManager.chromedriver().clearDriverCache().setup();
-
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--no-sandbox");
 				options.addArguments("--remote-allow-origins=*");

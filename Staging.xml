@@ -5,7 +5,7 @@
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
-	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
+	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login"/>
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
