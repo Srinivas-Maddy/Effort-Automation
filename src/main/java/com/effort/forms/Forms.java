@@ -192,7 +192,8 @@ public class Forms extends BaseAutomationPage{
 	public void formSpecModification() {
 		logger.info("Starting of formSpecModification method");
 		waitUntilElementVisible(driver, this.modifyCard);
-		this.modifyCard.click();
+		clickOnWebElement(modifyCard);
+		hardWait(2);
 		waitUntilElementVisible(driver, this.addCurrencyField);
 		Actions action=new Actions(driver);
 		action.dragAndDrop(this.addCurrencyField, this.dropedArea);

@@ -9,14 +9,14 @@
 	<!-- <parameter name="siteURL" value="testurl" /> -->
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
-	<parameter name="password" value="Spoors@123" />
+	<parameter name="password" value="Spoors@321" />
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
 	<test name="Bulk Uploads">
 		<classes>
-			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
+			<class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
 			<!--<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />-->
 			<!--<class name="com.effort.nxt.test.imports.ListBulkUploads" />-->
 			<!--<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />-->
