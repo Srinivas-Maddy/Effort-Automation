@@ -16,12 +16,12 @@
 	</listeners>
 
 
-    <test name="EmployeeFilters">
+	<test name="EmployeeFilters">
 
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="EntitiesFilters">
 		<classes>
