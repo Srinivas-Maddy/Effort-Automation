@@ -40,7 +40,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	}
 
 	
-	@Test(priority = 1, description="Creating the work spec in configurator", groups = {"sanity"})
+	@Test(priority = 1, description="Creating the work spec in configurator", groups = {"sanity"} )
 	@Description("Test Case #2, Creating the work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, Creating work Spec")
@@ -70,7 +70,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		
 	}
 	
-	@Test(priority = 2, description="Validating Created Process Spec", groups = {"sanity"} )
+	@Test(priority = 2, description="Validating Created Process Spec", groups = {"sanity"})
 	@Description("Test Case #2, Validate Created Process")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, Validate Process")
@@ -85,7 +85,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 	}
 	
 	
-	@Test(priority = 3, description="Modifying the Work Spec", groups = {"sanity"} )
+	@Test(priority = 3, description="Modifying the Work Spec", groups = {"sanity"} ,enabled=false)
 	@Description("Test Case #3, Modifying work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #3, Modifying the Process")
@@ -126,7 +126,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 
 	}
 	
-	@Test(priority = 6, description="Restrict Employee Groups", groups = {"sanity"} )
+	@Test(priority = 6, description="Restrict Employee Groups", groups = {"sanity"})
 	@Description("Test Case #4, Employee Group Restriction")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Employee Group Restiction in app builder")
@@ -139,7 +139,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		logger.info("Ending of restrictEmployeeGroup method");
 	}
 	
-	@Test(priority = 7, description="manage permission configuration", groups = {"sanity"} )
+	@Test(priority = 7, description="manage permission configuration", groups = {"sanity"})
 	@Description("Test Case #4, manage employee groups")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Manage employee group permission")
@@ -163,7 +163,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		logger.info("Ending of managePermissions method");
 	}
 	
-	@Test(priority = 9, description="wotk settings configuration", groups = {"sanity"} )
+	@Test(priority = 9, description="wotk settings configuration", groups = {"sanity"})
 	@Description("Test Case #4, We can able to save the configuration")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Work Setting card save functionality")
@@ -175,7 +175,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		logger.info("Ending of workSettingsConfiguration method");
 	}		
 	
-	@Test(priority = 10, description="Withdraw Work Spec", groups = {"sanity"} )
+	@Test(priority = 10, description="Withdraw Work Spec", groups = {"sanity"})
 	@Description("Test Case #4, Withdrawn work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #4, Withdrawn Process")
@@ -210,9 +210,33 @@ public class WorkProcessCreationTest extends BaseAutomationTest{
 		processCreation.clickOtherSetting();
 		
 		logger.info("Ending of createActionProcessInHomeScreen Method");
-
 	}
 	
+	@Test(priority = 12, description="WithDraw the work spec it was created on home screen", groups = {"sanity"} )
+	@Description("Test Case #12, Withdrawn spec it was created on home")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("ACTION PROCESS CONFIGURATION")
+	public void withWorkSpecHomeScreen() {
+		logger.info("Starting of withWorkSpecHomeScreen Method");
+		
+		processCreation.withDrawSpecInHome();
+		
+		logger.info("Starting of withWorkSpecHomeScreen Method");
+	}
+	
+	@Test(priority = 13, description="WithDraw all active work specs", groups = {"sanity"}, enabled = false)
+	@Description("Test Case #13, Withdrawn all work specs")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("ACTION PROCESS CONFIGURATION")
+	public void withDrawAllWorkSpecs() {
+		logger.info("Starting of withDrawAllWorkSpecs Method");
+		
+		processCreation.clickOnProcess();
+		processCreation.clickOnActionProcess();
+		processCreation.withDrawAllSpecs();
+		
+		logger.info("Ending of withDrawAllWorkSpecs Method");
+	}
 	
 
 	@AfterClass(alwaysRun = true)

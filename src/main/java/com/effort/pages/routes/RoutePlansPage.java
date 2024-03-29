@@ -222,7 +222,8 @@ public class RoutePlansPage extends BaseAutomationPage {
 		this.btnOk.click();
 		waitUntilElementVisible(driver, this.btnCustomerSave);
 		this.btnCustomerSave.click();
-
+        driver.switchTo().alert().accept();
+        
 		logger.info("Ending of clickOnAddCustomer Method");
 	}
 	
@@ -403,6 +404,7 @@ public class RoutePlansPage extends BaseAutomationPage {
 	public void clickOnOkayButtonOnApplyChanges() {
 		logger.info("Starting of clickOnOkayButtonOnApplyChanges Method");
 
+		driver.switchTo().alert().accept();
 		waitUntilElementVisible(driver, this.btnOkOnApplyChangesPopUp);
 		this.btnOkOnApplyChangesPopUp.click();
 

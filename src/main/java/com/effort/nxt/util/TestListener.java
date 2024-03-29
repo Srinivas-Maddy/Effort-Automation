@@ -29,6 +29,38 @@ public class TestListener  implements ITestListener {
 		logger.info("========================================================================");
 		logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
 		logger.info("========================================================================");
+		
+		
+        // Set email content with test results
+        StringBuilder emailContent = new StringBuilder();
+        emailContent.append("Hi Team,").append("\n\n");
+        emailContent.append("Sanity Checklist for ").append(context.getName()).append(" is Completed").append("\n\n");
+        emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
+        emailContent.append("Module Name :").append(context.getName()).append("\n\n");
+        emailContent.append("========================").append("\n\n");
+        emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
+        emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
+        emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
+        emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n\n");
+        emailContent.append("========================").append("\n\n");
+        
+        emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
+        emailContent.append("============================================").append("\n");
+        for (ITestResult result : context.getPassedTests().getAllResults()) {
+            emailContent.append("Test Passed: ").append(result.getName()).append("\n");
+        }
+        
+        emailContent.append("\n");
+        emailContent.append("Detailed Informatation Of Failed Test Cases").append("\n");
+        emailContent.append("============================================").append("\n");
+        
+        for (ITestResult result : context.getFailedTests().getAllResults()) {
+            emailContent.append("Test Failed: ").append(result.getName()).append("\n\n");
+            emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
+        }
+
+        emailContent.append("Thanks,\n").append("Test Team");	
+		EmailSender.sendEmail("srinusri26.ss@gmail.com", "Web Automation Sanity Report", emailContent.toString());
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
 	}

@@ -494,6 +494,7 @@ public class FormSubmission extends BaseAutomationPage {
 	public void pickCountry() {
 		logger.info("Starting of pickCountry method");
 		waitUntilElementVisible(driver, this.countryDropdown);
+		scrollIntoView(countryDropdown);
 		this.countryDropdown.click();
 		waitUntilElementVisible(driver, this.countitem);
 		this.countitem.click();

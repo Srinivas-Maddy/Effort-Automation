@@ -1,102 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Effort NXT Automation">
+<suite name="Web Automation Sanity Checklist">
 	<parameter name="browser" value="Chrome" />
-	<!--<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />-->
+	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
-	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
+
+	<!-- <parameter name="siteURL" value="testurl" />  --> 
+	<!-- <parameter name="siteURL"
+	value="https://staging.spoors.in/effortx/login"k /l> -->
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Login Credentials">
+	<test name="Post Production Sanity CheckList">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
-		</classes>
-	</test>
-
-  <test name="Employee Module">
-		<classes>
-			<class
-				name="com.effort.nxt.test.employees.EmployeeCreationTest" />
-		</classes>
-	</test>
-
-	<test name="Customer Module">
-		<classes>
+			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 			<class name="com.effort.nxt.test.customer.CustomerTest" />
-		</classes>
-	</test>
-
-	<test name="Works Module">
-		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
-			<class name="com.effort.nxt.test.works.CheckListProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
-		</classes>
-	</test>
-
-	<test name="Forms Module">
-		<classes>
 			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
-		</classes>
-	</test>
-
-	<test name="Export Functionalities">
-		<classes>
+			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
+			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
 			<class name="com.effort.nxt.test.exports.EntitiesExportTest" />
 			<class name="com.effort.nxt.test.exports.LeavesExportTest" />
-			<class name="com.effort.nxt.test.exports.FormExportsTest" />
-		</classes>
-	</test>
-
-	<test name="Leaves">
-		<classes>
-			<class name="com.effort.nxt.test.leaves.LeavesTest" />
-		</classes>
-
-	</test>
-
-	<test name="Entities Module">
-		<classes>
-			<class name="com.effort.nxt.test.entities.EntitiesProcessTest" />
+            <class name="com.effort.nxt.test.leaves.LeavesTest" />
+            <class name="com.effort.nxt.test.entities.EntitiesProcessTest" />
 			<class name="com.effort.nxt.test.entities.EntitiesSubmissionTest" />
-		</classes>
-	</test>
-
-	<test name="Filters">
-		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
-		</classes>
-	</test>
-	
-	<test name="Route Plans">
-		<classes>
-			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
-			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
-		</classes>
-	</test>
-	
-	<test name="Bulk Uploads">
-		<classes>
-			<class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
+		    <class name="com.effort.nxt.test.dayplan.DayplannerTest" />
+		    <class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
 			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
 			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
 			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />
-		</classes>
-	</test>
-
-	<test name="Web Logins">
-		<classes>
 			<class name="com.effort.nxt.test.login.WebAppLoginTest" />
 		</classes>
 	</test>
-
 </suite>

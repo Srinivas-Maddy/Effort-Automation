@@ -213,7 +213,7 @@ public class ImportPages extends BaseAutomationPage{
 			logger.info("Ending of clicn on import employee card");
 
 		}
-		return sheetValidationStatus;
+		return SheetProcessingStatus;
 
 	}
 

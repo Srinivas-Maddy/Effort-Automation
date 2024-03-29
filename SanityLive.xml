@@ -2,7 +2,6 @@
 <suite name="Web Automation Sanity Checklist">
 	<parameter name="browser" value="Chrome" />
 	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
-
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
@@ -102,7 +101,7 @@
 
 	<test name="Bulk Uploads">
 		<classes>
-			<class name="com.effort.nxt.test.imports.EmployeeBulkUplods" />
+			<class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
 			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
 			<class name="com.effort.nxt.test.imports.ListBulkUploads" />
 			<class name="com.effort.nxt.test.imports.RoutePlanBulkUploads" />

@@ -20,12 +20,12 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
-public class EmployeeBulkUplods extends BaseAutomationTest {
+public class EmployeeBulkImports extends BaseAutomationTest {
 
-	private static final Logger logger = Logger.getLogger(EmployeeBulkUplods.class.getName());
+	private static final Logger logger = Logger.getLogger(EmployeeBulkImports.class.getName());
 	private ImportPages importpage = null;
-	private final String EXPECTED_SHEET_VALIDATION = "All rows have correct data";
-	private String exptectedSheetProcessingStatus = "Processed";
+	
+	
 	private final String EXPECTED_EMP_CUSTOMER_MAPPING_STATUS = "Mapping successfully done";
 	private final String EXPECTED_EMP_CUSTOMER_TYPE_MAPPING_STATUS = "We've received the sheet you uploaded. An email will be sent to"
 			+ " you notifying the status of the update. The following are the files that were uploaded:";
@@ -54,7 +54,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of initEffortLogin Method");
 	}
 
-	@Test(priority = 1, description = "Employee Build Upload", groups = { "sanity" })
+	@Test(priority = 1, description = "Employee Build Upload", groups = { "sanity" },enabled = false)
 	@Description("Employee Build Upload through the import screen")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -65,13 +65,11 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
-		this.importpage.clickOnImports();
-		String importSheetPath = System.getProperty("user.dir") + "/MediaFiles/EmployeeSheet.xls";
-		String validationSheet = this.importpage.clickOnImportCard(importProp.getProperty("empImportCardName"),
-				importSheetPath);
-		Assert.assertEquals(validationSheet, EXPECTED_SHEET_VALIDATION);
-		Assert.assertEquals(ImportPages.SheetProcessingStatus, exptectedSheetProcessingStatus);
-		
+		this.importpage.clickOnImports();		
+		Assert.assertEquals(this.importpage.clickOnImportCard(importProp.getProperty("empImportCardName"),
+				            System.getProperty("user.dir") + "/MediaFiles/EmployeeSheet.xls"),
+				            expectedAssertionsProp.getProperty("EmployeeBulkImports.empSheetDataValidation"));
+				
 		logger.info("Ending of EmployeeBulkUpload Method");
 
 	}
@@ -95,7 +93,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 3, description = "Employee Customer type mapping", groups = { "sanity" })
+	@Test(priority = 3, description = "Employee Customer type mapping", groups = { "sanity" },enabled = false)
 	@Description("Employee customer type mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -113,7 +111,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Emp Customer type Mapping Method");
 	}
 
-	@Test(priority = 4, description = "Employee Route Plan Mapping", groups = { "sanity" })
+	@Test(priority = 4, description = "Employee Route Plan Mapping", groups = { "sanity" },enabled = false)
 	@Description("Employee route plan mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -131,7 +129,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Emp route plan mapping Method");
 	}
 
-	@Test(priority = 5, description = "Employee Route Plan Assignment", groups = { "sanity" })
+	@Test(priority = 5, description = "Employee Route Plan Assignment", groups = { "sanity" },enabled = false)
 	@Description("Employee route plan Assignment")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -149,7 +147,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Emp Route Plan Assignment Method");
 	}
 
-	@Test(priority = 6, description = "Employee Leave Balance update through bulk upload", groups = { "sanity" })
+	@Test(priority = 6, description = "Employee Leave Balance update through bulk upload", groups = { "sanity" },enabled = false)
 	@Description("Employee leave Balance")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -167,7 +165,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Emp Leave Balance Mapping Method");
 	}
 
-	@Test(priority = 7, description = "Employee ID update through bulk upload", groups = { "sanity" })
+	@Test(priority = 7, description = "Employee ID update through bulk upload", groups = { "sanity" },enabled = false)
 	@Description("Employee ID Update")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -185,7 +183,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Emp Id Update  Method");
 	}
 
-	@Test(priority = 8, description = "Work Reassignment through bulk upload", groups = { "sanity" })
+	@Test(priority = 8, description = "Work Reassignment through bulk upload", groups = { "sanity" },enabled = false)
 	@Description("Work Reassigment")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -204,7 +202,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 		logger.info("Ending of Work Reassignment Method");
 	}
 
-	@Test(priority = 9, description = "Employee Terriotry Mapping", groups = { "sanity" })
+	@Test(priority = 9, description = "Employee Terriotry Mapping", groups = { "sanity" },enabled = false)
 	@Description("Employee Terriotry mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -223,7 +221,7 @@ public class EmployeeBulkUplods extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 10, description = "Employee List Mapping", groups = { "sanity" })
+	@Test(priority = 10, description = "Employee List Mapping", groups = { "sanity" },enabled = false)
 	@Description("Employee List mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")

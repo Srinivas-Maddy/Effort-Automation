@@ -199,114 +199,113 @@ public class BaseAutomationTest {
 	 */
 
 	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum WebDriver) {
-		logger.info("Starting of method getWebDriver");
+        logger.info("Starting of method getWebDriver");
 
-		WebDriver driver = webDriverPool.get(WebDriver);
+        WebDriver driver = webDriverPool.get(WebDriver);
 
-		String osPath = System.getProperty("os.name");
+        String osPath = System.getProperty("os.name");
 
-// Use existing driver
-		if (driver != null) {
-			logger.debug("Using existing web driver " + WebDriver);
-			return driver;
-		}
+        // Use existing driver
+        if (driver != null) {
+            logger.debug("Using existing web driver " + WebDriver);
+            return driver;
+        }
 
-		if (osPath.contains("Linux")) {
-			browserDriverPath = "/usr/bin/chromedriver";
-			logger.debug("######### In linux condition Using existing web driver Linux ###### ");
-			if (browser.equalsIgnoreCase("Firefox")) {
-				WebDriverManager.firefoxdriver().setup();
-				// WebDriverManager.firefoxdriver ().clearDriverCache ();
-				FirefoxOptions options = new FirefoxOptions();
+        if (osPath.contains("Linux")) {
+            browserDriverPath = "/usr/bin/chromedriver";
+            logger.debug("######### In linux condition Using existing web driver Linux ###### ");
+            if (browser.equalsIgnoreCase("Firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver ().clearDriverCache ();
+                FirefoxOptions options = new FirefoxOptions();
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                options.addArguments("--no-sandbox");
+                driver = new FirefoxDriver(options);
+            } else {
+                logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
+                /*
+                 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
+                 * ChromeOptions(); options.setHeadless(true);
+                 * options.addArguments("--no-sandbox"); driver = new ChromeDriver(options);
+                 */
+                /*
+                 * System.setProperty("webdriver.chrome.driver", browserDriverPath);
+                 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
+                 * options.addArguments("--no-sandbox");
+                 * options.addArguments("--remote-allow-origins=*");
+                 * 
+                 * driver = new ChromeDriver(options);
+                 */
+            //    WebDriverManager.chromedriver().setup();
+                
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                ChromeOptions options = new ChromeOptions();
+                // options.setHeadless(true);
+                options.addArguments("--no-sandbox");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                driver = new ChromeDriver(options);
 
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				options.addArguments("--no-sandbox");
-				driver = new FirefoxDriver(options);
-			} else {
-				logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
-				/*
-				 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
-				 * ChromeOptions(); options.setHeadless(true);
-				 * options.addArguments("--no-sandbox"); driver = new ChromeDriver(options);
-				 */
-				/*
-				 * System.setProperty("webdriver.chrome.driver", browserDriverPath);
-				 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
-				 * options.addArguments("--no-sandbox");
-				 * options.addArguments("--remote-allow-origins=*");
-				 *
-				 * driver = new ChromeDriver(options);
-				 */
-				// WebDriverManager.chromedriver().setup();
+                logger.debug("######### Driver is here  ###### " + driver);
 
-				WebDriverManager.chromedriver().clearDriverCache().setup();
-				ChromeOptions options = new ChromeOptions();
-// options.setHeadless(true);
-				options.addArguments("--no-sandbox");
-				options.addArguments("--remote-allow-origins=*");
-				options.addArguments("--disable-notifications");
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				driver = new ChromeDriver(options);
+            }
+} else if (osPath.contains("Mac OS X")) {
+            browserDriverPath = "/usr/bin/safaridriver";
 
-				logger.debug("######### Driver is here  ###### " + driver);
+            if (browserDriverPath.contains("safaridriver")) {
+                System.setProperty("webdriver.safari.driver", browserDriverPath);
+                driver = new SafariDriver();
 
-			}
-		} else if (osPath.contains("Mac OS X")) {
-			browserDriverPath = "/usr/bin/safaridriver";
+                logger.debug("Safari driver path " + browserDriverPath);
+            }
+        } else {
 
-			if (browserDriverPath.contains("safaridriver")) {
-				System.setProperty("webdriver.safari.driver", browserDriverPath);
-				driver = new SafariDriver();
+            if (browser.equalsIgnoreCase("Chrome")) {
 
-				logger.debug("Safari driver path " + browserDriverPath);
-			}
-		} else {
+                //WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                driver = new ChromeDriver(options);
 
-			if (browser.equalsIgnoreCase("Chrome")) {
+            } else if (browser.equalsIgnoreCase("Firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver ().clearDriverCache ();
+                driver = new FirefoxDriver();
 
-//WebDriverManager.chromedriver().setup();
-				WebDriverManager.chromedriver().clearDriverCache().setup();
-				ChromeOptions options = new ChromeOptions();
-				// options.setHeadless(true);
-				options.addArguments("--no-sandbox");
-				options.addArguments("--remote-allow-origins=*");
-				options.addArguments("--disable-notifications");
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				driver = new ChromeDriver(options);
+            } else if (browser.equalsIgnoreCase("Chromium")) {
+                WebDriverManager.chromiumdriver().setup();
+                //WebDriverManager.chromedriver ().clearDriverCache ();
+                driver = new EdgeDriver();
 
-			} else if (browser.equalsIgnoreCase("Firefox")) {
-				WebDriverManager.firefoxdriver().setup();
-				// WebDriverManager.firefoxdriver ().clearDriverCache ();
-				driver = new FirefoxDriver();
+            } else if (browser.equalsIgnoreCase("IEDriverServer")) {
+                WebDriverManager.iedriver().setup();
+                driver = new InternetExplorerDriver();
 
-			} else if (browser.equalsIgnoreCase("Chromium")) {
-				WebDriverManager.chromiumdriver().setup();
-				// WebDriverManager.chromedriver ().clearDriverCache ();
-				driver = new EdgeDriver();
+            }
+        }
 
-			} else if (browser.equalsIgnoreCase("IEDriverServer")) {
-				WebDriverManager.iedriver().setup();
-				driver = new InternetExplorerDriver();
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
-			}
-		}
+        logger.info("***************** Driver Successfully Created **************** " + driver.getTitle());
 
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        logger.info("End of method getWebDriver");
 
-		logger.info("***************** Driver Successfully Created **************** " + driver.getTitle());
+        // webDriverPool.put(loginDriver, driver);
 
-		logger.info("End of method getWebDriver");
+        return driver;
+    }
 
-// webDriverPool.put(loginDriver, driver);
-
-		return driver;
-	}
 
 	/**
 	 * This method is used for returning chrome browser version.
