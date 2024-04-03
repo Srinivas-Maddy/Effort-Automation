@@ -212,6 +212,12 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	
 	@FindBy(xpath="(//a[contains(text(),'Create On My Own')])[2]")
 	private WebElement createMyOwnOption;
+	
+	@FindBy(xpath="//a[contains(text(),'Withdraw')]")
+	private WebElement withDrawCard;
+	
+	@FindBy(xpath="(//div[@id='configure_workspec_body'])[1]/ul/li/span[2]/a")
+	private List<WebElement> activeWorkSpecDetails;
 
 	//Parameterized cunstructor
 	public WorkProcessCreation(WebDriver driver) {
@@ -616,6 +622,35 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		clickOnWebElement(this.createMyOwnOption);
 		
 		logger.info("Ending of clickOnCreateProcessInHomeScreen Method");
+
+	}
+	
+	public void withDrawSpecInHome() {
+		logger.info("Starting of withDrawSpecInHome method");
+		
+		waitUntilElementVisible(driver, this.withDrawCard);
+		clickOnWebElement(this.withDrawCard);
+		driver.switchTo().alert().accept();
+		
+		logger.info("Ending of withDrawSpecInHome method");
+	}
+	
+	public void withDrawAllSpecs() {
+		logger.info("Starting of withDrawAllSpecs method");
+		
+		for (int i = 1; i <activeWorkSpecDetails.size() ; i++) {
+			waitUntilElementVisible(driver, this.activeWorkSpecDetails.get(1));
+			clickOnWebElement(this.activeWorkSpecDetails.get(1));
+			waitUntilElementVisible(driver, this.withDrawCard);
+			clickOnWebElement(this.withDrawCard);
+			driver.switchTo().alert().accept();
+			hardWait(15);
+			if(i==168){
+				break;
+			}
+		}
+		
+		logger.info("Ending of withDrawAllSpecs method");
 
 	}
 	
