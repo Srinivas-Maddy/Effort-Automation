@@ -25,7 +25,7 @@ public class Forms extends BaseAutomationPage{
 	@FindBy(xpath="//input[@value='Create Form']")
 	private WebElement createFormBtn;
 
-	@FindBy(xpath="(//div[@id='popupDetails']/div/div/div)[1]")
+	@FindBy(xpath="(//div[@id='popupDetails']/div/div/div)[1]/div/a")
 	private WebElement createOnMyOwn;
 	
 	@FindBy(id="formTitle")

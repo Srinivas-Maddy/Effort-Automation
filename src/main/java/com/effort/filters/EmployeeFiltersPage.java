@@ -178,6 +178,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage {
 		logger.info("Starting of click on filter button");
 
 		hardWait(5);
+		scrollIntoView(filterBtn);
 		waitUntilElementVisible(driver, this.filterBtn);
 		clickOnWebElement(this.filterBtn);
 
@@ -224,6 +225,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage {
 
 		logger.info("Starting of clickOnApplyButton Method");
 
+		scrollIntoView(applyBtn);
 		waitUntilElementVisible(driver, this.applyBtn);
 		clickOnWebElement(this.applyBtn);
 		hardWait(5);
@@ -236,6 +238,7 @@ public class EmployeeFiltersPage extends BaseAutomationPage {
 		logger.info("Starting of  enterEmpId Method");
 
 		scrollIntoView(this.inputEmpId);
+		hardWait(5);
 		waitUntilElementVisible(driver, this.inputEmpId);
 		this.inputEmpId.sendKeys(empId);
 		clickOnApplyButton();
