@@ -129,7 +129,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//ul[@class='workspecActionsConfig']/li/span[2]/a")
 	private List<WebElement> workProcessCardList;
 
-	@FindBy(xpath="//input[@id='formFieldSpecs53_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
 	private WebElement addNewWorkField;
 
 	@FindBy(xpath="//span[@class='success']")
