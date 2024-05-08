@@ -132,8 +132,8 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	@FindBy(xpath="//div[@class='pq-cont']/table/tbody/tr[2]/td[2]")
 	private WebElement entityemployeesdata;
 	
-	@FindBy(xpath="//input[@class='btn  btn-success']")
-	private WebElement entityemployeeokbtn;
+	@FindBy(xpath="//input[@value='Ok']")
+	private WebElement okBtnPopUpScreen;
 	
 	@FindBy(xpath="//a[text()='								Click here to Select Customer']")
 	private WebElement entitymultipickcustomerfield;
@@ -494,19 +494,22 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		this.entityemployeefield.click();
 		waitUntilElementVisible(driver, this.entityemployeesdata);
 		this.entityemployeesdata.click();
-		waitUntilElementVisible(driver, this.entityemployeeokbtn);
-		this.entityemployeeokbtn.click();
+		waitUntilElementVisible(driver, this.okBtnPopUpScreen);
+		scrollIntoView(okBtnPopUpScreen);
+		clickOnWebElement(okBtnPopUpScreen);
 		logger.info("Ending of SelectEntityEmployee Method");
 	}
 	public void selectEntityMultiPickCustomer() {
 		logger.info("Starting of selectEntityMultiPickCustomer Method");
+		
 		waitUntilElementVisible(driver, this.entitymultipickcustomerfield);
 		this.entitymultipickcustomerfield.click();
 		this.hardWait(3);
 		waitUntilElementVisible(driver, this.entitymultipickcustomersdata);
-		this.entitymultipickcustomersdata.click();
-		waitUntilElementVisible(driver, this.entitymultipickcustomerokbtn);
-		this.entitymultipickcustomerokbtn.click();
+		this.entitymultipickcustomersdata.click();	
+		scrollIntoView(okBtnPopUpScreen);
+		clickOnWebElement(okBtnPopUpScreen);
+		
 		logger.info("Ending of selectEntityMultiPickCustomer Method");
 	}
 	public void clickEntityTerritory() {
@@ -574,12 +577,14 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	
 	public void selectCustomEntity() {
 		logger.info("Starting of selectCustomEntity Method");
+		
 			waitUntilElementVisible(driver, this.entitycustomentityfield);
 			this.entitycustomentityfield.click();
 			waitUntilElementVisible(driver, this.entitycustomentitydata);
 			this.entitycustomentitydata.click();
-			waitUntilElementVisible(driver, this.entitycustomentityokbtn);
-			this.entitycustomentityokbtn.click();
+			scrollIntoView(okBtnPopUpScreen);
+			clickOnWebElement(okBtnPopUpScreen);
+			
 		logger.info("Ending of selectCustomEntity Method");
 	}
 	

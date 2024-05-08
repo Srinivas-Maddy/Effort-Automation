@@ -1,9 +1,6 @@
 package com.effort.nxt.util;
 
 import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,7 +8,6 @@ import org.testng.log4testng.Logger;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.effort.base.BaseAutomationPage;
 
 public class TestListener  implements ITestListener {
 	
@@ -34,7 +30,7 @@ public class TestListener  implements ITestListener {
         // Set email content with test results
         StringBuilder emailContent = new StringBuilder();
         emailContent.append("Hi Team,").append("\n\n");
-        emailContent.append("Sanity Checklist for ").append(context.getName()).append(" is Completed").append("\n\n");
+        emailContent.append(context.getName()).append(" is Completed").append("\n\n");
         emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
         emailContent.append("Module Name :").append(context.getName()).append("\n\n");
         emailContent.append("========================").append("\n\n");
@@ -47,7 +43,7 @@ public class TestListener  implements ITestListener {
         emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
         emailContent.append("============================================").append("\n");
         for (ITestResult result : context.getPassedTests().getAllResults()) {
-            emailContent.append("Test Passed: ").append(result.getName()).append("\n");
+            emailContent.append("Passed : ").append(result.getName()).append("\n");
         }
         
         emailContent.append("\n");
@@ -55,9 +51,13 @@ public class TestListener  implements ITestListener {
         emailContent.append("============================================").append("\n");
         
         for (ITestResult result : context.getFailedTests().getAllResults()) {
-            emailContent.append("Test Failed: ").append(result.getName()).append("\n\n");
+            emailContent.append("Failed : ").append(result.getName()).append("\n\n");
             emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
         }
+        
+        for (ITestResult result : context.getSkippedTests().getAllResults()) {
+        	emailContent.append("Skipped: ").append(result.getName()).append("\n\n");
+		}
 
         emailContent.append("Thanks,\n").append("Test Team");	
 
