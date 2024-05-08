@@ -61,7 +61,7 @@ public class TestListener  implements ITestListener {
 
         emailContent.append("Thanks,\n").append("Test Team");	
 
-		EmailSender.sendEmail("test_team@spoors.in", "Web Automation Sanity Report", emailContent.toString());
+		EmailSender.sendEmail("test_team@spoors.in,web_team@spoors.in", "Web Automation Sanity Report", emailContent.toString());
 
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();

@@ -37,9 +37,13 @@ public class RoutePlansPage extends BaseAutomationPage {
 	@FindBy(id = "minNightsToStay")
 	private WebElement txtNightStayField;
 
-	@FindBy(id = "pickCustomer")
+	//@FindBy(id = "pickCustomer")
+	@FindBy(xpath = "//button[contains(text(),'Add Customer')]")
 	private WebElement btnAddCustomer;
-
+	
+	@FindBy(xpath="//tr[contains(@class,'pq-grid-row')]/td[2]/div/img")
+	private List<WebElement> customerCheckBoxSelections;
+	
 	@FindBy(xpath = "//img[@dataindex='0']")
 	private WebElement chkCustomerSelect;
 
@@ -212,12 +216,21 @@ public class RoutePlansPage extends BaseAutomationPage {
 	public void pickCustomers() {
 		logger.info("Starting of clickOnAddCustomer Method");
 
-		hardWait(2);
-		waitUntilElementVisible(driver, this.chkCustomerSelect);
-		this.chkCustomerSelect.click();
-		hardWait(2);
-		waitUntilElementVisible(driver, this.chkThirdCustomer);
-		this.chkThirdCustomer.click();
+//		hardWait(2);
+//		waitUntilElementVisible(driver, this.chkCustomerSelect);
+//		this.chkCustomerSelect.click();
+//		hardWait(2);
+//		waitUntilElementVisible(driver, this.chkThirdCustomer);
+//		this.chkThirdCustomer.click();
+		for (int i = 0; i < customerCheckBoxSelections.size(); i++) {
+			hardWait(10);
+			waitUntilElementVisible(driver, customerCheckBoxSelections.get(i));
+			if (i<4) {
+				customerCheckBoxSelections.get(i).click();
+			}else {
+				break;
+			}		
+		}	
 		waitUntilElementVisible(driver, this.btnOk);
 		this.btnOk.click();
 		waitUntilElementVisible(driver, this.btnCustomerSave);
@@ -230,13 +243,25 @@ public class RoutePlansPage extends BaseAutomationPage {
 	public void editPickedCustomers() {
 		logger.info("Starting of editPickedCustomers Method");
 
-		hardWait(2);
-		waitUntilElementVisible(driver, this.chkSecondCustomer);
-		this.chkSecondCustomer.click();
-		hardWait(2);
-		waitUntilElementVisible(driver, this.chkFourthCustomer);
-		this.chkFourthCustomer.click();
+//		hardWait(2);
+//		waitUntilElementVisible(driver, this.chkSecondCustomer);
+//		this.chkSecondCustomer.click();
+//		hardWait(2);
+//		waitUntilElementVisible(driver, this.chkFourthCustomer);
+		
+		for (int i = 0; i < customerCheckBoxSelections.size(); i++) {
+			hardWait(10);
+			waitUntilElementVisible(driver, customerCheckBoxSelections.get(i));
+			if (i<2) {
+				customerCheckBoxSelections.get(i).click();
+			}else {
+				break;
+			}		
+		}	
+	
+		//this.chkFourthCustomer.click();
 		waitUntilElementVisible(driver, this.btnOk);
+		
 		this.btnOk.click();
 		waitUntilElementVisible(driver, this.btnCustomerSave);
 		this.btnCustomerSave.click();
