@@ -212,8 +212,10 @@ public class EntitiesProcess extends BaseAutomationPage {
 		this.proximitycheckin.click();
 		waitUntilElementVisible(driver, forcedcheckin);
 		this.forcedcheckin.click();
+	    scrollIntoView(proximitycheckout);
 		waitUntilElementVisible(driver, proximitycheckout);
 		this.proximitycheckout.click();
+	    scrollIntoView(forcedcheckout);
 		waitUntilElementVisible(driver, forcedcheckout);
 		this.forcedcheckout.click();
 		Thread.sleep(2000);

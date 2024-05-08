@@ -41,7 +41,7 @@ public class LeavesExportPage extends BaseAutomationPage {
 	private WebElement leavesexportselected;
 	
 	@FindBy(xpath="//a[@id='filters']")
-	private WebElement leavesfilters;
+	private WebElement filterBtn;
 	
 	@FindBy(xpath = "(//div[@class='select2-container select2-container-multi form-control'])[1]")
 	private WebElement leavesempnamefield;
@@ -49,14 +49,14 @@ public class LeavesExportPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-choices'])[1]/li/input")
 	private WebElement leavesempnameinputfield;
 	
-	@FindBy(xpath = "(//ul[@class='select2-results'])[3]/li/div/span")
-	private List<WebElement> leavesempnamesdata;
+	@FindBy(xpath = "//div[@id='select2-drop']/ul/li/div/span")
+	private List<WebElement> employessList;
 	
 	@FindBy(xpath="//a[@id='search']")
 	private WebElement filtersapplybtn;
 	
 	@FindBy(xpath="//a[@id='reset']")
-	private WebElement filtersresetbtn;
+	private WebElement resetBtn;
 
 	@FindBy(xpath="(//ul[@class='dropdown-menu btn-block']/li)[3]/a")
 	private WebElement leavesexportfiltered;
@@ -130,24 +130,30 @@ public class LeavesExportPage extends BaseAutomationPage {
 	}
 	
 	public void selectLeavesExportFiltered(String leavesexportempname,String passedleavesexportempname) {
+		
 		logger.info("Starting of selectLeavesExportFiltered Method");
-		waitUntilElementVisible(driver, this.leavesfilters);
-		this.leavesfilters.click();
-		waitUntilElementVisible(driver, this.filtersresetbtn);
-		this.filtersresetbtn.click();
-		waitUntilElementVisible(driver, this.filtersapplybtn);
-		this.filtersapplybtn.click();
-		hardWait(3);
-		waitUntilElementVisible(driver, this.leavesfilters);
-		this.leavesfilters.click();
+		
+		waitUntilElementVisible(driver, this.filterBtn);
+		clickOnWebElement(this.filterBtn);
+		
+		waitUntilElementVisible(driver, this.resetBtn);
+		clickOnWebElement(resetBtn);
+		
+//		waitUntilElementVisible(driver, this.filtersapplybtn);
+//		this.filtersapplybtn.click();
+//		hardWait(3);
+		
+//		waitUntilElementVisible(driver, this.filterBtn);
+//		clickOnWebElement(filterBtn);
+		
 		waitUntilElementVisible(driver, this.leavesempnameinputfield);
 		this.leavesempnameinputfield.click();
 		this.leavesempnameinputfield.sendKeys(leavesexportempname);
-		for(int i = 0;i<this.leavesempnamesdata.size();i++){
-		String leavesname = this.leavesempnamesdata.get(i).getText();
+		for(int i = 0;i<this.employessList.size();i++){
+		String leavesname = this.employessList.get(i).getText();
 		if(leavesname.equalsIgnoreCase(passedleavesexportempname)){
-			waitUntilElementVisible(driver, this.leavesempnamesdata.get(i));
-			this.leavesempnamesdata.get(i).click();
+			waitUntilElementVisible(driver, this.employessList.get(i));
+			this.employessList.get(i).click();
 			break;
 		}	
 		}

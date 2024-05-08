@@ -185,7 +185,7 @@ public class CustomerExportPage extends BaseAutomationPage {
 		while(i<customernameinput.size()) {
 			String customerName = this.customernameinput.get(i).getText();
 
-			if(customerName.contains("Automation_2023-07-03")) {
+			if(customerName.contains("Bulk upload automation Sep 13 07")) {
 				this.customernameinput.get(i).click();
 				break;
 			}
