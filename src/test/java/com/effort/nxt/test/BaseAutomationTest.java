@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -275,6 +277,7 @@ public class BaseAutomationTest {
                 options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
                 driver = new ChromeDriver(options);
 
+
             } else if (browser.equalsIgnoreCase("Firefox")) {
                 WebDriverManager.firefoxdriver().setup();
                 //WebDriverManager.firefoxdriver ().clearDriverCache ();
@@ -358,7 +361,6 @@ public class BaseAutomationTest {
 		this.loginPage.enterUserName(userName);
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-
 		this.loginPage.clickOnSignOutFromAllSessions(userName, password);
 
 		logger.info("Ending of LoginToApplication Method");

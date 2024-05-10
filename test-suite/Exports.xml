@@ -2,31 +2,28 @@
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
 
-	<parameter name="siteURL"
-		value="https://staging.spoors.in/effortx/login" />
-	<!-- <parameter name="siteURL"
-	value="https://staging.spoors.in/effortx/login" />-->
+	<!--<parameter name="siteURL" value="https://secure.spoors.in/effortx/login" />-->
+	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
 	<!-- <parameter name="siteURL" value="testurl" /> -->
-
-
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
-	<parameter name="password" value="Spoors@123" />
+	<parameter name="password" value="Spoors@321" />
+	
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-<!--	<test name="Employee Exports">
+    <test name="Employee Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 		</classes>
-	</test>-->
+	</test>
 
-	<!--<test name="Customer Exports">
+	<test name="Customer Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
 		</classes>
-	</test> -->
+	</test> 
 	
 	<test name="Entity Exports">
 		<classes>
@@ -34,16 +31,16 @@
 		</classes>
 	</test>
 
-	<!--<test name="Leaves Exports">
+	<test name="Leaves Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.LeavesExportTest" />
 		</classes>
 	</test>
--->
-	<!--<test name="Form Exports">
+
+	<test name="Form Exports">
 		<classes>
 			<class name="com.effort.nxt.test.exports.FormExportsTest" />
 		</classes>
-	</test>-->
+	</test>
 
 </suite>

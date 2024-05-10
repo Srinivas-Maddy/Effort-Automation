@@ -146,7 +146,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[2]/td[2]")
 	private WebElement customentitypicker;
 
-	@FindBy(xpath = "//input[@class='btn btn-success btn-block']")
+	@FindBy(xpath = "//input[@value='Ok']")
 	private WebElement customentityokbtn;
 
 	@FindBy(xpath = "//div/select[@class='field cusPick form-control']")
@@ -155,7 +155,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
 	private WebElement customerpicker;
 
-	@FindBy(xpath = "//input[@value='OK']")
+	@FindBy(xpath = "//input[@value='Ok']")
 	private WebElement customerpickokbtn;
 
 	@FindBy(xpath = "//div/select[@class='field pickemployees form-control']")
@@ -164,7 +164,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[5]/td[2]")
 	private WebElement employeepicker;
 
-	@FindBy(xpath = "//input[@class='btn  btn-success']")
+	@FindBy(xpath = "//input[@value='Ok']")
 	private WebElement employeepickokbtn;
 
 	@FindBy(xpath = "//div[@class='select2-container field pickForms']")

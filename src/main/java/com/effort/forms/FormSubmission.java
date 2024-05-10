@@ -119,11 +119,7 @@ public class FormSubmission extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
 	private WebElement pickerSelection;
 
-	// @FindBy(xpath="//table[@class='pq-grid-table pq-grid-td-border-right
-	// pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
-	// private WebElement empSelct;
-
-	@FindBy(xpath = "//input[@value='OK']")
+	@FindBy(xpath = "//input[@value='Ok']")
 	private WebElement okBtn;
 
 	@FindBy(xpath = "//div[@id='s2id_fields22_fieldValue']")

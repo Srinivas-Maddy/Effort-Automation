@@ -32,7 +32,7 @@ public class DayplannerPage extends BaseAutomationPage{
 	@FindBy(xpath="//div[@class='pq-cont']/table/tbody/tr/td[2]/div/img")
 	private List<WebElement> customers_CheckBoxs;
 
-	@FindBy(xpath="//input[@value='OK']")
+	@FindBy(xpath="//input[@value='Ok']")
 	private WebElement ok_Btn;
 
 	@FindBy(id="save1")
