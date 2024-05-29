@@ -39,8 +39,14 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='fields2_fieldValueDateTime']")
 	private WebElement workEndDate;
 	
-	@FindBy(xpath="(//div[@class='xdsoft_datepicker active'])[10]/div[2]/table/tbody/tr/td")
+	@FindBy(xpath="//div[contains(@style,'display: block; left')]/div/div/button[3]")
+	private WebElement calenderMonthBtn;
+	
+	@FindBy(xpath="//div[contains(@style,'display: block; left')]/div[1]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
+	
+	@FindBy(id="availability_proceedAnyWay")
+	private WebElement acceptBtn;
 	
 	@FindBy(xpath="(//div[@class='xdsoft_timepicker active'])[8]/div/div/div")
 	private List<WebElement> timePickers;
@@ -48,7 +54,7 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath="(//span[contains(text(),'Select Employee')])[3]")
 	private WebElement assigneeDropdown;
 	
-	@FindBy(xpath="/html[1]/body[1]/div[16]/div[1]/input[1]")
+	@FindBy(xpath="//input[@id='s2id_autogen319_search']")
 	private WebElement enterName;
 	
 	@FindBy(xpath="//div[@id='select2-drop']/ul/li")
@@ -118,6 +124,8 @@ public class AddWorkProcess extends BaseAutomationPage{
 		waitUntilElementVisible(driver, this.workEndDate);
 		Thread.sleep(10000);
 		this.workEndDate.click();
+		waitUntilElementVisible(driver, this.calenderMonthBtn);
+		clickOnWebElement(this.calenderMonthBtn);
 	}
 	
 	public void clickOnCurrentDateTime() throws InterruptedException {
@@ -165,29 +173,34 @@ public class AddWorkProcess extends BaseAutomationPage{
 				employeeNames.get(i).click();
 				break;
 			}
-		}
+		}		
 		
 	}
 	
 
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
+		
         waitUntilElementVisible(driver, this.saveBtn);
         this.saveBtn.click();
+        //Process Conflict Alert Handling
+        try {
+  		  waitUntilElementVisible(driver, this.btnProcessAnyway);
+  		  this.btnProcessAnyway.click();
+  		}catch(Exception e){
+  			logger.info("Process Anyway Btn is not visible");
+  		}
+        //Employee OnLeave Alert Handle
+        try{
+        	if(this.acceptBtn.isDisplayed()) {
+    			this.acceptBtn.click();
+    			}
+        }catch(Exception e) {
+           logger.info("On Leave Alert was not displayed");	
+        }
+        
 		logger.info("Ending of clickOnSave method");
 	}
-	
-	public void clickOnProcessAnywayBtn() {
-		logger.info("Starting of clickOnProcessAnywayBtn");
-		try {
-		  waitUntilElementVisible(driver, this.btnProcessAnyway);
-		  this.btnProcessAnyway.click();
-		}catch(Exception e){
-			logger.info("Process Anyway Btn is not visible");
-		}
-	}
-	
-	
 	
 	public void logOut() {
 		logger.info("Starting of Logout method");

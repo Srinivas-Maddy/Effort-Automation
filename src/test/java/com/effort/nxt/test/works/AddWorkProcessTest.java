@@ -45,6 +45,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 		@Story("Test Case #1, Assign the work to the user")
 		public void AddWork() throws InterruptedException {			
 			logger.info("Starting of the AddWork method");
+			
 			loginPage.ClickonWebApp();
 			loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 			this.addWork.clickOnProcessModule();
@@ -56,7 +57,7 @@ public class AddWorkProcessTest extends BaseAutomationTest{
 			//this.addWork.pickWorkEndDate();
 			this.addWork.assignEmplpoyee("Srinivas Maddy");
 			this.addWork.clickOnSave();
-			this.addWork.clickOnProcessAnywayBtn();
+			
 			logger.info("Ending the Addwork Method");					
 		}
 		
