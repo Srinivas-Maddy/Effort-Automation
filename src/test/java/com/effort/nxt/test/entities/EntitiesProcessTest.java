@@ -34,7 +34,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
 		this.loginPage.clickOnSignOutFromAllSessions(userName,password);
-		this.entitiesprocess.clickonAppBuilder();
+		//this.entitiesprocess.clickonAppBuilder();
 		
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
@@ -46,6 +46,7 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 	public void entitySpecCreation() throws InterruptedException {
 		logger.info("Starting of entitySpecCreation Method");
 		
+		this.entitiesprocess.clickonAppBuilder();
 		entitiesprocess.clickonEntities();
 		entitiesprocess.clickonCreateEntity();
 		entitiesprocess.enterEntityName(entityDataProp.getProperty("entityname"));

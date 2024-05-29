@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Effort NXT Automation">
 	
+	<parameter name="siteURL"
+		value="https://secure.spoors.io/effortx/login" />
 	<parameter name="browser" value="Chrome" />
 	<!--<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />-->
 	<parameter name="headless" value="false" />
@@ -13,22 +15,24 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<!--<test name="EmployeeFilters">
+	<test name="EmployeeFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="EntitiesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
 	</test>
-	
-	<!--<test name="LeavesFilters">
+
+	<test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 		</classes>
-	</test>-->
+
+	</test>
+	
 
 </suite>

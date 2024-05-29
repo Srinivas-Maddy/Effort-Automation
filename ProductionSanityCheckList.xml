@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Web Automation Sanity Checklist">
+	
 	<parameter name="browser" value="Chrome" />
-	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
-	<parameter name="headless" value="false" />
+    <parameter name="siteURL" value="https://secure.spoors.io/effortx/login" /> 
+    <parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
 
@@ -10,7 +11,7 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Post Production Sanity CheckList">
+	<test name="Staging Post Production Sanity CheckList">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
 			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
