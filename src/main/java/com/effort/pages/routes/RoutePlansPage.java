@@ -56,7 +56,7 @@ public class RoutePlansPage extends BaseAutomationPage {
 	@FindBy(xpath = "//img[@dataindex='3']")
 	private WebElement chkFourthCustomer;
 
-	@FindBy(xpath = "//input[@value='OK']")
+	@FindBy(xpath = "//input[@value='Ok']")
 	private WebElement btnOk;
 	
 	@FindBy(xpath = "//input[@value='Ok']")

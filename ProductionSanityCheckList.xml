@@ -11,7 +11,7 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Staging Post Production Sanity CheckList">
+	<test name="Production Sanity CheckList">
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
 			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
