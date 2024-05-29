@@ -11,9 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.effort.base.BaseAutomationPage;
 
-public class AddWorkProcess extends BaseAutomationPage{
-	
-	private static final Logger logger=Logger.getLogger(AddWorkProcess.class);
+public class AddWorkProcess extends BaseAutomationPage {
+
+	private static final Logger logger = Logger.getLogger(AddWorkProcess.class);
 
 	@FindBy(xpath = "//a[contains(text(),'Web App')]")
 	private WebElement webApp;
@@ -42,13 +42,19 @@ public class AddWorkProcess extends BaseAutomationPage{
 	@FindBy(xpath = "div[contains(@style,'display: block; left')]/div[1]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
 
+	@FindBy(xpath = "//div[contains(@style,'display: block; left')]/div/div/button[3]")
+	private WebElement calenderMonthBtn;
+
+	@FindBy(id = "availability_proceedAnyWay")
+	private WebElement acceptBtn;
+
 	@FindBy(xpath = "(//div[@class='xdsoft_timepicker active'])[8]/div/div/div")
 	private List<WebElement> timePickers;
 
 	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[3]")
 	private WebElement assigneeDropdown;
 
-	@FindBy(xpath = "/html[1]/body[1]/div[16]/div[1]/input[1]")
+	@FindBy(xpath = "//input[@id='s2id_autogen319_search']")
 	private WebElement enterName;
 
 	@FindBy(xpath = "//div[@id='select2-drop']/ul/li")
@@ -115,10 +121,12 @@ public class AddWorkProcess extends BaseAutomationPage{
 		waitUntilElementVisible(driver, this.workEndDate);
 		Thread.sleep(10000);
 		this.workEndDate.click();
+		waitUntilElementVisible(driver, this.calenderMonthBtn);
+		clickOnWebElement(this.calenderMonthBtn);
 	}
 
 	public void clickOnCurrentDateTime() throws InterruptedException {
-		//logger.info("Starting of clickOnCurrentDateTime method");
+		// logger.info("Starting of clickOnCurrentDateTime method");
 		// Get the current date as number
 		try {
 			String presentDate = getTomorrowDateAsNumber(1);
@@ -171,24 +179,30 @@ public class AddWorkProcess extends BaseAutomationPage{
 				break;
 			}
 		}
-
 	}
 
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
+
 		waitUntilElementVisible(driver, this.saveBtn);
 		this.saveBtn.click();
-		logger.info("Ending of clickOnSave method");
-	}
-
-	public void clickOnProcessAnywayBtn() {
-		logger.info("Starting of clickOnProcessAnywayBtn");
+		// Process Conflict Alert Handling
 		try {
 			waitUntilElementVisible(driver, this.btnProcessAnyway);
 			this.btnProcessAnyway.click();
 		} catch (Exception e) {
 			logger.info("Process Anyway Btn is not visible");
 		}
+		// Employee OnLeave Alert Handle
+		try {
+			if (this.acceptBtn.isDisplayed()) {
+				this.acceptBtn.click();
+			}
+		} catch (Exception e) {
+			logger.info("On Leave Alert was not displayed");
+		}
+
+		logger.info("Ending of clickOnSave method");
 	}
 
 	public void logOut() {
