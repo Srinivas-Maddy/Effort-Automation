@@ -126,9 +126,8 @@ public class AddWorkProcess extends BaseAutomationPage {
 	}
 
 	public void clickOnCurrentDateTime() throws InterruptedException {
-		// logger.info("Starting of clickOnCurrentDateTime method");
-		// Get the current date as number
-		try {
+		logger.info("Starting of clickOnCurrentDateTime method");
+	
 			String presentDate = getTomorrowDateAsNumber(1);
 			for (int i = 0; i <= dateTimes.size() - 1; i++) {
 				hardWait(2);
@@ -141,11 +140,6 @@ public class AddWorkProcess extends BaseAutomationPage {
 					break;
 				}
 			}
-
-		} catch (Exception e) {
-			System.out.println("  ");
-		}
-
 		this.workEndDate.click();
 		logger.info("Ending of clickOnDatePicker method");
 	}
