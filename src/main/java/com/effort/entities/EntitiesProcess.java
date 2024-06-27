@@ -159,6 +159,20 @@ public class EntitiesProcess extends BaseAutomationPage {
 		this.entitydescription.sendKeys(EntityDescription);	
 		waitUntilElementVisible(driver, this.nextbtn);
 		this.nextbtn.click();
+		/*
+		 * try { this.nextbtn.click(); } catch (Exception e) { hardWait(5); try {
+		 * //driver.get(driver.getCurrentUrl());
+		 * driver.findElement(By.id("firstname-placeholder")).sendKeys(Keys.F5);
+		 * 
+		 * //driver.navigate().refresh(); hardWait(20); } catch (Exception e2) { //
+		 * hardWait(20); try { driver.navigate().to(driver.getCurrentUrl());
+		 * 
+		 * } catch (Exception e3) { System.out.println(); } }}
+		 */
+		
+		
+		
+		
 		logger.info("Ending of enterEntityDescription Method");
 	}
 	
