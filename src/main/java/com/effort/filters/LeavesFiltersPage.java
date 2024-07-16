@@ -482,7 +482,7 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		this.fromDatePicker.sendKeys(fromDate);
 		waitUntilElementVisible(driver, this.fromDateLabelText);
 		clickOnWebElement(this.fromDateLabelText);
-		
+		hardWait(3);
 		logger.info("Ending of selectFromDate Menthod");
 	}
 	
@@ -491,11 +491,13 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		
 		hardWait(3);
 		scrollIntoView(toDatePicker);
-		waitUntilElementVisible(driver, this.toDatePicker);
+		hardWait(2);
+		//waitUntilElementVisible(driver, this.toDatePicker);
 		clickOnWebElement(this.toDatePicker);
-		hardWait(10);
-		waitUntilElementVisible(driver, this.currentDate);
+		hardWait(3);
+		//waitUntilElementVisible(driver, this.currentDate);
 		clickOnWebElement(this.currentDate);
+		hardWait(3);
 		
 		logger.info("Ending of selectToDate Method");
 	}

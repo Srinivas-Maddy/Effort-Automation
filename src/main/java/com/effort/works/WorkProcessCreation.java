@@ -550,9 +550,8 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				try {
-					
-					clickOnWebElement(this.workProcessCardList.get(i));
+
+					clickUsingActionClass(this.workProcessCardList.get(i));
 					hardWait(2);
 					waitUntilElementVisible(driver, this.viewCheckBox);
 					clickOnWebElement(this.viewCheckBox);
@@ -563,9 +562,6 @@ public class WorkProcessCreation extends BaseAutomationPage{
 					waitUntilElementVisible(driver, this.backToWorkCards);
 					clickOnWebElement(this.backToWorkCards);	
 					break;
-				} catch (Exception e) {
-					System.out.println(" ");
-				}
 				
 			}
 		}
@@ -582,13 +578,16 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			if (actualCardName.equalsIgnoreCase(cardName)) {
 				clickUsingActionClass(this.workProcessCardList.get(i));
 				hardWait(2);
-				waitUntilElementVisible(driver, this.actionSelection_Dropdown);
-				clickOnWebElement(this.actionSelection_Dropdown);
-				waitUntilElementVisible(driver, this.selectEmployee);
-				clickOnWebElement(this.selectEmployee);
-				waitUntilElementVisible(driver, this.backToWorkCards);
-				clickOnWebElement(this.backToWorkCards);	
-				break;
+					waitUntilElementVisible(driver, this.actionSelection_Dropdown);
+					clickOnWebElement(this.actionSelection_Dropdown);
+					hardWait(2);
+					waitUntilElementVisible(driver, this.selectEmployee);
+					clickOnWebElement(this.selectEmployee);
+					hardWait(2);
+					waitUntilElementVisible(driver, this.backToWorkCards);
+					clickOnWebElement(this.backToWorkCards);	
+					break;				
+				
 			}
 		}
 		
@@ -604,13 +603,13 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				clickOnWebElement(this.workProcessCardList.get(i));
+				clickUsingActionClass(this.workProcessCardList.get(i));
 				hardWait(2);
 				waitUntilElementVisible(driver, this.workCheckIn_Checkbox);
 				clickOnWebElement(this.workCheckIn_Checkbox);
 				waitUntilElementVisible(driver, this.settingsSave_btn);
 				clickOnWebElement(this.settingsSave_btn);
-							
+					break;		
 			}
 		}
 		

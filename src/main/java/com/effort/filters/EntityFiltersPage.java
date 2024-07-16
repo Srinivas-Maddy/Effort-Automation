@@ -30,67 +30,67 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//input[@class='form-control'])[1]")
 	private WebElement entityName;
 
-	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[4]")
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[3]")
 	private WebElement entityNameResult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[2]")
 	private WebElement fltrentityidfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[5]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[4]")
 	private WebElement fltrentityidresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[3]")
 	private WebElement fltrentitylocation;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[6]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[5]")
 	private WebElement fltrlocationresult;
 
 	@FindBy(xpath = "//input[@class='form-control numeric']")
 	private WebElement fltrentitynumber;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[10]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[9]")
 	private WebElement fltrnumberresult;
 
 	@FindBy(xpath = "(//div[text()='Text'])[2]/input")
 	private WebElement fltrentitytext;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[11]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[10]")
 	private WebElement fltrtextresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[7]")
 	private WebElement fltremailfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[16]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[15]")
 	private WebElement fltremailresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[8]")
 	private WebElement fltrlocfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[18]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[17]")
 	private WebElement fltrlocresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[9]")
 	private WebElement fltrphnfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[19]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[18]")
 	private WebElement fltrphnresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[10]")
 	private WebElement fltrcurrencyfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[20]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[19]")
 	private WebElement fltrcurrencyresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[11]")
 	private WebElement fltrurlfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[21]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[20]")
 	private WebElement fltrurlresult;
 
 	@FindBy(xpath = "(//input[@class='form-control'])[13]")
 	private WebElement fltrcountryfield;
 
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[27]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[26]")
 	private WebElement fltrcountryresult;
 
 	@FindBy(xpath = "(//div[text()='Customer'])[2]/div")
@@ -102,7 +102,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div/span")
 	private List<WebElement> fltrcustomerdropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[28]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[27]")
 	private WebElement fltrcustmrresult;
 
 	@FindBy(xpath = "(//div[text()='Multi Pick Customer'])[2]/div")
@@ -123,7 +123,7 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//ul[@class='select2-results'])[8]/li/div")
 	private List<WebElement> fltrterritorydropdowndata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[30]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[29]")
 	private WebElement fltrterritoryresult;
 
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select")
@@ -132,13 +132,13 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "(//div[text()='Yes/No'])[2]/select/option")
 	private List<WebElement> fltryesornodata;
 
-	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[31]")
+	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[30]")
 	private WebElement fltryesornoresult;
 
 	@FindBy(xpath = "(//div[text()='Customer Type'])[2]/input")
 	private WebElement fltrcustomertypefield;
 	
-	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[32]")
+	@FindBy(xpath = "(//table[@id='example']/tbody/tr/td)[31]")
 	private WebElement fltrcustomertyperesult;
 	
 	@FindBy(xpath="((//div[@class='col-md-12 pd-0'])[5]/div[2]/div)[1]/div")
