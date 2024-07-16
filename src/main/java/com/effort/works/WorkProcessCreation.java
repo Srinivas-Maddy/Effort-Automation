@@ -137,7 +137,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
 	private WebElement addNewWorkField;
 
-	@FindBy(xpath="//span[@class='success']")
+	@FindBy(xpath="//label[contains(text(),'Saved Successfully')]")
 	private WebElement modifyWorkFieldsStatusMsg;
 	
 	@FindBy(xpath="//input[@name='workActionSpec[6].actionName']")

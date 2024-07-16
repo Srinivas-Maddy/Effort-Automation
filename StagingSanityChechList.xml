@@ -37,6 +37,7 @@
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 			<class name="com.effort.nxt.test.dayplan.DayplannerTest" />
+			<class name="com.effort.nxt.test.list.ListTest" />
 			<class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
 			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
 			<class name="com.effort.nxt.test.imports.ListBulkUploads" />

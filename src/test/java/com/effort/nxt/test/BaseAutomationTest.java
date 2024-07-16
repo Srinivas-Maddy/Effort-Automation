@@ -208,7 +208,7 @@ public class BaseAutomationTest {
 		logger.info("Starting of method getWebDriver");
 
 		WebDriver driver = webDriverPool.get(WebDriver);
-
+		
 		String osPath = System.getProperty("os.name");
 
 		// Use existing driver
