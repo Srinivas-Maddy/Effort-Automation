@@ -39,7 +39,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='fields2_fieldValueDateTime']")
 	private WebElement workEndDate;
 
-	@FindBy(xpath = "div[contains(@style,'display: block; left')]/div[1]/div[2]/table/tbody/tr/td")
+	@FindBy(xpath = "//div[contains(@style,'display: block; left')]/div[1]/div[2]/table/tbody/tr/td")
 	private List<WebElement> dateTimes;
 
 	@FindBy(xpath = "//div[contains(@style,'display: block; left')]/div/div/button[3]")
