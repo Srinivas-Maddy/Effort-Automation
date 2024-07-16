@@ -110,7 +110,9 @@ public class Forms extends BaseAutomationPage{
 		waitUntilElementVisible(driver, createFormBtn);
 		this.createFormBtn.click();
 		waitUntilElementVisible(driver, createOnMyOwn);
-		createOnMyOwn.click();
+		this.createOnMyOwn.click();
+
+		
 		logger.info("End of create form");
 	}
 	

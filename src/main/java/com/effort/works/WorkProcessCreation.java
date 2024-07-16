@@ -3,6 +3,8 @@ package com.effort.works;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+
+import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -128,11 +130,14 @@ public class WorkProcessCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//ul[@class='workspecActionsConfig']/li/span[2]/a")
 	private List<WebElement> workProcessCardList;
+	
+	@FindBy(xpath="//a[contains(text(),'Restrict Access To Employee Groups')]")
+	private WebElement crdRestrictEmp;
 
 	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
 	private WebElement addNewWorkField;
 
-	@FindBy(xpath="//span[@class='success']")
+	@FindBy(xpath="//label[contains(text(),'Saved Successfully')]")
 	private WebElement modifyWorkFieldsStatusMsg;
 	
 	@FindBy(xpath="//input[@name='workActionSpec[6].actionName']")
@@ -518,13 +523,17 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				clickOnWebElement(this.workProcessCardList.get(i));
-				hardWait(2);
-				waitUntilElementVisible(driver, this.employeeGroups);
-				selectDropdown(this.employeeGroups, groupName);
-				waitUntilElementVisible(driver, this.moveEmpGrp_Btn);
-				this.moveEmpGrp_Btn.click();
-				clickOnWebElement(this.save_Btn);
+			
+					//clickUsingActionClass(crdRestrictEmp);
+					clickUsingActionClass(workProcessCardList.get(i));
+					hardWait(2);
+					
+					waitUntilElementVisible(driver, this.employeeGroups);
+					selectDropdown(this.employeeGroups, groupName);
+					waitUntilElementVisible(driver, this.moveEmpGrp_Btn);
+					this.moveEmpGrp_Btn.click();
+					clickOnWebElement(this.save_Btn);
+					break;
 				
 			}
 		}
@@ -541,16 +550,19 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				clickOnWebElement(this.workProcessCardList.get(i));
-				hardWait(2);
-				waitUntilElementVisible(driver, this.viewCheckBox);
-				clickOnWebElement(this.viewCheckBox);
-				clickOnWebElement(this.empGroupDropdown);
-				waitUntilElementVisible(driver, this.empGroup);
-				clickOnWebElement(this.empGroup);
-				clickOnWebElement(this.saveBtn);
-				waitUntilElementVisible(driver, this.backToWorkCards);
-				clickOnWebElement(this.backToWorkCards);				
+
+					clickUsingActionClass(this.workProcessCardList.get(i));
+					hardWait(2);
+					waitUntilElementVisible(driver, this.viewCheckBox);
+					clickOnWebElement(this.viewCheckBox);
+					clickOnWebElement(this.empGroupDropdown);
+					waitUntilElementVisible(driver, this.empGroup);
+					clickOnWebElement(this.empGroup);
+					clickOnWebElement(this.saveBtn);
+					waitUntilElementVisible(driver, this.backToWorkCards);
+					clickOnWebElement(this.backToWorkCards);	
+					break;
+				
 			}
 		}
 		
@@ -564,14 +576,18 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				clickOnWebElement(this.workProcessCardList.get(i));
+				clickUsingActionClass(this.workProcessCardList.get(i));
 				hardWait(2);
-				waitUntilElementVisible(driver, this.actionSelection_Dropdown);
-				clickOnWebElement(this.actionSelection_Dropdown);
-				waitUntilElementVisible(driver, this.selectEmployee);
-				clickOnWebElement(this.selectEmployee);
-				waitUntilElementVisible(driver, this.backToWorkCards);
-				clickOnWebElement(this.backToWorkCards);				
+					waitUntilElementVisible(driver, this.actionSelection_Dropdown);
+					clickOnWebElement(this.actionSelection_Dropdown);
+					hardWait(2);
+					waitUntilElementVisible(driver, this.selectEmployee);
+					clickOnWebElement(this.selectEmployee);
+					hardWait(2);
+					waitUntilElementVisible(driver, this.backToWorkCards);
+					clickOnWebElement(this.backToWorkCards);	
+					break;				
+				
 			}
 		}
 		
@@ -587,13 +603,13 @@ public class WorkProcessCreation extends BaseAutomationPage{
 			waitUntilElementVisible(driver, this.workProcessCardList.get(i));
 			String actualCardName=this.workProcessCardList.get(i).getText();
 			if (actualCardName.equalsIgnoreCase(cardName)) {
-				clickOnWebElement(this.workProcessCardList.get(i));
+				clickUsingActionClass(this.workProcessCardList.get(i));
 				hardWait(2);
 				waitUntilElementVisible(driver, this.workCheckIn_Checkbox);
 				clickOnWebElement(this.workCheckIn_Checkbox);
 				waitUntilElementVisible(driver, this.settingsSave_btn);
 				clickOnWebElement(this.settingsSave_btn);
-							
+					break;		
 			}
 		}
 		

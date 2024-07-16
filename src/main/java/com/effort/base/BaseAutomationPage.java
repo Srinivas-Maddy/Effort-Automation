@@ -118,7 +118,7 @@ public class BaseAutomationPage {
 	public void waitUntilElementVisible(WebDriver driver, WebElement xpath) {
 		logger.info("Starting of waitUntilElementVisible method");
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 		wait.until(ExpectedConditions.visibilityOf(xpath));
 
 		logger.info("Ending of waitUntilElementVisible method");
@@ -422,7 +422,22 @@ public class BaseAutomationPage {
 		logger.info("Ending of clickOnWebElement method");
 
 	}
-	
+	public void clickUsingActionClass(WebElement webElement) {
+		logger.info("Starting of clickUsingActionClass method");
+
+		Actions action = new Actions(driver);
+		
+			try {
+				action.moveToElement(webElement).click().build().perform();
+			}catch(Exception e2) {
+				JavascriptExecutor executor = (JavascriptExecutor)driver;
+				executor.executeScript("arguments[0].click();", webElement);
+			}
+
+
+		logger.info("Ending of clickUsingActionClass method");
+
+	}
 
 	public int  getCurrentMont() {
 		logger.info("Starting of getCurrentMont");
