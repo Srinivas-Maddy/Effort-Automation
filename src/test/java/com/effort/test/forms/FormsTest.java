@@ -34,9 +34,9 @@ public class FormsTest extends BaseAutomationTest{
 		this.forms=new Forms(driver);
 		this.loginPage = new LoginPage(driver);
 		this.loginPage.enterUserName(userName);
-		this.loginPage.clickOnPassword(password);
-		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(userName, password);
+		//LoginToApplication(userName, password);
+		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
+		
 		this.forms.clickOnConfigurator();
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}

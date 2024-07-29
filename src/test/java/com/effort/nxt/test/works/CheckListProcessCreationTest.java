@@ -12,6 +12,7 @@ import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.nxt.test.BaseAutomationTest;
 import com.effort.works.CheckListProcessCeationPage;
+import com.effort.works.WorkProcessCreation;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -22,6 +23,7 @@ public class CheckListProcessCreationTest extends BaseAutomationTest{
 	
 	private static final Logger logger=Logger.getLogger(CheckListProcessCreationTest.class.getName());
 	private CheckListProcessCeationPage checkListProcessCreation;
+	private WorkProcessCreation processCreation;
 	
 	//Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
@@ -33,11 +35,11 @@ public class CheckListProcessCreationTest extends BaseAutomationTest{
 		this.goToSite(siteUrl, driver);
 		this.checkListProcessCreation=new CheckListProcessCeationPage(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(userName);
-		this.loginPage.clickOnPassword(passWord);
-		this.loginPage.clickOnLoginButton();
-		loginPage.clickOnSignOutFromAllSessions(userName, passWord);
-		this.checkListProcessCreation.clickOnAppBuilder();
+		this.processCreation = new WorkProcessCreation(driver);
+		//LoginToApplication(userName, password);
+		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
+		
+		this.processCreation.clickOnConfigurator();
 		
 		logger.info("Ending of initEffortLogin method in Work Creation process");			
 	}

@@ -46,7 +46,7 @@ public class ListBulkUploads extends BaseAutomationTest{
 	@Feature("Bulk Uploads")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Validating the List bulk upload through the imports")
-	public void listImports() throws InterruptedException {
+	public void bulkListImports() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		
 		loginPage.ClickonWebApp();

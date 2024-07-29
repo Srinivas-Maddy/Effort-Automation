@@ -529,7 +529,10 @@ public class WorkProcessCreation extends BaseAutomationPage{
 					hardWait(2);
 					
 					waitUntilElementVisible(driver, this.employeeGroups);
-					selectDropdown(this.employeeGroups, groupName);
+					
+						selectDropdown(this.employeeGroups, groupName);
+				
+					
 					waitUntilElementVisible(driver, this.moveEmpGrp_Btn);
 					this.moveEmpGrp_Btn.click();
 					clickOnWebElement(this.save_Btn);

@@ -55,7 +55,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	@FindBy(xpath="//input[@class='field numeric form-control']")
 	private WebElement entitynumber;
 	
-	@FindBy(xpath="(//input[@class='field form-control inputTypeText'])[4]")
+	@FindBy(xpath="(//input[@class='field form-control inputTypeText'])[3]")
 	private WebElement entitytext;
 	
 	@FindBy(xpath="//input[@class='time form-control']")
@@ -135,7 +135,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	@FindBy(xpath="//input[@value='Ok']")
 	private WebElement okBtnPopUpScreen;
 	
-	@FindBy(xpath="//a[text()='								Click here to Select Customer']")
+	@FindBy(xpath="//b[text()='Click here to Select Customer']")
 	private WebElement entitymultipickcustomerfield;
 	
 	@FindBy(xpath="//div[@class='pq-cont']/table/tbody/tr[4]/td[2]")
@@ -252,6 +252,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	
 	public void clickOnAddEntity() {
 		logger.info("Starting of clickOnAddEntity Method");
+		hardWait(5);
 		waitUntilElementVisible(driver, this.addentity);
 		this.addentity.click();	
 		logger.info("Ending of clickOnAddEntity Method");	
@@ -274,6 +275,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 	public void enterEntityNameDetails(String Name) {
 		logger.info("Starting of enterEntityDetails Method");
 		waitUntilElementVisible(driver, this.entitynameinputfield);
+		clickOnWebElement(entitynameinputfield);
 		this.entitynameinputfield.sendKeys(Name);	
 		logger.info("Ending of enterEntityDetails Method");
 	}
@@ -495,8 +497,8 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.entityemployeesdata);
 		this.entityemployeesdata.click();
 		waitUntilElementVisible(driver, this.okBtnPopUpScreen);
-		scrollIntoView(okBtnPopUpScreen);
-		clickOnWebElement(okBtnPopUpScreen);
+		//scrollIntoView(okBtnPopUpScreen);
+		clickUsingActionClass(okBtnPopUpScreen);
 		logger.info("Ending of SelectEntityEmployee Method");
 	}
 	public void selectEntityMultiPickCustomer() {
@@ -552,6 +554,7 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		scrollDown(100, this.entityformfield);
 			waitUntilElementVisible(driver, this.entityformfield);
 			this.entityformfield.click();
+			hardWait(8);
 			waitUntilElementVisible(driver, this.entityformsdata);
 			this.entityformsdata.click();
 			waitUntilElementVisible(driver, this.entityformsokbtn);
@@ -580,9 +583,10 @@ public class EntitiesSubmission extends BaseAutomationPage {
 		
 			waitUntilElementVisible(driver, this.entitycustomentityfield);
 			this.entitycustomentityfield.click();
+			hardWait(8);
 			waitUntilElementVisible(driver, this.entitycustomentitydata);
 			this.entitycustomentitydata.click();
-			scrollIntoView(okBtnPopUpScreen);
+			//scrollIntoView(okBtnPopUpScreen);
 			clickOnWebElement(okBtnPopUpScreen);
 			
 		logger.info("Ending of selectCustomEntity Method");
