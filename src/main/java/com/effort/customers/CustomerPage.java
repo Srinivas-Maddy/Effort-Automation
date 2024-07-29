@@ -1250,11 +1250,21 @@ public class CustomerPage extends BaseAutomationPage {
 
 		Boolean isTotalCustomerCountDisplayed = false;
 		waitUntilElementVisible(driver, totalCustomers_card);
+		hardWait(3);
 		String totalCustomers = totalCustomers_card.getText();
 
 		clickOnWebElement(totalCustomers_card);
 		/////////////////
+		hardWait(3);
 		String totalCustomersText = totalCustomets_txt.getText();
+		int length = totalCustomersText.length();
+		String text = totalCustomersText.substring(19, 23);
+		String totalCust =text.trim();
+		hardWait(3);
+		//totalCustomersText.substring(4);
+		if(totalCust.equalsIgnoreCase(totalCustomers)){
+			isTotalCustomerCountDisplayed = true;
+		}
 
 		logger.info("Ending of isTotalCustomerCountDisplayed Method");
 		return isTotalCustomerCountDisplayed;
@@ -1281,12 +1291,14 @@ public class CustomerPage extends BaseAutomationPage {
 				isPendingRequisitionApprovalsCountDisplayed = true;
 			}
 
-			clickOnWebElement(closeIconOnPendingApprovals);
+			clickUsingActionClass(closeIconOnPendingApprovals);
 		} else {
 			isPendingRequisitionApprovalsCountDisplayed = true;
 
 		}
 
+		
+		
 		logger.info("Ending of isPendingRequisitionApprovalsCountDisplayed Method");
 		return isPendingRequisitionApprovalsCountDisplayed;
 
@@ -1326,7 +1338,7 @@ public class CustomerPage extends BaseAutomationPage {
 	public void clickOnActivitySnapshotButton() {
 		logger.info("Starting of clickOnActivitySnapshotButton Method");
 
-		clickOnWebElement(activitySnapshot_btn);
+		clickUsingActionClass(activitySnapshot_btn);
 
 		this.hardWait(3);
 		switchToNewWindow(0);
