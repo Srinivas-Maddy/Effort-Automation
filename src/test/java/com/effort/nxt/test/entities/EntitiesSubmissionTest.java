@@ -10,43 +10,45 @@ import org.testng.annotations.Test;
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.entities.EntitiesSubmission;
+import com.effort.forms.FormSubmission;
 import com.effort.nxt.test.BaseAutomationTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
-public class EntitiesSubmissionTest extends BaseAutomationTest{
-	
+public class EntitiesSubmissionTest extends BaseAutomationTest {
+
 	private static final Logger logger = Logger.getLogger(EntitiesSubmissionTest.class.getName());
 	private EntitiesSubmission entitiessubmission;
-	private static final String EXPECTEDCREATIONSUCCESMSG="Created Succesfully";
-	private static final String EXPECTEDMODIFIEDSUCCESMSG="Modified Successfully";
-	
+	private static final String EXPECTEDCREATIONSUCCESMSG = "Created Succesfully";
+	private static final String EXPECTEDMODIFIEDSUCCESMSG = "Modified Successfully";
+	private FormSubmission formSub;
+
 	@BeforeClass(alwaysRun = true)
-	@Parameters({"siteURL" , "browser", "headless","userName","password"})
-	public void initEffortLogin(String siteURL ,String browser , String headless, String userName,String password) throws Exception {
+	@Parameters({ "siteURL", "browser", "headless", "userName", "password" })
+	public void initEffortLogin(String siteURL, String browser, String headless, String userName, String password)
+			throws Exception {
 		logger.info("Starting of initinitEffort Login Method in Entities Process");
-		
+
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.ENTITIES_SUBMISSION_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.entitiessubmission = new EntitiesSubmission(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(userName);
-		this.loginPage.clickOnPassword(password);
-		this.loginPage.clickOnLoginButton();	
-		loginPage.clickOnSignOutFromAllSessions(userName,password);
-		
+		this.formSub = new FormSubmission(driver);
+		//LoginToApplication(userName, password);
+		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
+
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}
-	
-	@Test(priority = 1, description ="Test Case #1 , Add Entity" , groups= {"sanity"})
+
+	@Test(priority = 1, description = "Test Case #1 , Add Entity", groups = { "sanity" })
 	@Description("Adding Entity Details")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1 , Add Entity Details")
 	public void addEntity() throws InterruptedException {
 		logger.info("Starting of addEntity Method");
-		
+
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		entitiessubmission.clickOnEntityModule();
@@ -60,7 +62,7 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		entitiessubmission.enterEntityNumber(entityDataProp.getProperty("entitynumber"));
 		entitiessubmission.enterEntityText(entityDataProp.getProperty("entitytext"));
 		entitiessubmission.selectForm();
-	    entitiessubmission.selectCustomEntity(); 
+		entitiessubmission.selectCustomEntity();
 		entitiessubmission.pickEntityTime();
 		entitiessubmission.clickEntityDateTime();
 		entitiessubmission.pickEntityDateTime();
@@ -72,78 +74,81 @@ public class EntitiesSubmissionTest extends BaseAutomationTest{
 		entitiessubmission.enterEntityPhone();
 		entitiessubmission.enterEntityCurrency(entityDataProp.getProperty("entitycurrency"));
 		entitiessubmission.enterEntityURL(entityDataProp.getProperty("entityURL"));
-		entitiessubmission.pickEntityAudio();
-		entitiessubmission.pickEntityDocument();
-		entitiessubmission.pickEntityImage();
-	    entitiessubmission.pickEntitySignature();
-	    entitiessubmission.pickEntityVideo();
-	    entitiessubmission.pickEntityCountry();
-	    entitiessubmission.selectEntityCustomer();
-	    entitiessubmission.selectEntityMultiPickCustomer();
-	    entitiessubmission.clickEntityTerritory();
-	    entitiessubmission.pickEntityTerritory(entityDataProp.getProperty("territoryname"));
-	    entitiessubmission.pickYesorNo(entityDataProp.getProperty("entityyesorno"));
-	   // entitiessubmission.selectCustomerType(entityDataProp.getProperty("entitycustomertype"));
-		//entitiessubmission.saveEntity();	
-		String actualcreationsuccesmsg = entitiessubmission.saveEntityAndValidateCreatedEntity();
-		Assert.assertEquals(actualcreationsuccesmsg, EXPECTEDCREATIONSUCCESMSG);
+		// entitiessubmission.pickEntityAudio();
+		// entitiessubmission.pickEntityDocument();
+		// entitiessubmission.pickEntityImage();
+		// entitiessubmission.pickEntitySignature();
+		// entitiessubmission.pickEntityVideo();
+			formSub.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+
+			formSub.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+
+			formSub.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+
+			formSub.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+
+			entitiessubmission.pickEntityCountry();
+			entitiessubmission.selectEntityCustomer();
+			entitiessubmission.selectEntityMultiPickCustomer();
+			entitiessubmission.clickEntityTerritory();
+			entitiessubmission.pickEntityTerritory(entityDataProp.getProperty("territoryname"));
+			entitiessubmission.pickYesorNo(entityDataProp.getProperty("entityyesorno"));
+			// entitiessubmission.selectCustomerType(entityDataProp.getProperty("entitycustomertype"));
+			// entitiessubmission.saveEntity();
+			String actualcreationsuccesmsg = entitiessubmission.saveEntityAndValidateCreatedEntity();
+			Assert.assertEquals(actualcreationsuccesmsg, EXPECTEDCREATIONSUCCESMSG);
 		
 		logger.info("Ending of addEntity Method");
 	}
-	
-	
-	@Test(priority = 2 ,description = "Test Case 2 , Modify Entity" , groups= {"sanity"})
+
+	@Test(priority = 2, description = "Test Case 2 , Modify Entity", groups = { "sanity" })
 	@Description("Modifing an Entity")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case 2 , Modify Entity")
 	public void modifyEntity() throws InterruptedException {
 		logger.info("Starting of modifyEntity Method");
-		
+
 		entitiessubmission.ClickonEditBtn();
 		entitiessubmission.modifyEntityName(entityDataProp.getProperty("modifiedentityname"));
 		entitiessubmission.modifyEntityID();
-		//entitiessubmission.saveEntity();
+		// entitiessubmission.saveEntity();
 		String actualmodifiedsuccesmsg = entitiessubmission.saveEntityAndValidateModifiedEntity();
 		Assert.assertEquals(actualmodifiedsuccesmsg, EXPECTEDMODIFIEDSUCCESMSG);
-		
+
 		logger.info("Ending of modifyEntity Method");
-		
+
 	}
-	
-	
-	@Test(priority = 3 ,description = "Test Case 3 , Delete Entity" , groups= {"sanity"})
+
+	@Test(priority = 3, description = "Test Case 3 , Delete Entity", groups = { "sanity" })
 	@Description("Deleting an Entity")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case 3 , Delete Entity")
 	public void deleteEntity() throws InterruptedException {
 		logger.info("Starting of deleteEntity Method");
-		
+
 		entitiessubmission.selectEntitytoDelete();
-		entitiessubmission.ClickonDeleteBtn();	
-		
-		logger.info("Ending of deleteEntity Method");	
-	}	
-	
-	
+		entitiessubmission.ClickonDeleteBtn();
+
+		logger.info("Ending of deleteEntity Method");
+	}
+
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
-		
+
 		try {
 
 			if (this.driver != null) {
 				Thread.sleep(5000);
-		       	driver.quit();
-	       
+				driver.quit();
+
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		}
-	
+
 		logger.info("Ending of quitDriver Method");
 
 	}
 }
-
-

@@ -155,7 +155,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_attachmentFormSpecUniqueIdRow_0']/a/span[1]")
 	private WebElement addActachment_DropDown;
 	
-	@FindBy(xpath="//div[@role='option'][contains(text(),'All Field Form Auto')]")
+	@FindBy(xpath="//div[@role='option'][contains(text(),'ApprovalForm')]")
 	private WebElement select_Attachment_Form;
 	
 	@FindBy(xpath="(//input[@value='Save'])[2]")
@@ -529,7 +529,10 @@ public class WorkProcessCreation extends BaseAutomationPage{
 					hardWait(2);
 					
 					waitUntilElementVisible(driver, this.employeeGroups);
-					selectDropdown(this.employeeGroups, groupName);
+					
+						selectDropdown(this.employeeGroups, groupName);
+				
+					
 					waitUntilElementVisible(driver, this.moveEmpGrp_Btn);
 					this.moveEmpGrp_Btn.click();
 					clickOnWebElement(this.save_Btn);

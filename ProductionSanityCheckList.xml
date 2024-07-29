@@ -2,16 +2,16 @@
 <suite name="Web Automation Sanity Checklist">
 
 	<parameter name="browser" value="Chrome" />
+	<parameter name="headless" value="false" />
+	<parameter name="userName" value="automation@nmail.com" />
+	<parameter name="password" value="Spoors@321" />
 	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Staging Post Production Sanity CheckList">
-
-		<parameter name="userName" value="automation@nmail.com" />
-		<parameter name="password" value="Spoors@321" />
+	<test name="Production Sanity CheckList">
 
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
@@ -19,9 +19,12 @@
 			<class name="com.effort.nxt.test.customer.CustomerTest" />
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
+			<class name="com.effort.nxt.test.works.CheckListProcessCreationTest" />
+			<class name="com.effort.test.forms.FormsTest" />
 			<class name="com.effort.test.forms.FormSubmissionTest" />
 			<class name="com.effort.nxt.test.routeplans.RoutePlanTest" />
 			<class name="com.effort.nxt.test.routeplans.RoutePlanFiltersTest" />
+			<class name="com.effort.nxt.test.entities.EntitiesProcessTest" />
 			<class name="com.effort.nxt.test.list.ListTest" />
 			<class name="com.effort.nxt.test.exports.EmployeeExports" />
 			<class name="com.effort.nxt.test.exports.CustomerExports" />
@@ -41,14 +44,4 @@
 		</classes>
 	</test>
 
-	<test name="Forms and entities spec Creation">
-
-		<parameter name="userName" value="rootuser@spoors.in" />
-		<parameter name="password" value="sxp@KZF1" />
-
-		<classes>
-			<class name="com.effort.test.forms.FormsTest" />
-			<class name="com.effort.nxt.test.entities.EntitiesProcessTest" />
-		</classes>
-	</test>
 </suite>
