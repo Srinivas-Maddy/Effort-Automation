@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -46,8 +48,9 @@ public class BaseAutomationTest {
 	protected static Properties exportDataProp = null;
 	protected static Properties importProp = null;
 	protected static Properties enumProp = null;
-	protected static Properties dayPlannerProp=null;
+	protected static Properties dayPlannerProp = null;
 	protected static Properties listProp=null;
+
 	protected String USER_DIR = System.getProperty("user.dir");
 
 	private static Map<WebDriversEnum, WebDriver> webDriverPool = new Hashtable<WebDriversEnum, WebDriver>();
@@ -70,13 +73,15 @@ public class BaseAutomationTest {
 			FileReader leavesDataReader = null;
 			FileReader importsReader = null;
 			FileReader exportReader = null;
-			FileReader dayPlannerReader=null;
+			FileReader dayPlannerReader = null;
+
 			FileReader listReader=null;
+
 
 			try {
 
 				testDataReader = new FileReader("src/main/resources/testdata.properties");
-				// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
+// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
 				empDataReader = new FileReader("src/main/resources/EmployeeDetails.properties");
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties");
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");
@@ -88,7 +93,7 @@ public class BaseAutomationTest {
 				exportReader = new FileReader("src/main/resources/ExportDetails.properties");
 				dayPlannerReader=new FileReader("src/main/resources/DayPlanner.properties");
 				listReader=new FileReader("src/main/resources/list.properties");
-				
+
 				testDataProp = new Properties();
 				testDataProp.load(testDataReader);
 
@@ -118,13 +123,14 @@ public class BaseAutomationTest {
 
 				exportDataProp = new Properties();
 				exportDataProp.load(exportReader);
-				
-				dayPlannerProp=new Properties();
+
+				dayPlannerProp = new Properties();
 				dayPlannerProp.load(dayPlannerReader);
+
 				
 				listProp=new Properties();
 				listProp.load(listReader);
-			
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
@@ -199,122 +205,124 @@ public class BaseAutomationTest {
 
 	/**
 	 * This method is used for get driver
-	 * 
+	 *
 	 * @param WebDriver
 	 * @return
 	 */
 
 	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum WebDriver) {
-		logger.info("Starting of method getWebDriver");
+        logger.info("Starting of method getWebDriver");
 
-		WebDriver driver = webDriverPool.get(WebDriver);
-		
-		String osPath = System.getProperty("os.name");
+        WebDriver driver = webDriverPool.get(WebDriver);
 
-		// Use existing driver
-		if (driver != null) {
-			logger.debug("Using existing web driver " + WebDriver);
-			return driver;
-		}
+        String osPath = System.getProperty("os.name");
 
-		if (osPath.contains("Linux")) {
-			browserDriverPath = "/usr/bin/chromedriver";
-			logger.debug("######### In linux condition Using existing web driver Linux ###### ");
-			if (browser.equalsIgnoreCase("Firefox")) {
-				WebDriverManager.firefoxdriver().setup();
-				//WebDriverManager.firefoxdriver ().clearDriverCache ();
-				FirefoxOptions options = new FirefoxOptions();
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				options.addArguments("--no-sandbox");
-				driver = new FirefoxDriver(options);
-			} else {
-				logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
-				/*
-				 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
-				 * ChromeOptions(); options.setHeadless(true);
-				 * options.addArguments("--no-sandbox"); driver = new ChromeDriver(options);
-				 */
-				/*
-				 * System.setProperty("webdriver.chrome.driver", browserDriverPath);
-				 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
-				 * options.addArguments("--no-sandbox");
-				 * options.addArguments("--remote-allow-origins=*");
-				 * 
-				 * driver = new ChromeDriver(options);
-				 */
-			//	WebDriverManager.chromedriver().setup();
-				
-				WebDriverManager.chromedriver().clearDriverCache().setup();
-				ChromeOptions options = new ChromeOptions();
-				// options.setHeadless(true);
-				options.addArguments("--no-sandbox");
-				options.addArguments("--remote-allow-origins=*");
-				options.addArguments("--disable-notifications");
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				driver = new ChromeDriver(options);
+        // Use existing driver
+        if (driver != null) {
+            logger.debug("Using existing web driver " + WebDriver);
+            return driver;
+        }
 
-				logger.debug("######### Driver is here  ###### " + driver);
+        if (osPath.contains("Linux")) {
+            browserDriverPath = "/usr/bin/chromedriver";
+            logger.debug("######### In linux condition Using existing web driver Linux ###### ");
+            if (browser.equalsIgnoreCase("Firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver ().clearDriverCache ();
+                FirefoxOptions options = new FirefoxOptions();
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                options.addArguments("--no-sandbox");
+                driver = new FirefoxDriver(options);
+            } else {
+                logger.debug("######### In Else Chrome browser condition Using existing web driver Linux ###### ");
+                /*
+                 * WebDriverManager.chromedriver().setup(); ChromeOptions options = new
+                 * ChromeOptions(); options.setHeadless(true);
+                 * options.addArguments("--no-sandbox"); driver = new ChromeDriver(options);
+                 */
+                /*
+                 * System.setProperty("webdriver.chrome.driver", browserDriverPath);
+                 * ChromeOptions options = new ChromeOptions(); options.setHeadless(true);
+                 * options.addArguments("--no-sandbox");
+                 * options.addArguments("--remote-allow-origins=*");
+                 * 
+                 * driver = new ChromeDriver(options);
+                 */
+            //    WebDriverManager.chromedriver().setup();
+                
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                ChromeOptions options = new ChromeOptions();
+                // options.setHeadless(true);
+                options.addArguments("--no-sandbox");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                driver = new ChromeDriver(options);
 
-			}
-		} else if (osPath.contains("Mac OS X")) {
-			browserDriverPath = "/usr/bin/safaridriver";
+                logger.debug("######### Driver is here  ###### " + driver);
 
-			if (browserDriverPath.contains("safaridriver")) {
-				System.setProperty("webdriver.safari.driver", browserDriverPath);
-				driver = new SafariDriver();
+            }
+} else if (osPath.contains("Mac OS X")) {
+            browserDriverPath = "/usr/bin/safaridriver";
 
-				logger.debug("Safari driver path " + browserDriverPath);
-			}
-		} else {
+            if (browserDriverPath.contains("safaridriver")) {
+                System.setProperty("webdriver.safari.driver", browserDriverPath);
+                driver = new SafariDriver();
 
-			if (browser.equalsIgnoreCase("Chrome")) {
+                logger.debug("Safari driver path " + browserDriverPath);
+            }
+        } else {
 
-				//WebDriverManager.chromedriver().setup();
-				WebDriverManager.chromedriver().clearDriverCache().setup();
-				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--no-sandbox");
-				options.addArguments("--remote-allow-origins=*");
-				options.addArguments("--disable-notifications");
-				boolean isHeadless = Boolean.parseBoolean(headless);
-				options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
-				driver = new ChromeDriver(options);
+            if (browser.equalsIgnoreCase("Chrome")) {
 
-			} else if (browser.equalsIgnoreCase("Firefox")) {
-				WebDriverManager.firefoxdriver().setup();
-				//WebDriverManager.firefoxdriver ().clearDriverCache ();
-				driver = new FirefoxDriver();
+                //WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                boolean isHeadless = Boolean.parseBoolean(headless);
+                options.addArguments(isHeadless ? "--headless" : "--disable-gpu");
+                driver = new ChromeDriver(options);
 
-			} else if (browser.equalsIgnoreCase("Chromium")) {
-				WebDriverManager.chromiumdriver().setup();
-				//WebDriverManager.chromedriver ().clearDriverCache ();
-				driver = new EdgeDriver();
 
-			} else if (browser.equalsIgnoreCase("IEDriverServer")) {
-				WebDriverManager.iedriver().setup();
-				driver = new InternetExplorerDriver();
+            } else if (browser.equalsIgnoreCase("Firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver ().clearDriverCache ();
+                driver = new FirefoxDriver();
 
-			}
-		}
+            } else if (browser.equalsIgnoreCase("Chromium")) {
+                WebDriverManager.chromiumdriver().setup();
+                //WebDriverManager.chromedriver ().clearDriverCache ();
+                driver = new EdgeDriver();
 
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+            } else if (browser.equalsIgnoreCase("IEDriverServer")) {
+                WebDriverManager.iedriver().setup();
+                driver = new InternetExplorerDriver();
 
-		logger.info("***************** Driver Successfully Created **************** " + driver.getTitle());
+            }
+        }
 
-		logger.info("End of method getWebDriver");
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
-		// webDriverPool.put(loginDriver, driver);
+        logger.info("***************** Driver Successfully Created **************** " + driver.getTitle());
 
-		return driver;
-	}
+        logger.info("End of method getWebDriver");
+
+        // webDriverPool.put(loginDriver, driver);
+
+        return driver;
+    }
+
 
 	/**
 	 * This method is used for returning chrome browser version.
-	 * 
+	 *
 	 * @param driverInfo
 	 * @return
 	 */
@@ -332,14 +340,14 @@ public class BaseAutomationTest {
 		return tVersion;
 	}
 
-	// protected void logIn(String siteURL, String userName, String password,
-	// WebDriver driver) throws Exception {
-	// logger.debug("Login URL " + siteURL);
-	//
-	// driver.get(siteURL);
-	//
-	// this.loginPage.logIn(userName, password);
-	// }
+// protected void logIn(String siteURL, String userName, String password,
+// WebDriver driver) throws Exception {
+// logger.debug("Login URL " + siteURL);
+//
+// driver.get(siteURL);
+//
+// this.loginPage.logIn(userName, password);
+// }
 
 	@SuppressWarnings("deprecation")
 	public void goToSite(String siteURL, WebDriver driver) throws Exception {
@@ -363,7 +371,6 @@ public class BaseAutomationTest {
 		this.loginPage.enterUserName(userName);
 		this.loginPage.clickOnPassword(password);
 		this.loginPage.clickOnLoginButton();
-
 		this.loginPage.clickOnSignOutFromAllSessions(userName, password);
 
 		logger.info("Ending of LoginToApplication Method");

@@ -25,14 +25,15 @@ public class CustomerTest extends BaseAutomationTest {
 	private CustomerPage custmrCreation;
 
 	@BeforeClass(alwaysRun = true)
-	@Parameters({ "siteURL", "browser" ,"userName", "password", "headless"})
-	public void initEffortLogin(String siteURL, String browser, String userName, String password, String headless ) throws Exception {
+	@Parameters({ "siteURL", "browser", "userName", "password", "headless" })
+	public void initEffortLogin(String siteURL, String browser, String userName, String password, String headless)
+			throws Exception {
 		logger.info("Starting of initEffortLogin Method");
 		this.driver = this.getWebDriver(browser, headless, WebDriversEnum.CUSTUMERTEST_DRIVER);
 		this.goToSite(siteURL, driver);
 		this.custmrCreation = new CustomerPage(driver);
 		LoginToApplication(userName, password);
-		
+
 		logger.info("Ending of initEffortLogin Method");
 	}
 
@@ -42,8 +43,7 @@ public class CustomerTest extends BaseAutomationTest {
 	@Story("Customer Creation on clicking add Customer button")
 	public void AddCustomer() throws InterruptedException, IOException {
 		logger.info("Starting of AddCustomer Method");
-		
-		
+
 		loginPage.ClickonWebApp();
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		custmrCreation.ClickonCustomer();
@@ -105,10 +105,9 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.SecondryCustmrPhone();
 		custmrCreation.SecondryCustmrEmail();
 		custmrCreation.ClickonSaveButton();
-		
-		
-		Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(), expectedAssertionsProp.getProperty("customer.created.text"));
-		
+		Assert.assertEquals(custmrCreation.customerCreatedSuccesMsg(),
+				expectedAssertionsProp.getProperty("customer.created.text"));
+
 		logger.info("Ending of AddCustomer Method");
 	}
 
@@ -126,11 +125,12 @@ public class CustomerTest extends BaseAutomationTest {
 		custmrCreation.ModifiedPrimryFirstName(custmrDataProp.getProperty("modifiedprimryfirstname"));
 		custmrCreation.ModifiedsecondryFirstName(custmrDataProp.getProperty("modifiedsecondryfirstname"));
 		custmrCreation.ClickonSaveButton();
-		//String actualMsg = custmrCreation.CaptureModifiedMsg();
-		//Assert.assertEquals(actualMsg, EXPECTEDMODIFIEDMSG);
-		
-		Assert.assertEquals(custmrCreation.CaptureModifiedMsg(), expectedAssertionsProp.getProperty("customer.modified.text"));
-		
+		// String actualMsg = custmrCreation.CaptureModifiedMsg();
+		// Assert.assertEquals(actualMsg, EXPECTEDMODIFIEDMSG);
+
+		Assert.assertEquals(custmrCreation.CaptureModifiedMsg(),
+				expectedAssertionsProp.getProperty("customer.modified.text"));
+
 		logger.info("Ending of modifyCustomer Method");
 	}
 
@@ -138,11 +138,12 @@ public class CustomerTest extends BaseAutomationTest {
 	@Description("Mapping Customer to Employee")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Mapping Customers to Employee to asign Work")
-	public void CustmrtoEmployeeMapping()  throws InterruptedException{
+	public void CustmrtoEmployeeMapping() throws InterruptedException {
 		logger.info("Starting of CustmrtoEmployeeMapping");
 		custmrCreation.CustmrMaptoEmployee();
 		custmrCreation.AssignCustmrtoEmployee();
-		custmrCreation.ClickonAssign(custmrDataProp.getProperty("empname"),custmrDataProp.getProperty("dropdownempname"));
+		custmrCreation.ClickonAssign(custmrDataProp.getProperty("empname"),
+				custmrDataProp.getProperty("dropdownempname"));
 		logger.info("Ending of CustmrtoEmployeeMapping");
 	}
 
@@ -153,44 +154,66 @@ public class CustomerTest extends BaseAutomationTest {
 	public void customerDeletion() throws InterruptedException {
 		logger.info("Starting of customerDeletion Method");
 		custmrCreation.SelectCustmrtoDelete();
-		//String deletepopupmsg =custmrCreation.ClickonDeleteBtn();
-		//Assert.assertEquals(deletepopupmsg, EXPECTEDDELETEPOPUPMSG);
-		
-		Assert.assertEquals(custmrCreation.ClickonDeleteBtn(), expectedAssertionsProp.getProperty("customer.deleted.text"));
+		// String deletepopupmsg =custmrCreation.ClickonDeleteBtn();
+		// Assert.assertEquals(deletepopupmsg, EXPECTEDDELETEPOPUPMSG);
+
+		Assert.assertEquals(custmrCreation.ClickonDeleteBtn(),
+				expectedAssertionsProp.getProperty("customer.deleted.text"));
+
+		logger.info("Ending of customerDeletion Method");
+	}
+
+	@Test(priority = 5, description = "Verify Customer matrix", groups = "sanity")
+	@Description("Deleting Customers")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Deleting the Customers")
+	public void customerMatrixValidation() {
+		logger.info("Starting of customerDeletion Method");
+
+		Assert.assertTrue(custmrCreation.isTotalCustomerCountDisplayed());
+		Assert.assertTrue(custmrCreation.isPendingRequisitionApprovalsCountDisplayed());
+		Assert.assertTrue(custmrCreation.isTotalVisitsTodayCountDisplayed());
+
+		logger.info("Ending of customerDeletion Method");
+	}
+
+	@Test(priority = 6, description = "Verify activity snapshot page", groups = "sanity")
+	@Description("Deleting Customers")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Deleting the Customers")
+	public void activitySnapShotValidation() {
+		logger.info("Starting of customerDeletion Method");
+
+		custmrCreation.clickOnActivitySnapshotButton();
+
+		Assert.assertTrue(custmrCreation.isPlannedCustomersCountDisplayed());
+		Assert.assertTrue(custmrCreation.isActualCustomerVisitsCountDisplayed());
+		Assert.assertTrue(custmrCreation.isUnplannedCustomerVisitsCountDisplayed());
+
+		Assert.assertTrue(custmrCreation.isFormActivitiesCountDisplayed());
 
 		logger.info("Ending of customerDeletion Method");
 	}
 
 	
-//	@AfterClass(alwaysRun = true)
-//	public void LogOutCustomer() {
-//		logger.info("Starting of LogOutCustomer Method");
-//		
-//		custmrCreation.LogOut();
-//	
-//		logger.info("Ending of LogOutCustomer Method");
-//
-//	}
-//	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
-		
+
 		try {
 
 			if (this.driver != null) {
 				Thread.sleep(5000);
-		       	driver.quit();
-	       
+				driver.quit();
+
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		}
-	
+
 		logger.info("Ending of quitDriver Method");
 
 	}
-	
 
 }

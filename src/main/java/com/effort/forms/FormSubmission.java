@@ -113,7 +113,7 @@ public class FormSubmission extends BaseAutomationPage {
 	@FindBy(xpath = "(//li[@role='presentation'])[2]")
 	private WebElement countitem;
 
-	@FindBy(xpath = "//select[@class='field cusPick form-control']")
+	@FindBy(xpath = "//select[contains(@class, 'field cusPick')]")
 	private WebElement customerPicker;
 
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")

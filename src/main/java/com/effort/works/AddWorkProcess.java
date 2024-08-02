@@ -51,10 +51,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "(//div[@class='xdsoft_timepicker active'])[8]/div/div/div")
 	private List<WebElement> timePickers;
 
-	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[3]")
+	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[4]")
 	private WebElement assigneeDropdown;
 
-	@FindBy(xpath = "//input[@id='s2id_autogen319_search']")
+	@FindBy(xpath = "//input[@id='s2id_autogen1437_search']")
 	private WebElement enterName;
 
 	@FindBy(xpath = "//div[@id='select2-drop']/ul/li")
@@ -66,12 +66,123 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//span[contains(text(),'Proceed Anyway')]")
 	private WebElement btnProcessAnyway;
 
+	@FindBy(xpath = "(//div[@class='xdsoft_timepicker active'])[2]/div/div[1]/div")
+	private List<WebElement> timers;
+
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
 	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
 
+	@FindBy(xpath = "//input[@class='field date form-control']")
+	private WebElement datePicker;
+
+	@FindBy(id = "fields4_fieldValue")
+	private WebElement textField;
+
+	@FindBy(id = "fields8_fieldValue")
+	private WebElement numberfield;
+
+	@FindBy(id = "fields9_fieldValue")
+	private WebElement timeField;
+
+	@FindBy(id = "s2id_fields18_fieldValue")
+	private WebElement countryDropdown;
+
+	@FindBy(xpath = "(//li[@role='presentation'])[2]")
+	private WebElement countryList;
+
+	@FindBy(xpath = "//div[@id='s2id_fields20_fieldValue']")
+	private WebElement customerTypePicker;
+
+	@FindBy(xpath = "//ul[@id='select2-results-2']/li[2]")
+	private WebElement selectTypeItem;
+
+	@FindBy(xpath = "//select[@id='fields21_fieldValue']/following-sibling::button")
+	private WebElement employeePicker;
+
+	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
+	private WebElement pickerSelection;
+
+	@FindBy(xpath = "//input[@value='Ok']")
+	private WebElement okBtn;
+
+	@FindBy(xpath = "//div[@id='s2id_fields22_fieldValue']")
+	private WebElement terrioryField;
+
+	@FindBy(xpath = "//ul[@id='select2-results-3']/li[2]")
+	private WebElement territoryItemSelection;
+
+	@FindBy(xpath = "//div[@id='s2id_fields23_fieldValue']")
+	private WebElement YesOrNoBtn;
+
+	@FindBy(xpath = "//ul[@id='select2-results-4']/li[2]")
+	private WebElement selectYesOrNoValue;
+
+	@FindBy(xpath = "//select[@id='fields24_fieldValue']")
+	private WebElement customEntityField;
+
+	@FindBy(xpath = "//div[@id='s2id_fields25_fieldValue']")
+	private WebElement dropdownField;
+
+	@FindBy(xpath = "//div[@id='s2id_fields26_fieldValue']")
+	private WebElement multiSelectDropdownField;
+
+	@FindBy(xpath = "//input[@type='file']")
+	private List<WebElement> fileChoose;
+
+	@FindBy(xpath = "//select[@id='fields29_fieldValue']/following-sibling::a")
+	private WebElement multiPickList;
+
+	@FindBy(xpath = "//select[@id='fields30_fieldValue']")
+	private WebElement formField;
+
+	@FindBy(xpath = "//select[@id='fields31_fieldValue']")
+	private WebElement PickListField;
+
+	@FindBy(xpath = "//img[@id='add']")
+	private WebElement secAddBtn;
+
+	@FindBy(xpath = "//input[@id='sectionFields0_fieldValue']")
+	private WebElement secTextField;
+
+	@FindBy(xpath = "//input[@id='sectionFields1_fieldValue']")
+	private WebElement secCurrencyField;
+
+	@FindBy(xpath = "//input[@id='sectionFields2_fieldValue']")
+	private WebElement secDateField;
+
+	@FindBy(xpath = "//input[@id='sectionFields3_fieldValue']")
+	private WebElement secEmailField;
+
+	@FindBy(xpath = "//input[@id='sectionFields4_fieldValue']")
+	private WebElement secNumberField;
+
+	@FindBy(xpath = "//input[@id='sectionFields5_fieldValue']")
+	private WebElement secPhoneField;
+
+	@FindBy(xpath = "//i[@title='Edit']")
+	private WebElement workEditIcon;
+	
+	@FindBy(xpath = "//div[contains(text(),'created successfull')]")
+	private WebElement workCreatedSucessfullyText;
+	
+	@FindBy(xpath = "//div[contains(text(),'modified successfull')]")
+	private WebElement workModifiedSucessfullyText;
+
+	@FindBy(xpath = "//input[@id='selectWork']")
+	private WebElement selectWork;
+	
+	@FindBy(xpath = "//button[@id='assignTo']")
+	private WebElement reassignWorkBtn;
+	
+	@FindBy(xpath = "//span[@id='select2-chosen-7']")
+	private WebElement selectEmployee;
+
+	@FindBy(xpath = "//input[@id='s2id_autogen7_search']")
+	private WebElement searchEmp;
+	
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -83,6 +194,250 @@ public class AddWorkProcess extends BaseAutomationPage {
 		hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
+		logger.info("Ending of clicOnWebApp Method");
+
+	}
+
+	public void clickOnDatePicker(String date) {
+		logger.info("Starting of clickOnDatePicker method");
+		waitUntilElementVisible(driver, datePicker);
+		this.datePicker.sendKeys(date);
+		implicitWait();
+		clickOnWebElement(datePicker);
+		logger.info("Ending of clickOnDatePicker method");
+	}
+
+	public void SetDateInSection(String date) {
+		logger.info("Starting of clickOnDatePicker method");
+		waitUntilElementVisible(driver, secDateField);
+		this.secDateField.sendKeys(date);
+		implicitWait();
+		clickOnWebElement(secDateField);
+		logger.info("Ending of clickOnDatePicker method");
+	}
+
+	public void enterEmailInSection(String email) {
+		logger.info("Starting of enter Email method");
+		waitUntilElementVisible(driver, this.secEmailField);
+		this.secEmailField.sendKeys(email);
+		logger.info("Ending of enter Email method");
+	}
+
+	public void enterNumberData(String numberData) {
+		logger.info("Starting of enter number method");
+		waitUntilElementVisible(driver, numberfield);
+		this.numberfield.sendKeys(numberData);
+		logger.info("Ending of enter number method");
+	}
+
+	public void enterNumberInSection(String numberData) {
+		logger.info("Starting of enter number method");
+		waitUntilElementVisible(driver, secNumberField);
+		this.secNumberField.sendKeys(numberData);
+		logger.info("Ending of enter number method");
+	}
+
+	public void phoneNumberInSection(String phoneNumber) {
+		logger.info("Starting of phoneNumber method");
+		this.secPhoneField.sendKeys(phoneNumber);
+		logger.info("Ending of phoneNumber method");
+
+	}
+
+	public void enterTextData(String TextData) {
+		logger.info("Starting of enterTextData method");
+
+		waitUntilElementVisible(driver, textField);
+		this.textField.sendKeys(TextData);
+
+		logger.info("Ending of enterTextData method");
+	}
+
+	public void enterTextDataInSection(String TextData) {
+		logger.info("Starting of enterTextData method");
+
+		waitUntilElementVisible(driver, secTextField);
+		this.secTextField.sendKeys(TextData);
+
+		logger.info("Ending of enterTextData method");
+	}
+
+	public void enterCurrencyInSection(String CurrencyValue) {
+		logger.info("Starting of enterCurrency method");
+		waitUntilElementVisible(driver, secCurrencyField);
+		this.secCurrencyField.sendKeys(CurrencyValue);
+		logger.info("Ending of enterCurrency method");
+	}
+
+	public void pickTime(String time) throws InterruptedException {
+		logger.info("Starting of pickTime method");
+		waitUntilElementVisible(driver, this.timeField);
+		scrollDown(100, timeField);
+		this.timeField.sendKeys(time);
+		this.timeField.click();
+		/*
+		 * String currentTime = getCurrentTime(); String[] timeString =
+		 * currentTime.split(":"); Integer hour = Integer.parseInt(timeString[0]); hour
+		 * = hour * 60; Integer min = Integer.parseInt(timeString[1]); int index = hour
+		 * + min; int timerItemsCount = timers.size(); if (timerItemsCount != 1440) {
+		 * index = 50; } Thread.sleep(1000); //this.timers.get(index).click();
+		 * clickUsingActionClass(timers.get(index));
+		 */
+
+		logger.info("Ending of enterTextData method");
+	}
+
+	public void pickCountry() {
+		logger.info("Starting of pickCountry method");
+		waitUntilElementVisible(driver, this.countryDropdown);
+		scrollIntoView(countryDropdown);
+		this.countryDropdown.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+		logger.info("Ending of pickCountry method");
+
+	}
+
+	public void pickCustomerType() {
+		logger.info("Starting of pick coustomer method");
+		waitUntilElementVisible(driver, this.customerTypePicker);
+		this.customerTypePicker.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+		logger.info("Ending of pick coustomer method");
+	}
+
+	public void pickEmployee() throws InterruptedException {
+		logger.info("Starting of pick Employee method");
+		waitUntilElementVisible(driver, this.employeePicker);
+		this.employeePicker.click();
+		Thread.sleep(3000);
+		waitUntilElementVisible(driver, this.pickerSelection);
+		this.pickerSelection.click();
+		this.okBtn.click();
+		logger.info("Ending of pick Employee method");
+	}
+
+	public void SelectTerritory() {
+		logger.info("Starting of SelectTerritory method");
+		waitUntilElementVisible(driver, this.terrioryField);
+		this.terrioryField.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+
+		logger.info("Ending of SelectTerritory method");
+	}
+
+	public void selectYesOrNo() {
+		logger.info("Starting of select yes or no method");
+		waitUntilElementVisible(driver, this.YesOrNoBtn);
+		this.YesOrNoBtn.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+
+		logger.info("Ending of yes or no method");
+	}
+
+	public void selectCustomEntity() {
+		logger.info("Starting of select custom entity method");
+
+		waitUntilElementVisible(driver, this.customEntityField);
+		this.customEntityField.click();
+		hardWait(4);
+		waitUntilElementVisible(driver, this.pickerSelection);
+		this.pickerSelection.click();
+		this.okBtn.click();
+
+		logger.info("Ending of custom entity method");
+
+	}
+
+	public void SelectDropdown() {
+		logger.info("Starting of SelectDropdown method");
+
+		waitUntilElementVisible(driver, this.dropdownField);
+		this.dropdownField.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+
+		logger.info("Ending of SelectDropdown method");
+	}
+
+	public void SelectMultiDropdown() {
+		logger.info("Starting of SelectMultiDropdown method");
+
+		waitUntilElementVisible(driver, this.multiSelectDropdownField);
+		this.multiSelectDropdownField.click();
+		waitUntilElementVisible(driver, this.countryList);
+		this.countryList.click();
+
+		logger.info("Ending of SelectMultiDropdown method");
+	}
+
+	public void uploadMultiImage(String filepath) {
+		logger.info("Starting of uploadMultiImage method");
+
+		this.fileChoose.get(4).sendKeys(filepath);
+
+		logger.info("Ending of uploadMultiImage method");
+	}
+
+	public void uploadMultiDocument(String filepath) {
+		logger.info("Starting of uploadMultiDocument method");
+
+		this.fileChoose.get(5).sendKeys(filepath);
+
+		logger.info("Ending of uploadMultiDocument method");
+	}
+
+	public void pickMultiPickList() throws InterruptedException {
+		logger.info("Starting of pickMultiPickList method");
+
+		waitUntilElementVisible(driver, this.multiPickList);
+		this.multiPickList.click();
+		Thread.sleep(3000);
+		waitUntilElementVisible(driver, this.pickerSelection);
+		this.pickerSelection.click();
+		this.okBtn.click();
+
+		logger.info("Ending of pickMultiPickList method");
+	}
+
+	public void formField() throws InterruptedException {
+		logger.info("Starting of formField method");
+
+		waitUntilElementVisible(driver, this.formField);
+		this.formField.click();
+		Thread.sleep(3000);
+		waitUntilElementVisible(driver, this.pickerSelection);
+		this.pickerSelection.click();
+		this.okBtn.click();
+
+		logger.info("Ending of formField method");
+	}
+
+	public void pickListField() throws InterruptedException {
+		logger.info("Starting of pickMultiPickList method");
+
+		waitUntilElementVisible(driver, this.PickListField);
+		this.PickListField.click();
+		Thread.sleep(3000);
+		waitUntilElementVisible(driver, this.pickerSelection);
+		this.pickerSelection.click();
+		this.okBtn.click();
+
+		logger.info("Ending of pickMultiPickList method");
+	}
+
+	public void clickOnSectionAddButton() {
+		logger.info("Starting of clickOn WebApp method");
+
+		hardWait(3);
+		scrollIntoView(secAddBtn);
+		waitUntilElementVisible(driver, this.secAddBtn);
+		clickUsingActionClass(secAddBtn);
+		hardWait(5);
+
 		logger.info("Ending of clicOnWebApp Method");
 	}
 
@@ -113,7 +468,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Starting of enterWorkName method");
 		waitUntilElementVisible(driver, this.workNamefield);
 		this.workNamefield.sendKeys(workName);
+
 		logger.info("Ending of enterWorkName menthod");
+
 	}
 
 	public void clickOnWorkEndDate() throws InterruptedException {
@@ -127,19 +484,19 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void clickOnCurrentDateTime() throws InterruptedException {
 		logger.info("Starting of clickOnCurrentDateTime method");
-	
-			String presentDate = getTomorrowDateAsNumber(1);
-			for (int i = 0; i <= dateTimes.size() - 1; i++) {
-				hardWait(2);
-				String actualDate = (String) ((JavascriptExecutor) driver)
-						.executeScript("return $(arguments[0]).text();", dateTimes.get(i));
-				if (actualDate.equalsIgnoreCase(presentDate)) {
-					// clickOnWebElement(dateTimes.get(i));
-					waitUntilElementVisible(driver, dateTimes.get(i));
-					clickUsingActionClass(dateTimes.get(i));
-					break;
-				}
+
+		String presentDate = getTomorrowDateAsNumber(1);
+		for (int i = 0; i <= dateTimes.size() - 1; i++) {
+			hardWait(2);
+			String actualDate = (String) ((JavascriptExecutor) driver).executeScript("return $(arguments[0]).text();",
+					dateTimes.get(i));
+			if (actualDate.equalsIgnoreCase(presentDate)) {
+				// clickOnWebElement(dateTimes.get(i));
+				waitUntilElementVisible(driver, dateTimes.get(i));
+				clickUsingActionClass(dateTimes.get(i));
+				break;
 			}
+		}
 		this.workEndDate.click();
 		logger.info("Ending of clickOnDatePicker method");
 	}
@@ -172,7 +529,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 				employeeNames.get(i).click();
 				break;
 			}
+		
 		}
+		hardWait(3);
+		logger.info("Ending of assign Employee");
 	}
 
 	public void clickOnSave() {
@@ -196,9 +556,68 @@ public class AddWorkProcess extends BaseAutomationPage {
 			logger.info("On Leave Alert was not displayed");
 		}
 
+		hardWait(2);
+		
 		logger.info("Ending of clickOnSave method");
 	}
+	
+	public boolean isWorkAddedSucessfully() {
+		logger.info("Starting of isWorkAddedSucessfully method");
+		 
+		boolean isWorkAddedSucessfully =false;
+		
+		try {
+			
+			if (workCreatedSucessfullyText.isDisplayed()) {
+				
+				isWorkAddedSucessfully =true;
+			}
+		} catch (Exception e) {
+			
+			isWorkAddedSucessfully =false;
+		}
+		
+		logger.info("Ending of isWorkAddedSucessfully method");
+		
+		return isWorkAddedSucessfully;
+	}
 
+	public boolean isWorkModifiedSucessfully() {
+		logger.info("Starting of isWorkModifiedSucessfully method");
+		 
+		boolean isWorkModifiedSucessfully =false;
+		
+		try {
+			
+			if (workModifiedSucessfullyText.isDisplayed()) {
+				
+				isWorkModifiedSucessfully =true;
+			}
+		} catch (Exception e) {
+			
+			isWorkModifiedSucessfully =false;
+		}
+		
+		logger.info("Ending of isWorkModifiedSucessfully method");
+		
+		return isWorkModifiedSucessfully;
+	}
+
+	
+	public void clickOnEditIcn() {
+		logger.info("Starting of clickOnEditIcn method");
+		waitUntilElementVisible(driver, this.workEditIcon);
+		clickOnWebElement(workEditIcon);
+		logger.info("Ending of clickOnEditIcn menthod");
+	}
+
+	public void clickOnWorkSelectButton() {
+		logger.info("Starting of clickOnWorkSelectButton method");
+		waitUntilElementVisible(driver, this.selectWork);
+		clickOnWebElement(selectWork);
+		logger.info("Ending of clickOnWorkSelectButton menthod");
+	}
+	
 	public void logOut() {
 		logger.info("Starting of Logout method");
 		hardWait(3);

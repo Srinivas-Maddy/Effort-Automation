@@ -290,6 +290,79 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
 
+	//////////////
+	@FindBy(id = "totalCount")
+	private WebElement totalCustomers_card;
+
+	@FindBy(xpath = "//div[contains(text(),'Showing')]")
+	private WebElement totalCustomets_txt;
+
+	@FindBy(id = "requistionStatusCount")
+	private WebElement pendingApprovals_card;
+
+	@FindBy(xpath = "//tbody[@id='requistionBody']//tr")
+	private List<WebElement> pendingApprovals_size;
+
+	@FindBy(xpath = "//h5[text()='Pending Requisition Approvals']/following-sibling::button")
+	private WebElement closeIconOnPendingApprovals;
+
+	@FindBy(id = "todayVisitCount")
+	private WebElement totalVisitToday_card;
+
+	@FindBy(xpath = "//tbody[@id='table_body']//tr")
+	private List<WebElement> totalVisitToday_size;
+
+	@FindBy(xpath = "//h5[text()='Total Visits Today']/following-sibling::button")
+	private WebElement closeIconOnTotalVisitsToday;
+
+	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]")
+	private WebElement activitySnapshot_btn;
+
+	@FindBy(id = "plannedDetails")
+	private WebElement plannedCustomers_txt;
+
+	@FindBy(xpath = "//h5[text()='Planned Customers']/parent::div/following-sibling::div//tbody//tr")
+	private List<WebElement> plannedCustomers_size;
+
+	// h5[text()='Planned
+	// Customers']/parent::div/following-sibling::div//tbody//tr//td[text()='1']
+
+	@FindBy(xpath = "//h5[text()='Planned Customers']/following-sibling::button")
+	private WebElement close_Btn_OnPlannedCustomers;
+
+	@FindBy(id = "actualCustomerVisited")
+	private WebElement actualCustomerVisits_txt;
+
+	@FindBy(xpath = "//tbody[@id='plannedTableBody']//tr")
+	private List<WebElement> actualCustomerVisits_size;
+
+	@FindBy(xpath = "//h5[text()='Actual Customer visits']/following-sibling::button")
+	private WebElement close_Btn_OnActualCustomers;
+
+	@FindBy(id = "unPlannedCustomerVisited")
+	private WebElement unplannedCustomerVisits_txt;
+
+	@FindBy(xpath = "//tbody[@id='unplannedTableBody']//tr")
+	private List<WebElement> unplannedCustomerVisits_size;
+
+	@FindBy(xpath = "//h5[text()='Unplanned Customer visits']/following-sibling::button")
+	private WebElement close_Btn_UnplannedCustomers;
+
+	@FindBy(id = "customerActivitiesInfo")
+	private WebElement formActivities_txt;
+
+	@FindBy(xpath = "//tbody[@id='activityTableBody']//tr")
+	private List<WebElement> formActivities_size;
+
+	@FindBy(xpath = "//h5[text()='Form Activities']/following-sibling::button")
+	private WebElement close_Btn_FormActivities;
+
+	@FindBy(id = "customerWorkActivitiesInfo")
+	private WebElement worksActivities_txt;
+
+	@FindBy(id = "customerActivitiesAverageInfo")
+	private WebElement averageOfActivities_txt;
+
 	public CustomerPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -300,31 +373,31 @@ public class CustomerPage extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, webAppCard);
 		this.webAppCard.click();
-		
+
 		logger.info("Ending of Click on Web App Method ");
 	}
 
 	public void ClickonCustomer() {
 		logger.info("Starting of ClickonCustomer Method");
-		
+
 		waitUntilElementVisible(driver, customers);
 		this.customers.click();
-		
+
 		logger.info("Ending of ClickonCustomer Method");
 	}
 
 	public void ClickonAddCustomerBtn() {
 		logger.info("Starting of ClickonAddCustomerBtn Method");
-		
+
 		waitUntilElementVisible(driver, addCustomer);
 		this.addCustomer.click();
-		
+
 		logger.info("Ending of ClickonAddCustomerBtn Method");
 	}
 
 	public void SwitchNewWindow() {
 		logger.info("Starting of SwitchNewWindow Method");
-		
+
 		Set<String> newwindows = driver.getWindowHandles();
 		Iterator<String> I1 = newwindows.iterator();
 		while (I1.hasNext()) {
@@ -333,124 +406,124 @@ public class CustomerPage extends BaseAutomationPage {
 				driver.switchTo().window(child_Window);
 			}
 		}
-		
+
 		logger.info("Ending of SwitchNewWindow Method");
 	}
 
 	public void EnterCustomerID() {
 		logger.info("Starting of EnterCustomerID Method");
-		
+
 		String cutmrID = getUniqueNumber("Auto_CUSTMR");
 		waitUntilElementVisible(driver, customerId);
 		customerId.sendKeys(cutmrID);
-		
+
 		logger.info("Ending of EnterCustomerID Method");
 	}
 
 	public void EnterCustomerName(String enterCustomerName) {
 		logger.info("Starting of EnterCustomerName Method");
-		
+
 		waitUntilElementVisible(driver, customerName);
 		this.CustomerFirstName = enterCustomerName + "_" + getCurrentDate();
 		customerName.sendKeys(this.CustomerFirstName);
-		
+
 		logger.info("Ending of EnterCustomerName Method");
 	}
 
 	public void customerPhoneNumber() {
 		logger.info("Starting of customerPhoneNumber Method");
-		
+
 		String RandomPhone = randomMobileNumbers();
 		waitUntilElementVisible(driver, customerPhone);
 		customerPhone.sendKeys(RandomPhone);
-		
+
 		logger.info("Ending of customerPhoneNumber Method");
 	}
 
 	public void CustmrLocationLat(String CustmrLat) {
 		logger.info("Starting of CustmrLocationLat Method");
-		
+
 		waitUntilElementVisible(driver, custmrlatitude);
 		this.custmrlatitude.sendKeys(CustmrLat);
-		
+
 		logger.info("Ending of CustmrLocationLat Method");
 	}
 
 	public void CustmrLocationlong(String CustmrLong) {
 		logger.info("Starting of CustmrLocationlong Method");
-		
+
 		waitUntilElementVisible(driver, custmrlongitude);
 		this.custmrlongitude.sendKeys(CustmrLong);
-		
+
 		logger.info("Ending of CustmrLocationlong Method");
 	}
 
 	public void EnterCustmrStreet(String Customerstreet) {
 		logger.info("Starting of EnterCustmrStreet Method");
-		
+
 		waitUntilElementVisible(driver, addStreet);
 		this.addStreet.sendKeys(Customerstreet);
-		
+
 		logger.info("Ending of EnterCustmrStreet Method");
 	}
 
 	public void EnterCustmrLandmark(String CustomerLandmark) {
 		logger.info("Starting of EnterCustmrLandmark Method");
-		
+
 		waitUntilElementVisible(driver, landMark);
 		this.landMark.sendKeys(CustomerLandmark);
-		
+
 		logger.info("Ending of EnterCustmrLandmark Method");
 	}
 
 	public void EnterCustmrArea(String EntercustomerArea) {
 		logger.info("Starting of EnterCustmrArea Method");
-		
+
 		waitUntilElementVisible(driver, area);
 		this.area.sendKeys(EntercustomerArea);
-		
+
 		logger.info("Ending of EnterCustmrArea Method");
 	}
 
 	public void EnterCustmrCity(String EntercustomerCity) {
 		logger.info("Starting of EnterCustmrCity Method");
-		
+
 		waitUntilElementVisible(driver, city);
 		this.city.sendKeys(EntercustomerCity);
-		
+
 		logger.info("Ending of EnterCustmrCity Method");
 	}
 
 	public void EnterCustmrDistrict(String EntercustomerDistrict) {
 		logger.info("Starting of EnterCustmrDistrict Method");
-		
+
 		waitUntilElementVisible(driver, district);
 		this.district.sendKeys(EntercustomerDistrict);
-		
+
 		logger.info("Ending of EnterCustmrDistrict Method");
 	}
 
 	public void EnterCustmrPincode(String EntercustomerPincode) {
 		logger.info("Starting of EnterCustmrPincode Method");
-		
+
 		waitUntilElementVisible(driver, pinCode);
 		this.pinCode.sendKeys(EntercustomerPincode);
-		
+
 		logger.info("Ending of EnterCustmrPincode Method");
 	}
 
 	public void EnterCustmrState(String EntercustomerState) {
 		logger.info("Starting of EnterCustmrState Method");
-		
+
 		waitUntilElementVisible(driver, state);
 		this.state.sendKeys(EntercustomerState);
-		
+
 		logger.info("Ending of EnterCustmrState Method");
 	}
 
 	public void selectCountry() {
 		logger.info("Starting of Country Select Method");
-		
+
 		waitUntilElementVisible(driver, this.countryDropDown);
 		this.countryDropDown.click();
 		for (int i = 0; i < this.countryNames.size(); i++) {
@@ -461,22 +534,22 @@ public class CustomerPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		
+
 		logger.info("Ending of Country Select Method");
 	}
 
 	public void EnterCustmrText(String EnterText) {
 		logger.info("Starting of EnterCustmrText Method");
-		
+
 		waitUntilElementVisible(driver, text);
 		this.text.sendKeys(EnterText);
-		
+
 		logger.info("Ending of EnterCustmrText Method");
 	}
 
 	public void enterCustomerCurrency(String CurrencyValue) {
 		logger.info("Starting of enterCustomerCurrency Method");
-		
+
 		waitUntilElementVisible(driver, custmrcurrency);
 		this.custmrcurrency.sendKeys(CurrencyValue);
 
@@ -485,16 +558,16 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void clickOnDatePicker() {
 		logger.info("Starting of clickOnDatePicker Method");
-		
+
 		waitUntilElementVisible(driver, datePicker);
 		this.datePicker.click();
-		
+
 		logger.info("Ending of clickOnDatePicker Method");
 	}
 
 	public void pickCurrentDate() throws InterruptedException {
 		logger.info("Starting of pickCurrentDate Method");
-		
+
 		String presentdate = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= dates.size() - 1; i++) {
@@ -505,22 +578,22 @@ public class CustomerPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		
+
 		logger.info("Ending of pickCurrentDate Method");
 	}
 
 	public void clickOnDate1Picker() {
 		logger.info("Starting of clickOnDate1Picker Method");
-		
+
 		waitUntilElementVisible(driver, date1Picker);
 		this.date1Picker.click();
-		
+
 		logger.info("Ending of clickOnDate1Picker Method");
 	}
 
 	public void pickCurrentDate1() throws InterruptedException {
 		logger.info("Starting of pickCurrentDate1 Method");
-		
+
 		String presentdate = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= dates1.size() - 1; i++) {
@@ -531,23 +604,23 @@ public class CustomerPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		
+
 		logger.info("Ending of pickCurrentDate1 Method");
 	}
 
 	public void clickOnDateTimePicker() {
 		logger.info("Starting of clickOnDateTimePicker Method");
-		
+
 		waitUntilElementVisible(driver, datetimepicker);
 		mouseHoverAndClick(datetimepicker);
-	//	this.datetimepicker.click();
-		
+		// this.datetimepicker.click();
+
 		logger.info("Ending of clickOnDateTimePicker Method");
 	}
 
 	public void pickCurrentDateTime() throws InterruptedException {
 		logger.info("Starting of pickCurrentDateTime Method");
-		
+
 		String presentdatetime = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= datetimes.size() - 1; i++) {
@@ -559,24 +632,28 @@ public class CustomerPage extends BaseAutomationPage {
 			}
 		}
 		this.datetimepicker.click();
-		
+
 		logger.info("Ending of pickCurrentDateTime Method");
 	}
 
 	public void clickOnDateTime1Picker() throws InterruptedException {
 		logger.info("Starting of clickOnDateTime1Picker Method");
+
+
+		//scrollDown(100, datetime1picker);
+
 		
 		scrollIntoView(this.datetime1picker);	
 		waitUntilElementVisible(driver, this.datetime1picker);
 		hardWait(5);
 		this.datetime1picker.click();
-		
+
 		logger.info("Ending of clickOnDateTime1Picker Method");
 	}
 
 	public void pickCurrentDateTime1() throws InterruptedException {
 		logger.info("Starting of pickCurrentDateTime1 Method");
-		
+
 		String presentdatetime = getCurrentDateAsNumber();
 		Thread.sleep(500);
 		for (int i = 0; i <= datetimes1.size() - 1; i++) {
@@ -587,8 +664,8 @@ public class CustomerPage extends BaseAutomationPage {
 				break;
 			}
 		}
-		
-		waitUntilElementVisible(driver, this.numberLabel);
+
+	waitUntilElementVisible(driver, this.numberLabel);
 		clickOnWebElement(this.numberLabel);
 		//this.datetime1picker.click();
 		
@@ -597,16 +674,16 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void enterCustomFieldNumber(String Number) {
 		logger.info("Starting of enterCustomFieldNumber Method");
-		
+
 		waitUntilElementVisible(driver, number);
 		this.number.sendKeys(Number);
-		
+
 		logger.info("Ending of enterCustomFieldNumber Method");
 	}
 
 	public void pickTime() throws InterruptedException {
 		logger.info("Starting of pickTime Method");
-		
+
 		waitUntilElementVisible(driver, this.timefield);
 		scrollDown(100, timefield);
 		this.timefield.click();
@@ -628,106 +705,107 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void enterCustomFieldEmail(String CustmEmail) {
 		logger.info("Starting of enterCustomerFieldEmail Method");
-		
+
 		waitUntilElementVisible(driver, customfieldEmail);
 		this.customfieldEmail.sendKeys(CustmEmail);
-		
+
 		logger.info("Ending of enterCustomerFieldEmail Method");
 	}
 
 	public void selectCustomFieldLat(String CustmFieldlat) {
 		logger.info("Starting of selectCustomerFieldLat Method");
-		
+
 		waitUntilElementVisible(driver, customfieldlocationlat);
 		this.customfieldlocationlat.sendKeys(CustmFieldlat);
-		
+
 		logger.info("Ending of selectCustomerFieldLat Method");
 	}
 
 	public void selectCustomFieldLog(String CustmFieldlog) {
 		logger.info("Starting of selectCustomerFieldLog Method");
-		
+
 		waitUntilElementVisible(driver, customfieldlocationlog);
 		this.customfieldlocationlog.sendKeys(CustmFieldlog);
-		
+
 		logger.info("Ending of selectCustomerFieldLog Method");
 	}
 
 	public void enterCustomFieldPhone() {
 		logger.info("Starting of enterCustomFieldPhone Method");
-		
+
 		String customfieldphonenumbr = randomMobileNumbers();
 		waitUntilElementVisible(driver, customfieldphone);
 		this.customfieldphone.sendKeys(customfieldphonenumbr);
-		
+
 		logger.info("Ending of enterCustomFieldPhone Method");
 	}
 
 	public void enterCustomFieldURL(String custmfieldURL) {
 		logger.info("Starting of enterCustomFieldURL Method");
-		
+
 		waitUntilElementVisible(driver, customfieldURL);
 		this.customfieldURL.sendKeys(custmfieldURL);
-		
+
 		logger.info("Ending of enterCustomFieldURL Method");
 	}
 
 	public void selectAudio() {
 		logger.info("Starting of selectAudio Method ");
-		
+
 		waitUntilElementVisible(driver, customfieldaudio);
 		String audiofilePath = System.getProperty("user.dir") + "/MediaFiles/Audofile.mp3";
 		this.customfieldaudio.sendKeys(audiofilePath);
-		
+
 		logger.info("Ending of selectAudio Method ");
 	}
 
 	public void selectImage() throws IOException, InterruptedException {
 		logger.info("Starting of selectImage Method ");
-		
+
 		waitUntilElementVisible(driver, this.customfieldimage);
 		String imagefilepath = System.getProperty("user.dir") + "/MediaFiles/image.jpg";
 		this.customfieldimage.sendKeys(imagefilepath);
-		
+
 		logger.info("Ending of selectImage Method ");
 	}
 
 	public void selectSignature() {
 		logger.info("Starting of selectSignature Method ");
-		
+
 		waitUntilElementVisible(driver, this.customfieldsignature);
 		String signatuerfilepath = System.getProperty("user.dir") + "/MediaFiles/Signature.jpg";
 		this.customfieldsignature.sendKeys(signatuerfilepath);
-		
+
 		logger.info("Ending of selectSignature Method ");
 	}
 
 	public void selectVideo() {
 		logger.info("Starting of selectVideo Method ");
-		
+
 		waitUntilElementVisible(driver, this.customfieldvideo);
 		String videofilepath = System.getProperty("user.dir") + "/MediaFiles/Video.mp4";
 		this.customfieldvideo.sendKeys(videofilepath);
-		
+
 		logger.info("Ending of selectVideo Method ");
 	}
 
 	public void pickCustomEntity() {
 		logger.info("Starting of customerPickField Method");
-		
+
 		waitUntilElementVisible(driver, customentityfield);
 		this.customentityfield.click();
 		waitUntilElementVisible(driver, customentitypicker);
 		this.customentitypicker.click();
 		waitUntilElementVisible(driver, customentityokbtn);
 		this.customentityokbtn.click();
-		
+
 		logger.info("Ending of customerPickField Method");
 	}
 
 	public void pickCustomer() throws InterruptedException {
 		logger.info("Starting of customPicker Method");
-		
+
+		//scrollDown(100, customerpickfield);
 		scrollIntoView(customerpickfield);
 		waitUntilElementVisible(driver, customerpickfield);
 		this.customerpickfield.click();
@@ -735,13 +813,14 @@ public class CustomerPage extends BaseAutomationPage {
 		this.customerpicker.click();
 		waitUntilElementVisible(driver, customerpickokbtn);
 		this.customerpickokbtn.click();
-		
+
 		logger.info("Ending of customPicker Method");
 	}
 
 	public void pickEmployee() {
 		logger.info("Starting of employeePicker Method");
-		
+
+	//	scrollDown(100, employeepickfield);
 		scrollIntoView(employeepickfield);
 		waitUntilElementVisible(driver, employeepickfield);
 		this.employeepickfield.click();
@@ -749,24 +828,24 @@ public class CustomerPage extends BaseAutomationPage {
 		this.employeepicker.click();
 		waitUntilElementVisible(driver, employeepickokbtn);
 		this.employeepickokbtn.click();
-		
+
 		logger.info("Ending of employeePicker Method");
 	}
 
 	public void pickForm() throws InterruptedException {
 		logger.info("Starting of formPicker Method");
-		
+
 		waitUntilElementVisible(driver, formfield);
 		this.formfield.click();
 		waitUntilElementVisible(driver, selectform);
 		this.selectform.click();
-		
+
 		logger.info("Ending of formPicker Method");
 	}
 
 	public void pickYesOrNo() {
 		logger.info("Starting of pickYesOrNo Method");
-		
+
 		waitUntilElementVisible(driver, this.YesorNofield);
 		this.YesorNofield.click();
 		int yesOrNoOptionCount = 0;
@@ -777,13 +856,13 @@ public class CustomerPage extends BaseAutomationPage {
 			}
 			yesOrNoOptionCount++;
 		}
-		
+
 		logger.info("Ending of pickYesOrNo Method");
 	}
 
 	public void pickMultiPickList() {
 		logger.info("Starting of pickMultiPickList Method");
-		
+
 		scrollDown(100, multipicklistfield);
 		waitUntilElementVisible(driver, this.multipicklistfield);
 		clickOnWebElement(this.multipicklistfield);
@@ -792,12 +871,19 @@ public class CustomerPage extends BaseAutomationPage {
 		this.multipicklistvalues.click();
 		waitUntilElementVisible(driver, this.multipickokbtn);
 		this.multipickokbtn.click();
-		
+
 		logger.info("Ending of pickMultiPickList Method");
 	}
 
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
+
+		waitUntilElementVisible(driver, this.multiselectdropdownfield);
+		clickOnWebElement(multiselectdropdownfield);
+		hardWait(3);
+		waitUntilElementVisible(driver, this.multiselectdropdownvalue);
+		this.multiselectdropdownvalue.click();
+
 		try {
 			scrollIntoView(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownfield);
@@ -819,29 +905,29 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickPickList() {
 		logger.info("Starting of pickPickList Method");
-		
+
 		waitUntilElementVisible(driver, this.picklistfield);
 		this.picklistfield.click();
 		waitUntilElementVisible(driver, this.picklistvalue);
 		this.picklistvalue.click();
 		waitUntilElementVisible(driver, this.picklistokbtn);
 		this.picklistokbtn.click();
-		
+
 		logger.info("Ending of pickPickList Method");
 	}
 
 	public void enterGroupNumber(String GroupNumber) {
 		logger.info("Starting of enterGroupNumber Method");
-		
+
 		waitUntilElementVisible(driver, this.groupnumber);
 		this.groupnumber.sendKeys(GroupNumber);
-		
+
 		logger.info("Ending of enterGroupNumber Method");
 	}
 
 	public void pickGroupTime() throws InterruptedException {
 		logger.info("Starting of pickGroupTime Method");
-		
+
 		waitUntilElementVisible(driver, this.grouptime);
 		scrollDown(100, grouptime);
 		this.grouptime.click();
@@ -863,240 +949,240 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickDropDown() throws InterruptedException {
 		logger.info("Starting of pickDropDown Method");
-		
+
 		Thread.sleep(500);
 		waitUntilElementVisible(driver, this.dropdownfield);
 		this.dropdownfield.click();
 		waitUntilElementVisible(driver, this.dropdownvalue);
 		this.dropdownvalue.click();
-		
+
 		logger.info("Ending of pickDropDown Method");
 	}
 
 	public void PrimryCustmrFirstName(String primryfirstname) {
 		logger.info("Starting of PrimryCustmrFirstName Method");
-		
+
 		waitUntilElementVisible(driver, primryCustmrFirstName);
 		this.primryCustmrFirstName.sendKeys(primryfirstname);
-		
+
 		logger.info("Ending of PrimryCustmrFirstName Method");
 	}
 
 	public void PrimryCustmrLastName(String primryLastName) {
 		logger.info("Starting of PrimryCustmrLastName Method");
-		
+
 		waitUntilElementVisible(driver, primryCustmrLastName);
 		this.primryCustmrLastName.sendKeys(primryLastName);
-		
+
 		logger.info("Ending of PrimryCustmrLastName Method");
 	}
 
 	public void PrimryCustmrTitle(String PrimeryTitle) {
 		logger.info("Starting of PrimryCustmrTitle Method");
-		
+
 		waitUntilElementVisible(driver, primryCustmrTitle);
 		this.primryCustmrTitle.sendKeys(PrimeryTitle);
-		
+
 		logger.info("Ending of PrimryCustmrTitle Method");
 	}
 
 	public void PrimryCustmrPhone() {
 		logger.info("Starting of PrimryCustmrPhone Method");
-		
+
 		String primryrandomphone = randomMobileNumbers();
 		waitUntilElementVisible(driver, primryCustmrPhone);
 		this.primryCustmrPhone.sendKeys(primryrandomphone);
-		
+
 		logger.info("Ending of PrimryCustmrPhone Method");
 	}
 
 	public void PrimryCustmrEmail() {
 		logger.info("Starting of PrimryCustmrEmail Method");
-		
+
 		String primryrandmEmail = randomEmailGenerator();
 		waitUntilElementVisible(driver, primryCustmrEmail);
 		this.primryCustmrEmail.sendKeys(primryrandmEmail);
-		
+
 		logger.info("Ending of PrimryCustmrEmail Method");
 	}
 
 	public void SecondryCustmrFirstName(String SecondryFirstName) {
 		logger.info("Starting of SecondryCustmrFirstName Method");
-		
+
 		waitUntilElementVisible(driver, secondryCustmrFirstName);
 		this.secondryCustmrFirstName.sendKeys(SecondryFirstName);
-		
+
 		logger.info("Ending of SecondryCustmrFirstName Method");
 	}
 
 	public void SecondryCustmrLastName(String SecondryLastName) {
 		logger.info("Starting of SecondryCustmrLastName Method");
-		
+
 		waitUntilElementVisible(driver, secondryCustmrLastName);
 		this.secondryCustmrLastName.sendKeys(SecondryLastName);
-		
+
 		logger.info("Ending of SecondryCustmrLastName Method");
 	}
 
 	public void SecondryCustmrTitle(String SecondryTitle) {
 		logger.info("Starting of SecondryCustmrTitle Method");
-		
+
 		waitUntilElementVisible(driver, secondryCustmrTitle);
 		this.secondryCustmrTitle.sendKeys(SecondryTitle);
-		
+
 		logger.info("Ending of SecondryCustmrTitle Method");
 	}
 
 	public void SecondryCustmrPhone() {
 		logger.info("Starting of SecondryCustmrPhone Method");
-		
+
 		String SecondryrandomPhone = randomMobileNumbers();
 		waitUntilElementVisible(driver, secondryCustmrPhone);
 		this.secondryCustmrPhone.sendKeys(SecondryrandomPhone);
-		
+
 		logger.info("Ending of SecondryCustmrPhone Method");
 	}
 
 	public void SecondryCustmrEmail() {
 		logger.info("Starting of SecondryCustmrEmail Method");
-		
+
 		String secondryRandomEmail = randomEmailGenerator();
 		waitUntilElementVisible(driver, secondryCustmrEmail);
 		this.secondryCustmrEmail.sendKeys(secondryRandomEmail);
-		
+
 		logger.info("Ending of SecondryCustmrEmail Method");
 	}
 
 	public void ClickonSaveButton() {
 		logger.info("Starting of ClickonSaveButton Method");
-		
+
 		waitUntilElementVisible(driver, SaveBtn);
 		this.SaveBtn.click();
-		
+
 		logger.info("Ending of ClickonSaveButton Method");
 	}
 
 	public String customerCreatedSuccesMsg() {
 		logger.info("Starting of customerCreatedSuccesMsg Method ");
-		
+
 		waitUntilElementVisible(driver, custmrcreatedsuccessmsg);
 		String custmrcreatdsuccesmsg = this.custmrcreatedsuccessmsg.getText();
-		
+
 		logger.info("Ending of customerCreatedSuccesMsg Method ");
 		return custmrcreatdsuccesmsg;
 	}
 
 	public void ClickonEditBtn() throws InterruptedException {
 		logger.info("Starting of ClickonEditBtn Method");
-		
+
 		Thread.sleep(500);
 		scrollDown(100, form);
-		
+
 		int i = 0;
 		while (i < editBtn.size()) {
-		    this.editBtn.get(i).click();
-		    break; 
+			this.editBtn.get(i).click();
+			break;
 		}
-		
+
 		logger.info("Ending of ClickonEditBtn Method");
 	}
 
 	public void ModifiedCustomerID() throws InterruptedException {
 		logger.info("Starting of ModifiedCustomerID Method");
-		
+
 		waitUntilElementVisible(driver, customerId);
 		this.customerId.clear();
 		String customerModifiedId = randomMobileNumbers();
 		this.customerId.sendKeys(customerModifiedId);
-		
+
 		logger.info("Ending of ModifiedCustomerID Method");
 	}
 
 	public void ModifiedCustomerName(String MdfydcustomerName) {
 		logger.info("Starting of ModifiedCustomerName Method");
-		
+
 		waitUntilElementVisible(driver, customerName);
 		this.customerName.clear();
 		this.customerName.sendKeys(MdfydcustomerName);
-		
+
 		logger.info("Ending of ModifiedCustomerName Method");
 	}
 
 	public void ModifiedCustomeraddstreet(String Mdfydcustomeraddstreet) {
 		logger.info("Starting of ModifiedCustomeraddstreet Method");
-		
+
 		waitUntilElementVisible(driver, addStreet);
 		this.addStreet.clear();
 		this.addStreet.sendKeys(Mdfydcustomeraddstreet);
-		
+
 		logger.info("Ending of ModifiedCustomeraddstreet Method");
 	}
 
 	public void ModifiedCustomerLandmark(String Mdfydcustomerlandmark) {
 		logger.info("Starting of ModifiedCustomerLandmark Method");
-		
+
 		waitUntilElementVisible(driver, landMark);
 		this.landMark.clear();
 		this.landMark.sendKeys(Mdfydcustomerlandmark);
-		
+
 		logger.info("Ending of ModifiedCustomerLandmark Method");
 	}
 
 	public void ModifiedPrimryFirstName(String MdfydPrimryFirstName) {
 		logger.info("Starting of ModifiedPrimryFirstName Method");
-		
+
 		waitUntilElementVisible(driver, primryCustmrFirstName);
 		this.primryCustmrFirstName.clear();
 		this.primryCustmrFirstName.sendKeys(MdfydPrimryFirstName);
-		
+
 		logger.info("Ending of ModifiedPrimryFirstName Method");
 	}
 
 	public void ModifiedsecondryFirstName(String MdfydsecondryFirstName) {
 		logger.info("Starting of ModifiedPrimryFirstName Method");
-		
+
 		waitUntilElementVisible(driver, secondryCustmrFirstName);
 		this.secondryCustmrFirstName.clear();
 		this.secondryCustmrFirstName.sendKeys(MdfydsecondryFirstName);
-		
+
 		logger.info("Ending of ModifiedPrimryFirstName Method");
 	}
 
 	public String CaptureModifiedMsg() {
 		logger.info("Starting of CaptureModifiedMsg Method");
-		
+
 		waitUntilElementVisible(driver, modifiedmsg);
 		String CustmrModifiedMsg = this.modifiedmsg.getText();
-		
+
 		logger.info("Ending of CaptureModifiedMsg Method");
 		return CustmrModifiedMsg;
 	}
 
 	public void CustmrMaptoEmployee() throws InterruptedException {
 		logger.info("Starting of CustmrMaptoEmployee Method");
-		
+
 		Thread.sleep(500);
 		scrollDown(100, form);
 		for (int i = 0; i <= 5; i++) {
 			this.custmrmapingcheckbox.get(i).click();
 		}
-		
+
 		logger.info("Ending of CustmrMaptoEmployee Method");
 	}
 
 	public void AssignCustmrtoEmployee() {
 		logger.info("Starting of AssignCustmrtoEmployee Method");
-		
+
 		waitUntilElementVisible(driver, ReAssign);
 		this.ReAssign.click();
-		
+
 		logger.info("Ending of AssignCustmrtoEmployee Method");
 
 	}
 
 	public void ClickonAssign(String empname, String dropdownempname) throws InterruptedException {
 		logger.info("Starting of ClickonAssign method");
-		
+
 		waitUntilElementVisible(driver, assignDrpDown);
 		this.assignDrpDown.click();
 		Thread.sleep(1000);
@@ -1105,12 +1191,12 @@ public class CustomerPage extends BaseAutomationPage {
 		int count = 0;
 		while (count < this.empNameInDropDown.size()) {
 			String dropdnempname = this.empNameInDropDown.get(count).getText();
-			//if (dropdnempname.equalsIgnoreCase(dropdownempname)) {
-				waitUntilElementVisible(driver, this.empNameInDropDown.get(count));
-				this.empNameInDropDown.get(count).click();
-				break;
-		//	}
-			//count++;
+			// if (dropdnempname.equalsIgnoreCase(dropdownempname)) {
+			waitUntilElementVisible(driver, this.empNameInDropDown.get(count));
+			this.empNameInDropDown.get(count).click();
+			break;
+			// }
+			// count++;
 		}
 		hardWait(3);
 		waitUntilElementVisible(driver, applyBtn);
@@ -1119,43 +1205,269 @@ public class CustomerPage extends BaseAutomationPage {
 		} catch (Exception e) {
 			mouseHoverAndClick(applyBtn);
 		}
-		
+
 		try {
 			Alert alert = driver.switchTo().alert();
 			alert.accept();
 		} catch (Exception e) {
 			logger.info("No alert displayed");
 		}
-		//this.applyBtn.click();
-		
+		// this.applyBtn.click();
+
 		logger.info("Ending of ClickonAssign method");
 	}
 
 	public void SelectCustmrtoDelete() throws InterruptedException {
 		logger.info("Starting of SelectCustmrtoDelete Method");
-		
+
 		Thread.sleep(500);
 
 		scrollDown(100, form);
 		for (int i = 0; i < 3; i++) {
 			this.custmrmapingcheckbox.get(i).click();
 		}
-		
+
 		logger.info("Ending of SelectCustmrtoDelete Method");
 	}
 
 	public String ClickonDeleteBtn() throws InterruptedException {
 		logger.info("Starting of ClickonDelete Method");
-		
+
 		waitUntilElementVisible(driver, deleteBtn);
 		this.deleteBtn.click();
 		driver.switchTo().alert().accept();
 		Thread.sleep(10000);
 		String capturedDeleteMsg = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
-		
+
 		logger.info("Ending of ClickonDeleteBtn Method");
 		return capturedDeleteMsg;
+
+	}
+
+	public boolean isTotalCustomerCountDisplayed() {
+		logger.info("Starting of isTotalCustomerCountDisplayed Method");
+
+		Boolean isTotalCustomerCountDisplayed = false;
+		waitUntilElementVisible(driver, totalCustomers_card);
+		hardWait(3);
+		String totalCustomers = totalCustomers_card.getText();
+
+		clickOnWebElement(totalCustomers_card);
+		/////////////////
+		hardWait(3);
+		String totalCustomersText = totalCustomets_txt.getText();
+		int length = totalCustomersText.length();
+		String text = totalCustomersText.substring(19, 23);
+		String totalCust =text.trim();
+		hardWait(3);
+		//totalCustomersText.substring(4);
+		if(totalCust.equalsIgnoreCase(totalCustomers)){
+			isTotalCustomerCountDisplayed = true;
+		}
+
+		logger.info("Ending of isTotalCustomerCountDisplayed Method");
+		return isTotalCustomerCountDisplayed;
+
+	}
+
+	public boolean isPendingRequisitionApprovalsCountDisplayed() {
+		logger.info("Starting of isPendingRequisitionApprovalsCountDisplayed Method");
+
+		Boolean isPendingRequisitionApprovalsCountDisplayed = false;
+		scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, pendingApprovals_card);
+		String pendingApprovals = pendingApprovals_card.getText();
+
+		int number = Integer.valueOf(pendingApprovals);
+
+		if (number > 0) {
+			clickOnWebElement(pendingApprovals_card);
+
+			int approvals = pendingApprovals_size.size();
+			String pending = String.valueOf(approvals);
+
+			if (pendingApprovals.equalsIgnoreCase(pending)) {
+				isPendingRequisitionApprovalsCountDisplayed = true;
+			}
+
+			clickUsingActionClass(closeIconOnPendingApprovals);
+		} else {
+			isPendingRequisitionApprovalsCountDisplayed = true;
+
+		}
+
+		
+		
+		logger.info("Ending of isPendingRequisitionApprovalsCountDisplayed Method");
+		return isPendingRequisitionApprovalsCountDisplayed;
+
+	}
+
+	public boolean isTotalVisitsTodayCountDisplayed() {
+		logger.info("Starting of isTotalVisitsTodayCountDisplayed Method");
+
+		Boolean isTotalVisitsTodayCountDisplayed = false;
+		// scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, totalVisitToday_card);
+		String totalVisits = totalVisitToday_card.getText();
+
+		int number = Integer.valueOf(totalVisits);
+
+		if (number > 0) {
+			clickOnWebElement(totalVisitToday_card);
+
+			int total = totalVisitToday_size.size();
+			String visits = String.valueOf(total);
+
+			if (totalVisits.equalsIgnoreCase(visits)) {
+				isTotalVisitsTodayCountDisplayed = true;
+			}
+
+			clickOnWebElement(closeIconOnTotalVisitsToday);
+		} else {
+			isTotalVisitsTodayCountDisplayed = true;
+
+		}
+
+		logger.info("Ending of isTotalVisitsTodayCountDisplayed Method");
+		return isTotalVisitsTodayCountDisplayed;
+
+	}
+
+	public void clickOnActivitySnapshotButton() {
+		logger.info("Starting of clickOnActivitySnapshotButton Method");
+
+		clickUsingActionClass(activitySnapshot_btn);
+
+		this.hardWait(3);
+		switchToNewWindow(0);
+
+		logger.info("Ending of clickOnActivitySnapshotButton Method");
+
+	}
+
+	public boolean isPlannedCustomersCountDisplayed() {
+		logger.info("Starting of isplannedCustomersCountDisplayed Method");
+
+		Boolean isplannedCustomersCountDisplayed = false;
+		// scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, plannedCustomers_txt);
+		String planedCustomers = plannedCustomers_txt.getText();
+
+		int number = Integer.valueOf(planedCustomers);
+
+		if (number > 0) {
+			clickOnWebElement(plannedCustomers_txt);
+
+			int planned = plannedCustomers_size.size();
+			String customers = String.valueOf(planned);
+
+			if (planedCustomers.equalsIgnoreCase(customers)) {
+				isplannedCustomersCountDisplayed = true;
+			}
+
+			clickOnWebElement(close_Btn_OnPlannedCustomers);
+		} else {
+			isplannedCustomersCountDisplayed = true;
+
+		}
+
+		logger.info("Ending of isplannedCustomersCountDisplayed Method");
+		return isplannedCustomersCountDisplayed;
+
+	}
+
+	public boolean isActualCustomerVisitsCountDisplayed() {
+		logger.info("Starting of isactualCustomerVisitsCountDisplayed Method");
+
+		Boolean isactualCustomerVisitsCountDisplayed = false;
+		// scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, actualCustomerVisits_txt);
+		String actualCustomers = actualCustomerVisits_txt.getText();
+
+		int number = Integer.valueOf(actualCustomers);
+
+		if (number > 0) {
+			clickOnWebElement(actualCustomerVisits_txt);
+
+			int actual = actualCustomerVisits_size.size();
+			String customers = String.valueOf(actual);
+
+			if (actualCustomers.equalsIgnoreCase(customers)) {
+				isactualCustomerVisitsCountDisplayed = true;
+			}
+
+			clickOnWebElement(close_Btn_OnActualCustomers);
+		} else {
+			isactualCustomerVisitsCountDisplayed = true;
+
+		}
+
+		logger.info("Ending of isplannedCustomersCountDisplayed Method");
+		return isactualCustomerVisitsCountDisplayed;
+
+	}
+	
+	public boolean isUnplannedCustomerVisitsCountDisplayed() {
+		logger.info("Starting of isunplannedCustomerVisitsCountDisplayed Method");
+
+		Boolean isunplannedCustomerVisitsCountDisplayed = false;
+		// scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, unplannedCustomerVisits_txt);
+		String uplannedCustomers = unplannedCustomerVisits_txt.getText();
+
+		int number = Integer.valueOf(uplannedCustomers);
+
+		if (number > 0) {
+			clickOnWebElement(unplannedCustomerVisits_txt);
+
+			int unplanned = unplannedCustomerVisits_size.size();
+			String customers = String.valueOf(unplanned);
+
+			if (uplannedCustomers.equalsIgnoreCase(customers)) {
+				isunplannedCustomerVisitsCountDisplayed = true;
+			}
+
+			clickOnWebElement(close_Btn_UnplannedCustomers);
+		} else {
+			isunplannedCustomerVisitsCountDisplayed = true;
+
+		}
+
+		logger.info("Ending of isunplannedCustomerVisitsCountDisplayed Method");
+		return isunplannedCustomerVisitsCountDisplayed;
+
+	}
+
+	public boolean isFormActivitiesCountDisplayed() {
+		logger.info("Starting of isFormActivitiesCountDisplayed Method");
+
+		Boolean isFormActivitiesCountDisplayed = false;
+		// scrollIntoView(pendingApprovals_card);
+		waitUntilElementVisible(driver, formActivities_txt);
+		String formActivities = formActivities_txt.getText();
+
+		int number = Integer.valueOf(formActivities);
+
+		if (number > 0) {
+			clickOnWebElement(formActivities_txt);
+
+			int form = formActivities_size.size();
+			String activities = String.valueOf(form);
+
+			if (formActivities.equalsIgnoreCase(activities)) {
+				isFormActivitiesCountDisplayed = true;
+			}
+
+			clickOnWebElement(close_Btn_FormActivities);
+		} else {
+			isFormActivitiesCountDisplayed = true;
+
+		}
+
+		logger.info("Ending of isunplannedCustomerVisitsCountDisplayed Method");
+		return isFormActivitiesCountDisplayed;
 
 	}
 
@@ -1164,11 +1476,11 @@ public class CustomerPage extends BaseAutomationPage {
 		hardWait(3);
 		waitUntilElementVisible(driver, userNameBtn);
 		mouseHoverAndClick(userNameBtn);
-		//userNameBtn.click();
+		// userNameBtn.click();
 		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("LogOut")) {
 			logoutBtn.get(logoutBtn.size() - 1).click();
 		}
-		
+
 		logger.info("Ending of LogOut Method");
 	}
 

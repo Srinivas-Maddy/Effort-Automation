@@ -23,10 +23,11 @@ public class DayplannerTest extends BaseAutomationTest{
 	
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "siteURL", "browser" ,"userName", "password", "headless"})
-	public void initEffortLogin(String siteURL, String browser, String userName, String password ,String headless) throws Exception {
+	public void initEffortLogin(String siteURL, String browser, String userName, String password , String headless) throws Exception {
 		logger.info("Starting of initEffortLogin menthod in DayplannerTest");
 		
-		this.driver=this.getWebDriver(browser,headless,WebDriversEnum.DAY_PLANNER_DRIVER);
+		this.driver=this.getWebDriver(browser, headless, WebDriversEnum.DAY_PLANNER_DRIVER);
+
 		this.goToSite(siteURL, driver);
 		this.dayPlanner=new DayplannerPage(driver);
 		LoginToApplication(userName, password);
