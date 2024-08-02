@@ -118,8 +118,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		
 		this.addWork.phoneNumberInSection(formDataProp.getProperty("MobileNumber"));
 		
-		
-		
 		this.addWork.assignEmplpoyee(formDataProp.getProperty("AssignEmployee"));
 		
 		this.addWork.clickOnSave();
