@@ -21,7 +21,7 @@
 			<class name="com.effort.nxt.test.works.CheckListProcessCreationTest" />
 			<class name="com.effort.nxt.test.entities.EntitiesProcessTest" />
 			<class name="com.effort.nxt.test.list.ListTest" />
-
+			<class name="com.effort.nxt.test.territories.TerritoriesTest" />
 		</classes>
 	</test>
 

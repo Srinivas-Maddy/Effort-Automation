@@ -43,7 +43,7 @@ public class TestListener  implements ITestListener {
         emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
         emailContent.append("============================================").append("\n");
         for (ITestResult result : context.getPassedTests().getAllResults()) {
-            emailContent.append("Passed : ").append(result.getName()).append("\n");
+            emailContent.append("Pass : ").append(result.getName()).append("\n");
         }
         
         emailContent.append("\n");
@@ -51,17 +51,17 @@ public class TestListener  implements ITestListener {
         emailContent.append("============================================").append("\n");
         
         for (ITestResult result : context.getFailedTests().getAllResults()) {
-            emailContent.append("Failed : ").append(result.getName()).append("\n\n");
+            emailContent.append("Fail : ").append(result.getName()).append("\n\n");
             emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
         }
         
         for (ITestResult result : context.getSkippedTests().getAllResults()) {
-        	emailContent.append("Skipped: ").append(result.getName()).append("\n\n");
+        	emailContent.append("Skip: ").append(result.getName()).append("\n\n");
 		}
 
         emailContent.append("Thanks,\n").append("Test Team");	
 
-		EmailSender.sendEmail("test_team@spoors.in", "Web Automation Sanity Report", emailContent.toString());
+		EmailSender.sendEmail("srinusri26.ss@gmail.com", "Web Automation Sanity Report", emailContent.toString());
 
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
