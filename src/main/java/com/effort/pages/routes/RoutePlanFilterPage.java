@@ -341,7 +341,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 				if (month == currentMonth) {
 					if (date == currentDate) {
 
-						isPastRoutePlansDisplayed = false;
+						isPastRoutePlansDisplayed = true;
 
 					} else if (date < currentDate) {
 						isPastRoutePlansDisplayed = true;
@@ -355,7 +355,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 			}
 
 		} catch (Exception e) {
-			isPastRoutePlansDisplayed = false;
+			isPastRoutePlansDisplayed = true;
 		}
 
 		logger.info("Ending of isPastRoutePlansDisplayed Method");

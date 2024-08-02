@@ -5,8 +5,12 @@
 	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
 	<parameter name="headless" value="false" />
 
+	<parameter name="headless" value="false" />
+
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
+
+	<parameter name="siteURL" value="https://secure.spoors.io/effortx/login" />
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
@@ -15,8 +19,9 @@
 	<test name="Works">
 		<classes>
 
-			<!--<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />-->
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
+
+			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 
 		</classes>
 	</test>

@@ -46,7 +46,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	@Feature("Bulk Uploads")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Validating the Route Plan bulk upload through the imports")
-	public void routePlanCreation() throws InterruptedException {
+	public void bulkRoutePlanCreation() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		
 		loginPage.ClickonWebApp();
@@ -65,7 +65,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	@Feature("Bulk Uploads")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Validating the Route Plan updation through the imports")
-	public void routePlanUpdation() throws InterruptedException {
+	public void bulkRoutePlanUpdation() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		
 		this.importpage.clickOnImports();
@@ -82,7 +82,7 @@ public class RoutePlanBulkUploads extends BaseAutomationTest{
 	@Feature("Bulk Uploads")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Validating the Route Plan replace through the imports")
-	public void routePlanReplace() throws InterruptedException {
+	public void bulkRoutePlanReplace() throws InterruptedException {
 		logger.info("Starting of Customer Bulk Upload test case");
 		
 		this.importpage.clickOnImports();

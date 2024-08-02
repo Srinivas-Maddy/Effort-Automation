@@ -80,7 +80,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 	@Feature("Bulk Uploads")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Validating the employee customer mapping through the bulk upload")
-	public void employeeCustomerMapping() throws InterruptedException {
+	public void bulkEmployeeCustomerMapping() throws InterruptedException {
 		logger.info("Starting of Emp Customer Mapping Method");
 		
 		this.importpage.clickOnImports();

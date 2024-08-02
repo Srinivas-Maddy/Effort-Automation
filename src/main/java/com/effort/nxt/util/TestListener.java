@@ -9,10 +9,8 @@ import org.testng.log4testng.Logger;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class TestListener  implements ITestListener {
-	
+public class TestListener implements ITestListener {
 
-	
 	private final Logger logger = Logger.getLogger(TestListener.class.getClass());
 
 	public void onStart(ITestContext context) {
@@ -25,43 +23,44 @@ public class TestListener  implements ITestListener {
 		logger.info("========================================================================");
 		logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
 		logger.info("========================================================================");
-		
-		
-        // Set email content with test results
-        StringBuilder emailContent = new StringBuilder();
-        emailContent.append("Hi Team,").append("\n\n");
-        emailContent.append(context.getName()).append(" is Completed").append("\n\n");
-        emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
-        emailContent.append("Module Name :").append(context.getName()).append("\n\n");
-        emailContent.append("========================").append("\n\n");
-        emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
-        emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
-        emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
-        emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n\n");
-        emailContent.append("========================").append("\n\n");
-        
-        emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
-        emailContent.append("============================================").append("\n");
-        for (ITestResult result : context.getPassedTests().getAllResults()) {
-            emailContent.append("Passed : ").append(result.getName()).append("\n");
-        }
-        
-        emailContent.append("\n");
-        emailContent.append("Detailed Informatation Of Failed Test Cases").append("\n");
-        emailContent.append("============================================").append("\n");
-        
-        for (ITestResult result : context.getFailedTests().getAllResults()) {
-            emailContent.append("Failed : ").append(result.getName()).append("\n\n");
-            emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
-        }
-        
-        for (ITestResult result : context.getSkippedTests().getAllResults()) {
-        	emailContent.append("Skipped: ").append(result.getName()).append("\n\n");
+
+		// Set email content with test results
+		StringBuilder emailContent = new StringBuilder();
+		emailContent.append("Hi Team,").append("\n\n");
+		emailContent.append(context.getName()).append(" is Completed").append("\n\n");
+		emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
+		emailContent.append("Module Name :").append(context.getName()).append("\n\n");
+		emailContent.append("========================").append("\n\n");
+		emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
+		emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
+		emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
+		emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n\n");
+		emailContent.append("========================").append("\n\n");
+
+		emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
+		emailContent.append("============================================").append("\n");
+		for (ITestResult result : context.getPassedTests().getAllResults()) {
+			emailContent.append("Pass : ").append(result.getName()).append("\n");
 		}
 
-        emailContent.append("Thanks,\n").append("Test Team");	
+		emailContent.append("\n");
+		emailContent.append("Detailed Informatation Of Failed Test Cases").append("\n");
+		emailContent.append("============================================").append("\n");
+
+		for (ITestResult result : context.getFailedTests().getAllResults()) {
+			emailContent.append("Fail : ").append(result.getName()).append("\n\n");
+			emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
+		}
+
+		for (ITestResult result : context.getSkippedTests().getAllResults()) {
+			emailContent.append("Skip: ").append(result.getName()).append("\n\n");
+		}
+
+		emailContent.append("Thanks,\n").append("Test Team");
+
 //test_team@spoors.in
-		EmailSender.sendEmail("saikiran.devarakonda@spoors.in", "Web Automation Sanity Report", emailContent.toString());
+		EmailSender.sendEmail("saikiran.devarakonda@spoors.in", "Web Automation Sanity Report",
+				emailContent.toString());
 
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
@@ -88,15 +87,15 @@ public class TestListener  implements ITestListener {
 
 		ExtentTest test = ExtentTestManager.getTest();
 		test.fail(result.getThrowable());
-			try {
-				ExtentTestManager.failTest(test, result.getMethod().getMethodName());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		test.log(Status.FAIL,"Test Failed");
-	
+		try {
+			ExtentTestManager.failTest(test, result.getMethod().getMethodName());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		test.log(Status.FAIL, "Test Failed");
+
 	}
 
 	public void onTestSkipped(ITestResult result) {

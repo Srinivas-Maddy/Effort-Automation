@@ -29,10 +29,8 @@ public class ListTest extends BaseAutomationTest{
 	    this.goToSite(siteURL, driver);
 	    this.list = new ListPage(driver);
 	    this.loginPage = new LoginPage(driver);
-	    loginPage.enterUserName(userName);
-	    loginPage.clickOnPassword(password);
-	    loginPage.clickOnLoginButton();
-	    loginPage.clickOnSignOutFromAllSessions(userName,password);
+		//LoginToApplication(userName, password);
+	    LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
 	   
 		logger.info("Ending of initEffortLogin Method");
 	}
