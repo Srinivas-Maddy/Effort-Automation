@@ -118,8 +118,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		
 		this.addWork.phoneNumberInSection(formDataProp.getProperty("MobileNumber"));
 		
-		
-		
 		this.addWork.assignEmplpoyee(formDataProp.getProperty("AssignEmployee"));
 		
 		this.addWork.clickOnSave();
@@ -166,7 +164,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the reaasignWork Method");
 	}
 
-	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
