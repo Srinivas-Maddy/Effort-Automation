@@ -36,8 +36,8 @@ public class EntitiesSubmissionTest extends BaseAutomationTest {
 		this.entitiessubmission = new EntitiesSubmission(driver);
 		this.loginPage = new LoginPage(driver);
 		this.formSub = new FormSubmission(driver);
-		//LoginToApplication(userName, password);
-		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
+		LoginToApplication(userName, password);
+		
 
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
 	}

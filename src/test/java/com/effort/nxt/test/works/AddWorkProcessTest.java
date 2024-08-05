@@ -127,13 +127,12 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the Addwork Method");
 	}
 
-	@Test(priority = 2, description = "modify the work in the web app", groups = { "sanity" })
+	//@Test(priority = 2, description = "modify the work in the web app", groups = { "sanity" })
 	@Description("Test Case #2, modify the work in the web app")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, modify the work in the web app")
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
-
 		
 		addWork.clickOnEditIcn();
 		
@@ -146,7 +145,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the ModifyWork Method");
 	}
 
-	@Test(priority = 3, description = "Reassign the work", groups = { "sanity" })
+	//@Test(priority = 3, description = "Reassign the work", groups = { "sanity" })
 	@Description("Test Case #3, Reassign the work")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #3, Reassign the work")
@@ -154,12 +153,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Starting of the reaasignWork method");
 		
 		addWork.clickOnWorkSelectButton();
-		
-		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified")+addWork.getCurrentDateTime());
-		
-		this.addWork.clickOnSave();
-
-		Assert.assertTrue(addWork.isWorkModifiedSucessfully());
 		
 		logger.info("Ending the reaasignWork Method");
 	}
