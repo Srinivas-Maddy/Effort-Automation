@@ -33,7 +33,7 @@ public class FormsTest extends BaseAutomationTest{
 		this.goToSite(siteUrl, driver);
 		this.forms=new Forms(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(userName);
+		
 		//LoginToApplication(userName, password);
 		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
 		
