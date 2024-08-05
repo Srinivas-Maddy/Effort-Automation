@@ -69,6 +69,31 @@ public class TerritoriesPage extends BaseAutomationPage{
 	@FindBy(xpath="//map[@id='gmimap0']")
 	private WebElement mapLocation;
 	
+	@FindBy(id="filters")
+	private WebElement filterBtn;
+	
+	@FindBy(id="territoryName")
+	private WebElement nameInput;
+		
+	@FindBy(xpath="//table[@id='allLeave']/tbody/tr[1]/td[2]")
+	private WebElement nameResult;
+	
+	@FindBy(xpath="//table[@id='allLeave']/tbody/tr[1]/td[1]")
+	private WebElement idResult;
+	
+	@FindBy(id="search")
+	private WebElement applyFilterBtn;
+	
+	@FindBy(id="reset")
+	private WebElement restBtn;
+	
+	@FindBy(id="territoryNo")
+	private WebElement terriotyNoInput;
+	
+	public static String territoryName=null;
+	public static String territoryNO=null;
+
+	
 	//Constructor
 	public TerritoriesPage(WebDriver driver) {
 		super(driver);
@@ -148,9 +173,9 @@ public class TerritoriesPage extends BaseAutomationPage{
 	public void enterTerritoryNo(String territoryNo) {
 		logger.info("Starting of enterTerritoryNo Method");
 		
-		String Id=territoryNo+"_"+getCurrentTime();
+		territoryNO=territoryNo+"_"+getCurrentTime();
 		waitUntilElementVisible(driver, this.territoryNoInput);
-		this.territoryNoInput.sendKeys(Id);
+		this.territoryNoInput.sendKeys(territoryNO);
 		
 		logger.info("Ending of enterTerritoryNo Method");
 	}
@@ -161,6 +186,7 @@ public class TerritoriesPage extends BaseAutomationPage{
 		waitUntilElementVisible(driver, this.saveBtn);
 		try {
 			clickOnWebElement(this.saveBtn);
+			hardWait(10);
 		} catch (Exception e) {
             clickOnWebElementUsingJavascript(this.saveBtn);
 		}
@@ -193,7 +219,8 @@ public class TerritoriesPage extends BaseAutomationPage{
 		
 		waitUntilElementVisible(driver, this.territoryNameInput);
 		this.territoryNameInput.clear();
-		this.territoryNameInput.sendKeys(modifiedName+"_"+getCurrentTime());
+		territoryName=modifiedName+"_"+getCurrentTime();
+		this.territoryNameInput.sendKeys(territoryName);
 		
 		logger.info("Ending of enterModifiedName Method");
 	}
@@ -295,9 +322,72 @@ public class TerritoriesPage extends BaseAutomationPage{
 	public void clickOnFilter() {
 		logger.info("Starting of clickOnFilter Method");
 		
-		
+		waitUntilElementVisible(driver, this.filterBtn);
+		clickOnWebElement(this.filterBtn);
 
 		logger.info("Ending of clickOnFilter Method");
+	}
+	
+	public void filterTerritoryByName() {
+		logger.info("Starting of enterTerritoryName Method");
+		
+		waitUntilElementVisible(driver, this.nameInput);
+		this.nameInput.sendKeys(territoryName);
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickOnWebElement(this.applyFilterBtn);
+		
+		logger.info("Ending of enterTerritoryName Method");
+	}
+	
+	public void clickOnReset() {
+		logger.info("Starting of clickOnReset Method");
+		
+		waitUntilElementVisible(driver, this.restBtn);
+		clickOnWebElement(this.restBtn);
+		
+		logger.info("Ending of clickOnReset Method");
+	}
+	
+	public void filterTerritoryById() {
+		logger.info("Starting of filterTerritoryById Method");
+		
+		waitUntilElementVisible(driver, this.terriotyNoInput);
+		this.terriotyNoInput.sendKeys(territoryNO);
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickOnWebElement(this.applyFilterBtn);
+		
+		logger.info("Ending of filterTerritoryById Method");
+	}
+	
+	public String getNameFilterResult() {
+		logger.info("Starting of getFilterResult Method");
+		
+		waitUntilElementVisible(driver, this.nameResult);
+		String actualName=this.nameResult.getText();
+		
+		logger.info("Ending of getFilterResult Method");
+		
+		return actualName;
+	}
+	
+	public String getNameIDResult() {
+		logger.info("Starting of getFilterResult Method");
+		
+		waitUntilElementVisible(driver, this.idResult);
+		String actualID=this.idResult.getText();
+		
+		logger.info("Ending of getFilterResult Method");
+		
+		return actualID;
+	}
+	
+	public void clickOnApplyFilter() {
+		logger.info("Starting of clickOnApplyFilter method");
+		
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickOnWebElement(this.applyFilterBtn);
+		
+		logger.info("Ending of clickOnApplyFilter method");
 	}
 	
 	
