@@ -93,25 +93,50 @@ public class TerritoriesTest extends BaseAutomationTest{
 		public void filterTerritoryByName() {
 			logger.info("Starting of filterTerritoryByName Method");
 			
-			
+			this.territory.clickOnFilter();
+			this.territory.filterTerritoryByName();
+			String actualResult=this.territory.getNameFilterResult();
+			String expectedResult=this.territory.territoryName;
+			Assert.assertEquals(actualResult, expectedResult);
 			
 			logger.info("Ending of filterTerritoryByName Method");		
 		}
 		
-		@Test(priority = 5, description = "Deleted the territory", groups = {"sanity"})
+		@Test(priority = 5, description="Filter Territory by ID", groups = {"sanity"})
+		@Description("Check filter functionality by search with territory ID")
+		@Severity(SeverityLevel.BLOCKER)
+		@Story("Territory Filter By ID")
+		public void filterTerritoryByID() {
+			logger.info("Starting of filterTerritoryByID Method");
+			
+			this.territory.clickOnFilter();
+			this.territory.clickOnReset();
+			this.territory.filterTerritoryById();
+			String actualResult=this.territory.getNameIDResult();
+			String expectedResult=this.territory.territoryNO;
+			Assert.assertEquals(actualResult, expectedResult);
+			
+			logger.info("Ending of filterTerritoryByID Method");		
+		}
+		
+		
+		@Test(priority = 6, description = "Deleted the territory", groups = {"sanity"})
 		@Description("Deleting the Created Territory")
 		@Severity(SeverityLevel.BLOCKER)
 		@Story("Territory Deletion")
 		public void deleteTerritory() {
 			logger.info("Starting of deleteTerritory Method");
 			
+			this.territory.clickOnFilter();
+			this.territory.clickOnReset();
+			this.territory.clickOnApplyFilter();
 			this.territory.clickOnDelete();
 			
 			logger.info("Ending of deleteTerritory Method");
 		}
 		
 		
-		@Test(priority = 6, description = "Create Territory With Cricle", groups = {"sanity"})
+		@Test(priority = 7, description = "Create Territory With Cricle", groups = {"sanity"})
 		@Description("Creating the territory with circle")
 		@Severity(SeverityLevel.BLOCKER)
 		@Story("Territory Creation with circle")

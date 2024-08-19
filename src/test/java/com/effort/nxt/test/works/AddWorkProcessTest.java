@@ -120,6 +120,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the Addwork Method");
 	}
 
+
 	@Test(priority = 2, description = "modify the work in the web app", groups ={ "sanity" })
 	@Description("Test Case #2, modify the work in the web app")
 	@Severity(SeverityLevel.BLOCKER)
@@ -145,6 +146,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	public void reaasignWork() throws InterruptedException {
 		logger.info("Starting of the reaasignWork method");
 
+
 		addWork.clickOnWorkSelectButton();
 
 		addWork.clickOnReaAsignWork();
@@ -159,6 +161,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
 
+		addWork.clickOnWorkSelectButton();
+		
 		logger.info("Ending the reaasignWork Method");
 	}
 
