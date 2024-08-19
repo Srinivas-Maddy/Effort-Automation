@@ -37,18 +37,11 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork1 = new FormSubmission(driver);
 
 		LoginToApplication(userName, password);
-		/*
-		 * this.loginPage.enterUserName(testDataProp.getProperty("name"));
-		 * this.loginPage.clickOnPassword(testDataProp.getProperty("password1"));
-		 * this.loginPage.clickOnLoginButton();
-		 * loginPage.clickOnSignOutFromAllSessions(testDataProp.getProperty("name"),
-		 * testDataProp.getProperty("password1"));
-		 */
 
 		logger.info("Ending of initEffortLogin method in Work Creation process");
 	}
 
-	@Test(priority = 1, description = "Add the work in the web app", groups = {"sanity" })
+    @Test(priority = 1, description = "Add the work in the web app", groups ={"sanity" })
 	@Description("Test Case #1, Assigning the work")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1, Assign the work to the user")
@@ -60,7 +53,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnProcessModule();
 		this.addWork.clickOnWorkName();
 		this.addWork.clickOnAddWorkBtn();
-		this.addWork.enterWorkName(formDataProp.getProperty("WorkName")+addWork.getCurrentDateTime());
+		this.addWork.enterWorkName(formDataProp.getProperty("WorkName") + addWork.getCurrentDateTime());
 		this.addWork.clickOnWorkEndDate();
 		this.addWork.clickOnCurrentDateTime();
 		// this.addWork.pickWorkEndDate();
@@ -107,42 +100,41 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.pickListField();
 		addWork.clickOnSectionAddButton();
 		addWork.enterTextDataInSection(formDataProp.getProperty("Text"));
-		
+
 		this.addWork.enterCurrencyInSection(formDataProp.getProperty("currency"));
-		
+
 		this.addWork.SetDateInSection(formDataProp.getProperty("formDate"));
-		
+
 		this.addWork.enterEmailInSection(formDataProp.getProperty("Email"));
-		
+
 		this.addWork.enterNumberInSection(formDataProp.getProperty("Number"));
-		
+
 		this.addWork.phoneNumberInSection(formDataProp.getProperty("MobileNumber"));
-		
+
 		this.addWork.assignEmplpoyee(formDataProp.getProperty("AssignEmployee"));
-		
+
 		this.addWork.clickOnSave();
-		
+
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
-		
+
 		logger.info("Ending the Addwork Method");
 	}
 
-	@Test(priority = 2, description = "modify the work in the web app", groups = { "sanity" })
+	@Test(priority = 2, description = "modify the work in the web app", groups ={ "sanity" })
 	@Description("Test Case #2, modify the work in the web app")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, modify the work in the web app")
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
 
-		
 		addWork.clickOnEditIcn();
-		
-		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified")+addWork.getCurrentDateTime());
-		
+
+		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified") + addWork.getCurrentDateTime());
+
 		this.addWork.clickOnSave();
 
 		Assert.assertTrue(addWork.isWorkModifiedSucessfully());
-		
+
 		logger.info("Ending the ModifyWork Method");
 	}
 
@@ -152,16 +144,71 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #3, Reassign the work")
 	public void reaasignWork() throws InterruptedException {
 		logger.info("Starting of the reaasignWork method");
-		
-		addWork.clickOnWorkSelectButton();
-		
-		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified")+addWork.getCurrentDateTime());
-		
-		this.addWork.clickOnSave();
 
-		Assert.assertTrue(addWork.isWorkModifiedSucessfully());
-		
+		addWork.clickOnWorkSelectButton();
+
+		addWork.clickOnReaAsignWork();
+
+		addWork.clickOnSelectEmployee();
+
+		addWork.clickOnSeachEmp(formDataProp.getProperty("empName"));
+
+		addWork.clickOnEmp();
+
+		addWork.assignWork();
+
+		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
+
 		logger.info("Ending the reaasignWork Method");
+	}
+
+	@Test(priority = 4, description = "Delete select work", groups = { "sanity" })
+	@Description("Test Case #4, Delete select work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #4, Delete select work")
+	public void deleteSelectedWork() throws InterruptedException {
+		logger.info("Starting of the deleteSelectedWork method");
+
+		addWork.getWorkId();
+
+		addWork.clickOnWorkSelectButton();
+
+		addWork.deleteSelectedWork();
+
+		addWork.filterWork();
+
+		Assert.assertTrue(addWork.isWorkdDeletedSucessfully());
+
+		logger.info("Ending the deleteSelectedWork Method");
+	}
+
+	@Test(priority = 5, description = "Delete filtered work", groups = { "sanity" })
+	@Description("Test Case #5, Delete filtered work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #5, Delete filtered work")
+	public void deleteFilteredWork() throws InterruptedException {
+		logger.info("Starting of the deleteFilteredWork method");
+
+		this.addWork.clickOnAddWorkBtn();
+		this.addWork.enterWorkName(formDataProp.getProperty("WorkName") + addWork.getCurrentDateTime());
+
+		this.addWork.enterTextData(formDataProp.getProperty("Text"));
+		
+		this.addWork.clickOnSaveWhileNewAdd();
+
+		Assert.assertTrue(addWork.isWorkAddedSucessfully());
+
+		addWork.getWorkId();
+
+		addWork.filterWork();
+
+		addWork.deleteFilteredWork();
+		
+		addWork.filterWork();
+
+		Assert.assertTrue(addWork.isWorkdDeletedSucessfully());
+
+		logger.info("Ending the deleteFilteredWork Method");
 	}
 
 	@AfterClass(alwaysRun = true)

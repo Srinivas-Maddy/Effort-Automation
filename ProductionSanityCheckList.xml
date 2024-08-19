@@ -3,7 +3,6 @@
 
 	<parameter name="browser" value="Chrome" />
 
-    <parameter name="siteURL" value="https://secure.spoors.in/effortx/login"/>	 
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
