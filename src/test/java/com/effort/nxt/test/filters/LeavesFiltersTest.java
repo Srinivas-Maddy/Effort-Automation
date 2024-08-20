@@ -18,16 +18,15 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 public class LeavesFiltersTest extends BaseAutomationTest {
+	
 	private static final Logger logger = Logger.getLogger(LeavesFiltersTest.class.getName());
 	private LeavesFiltersPage leavesfilterpage;
-	
-		private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
+	private static final String EXPECTED_MYLEAVES_STATUS ="Approved";
 	private static final String EXPECTED_MYLEAVES_FROM_DATE = "Leave";
 		
 	
 	@BeforeClass(alwaysRun = true)
 	@Parameters({"siteURL" , "browser", "headless","userName","password"})
-	
 	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String password ) throws InterruptedException {
 		logger.info("Starting of initEffortLogin Method");
 		
@@ -185,9 +184,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 		
 		logger.info("Ending of myLeavesFilters Method");
 	}
-	
-	
-	
+		
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

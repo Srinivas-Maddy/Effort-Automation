@@ -878,11 +878,6 @@ public class CustomerPage extends BaseAutomationPage {
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
 
-		waitUntilElementVisible(driver, this.multiselectdropdownfield);
-		clickOnWebElement(multiselectdropdownfield);
-		hardWait(3);
-		waitUntilElementVisible(driver, this.multiselectdropdownvalue);
-		this.multiselectdropdownvalue.click();
 
 		try {
 			scrollIntoView(multiselectdropdownfield);
