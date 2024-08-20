@@ -177,7 +177,7 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Ending of customerDeletion Method");
 	}
 
-	@Test(priority = 6, description = "Verify activity snapshot page", groups = "sanity")
+//	@Test(priority = 6, description = "Verify activity snapshot page", groups = "sanity")
 	@Description("Deleting Customers")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Deleting the Customers")

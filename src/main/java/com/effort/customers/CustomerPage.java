@@ -315,7 +315,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//h5[text()='Total Visits Today']/following-sibling::button")
 	private WebElement closeIconOnTotalVisitsToday;
 
-	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]")
+	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]//i")
 	private WebElement activitySnapshot_btn;
 
 	@FindBy(id = "plannedDetails")
@@ -877,13 +877,7 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
-
-		waitUntilElementVisible(driver, this.multiselectdropdownfield);
-		clickOnWebElement(multiselectdropdownfield);
-		hardWait(3);
-		waitUntilElementVisible(driver, this.multiselectdropdownvalue);
-		this.multiselectdropdownvalue.click();
-
+		
 		try {
 			scrollIntoView(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownfield);
@@ -1341,7 +1335,7 @@ public class CustomerPage extends BaseAutomationPage {
 		clickUsingActionClass(activitySnapshot_btn);
 
 		this.hardWait(3);
-		switchToNewWindow(0);
+	//	switchToNewWindow(0);
 
 		logger.info("Ending of clickOnActivitySnapshotButton Method");
 
