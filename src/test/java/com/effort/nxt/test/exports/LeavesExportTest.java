@@ -21,7 +21,6 @@ public class LeavesExportTest extends BaseAutomationTest{
 	
 	@BeforeClass(alwaysRun = true)
 	@Parameters({"siteURL" ,"browser", "headless","userName","password"})
-	
 	public void initEffortLogin(String siteURL , String browser, String headless, String userName, String password) throws Exception {
 		logger.info("Starting of initEffortLogin Method");
 		

@@ -96,12 +96,10 @@ public class LoginPage extends BaseAutomationPage {
 			waitUntilElementVisible(driver, btnWebApp);
 			btnWebApp.click();
 		} catch (Exception e) {
-			System.out.println();
+			clickOnWebElement(this.btnWebApp);
 		}
 		
-
 		logger.info("Ending of clickOnWebApp method");
-
 	}
 
 	public void ClickonWebApp() {

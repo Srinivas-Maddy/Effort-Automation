@@ -42,5 +42,11 @@
 			<class name="com.effort.nxt.test.exports.FormExportsTest" />
 		</classes>
 	</test>
+	
+	<test name="Works Exports">
+		<classes>
+			<class name="com.effort.nxt.test.exports.WorksExportTest" />
+		</classes>
+	</test>
 
 </suite>
