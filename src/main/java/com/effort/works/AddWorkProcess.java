@@ -164,82 +164,145 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(xpath = "//i[@title='Edit']")
 	private WebElement workEditIcon;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'created successfull')]")
 	private WebElement workCreatedSucessfullyText;
-	
+
 	@FindBy(xpath = "//div[contains(text(),'modified successfull')]")
 	private WebElement workModifiedSucessfullyText;
 
+	@FindBy(xpath = "//div[contains(text(),'successfull')]")
+	private WebElement sucessfullyText;
+	
 	@FindBy(xpath = "//input[@id='selectWork']")
 	private WebElement selectWork;
-	
+
 	@FindBy(xpath = "//button[@id='assignTo']")
 	private WebElement reassignWorkBtn;
-	
+
 	@FindBy(xpath = "//span[@id='select2-chosen-7']")
 	private WebElement selectEmployee;
 
 	@FindBy(xpath = "//input[@id='s2id_autogen7_search']")
 	private WebElement searchEmp;
-	
+
+	@FindBy(xpath = "//div[@role='option']")
+	private WebElement selectEmp;
+
+	@FindBy(xpath = "//input[@id='assignWorks']")
+	private WebElement workAssignBtn;
+
+	@FindBy(xpath = "//a[contains(text(),'REASSIGN')]")
+	private WebElement empReassigned;
+
+	@FindBy(xpath = "//button[@id='deleteWorks']")
+	private WebElement deleteWorkBtn;
+
+	@FindBy(xpath = "//input[@id='deleteSelectedCheckBox']")
+	private WebElement deleteCheckbox;
+
+	@FindBy(xpath = "//input[@id='deleteSelected']")
+	private WebElement deleteSelected;
+
+	// (//tr[contains(@class,
+	// 'selected')]//td//a[contains(@href,'/effortx/web/work/details/view/')])[2]
+	@FindBy(xpath = "(//a[contains(@href,'/effortx/web/work/details/view/')])[2]")
+	private WebElement workId;
+
+	@FindBy(xpath = "//button[@id='filters']")
+	private WebElement workFilterBtn;
+
+	@FindBy(xpath = "//button[@id='reset']")
+	private WebElement resetFilterBtn;
+
+	@FindBy(xpath = "//input[@id='filtWorkId']")
+	private WebElement workIdTxt;
+
+	@FindBy(xpath = "//button[@id='search']")
+	private WebElement applyFilterBtn;
+
+	@FindBy(xpath = "//button[@id='deleteFilteredWorks']")
+	private WebElement deleteFilteredWorkBtn;
+
+	@FindBy(xpath = "//input[@id='deleteFilteredCheckBox']")
+	private WebElement deleteFilteredCheckbox;
+
+	@FindBy(xpath = "//input[@id='deleteFiltered']")
+	private WebElement deleteFiltered;
+
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 
 	}
 
+	public static String workID;
+
 	public void clickOnWebApp() {
 		logger.info("Starting of clickOn WebApp method");
+
 		hardWait(3);
 		waitUntilElementVisible(driver, this.webApp);
 		this.webApp.click();
+
 		logger.info("Ending of clicOnWebApp Method");
 
 	}
 
 	public void clickOnDatePicker(String date) {
 		logger.info("Starting of clickOnDatePicker method");
+
 		waitUntilElementVisible(driver, datePicker);
 		this.datePicker.sendKeys(date);
 		implicitWait();
 		clickOnWebElement(datePicker);
+
 		logger.info("Ending of clickOnDatePicker method");
 	}
 
 	public void SetDateInSection(String date) {
 		logger.info("Starting of clickOnDatePicker method");
+
 		waitUntilElementVisible(driver, secDateField);
 		this.secDateField.sendKeys(date);
 		implicitWait();
 		clickOnWebElement(secDateField);
+
 		logger.info("Ending of clickOnDatePicker method");
 	}
 
 	public void enterEmailInSection(String email) {
 		logger.info("Starting of enter Email method");
+
 		waitUntilElementVisible(driver, this.secEmailField);
 		this.secEmailField.sendKeys(email);
+
 		logger.info("Ending of enter Email method");
 	}
 
 	public void enterNumberData(String numberData) {
 		logger.info("Starting of enter number method");
+
 		waitUntilElementVisible(driver, numberfield);
 		this.numberfield.sendKeys(numberData);
+
 		logger.info("Ending of enter number method");
 	}
 
 	public void enterNumberInSection(String numberData) {
 		logger.info("Starting of enter number method");
+
 		waitUntilElementVisible(driver, secNumberField);
 		this.secNumberField.sendKeys(numberData);
+
 		logger.info("Ending of enter number method");
 	}
 
 	public void phoneNumberInSection(String phoneNumber) {
 		logger.info("Starting of phoneNumber method");
+
 		this.secPhoneField.sendKeys(phoneNumber);
+
 		logger.info("Ending of phoneNumber method");
 
 	}
@@ -264,13 +327,16 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void enterCurrencyInSection(String CurrencyValue) {
 		logger.info("Starting of enterCurrency method");
+
 		waitUntilElementVisible(driver, secCurrencyField);
 		this.secCurrencyField.sendKeys(CurrencyValue);
+
 		logger.info("Ending of enterCurrency method");
 	}
 
 	public void pickTime(String time) throws InterruptedException {
 		logger.info("Starting of pickTime method");
+
 		waitUntilElementVisible(driver, this.timeField);
 		scrollDown(100, timeField);
 		this.timeField.sendKeys(time);
@@ -289,37 +355,44 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void pickCountry() {
 		logger.info("Starting of pickCountry method");
+
 		waitUntilElementVisible(driver, this.countryDropdown);
 		scrollIntoView(countryDropdown);
 		this.countryDropdown.click();
 		waitUntilElementVisible(driver, this.countryList);
 		this.countryList.click();
+
 		logger.info("Ending of pickCountry method");
 
 	}
 
 	public void pickCustomerType() {
 		logger.info("Starting of pick coustomer method");
+
 		waitUntilElementVisible(driver, this.customerTypePicker);
 		this.customerTypePicker.click();
 		waitUntilElementVisible(driver, this.countryList);
 		this.countryList.click();
+
 		logger.info("Ending of pick coustomer method");
 	}
 
 	public void pickEmployee() throws InterruptedException {
 		logger.info("Starting of pick Employee method");
+
 		waitUntilElementVisible(driver, this.employeePicker);
 		this.employeePicker.click();
 		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.pickerSelection);
 		this.pickerSelection.click();
 		this.okBtn.click();
+
 		logger.info("Ending of pick Employee method");
 	}
 
 	public void SelectTerritory() {
 		logger.info("Starting of SelectTerritory method");
+
 		waitUntilElementVisible(driver, this.terrioryField);
 		this.terrioryField.click();
 		waitUntilElementVisible(driver, this.countryList);
@@ -330,6 +403,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void selectYesOrNo() {
 		logger.info("Starting of select yes or no method");
+
 		waitUntilElementVisible(driver, this.YesOrNoBtn);
 		this.YesOrNoBtn.click();
 		waitUntilElementVisible(driver, this.countryList);
@@ -443,29 +517,38 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void clickOnProcessModule() {
 		logger.info("Starting of clickOnProcess module method");
+
 		waitUntilElementVisible(driver, this.workModule);
 		this.workModule.click();
+
 		logger.info("Ending of clickOnProcess module method");
 	}
 
 	public void clickOnWorkName() {
 		logger.info("Starting of click on work name method");
+
 		waitUntilElementVisible(driver, this.searchBox);
 		this.searchBox.sendKeys("Automation Action Procoss");
 		waitUntilElementVisible(driver, this.workName);
 		this.workName.click();
+
 		logger.info("ending of click on work name method");
 	}
 
 	public void clickOnAddWorkBtn() {
 		logger.info("Starting of clickOnAddWorkBtn method");
+
 		waitUntilElementVisible(driver, this.addWorkBtn);
 		this.addWorkBtn.click();
+
 		logger.info("Ending of clickOnAddWorkBtn menthod");
 	}
 
 	public void enterWorkName(String workName) {
 		logger.info("Starting of enterWorkName method");
+
+		hardWait(5);
+		workNamefield.clear();
 		waitUntilElementVisible(driver, this.workNamefield);
 		this.workNamefield.sendKeys(workName);
 
@@ -475,11 +558,14 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void clickOnWorkEndDate() throws InterruptedException {
 		logger.info("Starting of clickOnWorkEndDate method");
+
 		waitUntilElementVisible(driver, this.workEndDate);
 		Thread.sleep(10000);
 		this.workEndDate.click();
 		waitUntilElementVisible(driver, this.calenderMonthBtn);
 		clickOnWebElement(this.calenderMonthBtn);
+
+		logger.info("Ending of clickOnWorkEndDate method");
 	}
 
 	public void clickOnCurrentDateTime() throws InterruptedException {
@@ -498,11 +584,13 @@ public class AddWorkProcess extends BaseAutomationPage {
 			}
 		}
 		this.workEndDate.click();
+
 		logger.info("Ending of clickOnDatePicker method");
 	}
 
 	public void pickWorkEndDate() {
 		logger.info("Starting of pickWorkEndDate Method");
+
 		String currentTime = getCurrentTimeAsFiveMinInterval();
 		for (int i = 0; i < timePickers.size(); i++) {
 			String timeIntervals = (String) ((JavascriptExecutor) driver)
@@ -512,12 +600,17 @@ public class AddWorkProcess extends BaseAutomationPage {
 				timePickers.get(i).click();
 				break;
 			}
+
 		}
+
 		logger.info("Ending of pickerWorkEndDate Method");
 	}
 
 	public void assignEmplpoyee(String assigneeName) {
 		logger.info("Starting of assign Employee");
+		
+		scrollIntoView(assigneeDropdown);
+
 		waitUntilElementVisible(driver, this.assigneeDropdown);
 		this.assigneeDropdown.click();
 		waitUntilElementVisible(driver, this.enterName);
@@ -529,9 +622,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 				employeeNames.get(i).click();
 				break;
 			}
-		
+
 		}
 		hardWait(3);
+
 		logger.info("Ending of assign Employee");
 	}
 
@@ -541,91 +635,311 @@ public class AddWorkProcess extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.saveBtn);
 		this.saveBtn.click();
 		// Process Conflict Alert Handling
-		try {
-			waitUntilElementVisible(driver, this.btnProcessAnyway);
-			this.btnProcessAnyway.click();
-		} catch (Exception e) {
-			logger.info("Process Anyway Btn is not visible");
-		}
-		// Employee OnLeave Alert Handle
-		try {
-			if (this.acceptBtn.isDisplayed()) {
-				this.acceptBtn.click();
+			try {
+				waitUntilElementVisible(driver, this.btnProcessAnyway);
+				this.btnProcessAnyway.click();
+			} catch (Exception e1) {
+				logger.info("Process Anyway Btn is not visible");
 			}
-		} catch (Exception e) {
-			logger.info("On Leave Alert was not displayed");
-		}
+		
+		// Employee OnLeave Alert Handle
+		
+			try {
+				if (this.acceptBtn.isDisplayed()) {
+					this.acceptBtn.click();
+				}
+			} catch (Exception e2) {
+				logger.info("On Leave Alert was not displayed");
+			}
+		
 
 		hardWait(2);
-		
+
 		logger.info("Ending of clickOnSave method");
 	}
 	
-	public boolean isWorkAddedSucessfully() {
-		logger.info("Starting of isWorkAddedSucessfully method");
-		 
-		boolean isWorkAddedSucessfully =false;
-		
-		try {
+	public void clickOnSaveWhileNewAdd() {
+		logger.info("Starting of clickOnSaveWhileNewAdd method");
+
+		for(int i =0; i<1;i++) {
 			
-			if (workCreatedSucessfullyText.isDisplayed()) {
+			waitUntilElementVisible(driver, this.saveBtn);
+			this.saveBtn.click();
+			// Process Conflict Alert Handling
+			try {
+				if(sucessfullyText.isDisplayed()) {
+					break;
+				}
 				
-				isWorkAddedSucessfully =true;
+			} catch (Exception e) {
+				try {
+					waitUntilElementVisible(driver, this.btnProcessAnyway);
+					this.btnProcessAnyway.click();
+				} catch (Exception e1) {
+					logger.info("Process Anyway Btn is not visible");
+				}
 			}
-		} catch (Exception e) {
 			
-			isWorkAddedSucessfully =false;
+			// Employee OnLeave Alert Handle
+			try {
+				if(sucessfullyText.isDisplayed()) {
+					break;
+				}
+				
+			} catch (Exception e) {
+				try {
+					if (this.acceptBtn.isDisplayed()) {
+						this.acceptBtn.click();
+					}
+				} catch (Exception e2) {
+					logger.info("On Leave Alert was not displayed");
+				}
+			}
+
 		}
 		
-		logger.info("Ending of isWorkAddedSucessfully method");
 		
+		hardWait(2);
+
+		logger.info("Ending of clickOnSaveWhileNewAdd method");
+	}
+
+	public boolean isWorkAddedSucessfully() {
+		logger.info("Starting of isWorkAddedSucessfully method");
+
+		boolean isWorkAddedSucessfully = false;
+
+		try {
+
+			if (workCreatedSucessfullyText.isDisplayed()) {
+
+				isWorkAddedSucessfully = true;
+			}
+		} catch (Exception e) {
+
+			isWorkAddedSucessfully = false;
+		}
+
+		logger.info("Ending of isWorkAddedSucessfully method");
+
 		return isWorkAddedSucessfully;
 	}
 
 	public boolean isWorkModifiedSucessfully() {
 		logger.info("Starting of isWorkModifiedSucessfully method");
-		 
-		boolean isWorkModifiedSucessfully =false;
-		
+
+		boolean isWorkModifiedSucessfully = false;
+
 		try {
-			
+
 			if (workModifiedSucessfullyText.isDisplayed()) {
-				
-				isWorkModifiedSucessfully =true;
+
+				isWorkModifiedSucessfully = true;
 			}
 		} catch (Exception e) {
-			
-			isWorkModifiedSucessfully =false;
+
+			isWorkModifiedSucessfully = false;
 		}
-		
+
 		logger.info("Ending of isWorkModifiedSucessfully method");
-		
+
 		return isWorkModifiedSucessfully;
 	}
 
-	
 	public void clickOnEditIcn() {
 		logger.info("Starting of clickOnEditIcn method");
+
 		waitUntilElementVisible(driver, this.workEditIcon);
-		clickOnWebElement(workEditIcon);
+		clickOnWebElementUsingJavascript(workEditIcon);
+
 		logger.info("Ending of clickOnEditIcn menthod");
 	}
 
 	public void clickOnWorkSelectButton() {
 		logger.info("Starting of clickOnWorkSelectButton method");
+
+		hardWait(3);
 		waitUntilElementVisible(driver, this.selectWork);
-		clickOnWebElement(selectWork);
+		clickOnWebElementUsingJavascript(selectWork);
+		hardWait(3);
+
 		logger.info("Ending of clickOnWorkSelectButton menthod");
 	}
-	
+
+	public void clickOnReaAsignWork() {
+		logger.info("Starting of clickOnReaAsignWork method");
+
+		waitUntilElementVisible(driver, this.reassignWorkBtn);
+		clickOnWebElementUsingJavascript(reassignWorkBtn);
+		hardWait(2);
+
+		logger.info("Ending of clickOnReaAsignWork menthod");
+	}
+
+	public void deleteSelectedWork() {
+		logger.info("Starting of clickOnDeleteWork method");
+
+		waitUntilElementVisible(driver, this.deleteWorkBtn);
+		clickOnWebElementUsingJavascript(deleteWorkBtn);
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.deleteCheckbox);
+		clickOnWebElementUsingJavascript(deleteCheckbox);
+
+		waitUntilElementVisible(driver, this.deleteSelected);
+		clickOnWebElementUsingJavascript(deleteSelected);
+
+		hardWait(3);
+
+		driver.switchTo().alert().accept();
+
+		logger.info("Ending of clickOnDeleteWork menthod");
+	}
+
+	public void deleteFilteredWork() {
+		logger.info("Starting of deleteFilteredWork method");
+
+		waitUntilElementVisible(driver, this.deleteFilteredWorkBtn);
+		clickOnWebElementUsingJavascript(deleteFilteredWorkBtn);
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.deleteFilteredCheckbox);
+		clickOnWebElementUsingJavascript(deleteFilteredCheckbox);
+
+		waitUntilElementVisible(driver, this.deleteFiltered);
+		clickOnWebElementUsingJavascript(deleteFiltered);
+
+		hardWait(3);
+
+		logger.info("Ending of deleteFilteredWork menthod");
+	}
+
+	public void clickOnSelectEmployee() {
+		logger.info("Starting of clickOnselectEmployee method");
+
+		hardWait(3);
+		waitUntilElementVisible(driver, this.selectEmployee);
+		clickUsingActionClass(selectEmployee);
+		hardWait(3);
+
+		logger.info("Ending of clickOnselectEmployee menthod");
+	}
+
+	public void clickOnSeachEmp(String empName) {
+		logger.info("Starting of clickOnSeachEmp method");
+
+		waitUntilElementVisible(driver, this.searchEmp);
+		clickOnWebElementUsingJavascript(searchEmp);
+		searchEmp.sendKeys(empName);
+
+		logger.info("Ending of clickOnSeachEmp menthod");
+	}
+
+	public void clickOnEmp() {
+		logger.info("Starting of clickOnSeachEmp method");
+
+		waitUntilElementVisible(driver, this.selectEmp);
+		clickUsingActionClass(selectEmp);
+
+		logger.info("Ending of clickOnSeachEmp menthod");
+	}
+
+	public void assignWork() {
+		logger.info("Starting of assignWork method");
+
+		waitUntilElementVisible(driver, this.workAssignBtn);
+		clickOnWebElementUsingJavascript(workAssignBtn);
+
+		logger.info("Ending of assignWork menthod");
+	}
+
+	public void filterWork() {
+		logger.info("Starting of filterWork method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		scrollIntoView(workIdTxt);
+		waitUntilElementVisible(driver, this.workIdTxt);
+		// clickUsingActionClass(workIdTxt);
+		workIdTxt.sendKeys(workID);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWork menthod");
+	}
+
+	public boolean isWorkReassignedSucessfully() {
+		logger.info("Starting of isWorkReassignedSucessfully method");
+
+		boolean isWorkReassignedSucessfully = false;
+
+		scrollIntoView(workFilterBtn);
+		try {
+
+			if (empReassigned.isDisplayed()) {
+
+				isWorkReassignedSucessfully = true;
+			}
+		} catch (Exception e) {
+
+			isWorkReassignedSucessfully = false;
+		}
+
+		logger.info("Ending of isWorkReassignedSucessfully method");
+
+		return isWorkReassignedSucessfully;
+	}
+
+	public void getWorkId() {
+		logger.info("Starting of getWorkId method");
+
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workId);
+		workID = workId.getText();
+
+		logger.info("Ending of getWorkId menthod");
+	}
+
+	public boolean isWorkdDeletedSucessfully() {
+		logger.info("Starting of isWorkdDeletedSucessfully method");
+
+		hardWait(5);
+		boolean isWorkdDeletedSucessfully = false;
+		scrollIntoView(workFilterBtn);
+
+		try {
+
+			if (workId.isDisplayed()) {
+
+				isWorkdDeletedSucessfully = false;
+			}
+		} catch (Exception e) {
+
+			isWorkdDeletedSucessfully = true;
+		}
+
+		logger.info("Ending of isWorkdDeletedSucessfully method");
+
+		return isWorkdDeletedSucessfully;
+	}
+
 	public void logOut() {
 		logger.info("Starting of Logout method");
+
 		hardWait(3);
 		waitUntilElementVisible(driver, userNameBtn);
 		userNameBtn.click();
 		if (logoutBtn.get(logoutBtn.size() - 1).getText().equalsIgnoreCase("Logout")) {
 			logoutBtn.get(logoutBtn.size() - 1).click();
 		}
+
 		logger.info("Ending of Logout method");
 	}
 

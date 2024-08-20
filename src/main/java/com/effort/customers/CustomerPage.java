@@ -185,7 +185,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "((//div[@class='pq-cont']/table/tbody/tr)[3]/td)[2]")
 	private WebElement multipicklistvalues;
 
-	@FindBy(xpath = "(//input[contains(@class , 'btn')])[6]")
+	@FindBy(xpath = "//input[contains(@class , 'btn  btn-ok')]")
 	private WebElement multipickokbtn;
 
 	@FindBy(xpath = "//div[contains(@class,'select2-container-multi field')]")
@@ -315,7 +315,7 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//h5[text()='Total Visits Today']/following-sibling::button")
 	private WebElement closeIconOnTotalVisitsToday;
 
-	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]")
+	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]//i")
 	private WebElement activitySnapshot_btn;
 
 	@FindBy(id = "plannedDetails")
@@ -861,7 +861,7 @@ public class CustomerPage extends BaseAutomationPage {
 	}
 
 	public void pickMultiPickList() {
-		logger.info("Starting of pickMultiPickList Method");
+		//logger.info("Starting of pickMultiPickList Method");
 
 		scrollDown(100, multipicklistfield);
 		waitUntilElementVisible(driver, this.multipicklistfield);
@@ -877,8 +877,7 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
-
-
+		
 		try {
 			scrollIntoView(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownfield);
@@ -1336,7 +1335,7 @@ public class CustomerPage extends BaseAutomationPage {
 		clickUsingActionClass(activitySnapshot_btn);
 
 		this.hardWait(3);
-		switchToNewWindow(0);
+	//	switchToNewWindow(0);
 
 		logger.info("Ending of clickOnActivitySnapshotButton Method");
 

@@ -30,10 +30,9 @@ public class EntitiesProcessTest extends BaseAutomationTest {
 		this.goToSite(siteURL, driver);
 		this.entitiesprocess = new EntitiesProcess(driver);
 		this.loginPage = new LoginPage(driver);
-		this.loginPage.enterUserName(userName);
-		this.loginPage.clickOnPassword(password);
-		this.loginPage.clickOnLoginButton();
-		this.loginPage.clickOnSignOutFromAllSessions(userName,password);
+		
+		//LoginToApplication(userName, password);
+		LoginToApplication(testDataProp.getProperty("config.user"), testDataProp.getProperty("config.password"));
 		//this.entitiesprocess.clickonAppBuilder();
 		
 		logger.info("Ending of initinitEffortLogin Method Entities Process");
