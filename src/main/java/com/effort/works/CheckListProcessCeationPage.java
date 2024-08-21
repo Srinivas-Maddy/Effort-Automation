@@ -88,7 +88,7 @@ public class CheckListProcessCeationPage extends BaseAutomationPage{
 	private WebElement withDrawCard;
 	
 	
-	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs53_fieldLabel']")
 	private WebElement newTextFieldInput;
 	
 	@FindBy(id="home")

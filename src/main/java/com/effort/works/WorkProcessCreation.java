@@ -125,7 +125,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="(//input[@value='+ Add Field'])[2]")
 	private WebElement addFieldsButton;
 
-	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs53_fieldLabel']")
 	private WebElement modifiedFieldLabelInputField;
 
 	@FindBy(xpath="//ul[@class='workspecActionsConfig']/li/span[2]/a")
@@ -134,7 +134,7 @@ public class WorkProcessCreation extends BaseAutomationPage{
 	@FindBy(xpath="//a[contains(text(),'Restrict Access To Employee Groups')]")
 	private WebElement crdRestrictEmp;
 
-	@FindBy(xpath="//input[@id='formFieldSpecs52_fieldLabel']")
+	@FindBy(xpath="//input[@id='formFieldSpecs54_fieldLabel']")
 	private WebElement addNewWorkField;
 
 	@FindBy(xpath="//label[contains(text(),'Saved Successfully')]")
@@ -426,7 +426,8 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		scrollDown(1000, this.addFieldsButton);
 		this.addFieldsButton.click();
 		waitUntilElementVisible(driver, this.modifiedFieldLabelInputField);
-		this.modifiedFieldLabelInputField.click();
+		scrollIntoView(this.modifiedFieldLabelInputField);
+		hardWait(5);
 		this.modifiedFieldLabelInputField.sendKeys("New Field modification");
 		waitUntilElementVisible(driver, this.saveBtn);
 		scrollDown(1000, this.saveBtn);

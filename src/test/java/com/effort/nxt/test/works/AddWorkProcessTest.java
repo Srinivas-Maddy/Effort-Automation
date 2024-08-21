@@ -160,8 +160,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.assignWork();
 
 		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
-
-		addWork.clickOnWorkSelectButton();
 		
 		logger.info("Ending the reaasignWork Method");
 	}
@@ -194,6 +192,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Starting of the deleteFilteredWork method");
 
 		this.addWork.clickOnAddWorkBtn();
+		
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkName") + addWork.getCurrentDateTime());
 
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
