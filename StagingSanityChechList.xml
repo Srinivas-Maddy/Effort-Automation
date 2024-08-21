@@ -2,7 +2,7 @@
 <suite name="Web Automation Sanity Checklist">
 
 	<parameter name="browser" value="Chrome" />
-	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
+	<parameter name="siteURL" value="https://secure.spoors.in/effortx/login" />
 	<parameter name="headless" value="false" />
 
 	<listeners>

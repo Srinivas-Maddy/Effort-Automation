@@ -779,12 +779,14 @@ public class AddWorkProcess extends BaseAutomationPage {
 	public void deleteSelectedWork() {
 		logger.info("Starting of clickOnDeleteWork method");
 
+		hardWait(3);
 		waitUntilElementVisible(driver, this.deleteWorkBtn);
 		clickOnWebElementUsingJavascript(deleteWorkBtn);
 		hardWait(3);
 
 		waitUntilElementVisible(driver, this.deleteCheckbox);
 		clickOnWebElementUsingJavascript(deleteCheckbox);
+		hardWait(3);
 
 		waitUntilElementVisible(driver, this.deleteSelected);
 		clickOnWebElementUsingJavascript(deleteSelected);
@@ -805,7 +807,8 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, this.deleteFilteredCheckbox);
 		clickOnWebElementUsingJavascript(deleteFilteredCheckbox);
-
+		hardWait(3);
+		
 		waitUntilElementVisible(driver, this.deleteFiltered);
 		clickOnWebElementUsingJavascript(deleteFiltered);
 

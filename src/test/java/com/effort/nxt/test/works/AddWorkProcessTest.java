@@ -160,8 +160,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.assignWork();
 
 		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
-
-		addWork.clickOnWorkSelectButton();
 		
 		logger.info("Ending the reaasignWork Method");
 	}
