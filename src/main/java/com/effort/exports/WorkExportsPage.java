@@ -53,10 +53,10 @@ public class WorkExportsPage extends BaseAutomationPage{
 	@FindBy(xpath="//div[@id='s2id_F1S_F4F']")
 	private WebElement empField;
 	
-	@FindBy(xpath="//input[@id='s2id_autogen10_search']")
+	@FindBy(xpath="//input[@id='s2id_autogen14_search']")
 	private WebElement employeeNameInput;
 	
-	@FindBy(xpath="//ul[@id='select2-results-10']/li[1]")
+	@FindBy(xpath="//ul[@id='select2-results-14']/li[1]")
 	private WebElement empSearchResult;
 	
 	@FindBy(id="search")
@@ -182,6 +182,7 @@ public class WorkExportsPage extends BaseAutomationPage{
 	public void selectCheckbox() {
 		logger.info("Starting of selectCheckbox Method");
 		
+		hardWait(10);
 		for (int i = 0; i < checkBoxes.size(); i++) {
 			waitUntilElementVisible(driver, this.checkBoxes.get(i));
 			clickOnWebElement(this.checkBoxes.get(i));

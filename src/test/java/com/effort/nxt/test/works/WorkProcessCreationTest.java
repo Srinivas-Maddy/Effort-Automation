@@ -82,7 +82,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest {
 		logger.info("Ending of validateCreateProcess method");
 	}
 
-	@Test(priority = 3, description = "Modifying the Work Spec", groups = { "sanity" }, enabled = false)
+	@Test(priority = 3, description = "Modifying the Work Spec", groups = { "sanity" })
 	@Description("Test Case #3, Modifying work spec")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #3, Modifying the Process")

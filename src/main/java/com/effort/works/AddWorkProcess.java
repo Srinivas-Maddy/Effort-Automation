@@ -54,7 +54,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[4]")
 	private WebElement assigneeDropdown;
 
-	@FindBy(xpath = "//input[@id='s2id_autogen1437_search']")
+	@FindBy(xpath = "//div[@class='select2-search']/input[contains(@aria-activedescendant,'select2-result-label')]")
 	private WebElement enterName;
 
 	@FindBy(xpath = "//div[@id='select2-drop']/ul/li")
@@ -180,10 +180,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//button[@id='assignTo']")
 	private WebElement reassignWorkBtn;
 
-	@FindBy(xpath = "//span[@id='select2-chosen-7']")
+	@FindBy(xpath = "//span[contains(text(),'Search for Employees')]")
 	private WebElement selectEmployee;
 
-	@FindBy(xpath = "//input[@id='s2id_autogen7_search']")
+	@FindBy(xpath = "//input[@id='s2id_autogen9_search']")
 	private WebElement searchEmp;
 
 	@FindBy(xpath = "//div[@role='option']")
@@ -759,6 +759,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Starting of clickOnWorkSelectButton method");
 
 		hardWait(3);
+		scrollIntoView(this.selectWork);
 		waitUntilElementVisible(driver, this.selectWork);
 		clickOnWebElementUsingJavascript(selectWork);
 		hardWait(3);
