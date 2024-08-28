@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Web Automation Sanity Checklist">
+<suite name="Web Production Automation Sanity Checklist">
 
 	<parameter name="browser" value="Chrome" />
-
-	<!--<parameter name="siteURL" value="https://secure.spoors.in/effortx/login"/>	 -->
 
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />

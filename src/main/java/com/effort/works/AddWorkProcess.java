@@ -787,12 +787,12 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, this.deleteCheckbox);
 		clickOnWebElementUsingJavascript(deleteCheckbox);
-		hardWait(3);
+		hardWait(5);
 
 		waitUntilElementVisible(driver, this.deleteSelected);
 		clickOnWebElementUsingJavascript(deleteSelected);
 
-		hardWait(3);
+		hardWait(6);
 
 		driver.switchTo().alert().accept();
 
