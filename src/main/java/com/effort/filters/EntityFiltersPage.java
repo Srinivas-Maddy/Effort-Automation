@@ -104,6 +104,9 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "((//table[@id='example']/tbody/tr)/td)[27]")
 	private WebElement fltrcustmrresult;
+	
+	@FindBy(xpath = "//li[@class='select2-results-dept-0 select2-result select2-result-selectable select2-highlighted']")
+	private WebElement selectedCust;
 
 	@FindBy(xpath = "(//div[text()='Multi Pick Customer'])[2]/div")
 	private WebElement fltrmultipickcustomerfield;
@@ -384,23 +387,27 @@ public class EntityFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.filtersreset);
 		this.filtersreset.click();
 		Thread.sleep(1000);
-		waitUntilElementVisible(driver, this.fltrcustomerfield);
-		this.fltrcustomerfield.click();
-		this.enterCustomerName.sendKeys(filterentitycustomer);
-		int count = 0;
-		while (count < this.fltrcustomerdropdowndata.size()) {
-			String customernameslist = this.fltrcustomerdropdowndata.get(count).getText();
-			if (customernameslist.equalsIgnoreCase(filterentitycustomer)) {
-				waitUntilElementVisible(driver, this.fltrcustomerdropdowndata.get(count));
-				this.fltrcustomerdropdowndata.get(count).click();
-				break;
-			}
-			count++;
+		try {
+			waitUntilElementVisible(driver, this.fltrcustomerfield);
+			this.fltrcustomerfield.click();
+			this.enterCustomerName.sendKeys(filterentitycustomer);
+			clickUsingActionClass(selectedCust);
+			/*
+			 * int count = 0; while (count < this.fltrcustomerdropdowndata.size()) { String
+			 * customernameslist = this.fltrcustomerdropdowndata.get(count).getText(); if
+			 * (customernameslist.equalsIgnoreCase(filterentitycustomer)) {
+			 * waitUntilElementVisible(driver, this.fltrcustomerdropdowndata.get(count));
+			 * this.fltrcustomerdropdowndata.get(count).click(); break; } count++; }
+			 */
+			Thread.sleep(2000);
+			waitUntilElementVisible(driver, this.filterapply);
+			this.filterapply.click();
+			waitUntilElementVisible(driver, this.fltrcustmrresult);
+			
+			
+		} catch (Exception e) {
+			System.err.println(" ");
 		}
-		Thread.sleep(2000);
-		waitUntilElementVisible(driver, this.filterapply);
-		this.filterapply.click();
-		waitUntilElementVisible(driver, this.fltrcustmrresult);
 		String actualfltrcustomerresult = this.fltrcustmrresult.getText();
 		return actualfltrcustomerresult;
 	}

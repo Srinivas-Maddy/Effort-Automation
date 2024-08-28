@@ -1,9 +1,12 @@
 package com.effort.nxt.util;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 import org.testng.log4testng.Logger;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -34,8 +37,12 @@ public class TestListener implements ITestListener {
 		emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
 		emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
 		emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
-		emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n\n");
+		emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n");
 		emailContent.append("========================").append("\n\n");
+		
+		emailContent.append("Click here to view the detailed report.").append("\n");
+		emailContent.append("https://spoorswebautomationreport.netlify.app/").append("\n\n");
+
 
 		emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
 		emailContent.append("============================================").append("\n");
@@ -110,4 +117,65 @@ public class TestListener implements ITestListener {
 		logger.debug("*** Test failed but within percentage % " + result.getMethod().getMethodName());
 		logger.info("========================================================================");
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@AfterSuite
+    public void generateAllureReport() {
+        String[] command = {"allure", "generate", "allure-results", "--clean"};
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        AtomicReference<Process> process = new AtomicReference<>();
+
+        try {
+            process.set(processBuilder.start());
+
+            Thread timeoutThread = new Thread(() -> {
+                try {
+                    Thread.sleep(5000); // 5 seconds timeout
+                    if (process.get().isAlive()) {
+                        process.get().destroy(); // Kill the process if it's still running
+                        throw new RuntimeException("Could not generate Allure report: Timeout after 5 seconds");
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+            timeoutThread.start();
+
+            int exitCode = process.get().waitFor();
+            timeoutThread.interrupt(); // Interrupt timeout thread if process finishes on time
+
+            if (exitCode != 0) {
+                throw new RuntimeException("Could not generate Allure report");
+            }
+
+            System.out.println("Allure report successfully generated");
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (process.get() != null) {
+                process.get().destroy();
+            }
+        }
+    }
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
