@@ -200,7 +200,7 @@ public class EntityFiltersTest extends BaseAutomationTest{
 		logger.info("Ending of entityCustomerFilter Method");
 	}
 	
-	@Test(priority = 13, description = "Test Case #13, Validation of Entity multipick customer filtering" ,groups = {"Sanity"},enabled = false)
+	@Test(priority = 13, description = "Test Case #13, Validation of Entity multipick customer filtering" ,groups = {"Sanity"})
 	@Description("Validation of Entity multipick customer Filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Entity filters")
