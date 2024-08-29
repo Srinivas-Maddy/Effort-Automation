@@ -208,6 +208,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 	// 'selected')]//td//a[contains(@href,'/effortx/web/work/details/view/')])[2]
 	@FindBy(xpath = "(//a[contains(@href,'/effortx/web/work/details/view/')])[2]")
 	private WebElement workId;
+	
+	@FindBy(xpath = "//td[text()='No data available. Please re-check the filters']")
+	private WebElement noResultsFount;
 
 	@FindBy(xpath = "//button[@id='filters']")
 	private WebElement workFilterBtn;
@@ -970,13 +973,13 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		try {
 
-			if (workId.isDisplayed()) {
+			if (noResultsFount.isDisplayed()) {
 
-				isWorkdDeletedSucessfully = false;
+				isWorkdDeletedSucessfully = true;
 			}
 		} catch (Exception e) {
 
-			isWorkdDeletedSucessfully = true;
+			isWorkdDeletedSucessfully = false;
 		}
 
 		logger.info("Ending of isWorkdDeletedSucessfully method");
