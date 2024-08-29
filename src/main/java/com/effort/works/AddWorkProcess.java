@@ -230,6 +230,12 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='deleteFiltered']")
 	private WebElement deleteFiltered;
 
+	@FindBy(xpath = "//button[@id='gotoNextAction2']")
+	private WebElement workActionButton;
+	
+	@FindBy(xpath = "//label[text()='Completed']")
+	private WebElement workCompleted;
+	
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -895,6 +901,28 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		return isWorkReassignedSucessfully;
 	}
+	
+	public boolean isWorkCompletedSucessfully() {
+		logger.info("Starting of isWorkCompletedSucessfully method");
+
+		boolean isWorkCompletedSucessfully = false;
+
+		scrollIntoView(workCompleted);
+		try {
+
+			if (workCompleted.isDisplayed()) {
+
+				isWorkCompletedSucessfully = true;
+			}
+		} catch (Exception e) {
+
+			isWorkCompletedSucessfully = false;
+		}
+
+		logger.info("Ending of isWorkCompletedSucessfully method");
+
+		return isWorkCompletedSucessfully;
+	}
 
 	public void getWorkId() {
 		logger.info("Starting of getWorkId method");
@@ -906,7 +934,29 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		logger.info("Ending of getWorkId menthod");
 	}
+	
+	public void clickOnWorkId() {
+		logger.info("Starting of clickOnWorkId method");
 
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workId);
+		clickOnWebElement(workId);
+
+		logger.info("Ending of clickOnWorkId menthod");
+	}
+
+	public void clickOnWorkActionButton() {
+		logger.info("Starting of clickOnWorkActionButton method");
+
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workActionButton);
+		clickOnWebElement(workActionButton);
+
+		logger.info("Ending of clickOnWorkActionButton menthod");
+	}
+	
 	public boolean isWorkdDeletedSucessfully() {
 		logger.info("Starting of isWorkdDeletedSucessfully method");
 

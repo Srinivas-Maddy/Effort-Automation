@@ -22,7 +22,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddWorkProcessTest.class);
 	private AddWorkProcess addWork;
-	private FormSubmission addWork1;
+	private FormSubmission addwork;
 
 	// Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
@@ -34,8 +34,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.goToSite(siteURL, driver);
 		this.addWork = new AddWorkProcess(driver);
 		this.loginPage = new LoginPage(driver);
-		this.addWork1 = new FormSubmission(driver);
-
+		this.addwork = new FormSubmission(driver);
 		LoginToApplication(userName, password);
 
 		logger.info("Ending of initEffortLogin method in Work Creation process");
@@ -58,31 +57,31 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnCurrentDateTime();
 		// this.addWork.pickWorkEndDate();
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
-		this.addWork1.enterCurrency(formDataProp.getProperty("currency"));
+		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
 		this.addWork.clickOnDatePicker(formDataProp.getProperty("formDate"));
-		this.addWork1.enterDuration(formDataProp.getProperty("Duration"));
+		this.addwork.enterDuration(formDataProp.getProperty("Duration"));
 		this.addWork.enterNumberData(formDataProp.getProperty("Number"));
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
 		this.addWork.pickTime(formDataProp.getProperty("formTime"));
-		this.addWork1.enterEmail(formDataProp.getProperty("Email"));
-		this.addWork1.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
-		this.addWork1.phoneNumber(formDataProp.getProperty("MobileNumber"));
-		this.addWork1.URL(formDataProp.getProperty("URL"));
+		this.addwork.enterEmail(formDataProp.getProperty("Email"));
+		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
+		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
+		this.addwork.URL(formDataProp.getProperty("URL"));
 
-		addWork1.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
 		// this.formSub.audioData();
 
-		addWork1.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
 		// this.formSub.documentUpload();
 
-		addWork1.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
 		// this.formSub.imageUpload();
 
-		addWork1.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
 		// this.formSub.videoUpload();
 
 		this.addWork.pickCountry();
-		this.addWork1.pickCustomer();
+		this.addwork.pickCustomer();
 		this.addWork.pickCustomerType();
 		this.addWork.pickEmployee();
 
@@ -160,19 +159,40 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.assignWork();
 
 		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
-
-		addWork.clickOnWorkSelectButton();
 		
 		logger.info("Ending the reaasignWork Method");
 	}
 
-	@Test(priority = 4, description = "Delete select work", groups = { "sanity" })
-	@Description("Test Case #4, Delete select work")
+	@Test(priority = 4, description = "Complete work", groups = { "sanity" })
+	@Description("Test Case #4, Complete work")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #4, Delete select work")
+	@Story("Test Case #4, Complete work")
+	public void completeWork() throws InterruptedException {
+		logger.info("Starting of the completeWork method");
+
+		addWork.clickOnWorkId();
+
+		this.ActionWork();
+		
+		this.ActionWork();
+		
+		this.ActionWork();
+		
+		Assert.assertTrue(addWork.isWorkCompletedSucessfully());
+		
+		logger.info("Ending the completeWork Method");
+	}
+	
+	@Test(priority = 5, description = "Delete select work", groups = { "sanity" })
+	@Description("Test Case #5, Delete select work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #5, Delete select work")
 	public void deleteSelectedWork() throws InterruptedException {
 		logger.info("Starting of the deleteSelectedWork method");
 
+		this.addWork.clickOnProcessModule();
+		this.addWork.clickOnWorkName();
+		
 		addWork.getWorkId();
 
 		addWork.clickOnWorkSelectButton();
@@ -186,10 +206,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteSelectedWork Method");
 	}
 
-	@Test(priority = 5, description = "Delete filtered work", groups = { "sanity" })
-	@Description("Test Case #5, Delete filtered work")
+	@Test(priority = 6, description = "Delete filtered work", groups = { "sanity" })
+	@Description("Test Case #6, Delete filtered work")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #5, Delete filtered work")
+	@Story("Test Case #6, Delete filtered work")
 	public void deleteFilteredWork() throws InterruptedException {
 		logger.info("Starting of the deleteFilteredWork method");
 
@@ -215,6 +235,53 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteFilteredWork Method");
 	}
 
+	
+	
+	public void ActionWork() throws InterruptedException {
+		logger.info("Starting of the completeWork method");
+
+		addWork.clickOnWorkActionButton();
+
+		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
+		this.addwork.clickOnDatePicker();
+		this.addwork.clickOnCurrentDate();
+		this.addwork.clickOnDateTimePicker();
+		this.addwork.clickOnCurrentDateTime();
+		this.addwork.enterDuration(formDataProp.getProperty("Duration"));
+		this.addwork.ClickOnMonthPicker();
+		this.addwork.clickOnCurrentMonth();
+		this.addwork.enterNumberData(formDataProp.getProperty("Number"));
+		this.addwork.enterTextData(formDataProp.getProperty("Text"));
+		this.addwork.pickTime();
+		this.addwork.enterEmail(formDataProp.getProperty("Email"));
+		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
+		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
+		this.addwork.URL(formDataProp.getProperty("URL"));
+			
+		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+		//this.formSub.audioData();
+		
+		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+		//this.formSub.documentUpload();
+		
+		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+		//this.formSub.imageUpload();
+		
+		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+	   //this.formSub.videoUpload();
+		
+		this.addwork.pickCountry();
+		this.addwork.pickCustomer();
+		this.addwork.pickCustomerType();
+		this.addwork.pickEmployee();
+		this.addwork.pickMultiPickCustomer();
+		this.addwork.SelectTerritory();
+		this.addwork.selectYesOrNo();
+		this.addwork.clickOnSave();
+		
+		logger.info("Ending the completeWork Method");
+	}
+	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
