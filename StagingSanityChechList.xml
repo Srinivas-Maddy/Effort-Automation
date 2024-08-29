@@ -13,7 +13,7 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Production Sanity CheckList">
+	<test name="Staging Sanity CheckList">
 
 		<classes>
 			<class name="com.effort.nxt.test.LoginTest" />
