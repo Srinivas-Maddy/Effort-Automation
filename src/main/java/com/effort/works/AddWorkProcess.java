@@ -27,6 +27,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//h5[contains(text(),'Automation Action Procoss')]")
 	private WebElement workName;
 
+	@FindBy(xpath = "//h5[contains(text(),'Asmart Work Process')]")
+	private WebElement smartWorkName;
+
 	@FindBy(xpath = "//button[@id='addWorkBtn']")
 	private WebElement addWorkBtn;
 
@@ -56,6 +59,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(xpath = "//div[@class='select2-search']/input[contains(@aria-activedescendant,'select2-result-label')]")
 	private WebElement enterName;
+
+	@FindBy(xpath = "(//div[@class='select2-search']/input[contains(@aria-activedescendant,'select2-result-label')])[2]")
+	private WebElement assignEmpName;
 
 	@FindBy(xpath = "//div[@id='select2-drop']/ul/li")
 	private List<WebElement> employeeNames;
@@ -101,6 +107,12 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(xpath = "//select[@id='fields21_fieldValue']/following-sibling::button")
 	private WebElement employeePicker;
+
+	@FindBy(xpath = "//div[@id='s2id_fields4_fieldValue']")
+	private WebElement smartWorkEmployeePicker;
+
+	@FindBy(xpath = "//div[@id='s2id_fields3_fieldValue']")
+	private WebElement assignSmartWorkEmployeePicker;
 
 	@FindBy(xpath = "//table[@class='pq-grid-table pq-grid-td-border-right pq-grid-td-border-bottom ']/tbody/tr[3]/td[2]")
 	private WebElement pickerSelection;
@@ -173,7 +185,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(xpath = "//div[contains(text(),'successfull')]")
 	private WebElement sucessfullyText;
-	
+
 	@FindBy(xpath = "//input[@id='selectWork']")
 	private WebElement selectWork;
 
@@ -208,7 +220,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 	// 'selected')]//td//a[contains(@href,'/effortx/web/work/details/view/')])[2]
 	@FindBy(xpath = "(//a[contains(@href,'/effortx/web/work/details/view/')])[2]")
 	private WebElement workId;
-	
+
 	@FindBy(xpath = "//td[text()='No data available. Please re-check the filters']")
 	private WebElement noResultsFount;
 
@@ -235,10 +247,16 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(xpath = "//button[@id='gotoNextAction2']")
 	private WebElement workActionButton;
-	
+
+	@FindBy(xpath = "//button[contains(@onclick, 'accept')]")
+	private WebElement smartWorkAcceptBtn;
+
+	@FindBy(xpath = "//span[text()='Ok']")
+	private WebElement smartWorkOkBtn;
+
 	@FindBy(xpath = "//label[text()='Completed']")
 	private WebElement workCompleted;
-	
+
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -544,6 +562,17 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("ending of click on work name method");
 	}
 
+	public void clickOnSmartWorkName() {
+		logger.info("Starting of clickOnSmartWorkName method");
+
+		waitUntilElementVisible(driver, this.smartWorkName);
+		this.searchBox.sendKeys("Asmart Work Process");
+		waitUntilElementVisible(driver, this.smartWorkName);
+		this.smartWorkName.click();
+
+		logger.info("ending of clickOnSmartWorkName method");
+	}
+
 	public void clickOnAddWorkBtn() {
 		logger.info("Starting of clickOnAddWorkBtn method");
 
@@ -617,7 +646,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void assignEmplpoyee(String assigneeName) {
 		logger.info("Starting of assign Employee");
-		
+
 		scrollIntoView(assigneeDropdown);
 
 		waitUntilElementVisible(driver, this.assigneeDropdown);
@@ -638,48 +667,95 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of assign Employee");
 	}
 
+	public void assignSmartWorkEmplpoyee(String assigneeName) {
+		logger.info("Starting of assignSmartWorkEmplpoyee");
+
+		waitUntilElementVisible(driver, this.assignSmartWorkEmployeePicker);
+		this.assignSmartWorkEmployeePicker.click();
+		waitUntilElementVisible(driver, this.assignEmpName);
+		this.assignEmpName.sendKeys(assigneeName);
+		for (int i = 0; i < employeeNames.size(); i++) {
+			String actualEmpName = employeeNames.get(i).getText();
+			if (actualEmpName.equalsIgnoreCase(assigneeName)) {
+				waitUntilElementVisible(driver, employeeNames.get(i));
+				employeeNames.get(i).click();
+				break;
+			}
+
+		}
+		hardWait(3);
+
+		logger.info("Ending of assignSmartWorkEmplpoyee");
+	}
+
+	public void smartWorkEmplpoyee(String assigneeName) {
+		logger.info("Starting of smartEmplpoyeee");
+
+		waitUntilElementVisible(driver, this.smartWorkEmployeePicker);
+		this.smartWorkEmployeePicker.click();
+		waitUntilElementVisible(driver, this.enterName);
+		this.enterName.sendKeys(assigneeName);
+		for (int i = 0; i < employeeNames.size(); i++) {
+			String actualEmpName = employeeNames.get(i).getText();
+			if (actualEmpName.equalsIgnoreCase(assigneeName)) {
+				waitUntilElementVisible(driver, employeeNames.get(i));
+				employeeNames.get(i).click();
+				break;
+			}
+
+		}
+		hardWait(3);
+
+		logger.info("Ending of smartEmplpoyee");
+	}
+
 	public void clickOnSave() {
 		logger.info("Starting of clickOnSave method");
 
-		waitUntilElementVisible(driver, this.saveBtn);
-		this.saveBtn.click();
-		// Process Conflict Alert Handling
+		try {
+			waitUntilElementVisible(driver, this.saveBtn);
+			this.saveBtn.click();
+			// Process Conflict Alert Handling
 			try {
 				waitUntilElementVisible(driver, this.btnProcessAnyway);
 				this.btnProcessAnyway.click();
 			} catch (Exception e1) {
 				logger.info("Process Anyway Btn is not visible");
 			}
-		
-		// Employee OnLeave Alert Handle
-		
+
+			// Employee OnLeave Alert Handle
+
 			try {
+				this.hardWait(3);
 				if (this.acceptBtn.isDisplayed()) {
 					this.acceptBtn.click();
 				}
 			} catch (Exception e2) {
 				logger.info("On Leave Alert was not displayed");
 			}
-		
 
-		hardWait(2);
+			hardWait(2);
+
+		} catch (Exception e) {
+			System.out.println("Work Not Saved ");
+		}
 
 		logger.info("Ending of clickOnSave method");
 	}
-	
+
 	public void clickOnSaveWhileNewAdd() {
 		logger.info("Starting of clickOnSaveWhileNewAdd method");
 
-		for(int i =0; i<1;i++) {
-			
+		for (int i = 0; i < 1; i++) {
+
 			waitUntilElementVisible(driver, this.saveBtn);
 			this.saveBtn.click();
 			// Process Conflict Alert Handling
 			try {
-				if(sucessfullyText.isDisplayed()) {
+				if (sucessfullyText.isDisplayed()) {
 					break;
 				}
-				
+
 			} catch (Exception e) {
 				try {
 					waitUntilElementVisible(driver, this.btnProcessAnyway);
@@ -688,13 +764,13 @@ public class AddWorkProcess extends BaseAutomationPage {
 					logger.info("Process Anyway Btn is not visible");
 				}
 			}
-			
+
 			// Employee OnLeave Alert Handle
 			try {
-				if(sucessfullyText.isDisplayed()) {
+				if (sucessfullyText.isDisplayed()) {
 					break;
 				}
-				
+
 			} catch (Exception e) {
 				try {
 					if (this.acceptBtn.isDisplayed()) {
@@ -706,8 +782,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 			}
 
 		}
-		
-		
+
 		hardWait(2);
 
 		logger.info("Ending of clickOnSaveWhileNewAdd method");
@@ -818,7 +893,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.deleteFilteredCheckbox);
 		clickOnWebElementUsingJavascript(deleteFilteredCheckbox);
 		hardWait(3);
-		
+
 		waitUntilElementVisible(driver, this.deleteFiltered);
 		clickOnWebElementUsingJavascript(deleteFiltered);
 
@@ -863,6 +938,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.workAssignBtn);
 		clickOnWebElementUsingJavascript(workAssignBtn);
 
+		this.hardWait(3);
 		logger.info("Ending of assignWork menthod");
 	}
 
@@ -889,6 +965,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public boolean isWorkReassignedSucessfully() {
 		logger.info("Starting of isWorkReassignedSucessfully method");
+		this.hardWait(3);
 
 		boolean isWorkReassignedSucessfully = false;
 
@@ -908,7 +985,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		return isWorkReassignedSucessfully;
 	}
-	
+
 	public boolean isWorkCompletedSucessfully() {
 		logger.info("Starting of isWorkCompletedSucessfully method");
 
@@ -941,14 +1018,14 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		logger.info("Ending of getWorkId menthod");
 	}
-	
+
 	public void clickOnWorkId() {
 		logger.info("Starting of clickOnWorkId method");
 
 		hardWait(3);
 
 		waitUntilElementVisible(driver, this.workId);
-		clickOnWebElement(workId);
+		clickOnWebElementUsingJavascript(workId);
 
 		logger.info("Ending of clickOnWorkId menthod");
 	}
@@ -956,14 +1033,35 @@ public class AddWorkProcess extends BaseAutomationPage {
 	public void clickOnWorkActionButton() {
 		logger.info("Starting of clickOnWorkActionButton method");
 
-		hardWait(3);
+		hardWait(5);
 
 		waitUntilElementVisible(driver, this.workActionButton);
 		clickOnWebElement(workActionButton);
 
 		logger.info("Ending of clickOnWorkActionButton menthod");
 	}
-	
+
+	public void clickOnAccept() {
+		logger.info("Starting of clickOnAccept method");
+
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.smartWorkAcceptBtn);
+		clickOnWebElement(smartWorkAcceptBtn);
+
+		logger.info("Ending of clickOnAccept menthod");
+	}
+
+	public void clickOnOkButton() {
+		logger.info("Starting of clickOnOkButton method");
+
+		hardWait(3);
+
+		clickOnWebElement(smartWorkOkBtn);
+
+		logger.info("Ending of clickOnOkButton menthod");
+	}
+
 	public boolean isWorkdDeletedSucessfully() {
 		logger.info("Starting of isWorkdDeletedSucessfully method");
 
