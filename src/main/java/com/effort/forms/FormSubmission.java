@@ -263,8 +263,10 @@ public class FormSubmission extends BaseAutomationPage {
 
 	public void enterCurrency(String CurrencyValue) {
 		logger.info("Starting of enterCurrency method");
+		
 		waitUntilElementVisible(driver, currencyField);
 		this.currencyField.sendKeys(CurrencyValue);
+		
 		logger.info("Ending of enterCurrency method");
 	}
 
@@ -502,6 +504,7 @@ public class FormSubmission extends BaseAutomationPage {
 		logger.info("Starting of pick coustomer method");
 		waitUntilElementVisible(driver, this.customerPicker);
 		this.customerPicker.click();
+		this.hardWait(3);
 		waitUntilElementVisible(driver, this.pickerSelection);
 		this.pickerSelection.click();
 		this.okBtn.click();
@@ -576,8 +579,13 @@ public class FormSubmission extends BaseAutomationPage {
 
 	public void clickOnSave() {
 		logger.info("Starting of Click on Save method");
+		
+		this.hardWait(3);
 		waitUntilElementVisible(driver, saveBtn);
-		this.saveBtn.click();
+		clickOnWebElement(saveBtn);
+		
+		this.hardWait(3);
+		
 		logger.info("Starting of Click on Save method");
 	}
 
