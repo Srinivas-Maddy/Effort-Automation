@@ -66,7 +66,7 @@ public class FormFiltersPage extends BaseAutomationPage{
 	@FindBy(xpath="((//div[@class='xdsoft_time_box xdsoft_scroller_box'])[3]/div)[1]/div[contains(@class,'xdsoft_current')]")
 	private WebElement currentTimeFromDate;
 	
-	@FindBy(xpath="(//div[@class='xdsoft_datetimepicker xdsoft_noselect xdsoft_' ])[3]/div/div[4]/table/tbody/tr/td[contains(@class,'xdsoft_current xdsoft_today')]")
+	@FindBy(xpath="(//div[@class='xdsoft_datetimepicker xdsoft_noselect xdsoft_' ])[4]/div/div[2]/table/tbody/tr/td[contains(@class,'xdsoft_current xdsoft_today')]")
 	private WebElement currentDate;
 	
 	@FindBy(xpath="((//div[@class='xdsoft_time_box xdsoft_scroller_box'])[4]/div)[1]/div[contains(@class,'xdsoft_current')]")
@@ -92,6 +92,18 @@ public class FormFiltersPage extends BaseAutomationPage{
 	
 	@FindBy(xpath="(//div[contains(@class,'xdsoft_calendar')])[8]/table/tbody/tr/td[contains(@class,'xdsoft_current xdsoft')]")
 	private WebElement pickCurrentDate;
+	
+	@FindBy(id="F1S_F7F")
+	private WebElement numberFieldInput;
+	
+	@FindBy(xpath="//table[@id='example']/tbody/tr[1]/td[9]")
+	private WebElement numberFilterResult;
+	
+	@FindBy(id="F1S_F8F")
+	private WebElement textInput;
+	
+	@FindBy(xpath="//table[@id='example']/tbody/tr[1]/td[10]")
+	private WebElement textFilterResult;
 	
 	public FormFiltersPage(WebDriver driver) {
 		super(driver);
@@ -291,7 +303,7 @@ public class FormFiltersPage extends BaseAutomationPage{
 		logger.info("Ending of clickOnFilledDate Method");
 	}
 	
-	public void clickOnAndDate() {
+	public void clickOnEndDate() {
 		logger.info("Starting of clickOnAndDate Method");
 		
 		waitUntilElementVisible(driver, this.andDateField);
@@ -363,6 +375,7 @@ public class FormFiltersPage extends BaseAutomationPage{
 		
 		waitUntilElementVisible(driver, this.formDate);
 		clickOnWebElement(this.formDate);
+		hardWait(1);
 		try {
 			waitUntilElementVisible(driver, this.pickCurrentDate);
 			clickOnWebElement(this.pickCurrentDate);
@@ -376,6 +389,47 @@ public class FormFiltersPage extends BaseAutomationPage{
 		}
 		
 		logger.info("Ending of clickOnToDate method");
+	}
+	
+	public void enterNumberValue(String numberValue) {
+		logger.info("Starting of enterCurrecnyValue Method");
+		
+		waitUntilElementVisible(driver, this.numberFieldInput);
+		this.numberFieldInput.sendKeys(numberValue);
+		
+		logger.info("Ending of enterCurrecnyValue Method");
+	}
+	
+	public String getNumberResult() {
+		logger.info("Starting of getNumberResult Method");
+		
+		waitUntilElementVisible(driver, this.numberFilterResult);
+		String numberResult=this.numberFilterResult.getText();
+		
+		logger.info("Starting of getNumberResult Method");
+		
+		return numberResult;
+	}
+	
+	public void enterTextInputValue(String textValue) {
+		logger.info("Starting of enterTextInputValue Method");
+		
+		waitUntilElementVisible(driver, this.textInput);
+		this.textInput.sendKeys(textValue);
+		
+		logger.info("Ending of enterTextInputValue Method");
+	}
+	
+	public String getTextFilterResult() {
+		logger.info("Starting of getTextFilterResult Method");
+		
+		waitUntilElementVisible(driver, this.textFilterResult);
+		String textResult=this.textFilterResult.getText();
+		
+		logger.info("Ending of getTextFilterResult Method");
+
+		return textResult;
+
 	}
 	
 }

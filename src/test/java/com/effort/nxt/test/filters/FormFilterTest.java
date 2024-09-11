@@ -112,7 +112,7 @@ public class FormFilterTest extends BaseAutomationTest{
 		this.formFilter.clickOnFilter();
 		this.formFilter.clickOnReset();
 		this.formFilter.clickOnFilledDate();
-		this.formFilter.clickOnAndDate();
+		this.formFilter.clickOnEndDate();
 		this.formFilter.clickOnApply();
 		
 		logger.info("Ending of filterFilledDate Method");
@@ -151,6 +151,42 @@ public class FormFilterTest extends BaseAutomationTest{
 		this.formFilter.clickOnApply();
 		
 		logger.info("Ending of filterBasedOnDate Method");
+	}
+	
+	@Test(priority = 7 ,description = "TestCase#7 ,Validate to check Form filter based on the Currency Value" , groups = {"sanity"} )
+	@Description("Checking Form filter based on Currency Value")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("FORM FILTER FUNCTIONALITY BASED ON CURRENCY VALUE")
+	public void filterNumberValue() {
+		logger.info("Starting of filterCurrencyValue method");
+		
+		this.formFilter.clickOnFilter();
+		this.formFilter.clickOnReset();
+		this.formFilter.enterNumberValue(filtersDataProp.getProperty("form.filter.number"));
+		this.formFilter.clickOnApply();
+		
+		Assert.assertEquals(expectedAssertionsProp.getProperty("FormFiltertest.number"), this.formFilter.getNumberResult());
+		
+		logger.info("Ending of filterCurrencyValue method");
+	}
+	
+	
+	@Test(priority = 8 ,description = "TestCase#8 ,Validate to check Form filter based on the Text Value" , groups = {"sanity"} )
+	@Description("Checking Form filter based on Text Value")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("FORM FILTER FUNCTIONALITY BASED ON TEXT VALUE")
+	public void filterTextValue() {
+		logger.info("Starting of filterTextValue Method");
+		
+		this.formFilter.clickOnFilter();
+		this.formFilter.clickOnReset();
+		this.formFilter.enterTextInputValue(filtersDataProp.getProperty("form.filter.text"));
+		this.formFilter.clickOnApply();
+
+		Assert.assertEquals(expectedAssertionsProp.getProperty("FormFiltertest.text"),this.formFilter.getTextFilterResult());
+
+		logger.info("Ending of filterTextValue Method");
+
 	}
 	
 	
