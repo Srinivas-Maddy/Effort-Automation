@@ -332,8 +332,6 @@ public class BaseAutomationPage {
 	public static String getCurrentDateAsNumber() {
 		logger.info("Starting of getCurrentDateAsNumber method");
 
-		// Create a Calendar Object
-
 		// Get Current Day as a number
 		int todayInt = calendar.get(Calendar.DAY_OF_MONTH);
 		String todayStr = Integer.toString(todayInt);
