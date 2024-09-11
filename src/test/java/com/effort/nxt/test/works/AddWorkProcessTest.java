@@ -22,7 +22,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddWorkProcessTest.class);
 	private AddWorkProcess addWork;
-	private FormSubmission addWork1;
+	private FormSubmission addwork;
 
 	// Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
@@ -34,14 +34,13 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.goToSite(siteURL, driver);
 		this.addWork = new AddWorkProcess(driver);
 		this.loginPage = new LoginPage(driver);
-		this.addWork1 = new FormSubmission(driver);
-
+		this.addwork = new FormSubmission(driver);
 		LoginToApplication(userName, password);
 
 		logger.info("Ending of initEffortLogin method in Work Creation process");
 	}
 
-    @Test(priority = 1, description = "Add the work in the web app", groups ={"sanity" })
+	@Test(priority = 1, description = "Add the work in the web app", groups={"sanity" })
 	@Description("Test Case #1, Assigning the work")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1, Assign the work to the user")
@@ -49,6 +48,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Starting of the AddWork method");
 
 		loginPage.ClickonWebApp();
+		
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.addWork.clickOnProcessModule();
 		this.addWork.clickOnWorkName();
@@ -58,37 +58,37 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnCurrentDateTime();
 		// this.addWork.pickWorkEndDate();
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
-		this.addWork1.enterCurrency(formDataProp.getProperty("currency"));
+		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
 		this.addWork.clickOnDatePicker(formDataProp.getProperty("formDate"));
-		this.addWork1.enterDuration(formDataProp.getProperty("Duration"));
+		this.addwork.enterDuration(formDataProp.getProperty("Duration"));
 		this.addWork.enterNumberData(formDataProp.getProperty("Number"));
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
 		this.addWork.pickTime(formDataProp.getProperty("formTime"));
-		this.addWork1.enterEmail(formDataProp.getProperty("Email"));
-		this.addWork1.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
-		this.addWork1.phoneNumber(formDataProp.getProperty("MobileNumber"));
-		this.addWork1.URL(formDataProp.getProperty("URL"));
+		this.addwork.enterEmail(formDataProp.getProperty("Email"));
+		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
+		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
+		this.addwork.URL(formDataProp.getProperty("URL"));
 
-		addWork1.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
 		// this.formSub.audioData();
 
-		addWork1.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
 		// this.formSub.documentUpload();
 
-		addWork1.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
 		// this.formSub.imageUpload();
 
-		addWork1.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
 		// this.formSub.videoUpload();
 
 		this.addWork.pickCountry();
-		this.addWork1.pickCustomer();
+		this.addwork.pickCustomer();
 		this.addWork.pickCustomerType();
 		this.addWork.pickEmployee();
 
 		this.addWork.SelectTerritory();
 		this.addWork.selectYesOrNo();
-		addWork.selectCustomEntity();
+		//addWork.selectCustomEntity();
 		addWork.SelectDropdown();
 		addWork.SelectMultiDropdown();
 		addWork.uploadMultiImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
@@ -120,8 +120,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the Addwork Method");
 	}
 
-
-	@Test(priority = 2, description = "modify the work in the web app", groups ={ "sanity" })
+	@Test(priority = 2, description = "modify the work in the web app", groups ={"sanity" })
 	@Description("Test Case #2, modify the work in the web app")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, modify the work in the web app")
@@ -146,7 +145,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	public void reaasignWork() throws InterruptedException {
 		logger.info("Starting of the reaasignWork method");
 
-
 		addWork.clickOnWorkSelectButton();
 
 		addWork.clickOnReaAsignWork();
@@ -160,16 +158,39 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.assignWork();
 
 		Assert.assertTrue(addWork.isWorkReassignedSucessfully());
-		
+
 		logger.info("Ending the reaasignWork Method");
 	}
 
-	@Test(priority = 4, description = "Delete select work", groups = { "sanity" })
-	@Description("Test Case #4, Delete select work")
+	@Test(priority = 4, description = "Complete work", groups = { "sanity" })
+	@Description("Test Case #4, Complete work")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #4, Delete select work")
+	@Story("Test Case #4, Complete work")
+	public void completeWork() throws InterruptedException {
+		logger.info("Starting of the completeWork method");
+
+		addWork.clickOnWorkId();
+
+		this.ActionWork();
+
+		this.smartWorkActionWork();
+
+		this.smartWorkActionWork();
+
+		Assert.assertTrue(addWork.isWorkCompletedSucessfully());
+
+		logger.info("Ending the completeWork Method");
+	}
+
+	 @Test(priority = 5, description = "Delete select work", groups = { "sanity"})
+	@Description("Test Case #5, Delete select work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #5, Delete select work")
 	public void deleteSelectedWork() throws InterruptedException {
 		logger.info("Starting of the deleteSelectedWork method");
+
+		this.addWork.clickOnProcessModule();
+		this.addWork.clickOnWorkName();
 
 		addWork.getWorkId();
 
@@ -184,19 +205,19 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteSelectedWork Method");
 	}
 
-	@Test(priority = 5, description = "Delete filtered work", groups = { "sanity" })
-	@Description("Test Case #5, Delete filtered work")
+    @Test(priority = 6, description = "Delete filtered work", groups = { "sanity"})
+	@Description("Test Case #6, Delete filtered work")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #5, Delete filtered work")
+	@Story("Test Case #6, Delete filtered work")
 	public void deleteFilteredWork() throws InterruptedException {
 		logger.info("Starting of the deleteFilteredWork method");
 
 		this.addWork.clickOnAddWorkBtn();
-		
+
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkName") + addWork.getCurrentDateTime());
 
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
-		
+
 		this.addWork.clickOnSaveWhileNewAdd();
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
@@ -206,12 +227,127 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.filterWork();
 
 		addWork.deleteFilteredWork();
-		
+
 		addWork.filterWork();
 
 		Assert.assertTrue(addWork.isWorkdDeletedSucessfully());
 
 		logger.info("Ending the deleteFilteredWork Method");
+	}
+
+	@Test(priority = 7, description = "Smart work Creation", groups = { "sanity" })
+	@Description("Test Case #7, Smart Work Creation")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #7, Smart work creation")
+	public void smartWorkCreation() throws InterruptedException {
+		logger.info("Starting of the smartWorkCreation method");
+
+		this.addWork.clickOnProcessModule();
+		this.addWork.clickOnSmartWorkName();
+
+		this.addWork.clickOnAddWorkBtn();
+
+		this.addWork.enterWorkName(formDataProp.getProperty("smartWorkName") + addWork.getCurrentDateTime());
+		this.addWork.clickOnWorkEndDate();
+		this.addWork.clickOnCurrentDateTime();
+		this.addWork.smartWorkEmplpoyee(formDataProp.getProperty("smartWorkEMP"));
+
+		this.addWork.assignSmartWorkEmplpoyee(formDataProp.getProperty("smartWorkEMP"));
+
+		this.addWork.clickOnSave();
+
+		Assert.assertTrue(addWork.isWorkAddedSucessfully());
+
+		logger.info("Ending the smartWorkCreation Method");
+	}
+
+	@Test(priority = 8, description = "Smart work Complete", groups = { "sanity" })
+	@Description("Test Case #8, Smart Work Complete")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #8, Smart work Complete")
+	public void smartWorkComplete() throws InterruptedException {
+		logger.info("Starting of the smartWorkComplete method");
+
+		addWork.clickOnWorkId();
+
+		addWork.clickOnAccept();
+		addWork.clickOnOkButton();
+		for (int i = 0; i < 7; i++) {
+
+			
+			this.smartWorkActionWork();
+		}
+		
+		addWork.clickOnAccept();
+
+			this.smartWorkActionWork();
+			
+			this.smartWorkActionWork();
+			
+			this.smartWorkActionWork();
+		
+		Assert.assertTrue(addWork.isWorkCompletedSucessfully());
+
+		logger.info("Ending the smartWorkComplete Method");
+	}
+
+	public void ActionWork() throws InterruptedException {
+		logger.info("Starting of the completeWork method");
+
+		
+		addWork.clickOnWorkActionButton();
+
+		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
+		this.addwork.clickOnDatePicker();
+		this.addwork.clickOnCurrentDate();
+		this.addwork.clickOnDateTimePicker();
+		this.addwork.clickOnCurrentDateTime();
+		this.addwork.enterDuration(formDataProp.getProperty("Duration"));
+		this.addwork.ClickOnMonthPicker();
+		this.addwork.clickOnCurrentMonth();
+		this.addwork.enterNumberData(formDataProp.getProperty("Number"));
+		this.addwork.enterTextData(formDataProp.getProperty("Text"));
+		this.addwork.pickTime();
+		this.addwork.enterEmail(formDataProp.getProperty("Email"));
+		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
+		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
+		this.addwork.URL(formDataProp.getProperty("URL"));
+
+		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
+		// this.formSub.audioData();
+
+		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
+		// this.formSub.documentUpload();
+
+		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
+		// this.formSub.imageUpload();
+
+		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
+		// this.formSub.videoUpload();
+
+		this.addwork.pickCountry();
+		this.addwork.pickCustomer();
+		this.addwork.pickCustomerType();
+		this.addwork.pickEmployee();
+		this.addwork.pickMultiPickCustomer();
+		this.addwork.SelectTerritory();
+		this.addwork.selectYesOrNo();
+		this.addwork.clickOnSave();
+
+		logger.info("Ending the completeWork Method");
+	}
+	
+	public void smartWorkActionWork() throws InterruptedException {
+		logger.info("Starting of the smartWorkActionWork method");
+
+		
+		addWork.clickOnWorkActionButton();
+
+		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
+
+		this.addwork.clickOnSave();
+
+		logger.info("Ending the smartWorkActionWork Method");
 	}
 
 	@AfterClass(alwaysRun = true)
