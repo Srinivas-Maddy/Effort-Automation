@@ -471,12 +471,10 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	public String pickFilterYesOrNo(String filteryesorno) throws InterruptedException {
 		logger.info("Starting of pickFilterYesOrNo Method");
-		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.filtersbtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersbtn);
 		waitUntilElementVisible(driver, this.filtersreset);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersreset);
-		Thread.sleep(3000);
 		waitUntilElementVisible(driver, this.fltryesornofield);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.fltryesornofield);		
 		int count = 0;
@@ -489,7 +487,6 @@ public class EntityFiltersPage extends BaseAutomationPage {
 			}
 			count++;
 		}
-		Thread.sleep(2000);
 		waitUntilElementVisible(driver, this.filterapply);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filterapply);
 		waitUntilElementVisible(driver, this.fltryesornoresult);
@@ -499,7 +496,6 @@ public class EntityFiltersPage extends BaseAutomationPage {
 
 	public String enterFiltersCustomerType(String filterentitycustomertype) throws InterruptedException {
 		logger.info("Starting of enterFiltersCustomerType Method");
-		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.filtersbtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersbtn);
 		waitUntilElementVisible(driver, this.filtersreset);
@@ -518,7 +514,6 @@ public class EntityFiltersPage extends BaseAutomationPage {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersbtn);
 		waitUntilElementVisible(driver, this.filtersreset);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filtersreset);
-		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.fltrfilledbyfield);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.fltrfilledbyfield);
 		this.fltrfilledbyinputfield.sendKeys(filterentityfilledby);
@@ -532,10 +527,8 @@ public class EntityFiltersPage extends BaseAutomationPage {
 			}
 			count++;
 		}
-		Thread.sleep(2000);
 		waitUntilElementVisible(driver, this.filterapply);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.filterapply);
-		Thread.sleep(5000);
 		waitUntilElementVisible(driver, this.fltrfilledbyresult);
 		String actualfltrfilledbyresult = this.fltrfilledbyresult.getText();
 		return actualfltrfilledbyresult;
@@ -544,7 +537,6 @@ public class EntityFiltersPage extends BaseAutomationPage {
 	public void filtersEntityLogout() throws InterruptedException {
 		
 		logger.info("Starting of filtersEntityLogout Method");
-		 Thread.sleep(5000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",userNameBtn );
 		waitUntilElementVisible(driver, userNameBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click()", this.userNameBtn);

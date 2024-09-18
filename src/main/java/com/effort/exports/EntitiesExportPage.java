@@ -176,14 +176,14 @@ public class EntitiesExportPage extends BaseAutomationPage {
 		logger.info("Ending of clickOnFilters Method");
 	}
 
-	public String selectEntityExportFiltered() throws InterruptedException {
+	public String selectEntityExportFiltered() {
 		logger.info("Starting of selectEntityExportFiltered Method");
 		waitUntilElementVisible(driver, this.entityexportimportoption);
 		this.entityexportimportoption.click();
+		hardWait(2);
 		waitUntilElementVisible(driver, this.exportfiltered);
 		this.exportfiltered.click();
-		Thread.sleep(5000);
-		//Thread.sleep(2000);
+		hardWait(15);
 		waitUntilElementVisible(driver, this.filterSeletedStatusMsg);
 		String exportFilterStatus=this.filterSeletedStatusMsg.getText();
 		logger.info("Ending of selectEntityExportFiltered Method");

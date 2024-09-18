@@ -118,7 +118,7 @@ public class BaseAutomationPage {
 	public void waitUntilElementVisible(WebDriver driver, WebElement xpath) {
 		logger.info("Starting of waitUntilElementVisible method");
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOf(xpath));
 
 		logger.info("Ending of waitUntilElementVisible method");
