@@ -257,6 +257,18 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//label[text()='Completed']")
 	private WebElement workCompleted;
 
+	@FindBy(xpath = "//img[@id='addAttachment']")
+	private WebElement addWorkAttachement;
+
+	@FindBy(xpath = "//i[@id='workAttachmentsDataToggle']")
+	private WebElement workAttachmentTgl;
+
+	@FindBy(xpath = "//td[contains(text(),'All Field Form Auto')]")
+	private WebElement AttachedWork;
+
+	@FindBy(xpath = "//button[contains(@id,\"attachment_create\")]")
+	private WebElement workAttachement;
+
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -1041,6 +1053,19 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of clickOnWorkActionButton menthod");
 	}
 
+	public void clickOnWorkAttachmentButton() {
+		logger.info("Starting of clickOnWorkAttachmentButton method");
+
+		hardWait(2);
+
+		waitUntilElementVisible(driver, this.workAttachement);
+		clickOnWebElement(workAttachement);
+
+		hardWait(3);
+
+		logger.info("Ending of clickOnWorkAttachmentButton menthod");
+	}
+
 	public void clickOnAccept() {
 		logger.info("Starting of clickOnAccept method");
 
@@ -1083,6 +1108,49 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of isWorkdDeletedSucessfully method");
 
 		return isWorkdDeletedSucessfully;
+	}
+
+	public void clickOnAddWorkAttachmentButton() {
+		logger.info("Starting of clickOnWorkAttachmentButton method");
+
+		hardWait(3);
+		this.scrollIntoView(addWorkAttachement);
+
+		clickOnWebElement(addWorkAttachement);
+
+		logger.info("Ending of clickOnWorkAttachmentButton menthod");
+	}
+
+	public void clickOnAttachmentViewButton() {
+		logger.info("Starting of clickOnAttachmentViewButton method");
+
+		scrollIntoView(addWorkAttachement);
+
+		clickOnWebElement(workAttachmentTgl);
+
+		logger.info("Ending of clickOnAttachmentViewButton menthod");
+	}
+
+	
+	public boolean isWorkAttachmentAddedSucessfully() {
+		logger.info("Starting of isWorkAttachmentAddedSucessfully method");
+
+		boolean isWorkAttachmentAddedSucessfully = false;
+
+		try {
+
+			if (AttachedWork.isDisplayed()) {
+
+				isWorkAttachmentAddedSucessfully = true;
+			}
+		} catch (Exception e) {
+
+			isWorkAttachmentAddedSucessfully = false;
+		}
+
+		logger.info("Ending of isWorkAttachmentAddedSucessfully method");
+
+		return isWorkAttachmentAddedSucessfully;
 	}
 
 	public void logOut() {

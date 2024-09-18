@@ -40,7 +40,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending of initEffortLogin method in Work Creation process");
 	}
 
-	@Test(priority = 1, description = "Add the work in the web app", groups={"sanity" })
+	@Test(priority = 1, description = "Add the work in the web app", groups = { "sanity" })
 	@Description("Test Case #1, Assigning the work")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #1, Assign the work to the user")
@@ -48,7 +48,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Starting of the AddWork method");
 
 		loginPage.ClickonWebApp();
-		
+
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		this.addWork.clickOnProcessModule();
 		this.addWork.clickOnWorkName();
@@ -88,7 +88,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		this.addWork.SelectTerritory();
 		this.addWork.selectYesOrNo();
-		//addWork.selectCustomEntity();
+		// addWork.selectCustomEntity();
 		addWork.SelectDropdown();
 		addWork.SelectMultiDropdown();
 		addWork.uploadMultiImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
@@ -120,7 +120,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the Addwork Method");
 	}
 
-	@Test(priority = 2, description = "modify the work in the web app", groups ={"sanity" })
+	@Test(priority = 2, description = "modify the work in the web app", groups = { "sanity" })
 	@Description("Test Case #2, modify the work in the web app")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #2, modify the work in the web app")
@@ -182,10 +182,32 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the completeWork Method");
 	}
 
-	 @Test(priority = 5, description = "Delete select work", groups = { "sanity"})
-	@Description("Test Case #5, Delete select work")
+	@Test(priority = 5, description = "Work Attachement", groups = { "sanity" })
+	@Description("Test Case #5, work Attachement")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #5, Delete select work")
+	@Story("Test Case #5, work Attachement")
+	public void workAttachement() throws InterruptedException {
+		logger.info("Starting of the workAttachement method");
+
+		addWork.clickOnAddWorkAttachmentButton();
+		
+		addWork.clickOnWorkAttachmentButton();
+		
+		addwork.enterCurrency(formDataProp.getProperty("currency"));
+
+		addwork.clickOnSave();
+		
+		addWork.clickOnAttachmentViewButton();
+
+		Assert.assertTrue(addWork.isWorkAttachmentAddedSucessfully());
+
+		logger.info("Ending the workAttachement Method");
+	}
+
+	@Test(priority = 6, description = "Delete select work", groups = { "sanity" })
+	@Description("Test Case #6, Delete select work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #6, Delete select work")
 	public void deleteSelectedWork() throws InterruptedException {
 		logger.info("Starting of the deleteSelectedWork method");
 
@@ -205,10 +227,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteSelectedWork Method");
 	}
 
-    @Test(priority = 6, description = "Delete filtered work", groups = { "sanity"})
-	@Description("Test Case #6, Delete filtered work")
+	@Test(priority = 7, description = "Delete filtered work", groups = { "sanity" })
+	@Description("Test Case #7, Delete filtered work")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #6, Delete filtered work")
+	@Story("Test Case #7, Delete filtered work")
 	public void deleteFilteredWork() throws InterruptedException {
 		logger.info("Starting of the deleteFilteredWork method");
 
@@ -235,10 +257,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteFilteredWork Method");
 	}
 
-	@Test(priority = 7, description = "Smart work Creation", groups = { "sanity" })
-	@Description("Test Case #7, Smart Work Creation")
+	@Test(priority = 8, description = "Smart work Creation", groups = { "sanity" })
+	@Description("Test Case #8, Smart Work Creation")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #7, Smart work creation")
+	@Story("Test Case #8, Smart work creation")
 	public void smartWorkCreation() throws InterruptedException {
 		logger.info("Starting of the smartWorkCreation method");
 
@@ -261,10 +283,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the smartWorkCreation Method");
 	}
 
-	@Test(priority = 8, description = "Smart work Complete", groups = { "sanity" })
-	@Description("Test Case #8, Smart Work Complete")
+	@Test(priority = 9, description = "Smart work Complete", groups = { "sanity" })
+	@Description("Test Case #9, Smart Work Complete")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #8, Smart work Complete")
+	@Story("Test Case #9, Smart work Complete")
 	public void smartWorkComplete() throws InterruptedException {
 		logger.info("Starting of the smartWorkComplete method");
 
@@ -274,18 +296,17 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		addWork.clickOnOkButton();
 		for (int i = 0; i < 7; i++) {
 
-			
 			this.smartWorkActionWork();
 		}
-		
+
 		addWork.clickOnAccept();
 
-			this.smartWorkActionWork();
-			
-			this.smartWorkActionWork();
-			
-			this.smartWorkActionWork();
-		
+		this.smartWorkActionWork();
+
+		this.smartWorkActionWork();
+
+		this.smartWorkActionWork();
+
 		Assert.assertTrue(addWork.isWorkCompletedSucessfully());
 
 		logger.info("Ending the smartWorkComplete Method");
@@ -294,7 +315,6 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	public void ActionWork() throws InterruptedException {
 		logger.info("Starting of the completeWork method");
 
-		
 		addWork.clickOnWorkActionButton();
 
 		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
@@ -336,11 +356,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		logger.info("Ending the completeWork Method");
 	}
-	
+
 	public void smartWorkActionWork() throws InterruptedException {
 		logger.info("Starting of the smartWorkActionWork method");
 
-		
 		addWork.clickOnWorkActionButton();
 
 		this.addwork.enterCurrency(formDataProp.getProperty("currency"));

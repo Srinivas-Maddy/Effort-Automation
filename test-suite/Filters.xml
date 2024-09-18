@@ -14,7 +14,7 @@
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-	<test name="EmployeeFilters">
+	<!--<test name="EmployeeFilters">
 		<classes>
 		<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
 		</classes>
@@ -36,7 +36,12 @@
 		<classes>
 			<class name="com.effort.nxt.test.filters.FormFilterTest" />
 		</classes>
-	</test>
+	</test>-->
 
+<test name="Work_Filters">
+		<classes>
+			<class name="com.effort.nxt.test.filters.WorkFiltersTest" />
+		</classes>
+	</test>
 
 </suite>
