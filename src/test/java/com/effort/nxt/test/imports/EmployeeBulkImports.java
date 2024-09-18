@@ -54,7 +54,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of initEffortLogin Method");
 	}
 
-	@Test(priority = 1, description = "Employee Build Upload", groups = { "sanity" },enabled = false)
+	@Test(priority = 1, description = "Employee Build Upload", groups = { "sanity" })
 	@Description("Employee Build Upload through the import screen")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -93,7 +93,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 3, description = "Employee Customer type mapping", groups = { "sanity" },enabled = false)
+	@Test(priority = 3, description = "Employee Customer type mapping", groups = { "sanity" })
 	@Description("Employee customer type mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -111,7 +111,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Emp Customer type Mapping Method");
 	}
 
-	@Test(priority = 4, description = "Employee Route Plan Mapping", groups = { "sanity" },enabled = false)
+	@Test(priority = 4, description = "Employee Route Plan Mapping", groups = { "sanity" })
 	@Description("Employee route plan mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -129,7 +129,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Emp route plan mapping Method");
 	}
 
-	@Test(priority = 5, description = "Employee Route Plan Assignment", groups = { "sanity" },enabled = false)
+	@Test(priority = 5, description = "Employee Route Plan Assignment", groups = { "sanity" })
 	@Description("Employee route plan Assignment")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -147,7 +147,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Emp Route Plan Assignment Method");
 	}
 
-	@Test(priority = 6, description = "Employee Leave Balance update through bulk upload", groups = { "sanity" },enabled = false)
+	@Test(priority = 6, description = "Employee Leave Balance update through bulk upload", groups = { "sanity" })
 	@Description("Employee leave Balance")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -165,7 +165,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Emp Leave Balance Mapping Method");
 	}
 
-	@Test(priority = 7, description = "Employee ID update through bulk upload", groups = { "sanity" },enabled = false)
+	@Test(priority = 7, description = "Employee ID update through bulk upload", groups = { "sanity" })
 	@Description("Employee ID Update")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -183,7 +183,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Emp Id Update  Method");
 	}
 
-	@Test(priority = 8, description = "Work Reassignment through bulk upload", groups = { "sanity" },enabled = false)
+	@Test(priority = 8, description = "Work Reassignment through bulk upload", groups = { "sanity" })
 	@Description("Work Reassigment")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -202,7 +202,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 		logger.info("Ending of Work Reassignment Method");
 	}
 
-	@Test(priority = 9, description = "Employee Terriotry Mapping", groups = { "sanity" },enabled = false)
+	@Test(priority = 9, description = "Employee Terriotry Mapping", groups = { "sanity" })
 	@Description("Employee Terriotry mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")
@@ -221,7 +221,7 @@ public class EmployeeBulkImports extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 10, description = "Employee List Mapping", groups = { "sanity" },enabled = false)
+	@Test(priority = 10, description = "Employee List Mapping", groups = { "sanity" })
 	@Description("Employee List mapping")
 	@Epic("Imports Module")
 	@Feature("Bulk Uploads")

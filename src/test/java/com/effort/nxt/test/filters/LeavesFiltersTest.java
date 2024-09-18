@@ -161,7 +161,7 @@ public class LeavesFiltersTest extends BaseAutomationTest {
 	}
 	
 	
-	@Test(priority = 8 ,description = "TestCase#2 ,Validation of MyLeaves Filters" , groups = {"sanity"}, enabled=false)
+	@Test(priority = 8 ,description = "TestCase#2 ,Validation of MyLeaves Filters" , groups = {"sanity"})
 	@Description("Validation of MyLeaves Filters")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("TestCase #2, Validation of MyLeaves Filters")
