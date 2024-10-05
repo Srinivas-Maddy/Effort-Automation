@@ -39,19 +39,18 @@ public class TestListener implements ITestListener {
 		emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
 		emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n");
 		emailContent.append("========================").append("\n\n");
-		
+
 		emailContent.append("Click here to view the detailed report.").append("\n");
 		emailContent.append("https://spoorswebautomationreport.netlify.app/").append("\n\n");
 
-
-		emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
+		emailContent.append("Detailed Information Of Passed Test Cases").append("\n");
 		emailContent.append("============================================").append("\n");
 		for (ITestResult result : context.getPassedTests().getAllResults()) {
 			emailContent.append("Pass : ").append(result.getName()).append("\n");
 		}
 
 		emailContent.append("\n");
-		emailContent.append("Detailed Informatation Of Failed Test Cases").append("\n");
+		emailContent.append("Detailed Information Of Failed Test Cases").append("\n");
 		emailContent.append("============================================").append("\n");
 
 		for (ITestResult result : context.getFailedTests().getAllResults()) {
@@ -65,9 +64,9 @@ public class TestListener implements ITestListener {
 
 		emailContent.append("Thanks,\n").append("Test Team");
 
-	//test_team@spoors.in,web_team@spoors.in
-		EmailSender.sendEmail("saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in", "Web Automation Sanity Report",
-			emailContent.toString());
+		// Email notification (if needed)
+		// EmailSender.sendEmail("saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in",
+		// "Web Automation Sanity Report", emailContent.toString());
 
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
@@ -97,12 +96,10 @@ public class TestListener implements ITestListener {
 		try {
 			ExtentTestManager.failTest(test, result.getMethod().getMethodName());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		test.log(Status.FAIL, "Test Failed");
-
 	}
 
 	public void onTestSkipped(ITestResult result) {
@@ -117,65 +114,44 @@ public class TestListener implements ITestListener {
 		logger.debug("*** Test failed but within percentage % " + result.getMethod().getMethodName());
 		logger.info("========================================================================");
 	}
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	@AfterSuite
-    public void generateAllureReport() {
-        String[] command = {"allure", "generate", "allure-results", "--clean"};
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
-        AtomicReference<Process> process = new AtomicReference<>();
+	public void generateAllureReport() {
+		String[] command = { "allure", "generate", "allure-results", "--clean" };
+		ProcessBuilder processBuilder = new ProcessBuilder(command);
+		AtomicReference<Process> process = new AtomicReference<>();
 
-        try {
-            process.set(processBuilder.start());
+		try {
+			process.set(processBuilder.start());
 
-            Thread timeoutThread = new Thread(() -> {
-                try {
-                    Thread.sleep(5000); // 5 seconds timeout
-                    if (process.get().isAlive()) {
-                        process.get().destroy(); // Kill the process if it's still running
-                        throw new RuntimeException("Could not generate Allure report: Timeout after 5 seconds");
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            });
-            timeoutThread.start();
+			Thread timeoutThread = new Thread(() -> {
+				try {
+					Thread.sleep(5000); // 5 seconds timeout
+					if (process.get().isAlive()) {
+						process.get().destroy(); // Kill the process if it's still running
+						throw new RuntimeException("Could not generate Allure report: Timeout after 5 seconds");
+					}
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+			});
+			timeoutThread.start();
 
-            int exitCode = process.get().waitFor();
-            timeoutThread.interrupt(); // Interrupt timeout thread if process finishes on time
+			int exitCode = process.get().waitFor();
+			timeoutThread.interrupt(); // Interrupt timeout thread if process finishes on time
 
-            if (exitCode != 0) {
-                throw new RuntimeException("Could not generate Allure report");
-            }
+			if (exitCode != 0) {
+				throw new RuntimeException("Could not generate Allure report");
+			}
 
-            System.out.println("Allure report successfully generated");
+			System.out.println("Allure report successfully generated");
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            if (process.get() != null) {
-                process.get().destroy();
-            }
-        }
-    }
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			if (process.get() != null) {
+				process.get().destroy();
+			}
+		}
+	}
 }

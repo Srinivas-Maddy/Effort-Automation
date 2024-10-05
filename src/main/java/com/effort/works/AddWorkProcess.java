@@ -1131,7 +1131,6 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of clickOnAttachmentViewButton menthod");
 	}
 
-	
 	public boolean isWorkAttachmentAddedSucessfully() {
 		logger.info("Starting of isWorkAttachmentAddedSucessfully method");
 

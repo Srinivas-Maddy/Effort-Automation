@@ -116,6 +116,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnSave();
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
+		
+		addWork.getWorkId();
 
 		logger.info("Ending the Addwork Method");
 	}
@@ -126,7 +128,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #2, modify the work in the web app")
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
-
+		
 		addWork.clickOnEditIcn();
 
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified") + addWork.getCurrentDateTime());
@@ -214,8 +216,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnProcessModule();
 		this.addWork.clickOnWorkName();
 
-		addWork.getWorkId();
-
+		addWork.filterWork();
+		
 		addWork.clickOnWorkSelectButton();
 
 		addWork.deleteSelectedWork();
