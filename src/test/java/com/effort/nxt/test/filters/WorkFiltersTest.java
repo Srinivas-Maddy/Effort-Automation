@@ -221,9 +221,39 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithEmail(filtersDataProp.getProperty("work.Email"));
 
-		Assert.assertEquals(workfilter.isWorkEmailFieldDisplayed(), filtersDataProp.getProperty("work.TimeEnd"));
+		Assert.assertEquals(workfilter.isWorkEmailFieldDisplayed(), filtersDataProp.getProperty("work.Email"));
 
 		logger.info("Ending the filerWorkWithEmail Method");
+
+	}
+	
+	@Test(priority = 13, description = "Filter work With Phone", groups = { "sanity" })
+	@Description("Test Case #13, Filter work With Phone")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #13, Filter work With Phone")
+	public void filerWorkWithPhone() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithPhone method");
+
+		workfilter.filterWorkWithPhone(filtersDataProp.getProperty("work.Phone"));
+
+		Assert.assertEquals(workfilter.isWorkPhoneFieldDisplayed(), filtersDataProp.getProperty("work.Phone"));
+
+		logger.info("Ending the filerWorkWithPhone Method");
+
+	}
+	
+	@Test(priority = 14, description = "Filter work With Country", groups = { "sanity" })
+	@Description("Test Case #14, Filter work With Country")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #14, Filter work With Country")
+	public void filerWorkWithCountry() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithCountry method");
+
+		workfilter.filterWorkWithCountry(filtersDataProp.getProperty("work.Country"));
+
+		Assert.assertEquals(workfilter.isWorkCountryFieldDisplayed(), filtersDataProp.getProperty("work.Country"));
+
+		logger.info("Ending the filerWorkWithCountry Method");
 
 	}
 

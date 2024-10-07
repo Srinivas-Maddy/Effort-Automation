@@ -109,6 +109,19 @@ public class WorkFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[14]")
 	private WebElement workFieldEmail;
 	
+	@FindBy(xpath = "//input[@flable='Phone']")
+	private WebElement filterWorkPhone;
+
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[16]")
+	private WebElement workFieldPhone;
+	
+	@FindBy(xpath = "//input[@flable='Country']")
+	private WebElement filterWorkCountry;
+
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[18]")
+	private WebElement workFieldCountry;
+	
+	
 	public WorkFiltersPage(WebDriver driver) {
 		super(driver);
 
@@ -365,6 +378,25 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of filterWorkWithTime menthod");
 	}
 	
+	public void filterWorkWithPhone(String WorkPhone) {
+		logger.info("Starting of filterWorkWithPhone method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkPhone);
+		filterWorkPhone.sendKeys(WorkPhone);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithPhone menthod");
+	}
+	
 	public void filterWorkWithEmail(String WorkEmail) {
 		logger.info("Starting of filterWorkWithEmail method");
 		hardWait(3);
@@ -383,6 +415,26 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterWorkWithEmail menthod");
 	}
+	
+	public void filterWorkWithCountry(String WorkCountry) {
+		logger.info("Starting of filterWorkWithCountry method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkCountry);
+		filterWorkCountry.sendKeys(WorkCountry);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithCountry menthod");
+	}
+	
 	
 	public void clickOnWorkId() {
 		logger.info("Starting of clickOnWorkId method");
@@ -613,7 +665,48 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		return isWorkTimeFieldDisplayed;
 	}
+	
+	public String isWorkPhoneFieldDisplayed() {
+		logger.info("Starting of isWorkPhoneFieldDisplayed method");
 
+		String isWorkPhoneFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkPhoneFieldDisplayed = workFieldPhone.getText();
+
+		} catch (Exception e) {
+
+			isWorkPhoneFieldDisplayed = workFieldPhone.getText();
+		}
+
+		logger.info("Ending of isWorkTimeFieldDisplayed method");
+
+		return isWorkPhoneFieldDisplayed;
+	}
+	
+
+	public String isWorkCountryFieldDisplayed() {
+		logger.info("Starting of isWorkCountryFieldDisplayed method");
+
+		String isWorkCountryFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkCountryFieldDisplayed = workFieldCountry.getText();
+
+		} catch (Exception e) {
+
+			isWorkCountryFieldDisplayed = workFieldCountry.getText();
+		}
+
+		logger.info("Ending of isWorkCountryFieldDisplayed method");
+
+		return isWorkCountryFieldDisplayed;
+	}
+	
 	public String isWorkEmailFieldDisplayed() {
 		logger.info("Starting of isWorkEmailFieldDisplayed method");
 
