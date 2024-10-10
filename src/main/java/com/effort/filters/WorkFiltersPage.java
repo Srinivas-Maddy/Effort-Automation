@@ -50,15 +50,24 @@ public class WorkFiltersPage extends BaseAutomationPage {
 	private WebElement workEndDate;
 
 	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[1]")
-	private WebElement filterWorkEmployee;
+	private WebElement filterWorkAssignEmployee;
 
 	@FindBy(xpath = "//input[@id='s2id_autogen14_search']")
-	private WebElement enterFilterEmpName;
+	private WebElement enterFilterAssignEmpName;
 
 	@FindBy(xpath = "//li[contains(@class,'highlighted')]")
 	private WebElement selectEmp;
+	
+	@FindBy(xpath = "(//span[contains(text(),'Select Employee')])[2]")
+	private WebElement filterWorkEmployee;
+	
+	@FindBy(xpath = "//input[@id='s2id_autogen15_search']")
+	private WebElement enterFilterEmpName;
 
 	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[7]/a")
+	private WebElement workFieldAssignEmployee;
+	
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[21]/a")
 	private WebElement workFieldEmployee;
 
 	@FindBy(xpath = "//input[@flable='Text']")
@@ -121,6 +130,35 @@ public class WorkFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[18]")
 	private WebElement workFieldCountry;
 	
+	@FindBy(xpath = "//label[text()='Customer']/following-sibling::div//input")
+	private WebElement filterWorkCustomerField;
+	
+	@FindBy(xpath = "//div[@role='option']")
+	private WebElement filterWorkCustomerSelect;
+	
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[19]")
+	private WebElement workFieldCustomer;
+	
+	@FindBy(xpath = "//input[@flable='Customer Type']")
+	private WebElement filterWorkCustomerType;
+
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[20]")
+	private WebElement workFieldCustomerType;
+	
+	@FindBy(xpath = "//label[text()='Territory']/following-sibling::div//div")
+	private WebElement filterWorkTerritory;
+
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[21]")
+	private WebElement workFieldTerritory;
+	
+	@FindBy(xpath = "//input[@flable='YesNo']")
+	private WebElement filterWorkYesOrNo;
+
+	@FindBy(xpath = "//option[@value='yes']")
+	private WebElement filterWorkYes;
+	
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[22]")
+	private WebElement workFieldYesOrNo;
 	
 	public WorkFiltersPage(WebDriver driver) {
 		super(driver);
@@ -226,8 +264,33 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of filterWorkWithStartDate menthod");
 	}
 
-	public void filterWorkWithEmployeeName(String WorkEndDate) {
-		logger.info("Starting of filterWorkWithStartDate method");
+	public void filterWorkWithAssignEmployeeName(String WorkAssignEmp) {
+		logger.info("Starting of filterWorkWithAssignEmployeeName method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkAssignEmployee);
+		clickUsingActionClass(filterWorkAssignEmployee);
+
+		waitUntilElementVisible(driver, this.enterFilterAssignEmpName);
+		enterFilterAssignEmpName.sendKeys(WorkAssignEmp);
+
+		waitUntilElementVisible(driver, this.selectEmp);
+		clickUsingActionClass(selectEmp);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithAssignEmployeeName menthod");
+	}
+
+	public void filterWorkWithEmployeeName(String workEmp) {
+		logger.info("Starting of filterWorkWithAssignEmployeeName method");
 		hardWait(3);
 
 		waitUntilElementVisible(driver, this.workFilterBtn);
@@ -240,7 +303,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		clickUsingActionClass(filterWorkEmployee);
 
 		waitUntilElementVisible(driver, this.enterFilterEmpName);
-		enterFilterEmpName.sendKeys(WorkEndDate);
+		enterFilterEmpName.sendKeys(workEmp);
 
 		waitUntilElementVisible(driver, this.selectEmp);
 		clickUsingActionClass(selectEmp);
@@ -248,9 +311,59 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.applyFilterBtn);
 		clickUsingActionClass(applyFilterBtn);
 
-		logger.info("Ending of filterWorkWithStartDate menthod");
+		logger.info("Ending of filterWorkWithAssignEmployeeName menthod");
 	}
 
+	public void filterWorkWithTeerritory(String workTerritory) {
+		logger.info("Starting of filterWorkWithTeerritory method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkEmployee);
+		clickUsingActionClass(filterWorkEmployee);
+
+		waitUntilElementVisible(driver, this.filterWorkTerritory);
+		filterWorkTerritory.sendKeys(workTerritory);
+
+		waitUntilElementVisible(driver, this.selectEmp);
+		clickUsingActionClass(selectEmp);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithTeerritory menthod");
+	}
+	
+	public void filterWorkWithYesOrNo() {
+		logger.info("Starting of filterWorkWithYesOrNo method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkEmployee);
+		clickUsingActionClass(filterWorkEmployee);
+
+		waitUntilElementVisible(driver, this.filterWorkYesOrNo);
+		clickUsingActionClass(filterWorkYesOrNo);
+
+		waitUntilElementVisible(driver, this.filterWorkYes);
+		clickUsingActionClass(filterWorkYes);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithYesOrNo menthod");
+	}
+	
 	public void filterWorkWithText(String WorkText) {
 		logger.info("Starting of filterWorkWithText method");
 		hardWait(3);
@@ -435,6 +548,46 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of filterWorkWithCountry menthod");
 	}
 	
+	public void filterWorkWithCustomer(String WorkCustomer) {
+		logger.info("Starting of filterWorkWithCustomer method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkCustomerField);
+		filterWorkCustomerField.sendKeys(WorkCustomer);
+
+		waitUntilElementVisible(driver, this.filterWorkCustomerSelect);
+		clickUsingActionClass(filterWorkCustomerSelect);
+		
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithCustomer menthod");
+	}
+	
+	public void filterWorkWithCustomerType(String WorkCustomerType) {
+		logger.info("Starting of filterWorkWithCustomerType method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		waitUntilElementVisible(driver, this.filterWorkCustomerType);
+		filterWorkCustomerType.sendKeys(WorkCustomerType);
+		
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterWorkWithCustomerType menthod");
+	}
 	
 	public void clickOnWorkId() {
 		logger.info("Starting of clickOnWorkId method");
@@ -526,6 +679,26 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		return isWorkEndDateDisplayed;
 	}
 
+	public String isWorkAssignEmployeeFieldDisplayed() {
+		logger.info("Starting of isWorkAssignEmployeeFieldDisplayed method");
+
+		String isWorkAssignEmployeeFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkAssignEmployeeFieldDisplayed = workFieldAssignEmployee.getText();
+
+		} catch (Exception e) {
+
+			isWorkAssignEmployeeFieldDisplayed = workFieldAssignEmployee.getText();
+		}
+
+		logger.info("Ending of isWorkAssignEmployeeFieldDisplayed method");
+
+		return isWorkAssignEmployeeFieldDisplayed;
+	}
+	
 	public String isWorkEmployeeFieldDisplayed() {
 		logger.info("Starting of isWorkEmployeeFieldDisplayed method");
 
@@ -544,6 +717,46 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of isWorkEmployeeFieldDisplayed method");
 
 		return isWorkEmployeeFieldDisplayed;
+	}
+	
+	public String isWorkTerritoryFieldDisplayed() {
+		logger.info("Starting of isWorkTerritoryFieldDisplayed method");
+
+		String isWorkTerritoryFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkTerritoryFieldDisplayed = workFieldTerritory.getText();
+
+		} catch (Exception e) {
+
+			isWorkTerritoryFieldDisplayed = workFieldTerritory.getText();
+		}
+
+		logger.info("Ending of isWorkTerritoryFieldDisplayed method");
+
+		return isWorkTerritoryFieldDisplayed;
+	}
+	
+	public String isWorkYesOrNoFieldDisplayed() {
+		logger.info("Starting of isWorkYesOrNoFieldDisplayed method");
+
+		String isWorkYesOrNoFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkYesOrNoFieldDisplayed = workFieldYesOrNo.getText();
+
+		} catch (Exception e) {
+
+			isWorkYesOrNoFieldDisplayed = workFieldYesOrNo.getText();
+		}
+
+		logger.info("Ending of isWorkYesOrNoFieldDisplayed method");
+
+		return isWorkYesOrNoFieldDisplayed;
 	}
 
 	public String isWorkTextFieldDisplayed() {
@@ -705,6 +918,46 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of isWorkCountryFieldDisplayed method");
 
 		return isWorkCountryFieldDisplayed;
+	}
+	
+	public String isWorkCustomerFieldDisplayed() {
+		logger.info("Starting of isWorkCustomerFieldDisplayed method");
+
+		String isWorkCustomerFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkCustomerFieldDisplayed = workFieldCustomer.getText();
+
+		} catch (Exception e) {
+
+			isWorkCustomerFieldDisplayed = workFieldCustomer.getText();
+		}
+
+		logger.info("Ending of isWorkCustomerFieldDisplayed method");
+
+		return isWorkCustomerFieldDisplayed;
+	}
+	
+	public String isWorkCustomerTypeFieldDisplayed() {
+		logger.info("Starting of isWorkCustomerTypeFieldDisplayed method");
+
+		String isWorkCustomerTypeFieldDisplayed;
+		hardWait(4);
+
+		try {
+
+			isWorkCustomerTypeFieldDisplayed = workFieldCustomerType.getText();
+
+		} catch (Exception e) {
+
+			isWorkCustomerTypeFieldDisplayed = workFieldCustomerType.getText();
+		}
+
+		logger.info("Ending of isWorkCustomerTypeFieldDisplayed method");
+
+		return isWorkCustomerTypeFieldDisplayed;
 	}
 	
 	public String isWorkEmailFieldDisplayed() {

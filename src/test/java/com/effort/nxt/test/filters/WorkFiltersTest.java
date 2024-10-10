@@ -107,18 +107,18 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 	}
 
-	@Test(priority = 5, description = "Filter work With Employee", groups = { "sanity" })
-	@Description("Test Case #5, Filter work With Employee")
+	@Test(priority = 5, description = "Filter work With assign Employee", groups = { "sanity" })
+	@Description("Test Case #5, Filter work With assign Employee")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #5, Filter work With Employee")
-	public void filerWorkWithEmployeeName() throws InterruptedException {
-		logger.info("Starting of the filerWorkWithEmployeeName method");
+	@Story("Test Case #5, Filter work With assign Employee")
+	public void filerWorkWithAssignEmployeeName() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithAssignEmployeeName method");
 
-		workfilter.filterWorkWithEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
+		workfilter.filterWorkWithAssignEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
 
-		Assert.assertEquals(workfilter.isWorkEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
+		Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
 
-		logger.info("Ending the filerWorkWithEmployeeName Method");
+		logger.info("Ending the filerWorkWithAssignEmployeeName Method");
 
 	}
 
@@ -256,6 +256,81 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithCountry Method");
 
 	}
+	
+	@Test(priority = 15, description = "Filter work With Customer", groups = { "sanity" })
+	@Description("Test Case #15, Filter work With Customer")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #15, Filter work With Customer")
+	public void filerWorkWithCustomer() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithCustomer method");
+
+		workfilter.filterWorkWithCustomer(filtersDataProp.getProperty("work.Customer"));
+
+		Assert.assertEquals(workfilter.isWorkCustomerFieldDisplayed(), filtersDataProp.getProperty("work.Customer"));
+
+		logger.info("Ending the filerWorkWithCustomer Method");
+
+	}
+	
+	@Test(priority = 16, description = "Filter work With Customer Type", groups = { "sanity" })
+	@Description("Test Case #16, Filter work With Customer Type")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #16, Filter work With Customer Type")
+	public void filerWorkWithCustomerType() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithCustomerType method");
+
+		workfilter.filterWorkWithCustomerType(filtersDataProp.getProperty("work.CustomerType"));
+
+		Assert.assertEquals(workfilter.isWorkCustomerFieldDisplayed(), filtersDataProp.getProperty("work.CustomerType"));
+
+		logger.info("Ending the filerWorkWithCustomerType Method");
+
+	}
+	
+	@Test(priority = 17, description = "Filter work With Employee", groups = { "sanity" })
+	@Description("Test Case #17, Filter work With Employee")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #17, Filter work With Employee")
+	public void filerWorkWithEmployeeName() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithEmployeeName method");
+
+		workfilter.filterWorkWithEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
+
+		Assert.assertEquals(workfilter.isWorkEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
+
+		logger.info("Ending the filerWorkWithEmployeeName Method");
+
+	}	
+	
+	@Test(priority = 18, description = "Filter work With Territory", groups = { "sanity" })
+	@Description("Test Case #18, Filter work With Territory")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #18, Filter work With Territory")
+	public void filerWorkWithTerritory() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithTerritory method");
+
+		workfilter.filterWorkWithTeerritory(filtersDataProp.getProperty("work.Territory"));
+
+		Assert.assertEquals(workfilter.isWorkTerritoryFieldDisplayed(), filtersDataProp.getProperty("work.Territory"));
+
+		logger.info("Ending the filerWorkWithTerritory Method");
+
+	}	
+	
+	@Test(priority = 19, description = "Filter work With YesOrNo", groups = { "sanity" })
+	@Description("Test Case #19, Filter work With YesOrNo")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #19, Filter work With YesOrNo")
+	public void filerWorkWithYesOrNo() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithTerritory method");
+
+		workfilter.filterWorkWithYesOrNo();
+
+		Assert.assertEquals(workfilter.isWorkYesOrNoFieldDisplayed(), filtersDataProp.getProperty("work.YesOrNo"));
+
+		logger.info("Ending the filerWorkWithYesOrNo Method");
+
+	}	
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
