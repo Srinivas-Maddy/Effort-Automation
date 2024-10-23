@@ -36,7 +36,6 @@ public class BaseAutomationTest {
 	protected WebDriver driver = null;
 	protected String loginURL = null;
 	protected LoginPage loginPage = null;
-
 	protected static Properties expectedAssertionsProp = null;
 	protected static Properties testDataProp = null;
 	protected static Properties empDataProp = null;
@@ -81,7 +80,7 @@ public class BaseAutomationTest {
 			try {
 
 				testDataReader = new FileReader("src/main/resources/testdata.properties");
-// testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
+             // testDataReader = new FileReader("src/main/resources/TestEnvData.properties");
 				empDataReader = new FileReader("src/main/resources/EmployeeDetails.properties");
 				custmrDataReader = new FileReader("src/main/resources/CustomerDetails.properties");
 				assertionsReader = new FileReader("src/main/resources/expectedassertion.properties");

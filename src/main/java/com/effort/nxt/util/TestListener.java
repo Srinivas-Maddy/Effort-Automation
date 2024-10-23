@@ -46,6 +46,8 @@ public class TestListener implements ITestListener {
 
 		emailContent.append("Detailed Informatation Of Passed Test Cases").append("\n");
 		emailContent.append("============================================").append("\n");
+		
+
 		for (ITestResult result : context.getPassedTests().getAllResults()) {
 			emailContent.append("Pass : ").append(result.getName()).append("\n");
 		}

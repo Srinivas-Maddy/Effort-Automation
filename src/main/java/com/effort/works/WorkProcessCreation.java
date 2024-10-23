@@ -102,6 +102,21 @@ public class WorkProcessCreation extends BaseAutomationPage{
 
 	@FindBy(xpath="//input[@id='nxtButton']")
 	private WebElement SettingsNxtBtn;
+	
+	@FindBy(xpath="//input[@name='allowdefaultAddWorkNotification']")
+	private WebElement addNotificationBtn;
+	
+	@FindBy(xpath="//input[@name='allowdefaultModifyWorkNotification']")
+	private WebElement modifyNotificationBtn;
+	
+	@FindBy(xpath="//input[@name='allowdefaultWorkComplitionNotification']")
+	private WebElement completedNotificationBtn;
+	
+	@FindBy(xpath="//input[@name='allowdefaultWorkRejectedNotification']")
+	private WebElement rejectedNotificationBtn;
+	
+	@FindBy(xpath="//input[@name='allowdefaultWorkAllocationNotification']")
+	private WebElement allocationNotificationBtn;
 
 	@FindBy(xpath="//input[@id='nxtButton']")
 	private WebElement OtherNxtBtn;
@@ -392,17 +407,34 @@ public class WorkProcessCreation extends BaseAutomationPage{
 		skipBtn.click();
 	}
 
+	
+	public void disableDefaultNotification() {
+		logger.info("Starting of disableDefaultNotification Method");
+		
+		scrollIntoView(addNotificationBtn);
+		waitUntilElementVisible(driver, this.addNotificationBtn);
+		this.addNotificationBtn.click();
+		waitUntilElementVisible(driver, this.modifyNotificationBtn);
+		this.modifyNotificationBtn.click();
+		this.completedNotificationBtn.click();
+		this.rejectedNotificationBtn.click();
+		
+		logger.info("Ending of disableDefaultNotification Method");
+	}
+	
 	public void clickNextSetting() throws InterruptedException {
-		Thread.sleep(1000);
+		
 		waitUntilElementVisible(driver, this.SettingsNxtBtn);
 		this.SettingsNxtBtn.click();	
+		this.driver.switchTo().alert().accept();
+
 
 	}
 
 	public void clickOtherSetting() throws InterruptedException {
 		Thread.sleep(1000);
 		waitUntilElementVisible(driver, this.OtherNxtBtn);
-		this.OtherNxtBtn.click();	
+		this.OtherNxtBtn.click();
 
 	}
 

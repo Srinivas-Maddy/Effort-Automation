@@ -105,6 +105,12 @@ public class FormFiltersPage extends BaseAutomationPage{
 	@FindBy(xpath="//table[@id='example']/tbody/tr[1]/td[10]")
 	private WebElement textFilterResult;
 	
+	@FindBy(id="F1S_F11F")
+	private WebElement emailInput;
+	
+	@FindBy(xpath="//table[@id='example']/tbody/tr[1]/td[12]/font")
+	private WebElement emailFilterResult;
+	
 	public FormFiltersPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -429,7 +435,26 @@ public class FormFiltersPage extends BaseAutomationPage{
 		logger.info("Ending of getTextFilterResult Method");
 
 		return textResult;
-
+	}
+	
+	public void enterEmailId(String email) {
+		logger.info("Starting of enterEmailId Method");
+		
+		waitUntilElementVisible(driver, this.emailInput);
+		this.emailInput.sendKeys(email);
+		
+		logger.info("Ending of enterEmailId Method");
+	}
+	
+	public String getEmailFilterResult() {
+		logger.info("Starting of getEmailFilterResult Method");
+		
+		waitUntilElementVisible(driver, this.emailFilterResult);
+		String emailResult=this.emailFilterResult.getText();
+		
+		logger.info("Ending of getEmailFilterResult Method");
+		
+		return emailResult;
 	}
 	
 }
