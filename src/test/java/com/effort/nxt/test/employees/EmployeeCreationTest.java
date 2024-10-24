@@ -8,12 +8,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.employees.EmployeeCreation;
 import com.effort.nxt.test.BaseAutomationTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -86,12 +83,15 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Feature("Employee Modification")
 	@Severity(SeverityLevel.CRITICAL)
 	@Story("Employee modification in list screen")
-	public void modifyEmployee() throws InterruptedException {
+	public void modifyEmployee() {
 		logger.info("Starting of modifyEmployee Method");
 		
 		empCreation.clickOnFilter();
 		empCreation.filterEmployeeName();
 		empCreation.clickOnEditButton();
+		empCreation.enterModifiedFirstName(empDataProp.getProperty("Emp.Modified.FirstName"));
+		empCreation.enterModifiedLastName(empDataProp.getProperty("Emp.Modified.lastName"));
+		empCreation.clickOnSave();
 		
 		logger.info("Ending of modifyEmployee Method");
 	}
@@ -102,25 +102,16 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	@Feature("Employee Disable")
 	@Severity(SeverityLevel.CRITICAL)
 	@Story("Employee Disable in list screen")
-	public void disableEmployee() throws InterruptedException {
+	public void disableEmployee() {
 		logger.info("Starting of Employee Disable Method");
 		
 		empCreation.clickOnFilter();
+		empCreation.clickOnReset();
 		empCreation.disableEmployee();	
 		
 		logger.info("Ending of Employee Disable Method");
 	}
 	
-	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logOutForm() {
-//		logger.info("Starting of Log-out Method");
-//		
-//		empCreation.logOut();	
-//
-//		logger.info("Ending of log-out Method");
-//	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

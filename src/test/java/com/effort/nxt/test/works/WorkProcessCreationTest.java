@@ -61,6 +61,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest {
 		processCreation.clickNextCloneFieldData();
 		processCreation.clickNextManageFlow();
 		processCreation.clickSkipAutoAllocation();
+		processCreation.disableDefaultNotification();
 		processCreation.clickNextSetting();
 		processCreation.clickOtherSetting();
 
@@ -208,6 +209,7 @@ public class WorkProcessCreationTest extends BaseAutomationTest {
 		processCreation.clickNextCloneFieldData();
 		processCreation.clickNextManageFlow();
 		processCreation.clickSkipAutoAllocation();
+		processCreation.disableDefaultNotification();
 		processCreation.clickNextSetting();
 		processCreation.clickOtherSetting();
 

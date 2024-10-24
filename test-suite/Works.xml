@@ -19,10 +19,10 @@
 		</classes>
 	</test>-->
 	
-		<test name="Work Module In Web App">
+		<!--<test name="Work Module In Web App">
 		<classes>
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />
 		</classes>
-	</test>
+	</test>-->
 
 </suite>

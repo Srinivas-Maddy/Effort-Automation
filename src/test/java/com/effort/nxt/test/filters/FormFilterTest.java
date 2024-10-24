@@ -189,6 +189,22 @@ public class FormFilterTest extends BaseAutomationTest{
 
 	}
 	
+	@Test(priority = 9 ,description = "TestCase#8 ,Validate to check Form filter based on the Email" , groups = {"sanity"} )
+	@Description("Checking Form filter based on Email Value")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("FORM FILTER FUNCTIONALITY BASED ON Email VALUE")
+	public void filterByEmail() {
+		logger.info("Starting of filterByEmail Method");
+		
+		this.formFilter.clickOnFilter();
+		this.formFilter.clickOnReset();
+		this.formFilter.enterEmailId(filtersDataProp.getProperty("form.filter.email"));
+		this.formFilter.clickOnApply();
+		
+		Assert.assertEquals(expectedAssertionsProp.getProperty("FormFiltertest.email"), this.formFilter.getEmailFilterResult());
+		
+		logger.info("Ending of filterByEmail Method");
+	}
 	
 	
 	@AfterClass(alwaysRun = true)
