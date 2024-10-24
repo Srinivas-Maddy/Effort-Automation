@@ -416,16 +416,15 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void disableEmployee() throws InterruptedException {
 		logger.info("Starting of diable employee method");
+		
 		waitUntilElementVisible(driver, this.empIdFilterScreen);
 		this.empIdFilterScreen.sendKeys(this.employeeId);
 		waitUntilElementVisible(driver, this.applyBtn);
 		this.applyBtn.click();
+		hardWait(10);
 		waitUntilElementVisible(driver, this.actionMenu);
-		Thread.sleep(5000);
 		this.actionMenu.click();
-		Thread.sleep(5000);
 		for (int i = 0; i < actionDropDowns.size(); i++) {
-			hardWait(3);
 			String ExpectedLabel = this.actionDropDowns.get(i).getText();
 			if (this.disableLabel.equalsIgnoreCase(ExpectedLabel)) {
 				waitUntilElementVisible(driver, this.actionDropDowns.get(i));

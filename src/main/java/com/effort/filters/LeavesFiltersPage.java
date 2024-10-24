@@ -618,16 +618,8 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		logger.info("Starting of selectApprovedStatus Method");
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
-		waitUntilElementVisible(driver, this.leavesresetbtn);
-		this.leavesresetbtn.click();
-		try {
-			WebElement systemDialogButton = driver.findElement(By.id("systemDialogButton"));
-	        systemDialogButton.click();
-			Alert alert = driver.switchTo().alert();
-			alert.accept();
-		} catch (Exception e) {
-			System.out.println("No alert");
-		}
+		waitUntilElementVisible(driver, this.myleavesappliedcheckbox);
+		this.myleavesappliedcheckbox.click();
 		waitUntilElementVisible(driver, this.myleavesapprovedcheckbox);
 		this.myleavesapprovedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -647,16 +639,12 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 		logger.info("Starting of selectCancelledStatus Method");
 
-		try {
-			Alert alert = driver.switchTo().alert();
-			alert.accept();
-		} catch (Exception e) {
-			System.out.println("No alert");
-		}
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
-		waitUntilElementVisible(driver, this.leavesresetbtn);
-		this.leavesresetbtn.click();
+	///	waitUntilElementVisible(driver, this.leavesresetbtn);
+	//	this.leavesresetbtn.click();
+		waitUntilElementVisible(driver, this.myleavesapprovedcheckbox);
+		this.myleavesapprovedcheckbox.click();
 		waitUntilElementVisible(driver, this.myleavescancelledcheckbox);
 		this.myleavescancelledcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -669,8 +657,10 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
 		hardWait(10);
-		waitUntilElementVisible(driver, this.leavesresetbtn);
-		this.leavesresetbtn.click();
+		//waitUntilElementVisible(driver, this.leavesresetbtn);
+		//this.leavesresetbtn.click();
+		waitUntilElementVisible(driver, this.myleavescancelledcheckbox);
+		this.myleavescancelledcheckbox.click();
 		waitUntilElementVisible(driver, this.myleavesrejectedcheckbox);
 		this.myleavesrejectedcheckbox.click();
 		waitUntilElementVisible(driver, this.leavesapplybtn);
@@ -683,9 +673,10 @@ public class LeavesFiltersPage extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, this.myleavefilterbtn);
 		this.myleavefilterbtn.click();
-		waitUntilElementVisible(driver, this.leavesresetbtn);
-		this.leavesresetbtn.click();
-
+	//	waitUntilElementVisible(driver, this.leavesresetbtn);
+	//	this.leavesresetbtn.click();
+		waitUntilElementVisible(driver, this.myleavesrejectedcheckbox);
+		this.myleavesrejectedcheckbox.click();
 		waitUntilElementVisible(driver, this.myleavesdateinputfield);
 		this.myleavesdateinputfield.click();
 

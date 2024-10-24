@@ -40,6 +40,7 @@
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 			<class name="com.effort.nxt.test.filters.FormFilterTest" />
+			<class name="com.effort.nxt.test.filters.WorkFiltersTest" />
 			<class name="com.effort.nxt.test.dayplan.DayplannerTest" />
 			<class name="com.effort.nxt.test.imports.EmployeeBulkImports" />
 			<class name="com.effort.nxt.test.imports.CustomerBulkUploads" />
