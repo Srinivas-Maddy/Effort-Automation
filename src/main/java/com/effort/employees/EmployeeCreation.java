@@ -109,6 +109,9 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	@FindBy(id = "search")
 	private WebElement applyBtn;
+	
+	@FindBy(id="reset")
+	private WebElement resetBtn;
 
 	@FindBy(xpath = "//table/tbody/tr/td[2]/div/span/i")
 	private List<WebElement> editButtons;
@@ -141,9 +144,11 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void clickOnWebApp() {
 		logger.info("Starting of Click on web App method");
+		
 		hardWait(3);
 		waitUntilElementVisible(driver, webApp);
 		this.webApp.click();
+		
 		logger.info("Ending of Click on web App method");
 	}
 
@@ -156,6 +161,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void clickOnAddEmpBtn() {
 		logger.info("Starting of clickOnAddEmpBtn method");
+		
 		waitUntilElementVisible(driver, addEmpBtn);
 		addEmpBtn.click();
 		logger.info("Ending of clickOnAddEmpBtn method");
@@ -177,39 +183,48 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void enterFirstName(String enterFirstName) {
 		logger.info("Starting of enterFirstName method");
+		
 		waitUntilElementVisible(driver, firstName);
 		this.employeeFirstName = enterFirstName + "_" + getCurrentDate();
 		firstName.sendKeys(this.employeeFirstName);
+		
 		logger.info("Ending of enterFirstName method");
 	}
 
 	public void enterLastName(String enterLastName) {
 		logger.info("Starting of enterLastName method");
+		
 		waitUntilElementVisible(driver, empLastName);
 		empLastName.sendKeys(enterLastName);
+		
 		logger.info("ending of enterLastName method");
 	}
 
 	public void EmpId() {
 		logger.info("Starting of enterEmpId method");
+		
 		employeeId = getUniqueNumber("Auto_EMP");
 		waitUntilElementVisible(driver, empId);
 		empId.sendKeys(this.employeeId);
+		
 		logger.info("ending of enterEmpId method");
 	}
 
 	public void managerCheckBox() {
 		logger.info("Starting of managerCheckBox method");
+		
 		waitUntilElementVisible(driver, managerCheckBox);
-	//	managerCheckBox.click();
-		mouseHoverAndClick(managerCheckBox);
+		clickOnWebElement(managerCheckBox);
+		
 		logger.info("ending of managerCheckBox method");
 	}
 
 	public void qrCodeCheckBox() {
 		logger.info("Starting of qrCodeCheckBox method");
+		
 		waitUntilElementVisible(driver, qrCode);
 		qrCode.click();
+		
 		logger.info("ending of qrCodeCheckBox method");
 	}
 
@@ -225,18 +240,21 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void EmpPhone() {
 		logger.info("Starting of enterEmpPhone method");
+		
 		String randomPhone = randomMobileNumbers();
 		waitUntilElementVisible(driver, empPhone);
 		empPhone.sendKeys(randomPhone);
+		
 		logger.info("ending of enterEmpPhone method");
 	}
 
 	public void clickOnAdvanceDetails() {
 		logger.info("Starting of click on Advance details method");
+		
 		waitUntilElementVisible(driver, this.advanceDetails);
 		scrollDown(0, advanceDetails);
 		clickOnWebElement(this.advanceDetails);
-		//this.advanceDetails.click();
+		
 		logger.info("Ending of click on Advance details method");
 	}
 
@@ -340,15 +358,17 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	public void clickOnSaveBtn() throws InterruptedException {
 		logger.info("Starting of clickOnSaveBtn method");
+		
 		scrollDown(500, this.territoryDropdown);
 		waitUntilElementVisible(driver, saveBtn);
-		Thread.sleep(2000);
 		saveBtn.click();
+		
 		logger.info("ending of qrCodeCheckBox method");
 	}
 	
 	public String saveAndValidateEmployeCreated(){
 		logger.info("Starting of saveAndValidateEmployeCreated method");
+		
 		scrollDown(500, this.territoryDropdown);
 		waitUntilElementVisible(driver, saveBtn);
 		hardWait(2);
@@ -388,6 +408,15 @@ public class EmployeeCreation extends BaseAutomationPage {
 		this.filterBtn.click();
 		logger.info("Ending of clickOnFilter method");
 	}
+	
+	public void clickOnReset() {
+		logger.info("Starting of clickOnReset Method");
+		
+		waitUntilElementVisible(driver, this.resetBtn);
+		this.resetBtn.click();
+		
+		logger.info("Ending of clickOnReset Method");
+	}
 
 	public void filterEmployeeName() {
 		logger.info("Starting of filterEmployeeName method");
@@ -399,22 +428,45 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	}
 
-	public void clickOnEditButton() throws InterruptedException {
+	public void clickOnEditButton(){
 		logger.info("Starting of clickOnEditButton method");
-		Thread.sleep(500);
+		hardWait(2);
 		int i = 0;
 		if (i < editButtons.size())
 			this.editButtons.get(i).click();
+		logger.info("Ending of clickOnEditButton method");
+	}
+	
+	public void enterModifiedFirstName(String name) {
+		logger.info("Starting of enterModifiedFirstName Method");
+		
 		waitUntilElementVisible(driver, this.firstName);
 		this.firstName.clear();
-		this.firstName.sendKeys("Modified Employee Name");
+		this.firstName.sendKeys(name+"_"+RandGeneratedString(4));
+		
+		logger.info("Ending of enterModifiedFirstName Method");	
+	}
+	
+	
+	public void enterModifiedLastName(String name) {
+		logger.info("Starting of enterModifiedLastName Method");
+	
 		this.empLastName.clear();
-		this.empLastName.sendKeys("Modified Last name");
+		this.empLastName.sendKeys(name+"_"+RandGeneratedString(4));
+	
+		logger.info("Ending of enterModifiedLastName Method");
+	}
+	
+	public void clickOnSave() {
+		logger.info("Starting of ClickOnSave Method");
+		
 		waitUntilElementVisible(driver, this.modifySaveBtn);
 		this.modifySaveBtn.click();
+		
+		logger.info("Ending of ClickOnSave Method");
 	}
 
-	public void disableEmployee() throws InterruptedException {
+	public void disableEmployee() {
 		logger.info("Starting of diable employee method");
 		
 		waitUntilElementVisible(driver, this.empIdFilterScreen);
@@ -427,7 +479,6 @@ public class EmployeeCreation extends BaseAutomationPage {
 		for (int i = 0; i < actionDropDowns.size(); i++) {
 			String ExpectedLabel = this.actionDropDowns.get(i).getText();
 			if (this.disableLabel.equalsIgnoreCase(ExpectedLabel)) {
-				waitUntilElementVisible(driver, this.actionDropDowns.get(i));
 				this.actionDropDowns.get(i).click();
 				break;
 			}

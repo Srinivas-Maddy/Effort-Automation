@@ -8,13 +8,13 @@
 	<parameter name="headless" value="false" />
 	<parameter name="userName" value="automation@nmail.com" />
 	<parameter name="password" value="Spoors@321" />
-	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
+	<parameter name="siteURL" value="https://secure.spoors.in/effortx/login" />
 	<!--<parameter name="siteURL" value="testurl" /> -->
 
 	<listeners>
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
-<!--
+
 	<test name="EmployeeFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.EmployeeFiltersTest" />
@@ -25,20 +25,20 @@
 		<classes>
 			<class name="com.effort.nxt.test.filters.EntityFiltersTest" />
 		</classes>
-	</test>-->
+	</test>
 
-	<!--<test name="LeavesFilters">
+	<test name="LeavesFilters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.LeavesFiltersTest" />
 		</classes>
-	</test>-->
+	</test>
 
-<!--	<test name="Form_Filters">
+	<test name="Form_Filters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.FormFilterTest" />
 		</classes>
 	</test>
--->
+
 	<test name="Work_Filters">
 		<classes>
 			<class name="com.effort.nxt.test.filters.WorkFiltersTest" />

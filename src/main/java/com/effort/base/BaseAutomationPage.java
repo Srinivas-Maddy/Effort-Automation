@@ -6,8 +6,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.YearMonth;
-
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,7 +15,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
