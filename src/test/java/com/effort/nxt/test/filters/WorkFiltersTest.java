@@ -363,6 +363,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 	}	
 	
 	
+	
+	
 	@Test(priority = 22, description = "Filter completed work", groups = { "sanity" })
 	@Description("Test Case #22, Filter completed work")
 	@Severity(SeverityLevel.BLOCKER)
@@ -393,10 +395,58 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 	}	
 	
-	@Test(priority = 24, description = "Filter works on Last Activity", groups = { "sanity" })
-	@Description("Test Case #24, Filter works on Last Activity")
+	@Test(priority = 24, description = "Filter Unassigned works", groups = { "sanity" })
+	@Description("Test Case #24, Filter Unassigned works")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #24, Filter works on Last Activity")
+	@Story("Test Case #24, Filter Unassigned works")
+	public void filterUnassignedWorks() throws InterruptedException {
+		logger.info("Starting of the filterUnassignedWorks method");
+
+		workfilter.filterUnassignedWork();
+
+		//Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(), filtersDataProp.getProperty("empty.Name"));
+		Assert.assertTrue(workfilter.isWorkAssignEmpFieldDisplayed());
+
+		logger.info("Ending the filterUnassignedWorks Method");
+
+	}	
+	
+	@Test(priority = 25, description = "Filter Assigned works", groups = { "sanity" })
+	@Description("Test Case #25, Filter Assigned works")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #25, Filter Assigned works")
+	public void filterAssignedWorks() throws InterruptedException {
+		logger.info("Starting of the filterAssignedWorks method");
+
+		workfilter.filterAssignedWork();
+
+		Assert.assertFalse(workfilter.isWorkAssignEmpFieldDisplayed());
+
+
+		logger.info("Ending the filterAssignedWorks Method");
+
+	}	
+	
+
+	@Test(priority = 26, description = "Filter filerRejectedWork works", groups = { "sanity" })
+	@Description("Test Case #26, Filter filerRejectedWork work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #26, Filter filerRejectedWork works")
+	public void filerRejectedWork() throws InterruptedException {
+		logger.info("Starting of the filerRejectedWork method");
+
+		workfilter.filterRejectedWork();
+
+		Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("rejected.work"));
+
+		logger.info("Ending the filerRejectedWork Method");
+
+	}	
+	
+	@Test(priority = 27, description = "Filter works on Last Activity", groups = { "sanity" })
+	@Description("Test Case #27, Filter works on Last Activity")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #27, Filter works on Last Activity")
 	public void filterLastActivityWorks() throws InterruptedException {
 		logger.info("Starting of the filterLastActivityWorks method");
 
@@ -408,10 +458,10 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 	}	
 	
-	@Test(priority = 25, description = "Filter works on Next Activity", groups = { "sanity" })
-	@Description("Test Case #25, Filter works on Next Activity")
+	@Test(priority = 28, description = "Filter works on Next Activity", groups = { "sanity" })
+	@Description("Test Case #28, Filter works on Next Activity")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #25, Filter works on Next Activity")
+	@Story("Test Case #28, Filter works on Next Activity")
 	public void filterNextActivityWorks() throws InterruptedException {
 		logger.info("Starting of the filterLastActivityWorks method");
 
@@ -422,6 +472,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filterNextActivityWorks Method");
 
 	}	
+	
+	
 	
 
 	

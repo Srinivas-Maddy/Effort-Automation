@@ -70,7 +70,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='s2id_autogen16_search']")
 	private WebElement enterFilterFilledEmpName;
 
-	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[7]/a")
+	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[7]")
 	private WebElement workFieldAssignEmployee;
 
 	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[21]/a")
@@ -183,6 +183,15 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//input[@id='UnCompleted']")
 	private WebElement filterInCompletedWork;
+	
+	@FindBy(xpath = "//input[@id='rejected']")
+	private WebElement filterRejectedWork;
+	
+	@FindBy(xpath = "//input[@id='viewUnassigned']")
+	private WebElement filterUnassignedWork;
+	
+	@FindBy(xpath = "//input[@id='viewAssigned']")
+	private WebElement filterAssignedWork;
 
 	@FindBy(xpath = "//input[@id='completed']")
 	private WebElement filterCompletedWork;
@@ -767,6 +776,70 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterIncompletedWork menthod");
 	}
+	
+	public void filterRejectedWork() {
+		logger.info("Starting of filterRejectedWork method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		scrollIntoView(filterRejectedWork);
+
+		waitUntilElementVisible(driver, this.filterRejectedWork);
+		clickUsingActionClass(filterRejectedWork);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterRejectedWork menthod");
+	}
+	
+	public void filterUnassignedWork() {
+		logger.info("Starting of filterUnassignedWork method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		scrollIntoView(filterUnassignedWork);
+
+		waitUntilElementVisible(driver, this.filterUnassignedWork);
+		clickUsingActionClass(filterUnassignedWork);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterUnassignedWork menthod");
+	}
+	
+	public void filterAssignedWork() {
+		logger.info("Starting of filterAssignedWork method");
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workFilterBtn);
+		clickOnWebElementUsingJavascript(workFilterBtn);
+
+		waitUntilElementVisible(driver, this.resetFilterBtn);
+		clickUsingActionClass(resetFilterBtn);
+
+		scrollIntoView(filterAssignedWork);
+
+		waitUntilElementVisible(driver, this.filterAssignedWork);
+		clickUsingActionClass(filterAssignedWork);
+
+		waitUntilElementVisible(driver, this.applyFilterBtn);
+		clickUsingActionClass(applyFilterBtn);
+
+		logger.info("Ending of filterAssignedWork menthod");
+	}
+	
 
 	public void clickOnWorkId() {
 		logger.info("Starting of clickOnWorkId method");
@@ -876,6 +949,38 @@ public class WorkFiltersPage extends BaseAutomationPage {
 		logger.info("Ending of isWorkAssignEmployeeFieldDisplayed method");
 
 		return isWorkAssignEmployeeFieldDisplayed;
+	}
+	
+	public boolean isWorkAssignEmpFieldDisplayed() {
+		logger.info("Starting of isWorkAssignEmpFieldDisplayed method");
+
+		boolean isWorkAssignEmpFieldDisplayed = false;
+		hardWait(4);
+
+		try {
+
+			if(isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
+				isWorkAssignEmpFieldDisplayed= true;
+			}
+			
+			
+
+		} catch (Exception e) {
+
+			try {
+				
+				if(isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
+					isWorkAssignEmpFieldDisplayed= true;
+				}
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			
+		}
+
+		logger.info("Ending of isWorkAssignEmployeeFieldDisplayed method");
+
+		return isWorkAssignEmpFieldDisplayed;
 	}
 
 	public String isWorkEmployeeFieldDisplayed() {
