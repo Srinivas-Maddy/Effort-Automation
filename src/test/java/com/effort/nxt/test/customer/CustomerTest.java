@@ -111,6 +111,7 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Ending of AddCustomer Method");
 	}
 
+
 	@Test(priority = 2, description = "Modify Customer Data by Clicking Edit Button", groups = "sanity")
 	@Description("Modification of Customer Details")
 	@Severity(SeverityLevel.BLOCKER)
