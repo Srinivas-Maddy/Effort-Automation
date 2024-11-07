@@ -52,6 +52,15 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	@FindBy(xpath = "//div[@class='empAdavDetailsContainer bg-label']")
 	private WebElement advanceDetails;
+	
+	@FindBy(id="s2id_managerEmail")
+	private WebElement reportingManagerField;
+	
+	@FindBy(xpath="//div[@id='select2-drop']/div/input")
+	private WebElement managerInputSearch;
+	
+	@FindBy(xpath="//div[@id='select2-drop']/div//following-sibling::ul/li[1]")
+	private WebElement selectManagerName;
 
 	@FindBy(xpath = "//div[@id='empAdavFieldsContainer']/div/div/ul/li/label[1]")
 	private List<WebElement> empAdvanceList;
@@ -70,23 +79,26 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	@FindBy(id = "designation")
 	private WebElement designation;
+	
+	@FindBy(id="s2id_field_5")
+	private WebElement roleField;
 
 	@FindBy(xpath = "//span[@id='select2-chosen-5']")
 	private WebElement roleDropDown;
 
-	@FindBy(xpath = "//ul[@id='select2-results-5']/li/div")
+	@FindBy(xpath = "//div[@id='select2-drop']/div//following-sibling::ul/li/div")
 	private List<WebElement> empRoles;
 
 	@FindBy(xpath = "//div[@id='s2id_empMappedGroups']")
 	private WebElement empGrpDropDown;
 
-	@FindBy(xpath = "//div[@id='select2-drop']/ul/li/div")
+	@FindBy(xpath = "//div[@id='select2-drop']//ul/li/div")
 	private List<WebElement> empGrps;
 
 	@FindBy(id = "s2id_mce")
 	private WebElement autoMapDrpdown;
 
-	@FindBy(xpath = "//ul[@id='select2-results-7']//li/div")
+	@FindBy(xpath = "//div[@id='select2-drop']/ul/li")
 	private List<WebElement> mapDropdown;
 
 	@FindBy(id = "s2id_territoryIds")
@@ -130,7 +142,13 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	@FindBy(id = "disableEmployee")
 	private WebElement applyDisableEmp;
-
+	
+	@FindBy(xpath="//div[contains(@class,'empUserDefinedFieldsContainer')]/span")
+	private WebElement userDefindFieldSection;
+	
+	@FindBy(id="fields0_fieldValue")
+	private WebElement userDefinedTextInput;
+	
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
 
@@ -257,103 +275,108 @@ public class EmployeeCreation extends BaseAutomationPage {
 		
 		logger.info("Ending of click on Advance details method");
 	}
-
-	public void advanceDetails(String designation, String employeeRole, String employeeGroup, String autoMapCustomer,
-			String empTerritory) throws InterruptedException, IOException {
-		logger.info("Starting of Advance details method");
-
-		for (int i = 0; i < empAdvanceList.size(); i++) {
-			String labelName = empAdvanceList.get(i).getText();
-
-			// reporting manager name
-			if (labelName.equalsIgnoreCase("Reporting Manager:")) {
-				scrollDown(400, empAdvanceList.get(i));
-				waitUntilElementVisible(driver, this.reportManagerdropdown);
-				this.reportManagerdropdown.click();
-				Thread.sleep(5000);
-				for (int j = 0; j <= managerNames.size(); j++) {
-					String managerName = managerNames.get(j).getText();
-					if (managerName.equalsIgnoreCase("Srinivas Maddy")) {
-						this.managerNameInput.sendKeys(this.managerNames.get(j).getText());
-						this.managerNames.get(0).click();
-						break;
-					}
-				}
+	
+	
+	public void selectManagerName(String name) {
+		logger.info("Starting of selectManagerName Method");
+		
+		waitUntilElementVisible(driver, this.reportingManagerField);
+		this.reportingManagerField.click();
+		waitUntilElementVisible(driver, this.managerInputSearch);
+		this.managerInputSearch.sendKeys(name);
+		waitUntilElementVisible(driver, this.selectManagerName);
+		this.selectManagerName.click();
+		
+		logger.info("Ending of selectManagerName Method");
+	}
+	
+	public void uploadEmpPhoto() {
+		logger.info("Starting of uploadEmpPhoto Method");
+		
+		waitUntilElementVisible(driver, this.chooseEmpImage);
+		String pathFile = System.getProperty("user.dir") + "/MediaFiles/IDCardPhoto.jpg";
+		this.chooseEmpImage.sendKeys(pathFile);
+		
+		logger.info("Ending of uploadEmpPhoto Method");
+	}
+	
+	public void enterEmpDesignation(String empDesignation) {
+		logger.info("Starting of enterEmpDesignation Method");
+		
+		waitUntilElementVisible(driver, this.designation);
+		this.designation.sendKeys(empDesignation);
+		
+		logger.info("Ennding of enterEmpDesignation Method");
+	}
+	
+	public void selectEmpRole(String empRole) {
+		logger.info("Starting of selectEmpRole Method");
+		
+		waitUntilElementVisible(driver, this.roleField);
+		this.roleField.click();
+		int count = 0;
+		while (count < empRoles.size()) {
+			if (empRoles.get(count).getText().equalsIgnoreCase(empRole)) {
+				this.empRoles.get(count).click();
+				break;
 			}
-
-			// Employee Id Photo image
-			else if (labelName.equalsIgnoreCase("Employee Photo:")) {
-				waitUntilElementVisible(driver, this.chooseEmpImage);
-				String pathFile = System.getProperty("user.dir") + "/MediaFiles/IDCardPhoto.jpg";
-				this.chooseEmpImage.sendKeys(pathFile);
-
-			}
-
-			// Employee Designation
-			else if (labelName.equalsIgnoreCase("Designation :")) {
-				waitUntilElementVisible(driver, this.designation);
-				this.designation.sendKeys(designation);
-			}
-
-			// Employee Role
-			else if (labelName.equalsIgnoreCase("Role :")) {
-				waitUntilElementVisible(driver, this.roleDropDown);
-				this.roleDropDown.click();
-				int count = 0;
-				while (count < empRoles.size()) {
-					if (empRoles.get(count).getText().equalsIgnoreCase(employeeRole)) {
-						this.empRoles.get(count).click();
-						break;
-					}
-					count++;
-				}
-			}
-
-			// Employee Group
-			else if (labelName.equalsIgnoreCase("Employee group :")) {
-				waitUntilElementVisible(driver, this.empGrpDropDown);
-				this.empGrpDropDown.click();
-
-				int grpCount = 0;
-				while (grpCount < empGrps.size()) {
-
-					if (empGrps.get(grpCount).getText().equalsIgnoreCase(employeeGroup)) {
-						empGrps.get(grpCount).click();
-						break;
-					}
-					grpCount++;
-				}
-			}
-
-			// Auto Map Customer To Employee
-			else if (labelName.equalsIgnoreCase("Auto Map Customer to Employee :")) {
-				waitUntilElementVisible(driver, this.autoMapDrpdown);
-				this.autoMapDrpdown.click();
-				int mapOptions = 0;
-				while (mapOptions < mapDropdown.size()) {
-					if (mapDropdown.get(mapOptions).getText().equalsIgnoreCase(autoMapCustomer)) {
-						mapDropdown.get(mapOptions).click();
-						break;
-					}
-					mapOptions++;
-				}
-			}
-
-			// Territoty dropdown
-			else if (labelName.equalsIgnoreCase("Employee territory :")) {
-				scrollDown(500, this.territoryDropdown);
-				waitUntilElementVisible(driver, this.territoryDropdown);
-				this.territoryDropdown.click();
-				int terrioryOptionsCount = 0;
-				while (terrioryOptionsCount < territoryOptions.size()) {
-					if (territoryOptions.get(terrioryOptionsCount).getText().equalsIgnoreCase(empTerritory)) {
-						territoryOptions.get(terrioryOptionsCount).click();
-						break;
-					}
-					terrioryOptionsCount++;
-				}
-			}
+			count++;
 		}
+		
+		logger.info("Ending of selectEmpRole Method");
+	}
+	
+	public void selectEmpGroup(String empGroup) {
+		logger.info("Starting of selectEmpGroup Method");
+		
+		waitUntilElementVisible(driver, this.empGrpDropDown);
+		this.empGrpDropDown.click();
+
+		int grpCount = 0;
+		while (grpCount < empGrps.size()) {
+			if (empGrps.get(grpCount).getText().equalsIgnoreCase(empGroup)) {
+				empGrps.get(grpCount).click();
+				break;
+			}
+			grpCount++;
+		}
+		
+		logger.info("Ending of selectEmpGroup Method");
+	}
+	
+	public void selectAutoMapCustomerOption(String mapOption) {
+		logger.info("Starting of automap Method");
+		
+		waitUntilElementVisible(driver, this.autoMapDrpdown);
+		this.autoMapDrpdown.click();
+		int mapOptions = 0;
+		while (mapOptions < mapDropdown.size()) {
+			if (mapDropdown.get(mapOptions).getText().equalsIgnoreCase(mapOption)) {
+				mapDropdown.get(mapOptions).click();
+				break;
+			}
+			mapOptions++;
+		}
+		
+		logger.info("Ending of automap Method");
+	}
+	
+	public void selecTerritory(String name) {
+		logger.info("Starting of selecTerritory Method");
+		
+		scrollDown(500, this.territoryDropdown);
+		waitUntilElementVisible(driver, this.territoryDropdown);
+		this.territoryDropdown.click();
+		int terrioryOptionsCount = 0;
+		while (terrioryOptionsCount < territoryOptions.size()) {
+			if (territoryOptions.get(terrioryOptionsCount).getText().equalsIgnoreCase(name)) {
+				territoryOptions.get(terrioryOptionsCount).click();
+				break;
+			}
+			terrioryOptionsCount++;
+		}
+		
+		logger.info("Ending of selecTerritory Method");
 	}
 
 	public void clickOnSaveBtn() throws InterruptedException {
@@ -487,6 +510,8 @@ public class EmployeeCreation extends BaseAutomationPage {
 		this.applyDisableEmp.click();
 	}
 
+	
+
 	public void logOut() {
 		logger.info("Starting of Logout method");
 		waitUntilElementVisible(driver, userNameBtn);
@@ -495,5 +520,24 @@ public class EmployeeCreation extends BaseAutomationPage {
 			logoutBtn.get(logoutBtn.size() - 1).click();
 		}
 		logger.info("Ending of Logout method");
+	}
+	
+	
+	public void clickOnUserDefinedSection() {
+		logger.info("Starting of clickOnUserDefinedSection Method");
+		
+		waitUntilElementVisible(driver, this.userDefindFieldSection);
+		this.userDefindFieldSection.click();
+		
+		logger.info("Ending of clickOnUserDefinedSection Method");
+	}
+	
+	public void enterTextValue(String text) {
+		logger.info("Starting of enterTextValue Method");
+		
+		waitUntilElementVisible(driver, this.userDefinedTextInput);
+		this.userDefinedTextInput.sendKeys(text);
+		
+		logger.info("Ending of enterTextValue Method");
 	}
 }

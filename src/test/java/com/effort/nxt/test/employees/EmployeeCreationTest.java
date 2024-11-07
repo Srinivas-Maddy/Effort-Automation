@@ -26,7 +26,6 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 	private static final String expectedEmpSavedMsg = "Saved successfully";
 
 	@BeforeClass (alwaysRun = true)
-
 	@Parameters({"siteURL","browser","userName", "password", "headless"})
 	public void initEffortLogin(String siteUrl,String browser,String userName, String password, String headless) throws Exception {
 		logger.info("starting of initEfforrt Login Method of Employee process");
@@ -54,30 +53,39 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		loginPage.clickOnCancelButtonOnWebAppHomeScreen();
 		empCreation.clickOnEmployees();
 		empCreation.clickOnAddEmpBtn();
-		empCreation.switchNewWindow();
-		empCreation.enterFirstName(empDataProp.getProperty("firstName"));
-		empCreation.enterLastName(empDataProp.getProperty("lastName"));
-		empCreation.EmpId();
-		empCreation.managerCheckBox();
-		empCreation.qrCodeCheckBox();	
-		empCreation.EmpEmail();
-		empCreation.EmpPhone();
-		empCreation.clickOnAdvanceDetails();
-		empCreation.advanceDetails(empDataProp.getProperty("designation"),
-				                   empDataProp.getProperty("empRole"),
-				                   empDataProp.getProperty("employeegroup"),
-				                   empDataProp.getProperty("automapcustomer"),
-				                   empDataProp.getProperty("employeeterritory"));
-		
-		//empCreation.clickOnSaveBtn();
+		this.addEmpBasicFields();
 		String actualEmpSavedMsg = empCreation.saveAndValidateEmployeCreated();
+		
 		Assert.assertEquals(actualEmpSavedMsg, expectedEmpSavedMsg);
 		
 		logger.info("Ending of AddEmployee Method");		
 	}
 	
 	
-	@Test(priority = 2, description="Modify the employee data", groups = {"sanity"})
+	@Test(priority = 2, description="Employee Creation with user defined fields", groups = {"sanity"})
+	@Epic("Employees")
+	@Feature("Employee Creation with user defined fields")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Create employee along with the user defined fields")
+	public void  employeeCreationWithUserDefinedFields() {
+		logger.info("Starting of employeeCreationWithUserDefinedFields Method");
+		
+		empCreation.clickOnEmployees();
+		empCreation.clickOnAddEmpBtn();
+		this.addEmpBasicFields();
+		empCreation.clickOnUserDefinedSection();
+		empCreation.enterTextValue(empDataProp.getProperty("employee.text"));
+		
+		empCreation.saveAndValidateEmployeCreated();
+		
+		logger.info("Ending of employeeCreationWithUserDefinedFields Method");
+	}
+	
+	
+	
+	
+	
+	@Test(priority = 3, description="Modify the employee data", groups = {"sanity"})
 	@Description("Modify the employee")
 	@Epic("Employee Module")
 	@Feature("Employee Modification")
@@ -96,7 +104,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Ending of modifyEmployee Method");
 	}
 	
-	@Test(priority = 3, description="Employee Disable", groups = {"sanity"})
+	@Test(priority = 4, description="Employee Disable", groups = {"sanity"})
 	@Description("Disable Employee")
 	@Epic("Employee Module")
 	@Feature("Employee Disable")
@@ -112,6 +120,29 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Ending of Employee Disable Method");
 	}
 	
+	
+	public void addEmpBasicFields() {
+		logger.info("Starting of addEmpBasicFields ");
+		
+		this.empCreation.switchNewWindow();
+		this.empCreation.enterFirstName(empDataProp.getProperty("firstName"));
+		this.empCreation.enterLastName(empDataProp.getProperty("lastName"));
+		this.empCreation.EmpId();
+		this.empCreation.managerCheckBox();
+		this.empCreation.qrCodeCheckBox();	
+		this.empCreation.EmpEmail();
+		this.empCreation.EmpPhone();
+		this.empCreation.clickOnAdvanceDetails();
+		this.empCreation.selectManagerName(empDataProp.getProperty("employee.managerName"));
+		this.empCreation.uploadEmpPhoto();
+		this.empCreation.enterEmpDesignation(empDataProp.getProperty("employee.designation"));
+		this.empCreation.selectEmpRole(empDataProp.getProperty("employee.role"));
+		this.empCreation.selectEmpGroup(empDataProp.getProperty("employee.group"));
+		this.empCreation.selectAutoMapCustomerOption(empDataProp.getProperty("automapcustomer"));
+		this.empCreation.selecTerritory(empDataProp.getProperty("employee.territory"));
+		
+		logger.info("Ending of addEmpBasicFields ");
+	}
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
