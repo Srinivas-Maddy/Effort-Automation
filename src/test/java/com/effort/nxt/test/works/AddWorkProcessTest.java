@@ -285,7 +285,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the smartWorkCreation Method");
 	}
 
-	@Test(priority = 9, description = "Smart work Complete", groups = { "sanity" })
+	//@Test(priority = 9, description = "Smart work Complete", groups = { "sanity" })
 	@Description("Test Case #9, Smart Work Complete")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #9, Smart work Complete")

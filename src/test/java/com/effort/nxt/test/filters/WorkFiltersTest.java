@@ -281,7 +281,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithCustomerType(filtersDataProp.getProperty("work.CustomerType"));
 
-		Assert.assertEquals(workfilter.isWorkCustomerFieldDisplayed(), filtersDataProp.getProperty("work.CustomerType"));
+		Assert.assertEquals(workfilter.isWorkCustomerTypeFieldDisplayed(), filtersDataProp.getProperty("work.CustomerType"));
 
 		logger.info("Ending the filerWorkWithCustomerType Method");
 
@@ -331,6 +331,150 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithYesOrNo Method");
 
 	}	
+	
+	@Test(priority = 20, description = "Filter work With Filler By", groups = { "sanity" })
+	@Description("Test Case #20, Filter work With Custom Filled By")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #20, Filter work With Custom Filled By")
+	public void filerWorkWithFilledBy() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithFilledBy method");
+
+		workfilter.filterWorkWithFilledEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
+
+		Assert.assertEquals(workfilter.isWorkFilledEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
+
+		logger.info("Ending the filerWorkWithFilledBy Method");
+
+	}	
+	
+	@Test(priority = 21, description = "Filter work With Yet To Start", groups = { "sanity" })
+	@Description("Test Case #21, Filter work With Yet To Start")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #21, Filter work With Yet To Start")
+	public void filerWorkWithYetToStart() throws InterruptedException {
+		logger.info("Starting of the filerWorkWithYetToStart method");
+
+		workfilter.filterYetToStartWork();
+
+		Assert.assertEquals(workfilter.isYetToStartWorksDisplayed(), filtersDataProp.getProperty("yetToStart.work"));
+
+		logger.info("Ending the filerWorkWithYetToStart Method");
+
+	}	
+	
+	
+	
+	
+	@Test(priority = 22, description = "Filter completed work", groups = { "sanity" })
+	@Description("Test Case #22, Filter completed work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #22, Filter completed works")
+	public void filerCompletedWork() throws InterruptedException {
+		logger.info("Starting of the filerCompletedWork method");
+
+		workfilter.filterCompletedWork();
+
+		Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("completed.work"));
+
+		logger.info("Ending the filerCompletedWork Method");
+
+	}	
+	
+	@Test(priority = 23, description = "Filter Incompleted works", groups = { "sanity" })
+	@Description("Test Case #23, Filter Incompleted work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #23, Filter Incompleted works")
+	public void filerIncompletedWork() throws InterruptedException {
+		logger.info("Starting of the filerIncompletedWork method");
+
+		workfilter.filterIncompletedWork();
+
+		Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("incompleted.work"));
+
+		logger.info("Ending the filerIncompletedWork Method");
+
+	}	
+	
+	@Test(priority = 24, description = "Filter Unassigned works", groups = { "sanity" })
+	@Description("Test Case #24, Filter Unassigned works")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #24, Filter Unassigned works")
+	public void filterUnassignedWorks() throws InterruptedException {
+		logger.info("Starting of the filterUnassignedWorks method");
+
+		workfilter.filterUnassignedWork();
+
+		//Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(), filtersDataProp.getProperty("empty.Name"));
+		Assert.assertTrue(workfilter.isWorkAssignEmpFieldDisplayed());
+
+		logger.info("Ending the filterUnassignedWorks Method");
+
+	}	
+	
+	@Test(priority = 25, description = "Filter Assigned works", groups = { "sanity" })
+	@Description("Test Case #25, Filter Assigned works")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #25, Filter Assigned works")
+	public void filterAssignedWorks() throws InterruptedException {
+		logger.info("Starting of the filterAssignedWorks method");
+
+		workfilter.filterAssignedWork();
+
+		Assert.assertFalse(workfilter.isWorkAssignEmpFieldDisplayed());
+
+
+		logger.info("Ending the filterAssignedWorks Method");
+
+	}	
+	
+
+	@Test(priority = 26, description = "Filter filerRejectedWork works", groups = { "sanity" })
+	@Description("Test Case #26, Filter filerRejectedWork work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #26, Filter filerRejectedWork works")
+	public void filerRejectedWork() throws InterruptedException {
+		logger.info("Starting of the filerRejectedWork method");
+
+		workfilter.filterRejectedWork();
+
+		Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("rejected.work"));
+
+		logger.info("Ending the filerRejectedWork Method");
+
+	}	
+	
+	@Test(priority = 27, description = "Filter works on Last Activity", groups = { "sanity" })
+	@Description("Test Case #27, Filter works on Last Activity")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #27, Filter works on Last Activity")
+	public void filterLastActivityWorks() throws InterruptedException {
+		logger.info("Starting of the filterLastActivityWorks method");
+
+		workfilter.filterWorkWithLastActivity();
+
+		Assert.assertEquals(workfilter.workLastActivityDisplayed(), filtersDataProp.getProperty("work.action"));
+
+		logger.info("Ending the filterLastActivityWorks Method");
+
+	}	
+	
+	@Test(priority = 28, description = "Filter works on Next Activity", groups = { "sanity" })
+	@Description("Test Case #28, Filter works on Next Activity")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #28, Filter works on Next Activity")
+	public void filterNextActivityWorks() throws InterruptedException {
+		logger.info("Starting of the filterLastActivityWorks method");
+
+		workfilter.filterWorkWithNextActivity();
+
+		Assert.assertEquals(workfilter.workNextActivityDisplayed(), filtersDataProp.getProperty("work.action"));
+
+		logger.info("Ending the filterNextActivityWorks Method");
+
+	}	
+	
+	
+	
 
 	
 	@AfterClass(alwaysRun = true)

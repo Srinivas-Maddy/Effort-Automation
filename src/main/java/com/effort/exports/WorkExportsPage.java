@@ -170,6 +170,7 @@ public class WorkExportsPage extends BaseAutomationPage{
 		try {
 			waitUntilElementVisible(driver, this.yetToStartBar);
 			clickOnWebElement(this.yetToStartBar);
+			hardWait(10);
 		} catch (Exception e) {
 			try {
 				clickOnWebElementUsingJavascript(this.yetToStartBar);
@@ -183,6 +184,8 @@ public class WorkExportsPage extends BaseAutomationPage{
 		logger.info("Starting of selectCheckbox Method");
 		
 		hardWait(10);
+		scrollIntoView(this.checkBoxes.get(0));
+
 		for (int i = 0; i < checkBoxes.size(); i++) {
 			waitUntilElementVisible(driver, this.checkBoxes.get(i));
 			clickOnWebElement(this.checkBoxes.get(i));
@@ -302,7 +305,7 @@ public class WorkExportsPage extends BaseAutomationPage{
 		
 		String status=null;
 		try {
-			hardWait(10);
+			hardWait(20);
 			waitUntilElementVisible(driver, progressStatus);
 			status=this.progressStatus.getText();
 		} catch (Exception e) {

@@ -1,3 +1,4 @@
+
 package com.effort.works;
 
 import java.util.List;
@@ -216,8 +217,8 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//input[@id='deleteSelected']")
 	private WebElement deleteSelected;
 
-	// (//tr[contains(@class,
-	// 'selected')]//td//a[contains(@href,'/effortx/web/work/details/view/')])[2]
+// (//tr[contains(@class,
+// 'selected')]//td//a[contains(@href,'/effortx/web/work/details/view/')])[2]
 	@FindBy(xpath = "(//a[contains(@href,'/effortx/web/work/details/view/')])[2]")
 	private WebElement workId;
 
@@ -627,7 +628,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 			String actualDate = (String) ((JavascriptExecutor) driver).executeScript("return $(arguments[0]).text();",
 					dateTimes.get(i));
 			if (actualDate.equalsIgnoreCase(presentDate)) {
-				// clickOnWebElement(dateTimes.get(i));
+// clickOnWebElement(dateTimes.get(i));
 				waitUntilElementVisible(driver, dateTimes.get(i));
 				clickUsingActionClass(dateTimes.get(i));
 				break;
@@ -727,7 +728,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 		try {
 			waitUntilElementVisible(driver, this.saveBtn);
 			this.saveBtn.click();
-			// Process Conflict Alert Handling
+// Process Conflict Alert Handling
 			try {
 				waitUntilElementVisible(driver, this.btnProcessAnyway);
 				this.btnProcessAnyway.click();
@@ -735,7 +736,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 				logger.info("Process Anyway Btn is not visible");
 			}
 
-			// Employee OnLeave Alert Handle
+// Employee OnLeave Alert Handle
 
 			try {
 				this.hardWait(3);
@@ -746,12 +747,14 @@ public class AddWorkProcess extends BaseAutomationPage {
 				logger.info("On Leave Alert was not displayed");
 			}
 
-			hardWait(2);
+			
 
 		} catch (Exception e) {
 			System.out.println("Work Not Saved ");
 		}
 
+		hardWait(2);
+		
 		logger.info("Ending of clickOnSave method");
 	}
 
@@ -762,7 +765,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			waitUntilElementVisible(driver, this.saveBtn);
 			this.saveBtn.click();
-			// Process Conflict Alert Handling
+// Process Conflict Alert Handling
 			try {
 				if (sucessfullyText.isDisplayed()) {
 					break;
@@ -777,7 +780,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 				}
 			}
 
-			// Employee OnLeave Alert Handle
+// Employee OnLeave Alert Handle
 			try {
 				if (sucessfullyText.isDisplayed()) {
 					break;
@@ -827,6 +830,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 		boolean isWorkModifiedSucessfully = false;
 
 		try {
+			waitUntilElementVisible(driver, workModifiedSucessfullyText);
 
 			if (workModifiedSucessfullyText.isDisplayed()) {
 
@@ -946,7 +950,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	public void assignWork() {
 		logger.info("Starting of assignWork method");
-
+		hardWait(2);
 		waitUntilElementVisible(driver, this.workAssignBtn);
 		clickOnWebElementUsingJavascript(workAssignBtn);
 
@@ -966,7 +970,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		scrollIntoView(workIdTxt);
 		waitUntilElementVisible(driver, this.workIdTxt);
-		// clickUsingActionClass(workIdTxt);
+// clickUsingActionClass(workIdTxt);
 		workIdTxt.sendKeys(workID);
 
 		waitUntilElementVisible(driver, this.applyFilterBtn);
@@ -1126,7 +1130,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		scrollIntoView(addWorkAttachement);
 
-		clickOnWebElement(workAttachmentTgl);
+		clickUsingActionClass(workAttachmentTgl);
+
+		hardWait(3);
 
 		logger.info("Ending of clickOnAttachmentViewButton menthod");
 	}
@@ -1136,8 +1142,11 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		boolean isWorkAttachmentAddedSucessfully = false;
 
-		try {
+		hardWait(3);
 
+		try {
+		scrollIntoView(AttachedWork);
+			waitUntilElementVisible(driver, AttachedWork);
 			if (AttachedWork.isDisplayed()) {
 
 				isWorkAttachmentAddedSucessfully = true;

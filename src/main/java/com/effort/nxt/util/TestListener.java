@@ -27,7 +27,7 @@ public class TestListener implements ITestListener {
 		logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
 		logger.info("========================================================================");
 
-		// Set email content with test results
+// Set email content with test results
 		StringBuilder emailContent = new StringBuilder();
 		emailContent.append("Hi Team,").append("\n\n");
 		emailContent.append(context.getName()).append(" is Completed").append("\n\n");
@@ -45,7 +45,6 @@ public class TestListener implements ITestListener {
 
 		emailContent.append("Detailed Information Of Passed Test Cases").append("\n");
 		emailContent.append("============================================").append("\n");
-		
 
 		for (ITestResult result : context.getPassedTests().getAllResults()) {
 			emailContent.append("Pass : ").append(result.getName()).append("\n");
@@ -66,9 +65,9 @@ public class TestListener implements ITestListener {
 
 		emailContent.append("Thanks,\n").append("Test Team");
 
-		// Email notification (if needed)
-		// EmailSender.sendEmail("saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in",
-		// "Web Automation Sanity Report", emailContent.toString());
+		EmailSender.sendEmail(
+				"saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in",
+				"Web Automation Sanity Report", emailContent.toString());
 
 		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
