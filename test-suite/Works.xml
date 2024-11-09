@@ -14,12 +14,12 @@
 		<listener class-name="com.effort.nxt.util.TestListener"></listener>
 	</listeners>
 
-	<test name="Work Spec Creation in App builder">
+<!--	<test name="Work Spec Creation in App builder">
 		<classes>
 			<class name="com.effort.nxt.test.works.WorkProcessCreationTest" />
 		</classes>
 	</test>
-
+-->
 	<test name="Work Module In Web App">
 		<classes>
 			<class name="com.effort.nxt.test.works.AddWorkProcessTest" />

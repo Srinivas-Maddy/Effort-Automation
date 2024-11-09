@@ -100,8 +100,8 @@ public class CustomerPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "(//div[@class='xdsoft_calendar'])[3]/table/tbody/tr/td")
 	private List<WebElement> datetimes1;
-	
-	@FindBy(xpath="(//label[contains(text(),'Number')])[1]")
+
+	@FindBy(xpath = "(//label[contains(text(),'Number')])[1]")
 	private WebElement numberLabel;
 
 	@FindBy(xpath = "(//input[@class='sysField form-control numeric'])[2]")
@@ -639,11 +639,9 @@ public class CustomerPage extends BaseAutomationPage {
 	public void clickOnDateTime1Picker() throws InterruptedException {
 		logger.info("Starting of clickOnDateTime1Picker Method");
 
+		// scrollDown(100, datetime1picker);
 
-		//scrollDown(100, datetime1picker);
-
-		
-		scrollIntoView(this.datetime1picker);	
+		scrollIntoView(this.datetime1picker);
 		waitUntilElementVisible(driver, this.datetime1picker);
 		hardWait(5);
 		this.datetime1picker.click();
@@ -665,10 +663,10 @@ public class CustomerPage extends BaseAutomationPage {
 			}
 		}
 
-	waitUntilElementVisible(driver, this.numberLabel);
+		waitUntilElementVisible(driver, this.numberLabel);
 		clickOnWebElement(this.numberLabel);
-		//this.datetime1picker.click();
-		
+		// this.datetime1picker.click();
+
 		logger.info("Ending of pickCurrentDateTime1 Method");
 	}
 
@@ -805,7 +803,7 @@ public class CustomerPage extends BaseAutomationPage {
 	public void pickCustomer() throws InterruptedException {
 		logger.info("Starting of customPicker Method");
 
-		//scrollDown(100, customerpickfield);
+		// scrollDown(100, customerpickfield);
 		scrollIntoView(customerpickfield);
 		waitUntilElementVisible(driver, customerpickfield);
 		this.customerpickfield.click();
@@ -820,7 +818,7 @@ public class CustomerPage extends BaseAutomationPage {
 	public void pickEmployee() {
 		logger.info("Starting of employeePicker Method");
 
-	//	scrollDown(100, employeepickfield);
+		// scrollDown(100, employeepickfield);
 		scrollIntoView(employeepickfield);
 		waitUntilElementVisible(driver, employeepickfield);
 		this.employeepickfield.click();
@@ -861,7 +859,7 @@ public class CustomerPage extends BaseAutomationPage {
 	}
 
 	public void pickMultiPickList() {
-		//logger.info("Starting of pickMultiPickList Method");
+		// logger.info("Starting of pickMultiPickList Method");
 
 		scrollDown(100, multipicklistfield);
 		waitUntilElementVisible(driver, this.multipicklistfield);
@@ -877,23 +875,22 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public void pickMultiSelectDropDown() {
 		logger.info("Starting of pickMultiSelectDropDown Method");
-		
+
 		try {
 			scrollIntoView(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownfield);
 			clickOnWebElement(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownvalue);
 			clickOnWebElement(multiselectdropdownvalue);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			scrollIntoView(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownfield);
 			clickOnWebElement(multiselectdropdownfield);
 			waitUntilElementVisible(driver, this.multiselectdropdownvalue);
 			clickOnWebElement(multiselectdropdownvalue);
 		}
-		
-		
+
 		logger.info("Ending of pickMultiSelectDropDown Method");
 	}
 
@@ -1241,8 +1238,8 @@ public class CustomerPage extends BaseAutomationPage {
 
 	public boolean isTotalCustomerCountDisplayed() {
 		logger.info("Starting of isTotalCustomerCountDisplayed Method");
-
 		Boolean isTotalCustomerCountDisplayed = false;
+
 		waitUntilElementVisible(driver, totalCustomers_card);
 		hardWait(3);
 		String totalCustomers = totalCustomers_card.getText();
@@ -1253,14 +1250,18 @@ public class CustomerPage extends BaseAutomationPage {
 		String totalCustomersText = totalCustomets_txt.getText();
 		int length = totalCustomersText.length();
 		String text = totalCustomersText.substring(19, 23);
-		String totalCust =text.trim();
+		System.out.println(text);
+		String totalCust = text.trim();
+		System.out.println(totalCust);
+		System.out.println(totalCustomers);
 		hardWait(3);
-		//totalCustomersText.substring(4);
-		if(totalCust.equalsIgnoreCase(totalCustomers)){
+		// totalCustomersText.substring(4);
+		if (totalCust.equalsIgnoreCase(totalCustomers)) {
 			isTotalCustomerCountDisplayed = true;
 		}
 
 		logger.info("Ending of isTotalCustomerCountDisplayed Method");
+
 		return isTotalCustomerCountDisplayed;
 
 	}
@@ -1291,8 +1292,6 @@ public class CustomerPage extends BaseAutomationPage {
 
 		}
 
-		
-		
 		logger.info("Ending of isPendingRequisitionApprovalsCountDisplayed Method");
 		return isPendingRequisitionApprovalsCountDisplayed;
 
@@ -1335,7 +1334,7 @@ public class CustomerPage extends BaseAutomationPage {
 		clickUsingActionClass(activitySnapshot_btn);
 
 		this.hardWait(3);
-	//	switchToNewWindow(0);
+		// switchToNewWindow(0);
 
 		logger.info("Ending of clickOnActivitySnapshotButton Method");
 
@@ -1402,7 +1401,7 @@ public class CustomerPage extends BaseAutomationPage {
 		return isactualCustomerVisitsCountDisplayed;
 
 	}
-	
+
 	public boolean isUnplannedCustomerVisitsCountDisplayed() {
 		logger.info("Starting of isunplannedCustomerVisitsCountDisplayed Method");
 

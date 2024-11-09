@@ -1146,6 +1146,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		try {
 		scrollIntoView(AttachedWork);
+		hardWait(3);
 			waitUntilElementVisible(driver, AttachedWork);
 			if (AttachedWork.isDisplayed()) {
 
