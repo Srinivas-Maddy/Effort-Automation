@@ -473,10 +473,6 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 	}	
 	
-	
-	
-
-	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
