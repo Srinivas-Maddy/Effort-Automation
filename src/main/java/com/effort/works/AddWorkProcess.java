@@ -853,6 +853,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 			if (workCreatedSucessfullyText.isDisplayed()) {
 
 				isWorkAddedSucessfully = true;
+
 			}
 		} catch (Exception e) {
 
@@ -876,6 +877,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 				isWorkModifiedSucessfully = true;
 			}
+
 		} catch (Exception e) {
 
 			isWorkModifiedSucessfully = false;
@@ -1073,6 +1075,18 @@ public class AddWorkProcess extends BaseAutomationPage {
 		workID = workId.getText();
 
 		logger.info("Ending of getWorkId menthod");
+	}
+
+	public String getSmartWorkId() {
+		logger.info("Starting of getWorkId method");
+
+		hardWait(3);
+
+		waitUntilElementVisible(driver, this.workId);
+		workID = workId.getText();
+
+		logger.info("Ending of getWorkId menthod");
+		return workID;
 	}
 
 	public void clickOnWorkId() {
@@ -1670,9 +1684,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 	}
 
 	public int matrixCount() {
-	    return this.number;
+		return this.number;
 	}
-	
+
 	public void logOut() {
 		logger.info("Starting of Logout method");
 

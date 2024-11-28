@@ -32,9 +32,12 @@ public class TestListener implements ITestListener {
 	private static String getTestMethodName(ITestResult iTestResult) {
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	}
-    //iTestResult: An object representing the result of a test method's execution (from TestNG framework).
-	// iTestResult.getMethod(): Retrieves the method object representing the current test method.
-	// .getConstructorOrMethod(): Retrieves either the constructor or the method metadata.
+	// iTestResult: An object representing the result of a test method's execution
+	// (from TestNG framework).
+	// iTestResult.getMethod(): Retrieves the method object representing the current
+	// test method.
+	// .getConstructorOrMethod(): Retrieves either the constructor or the method
+	// metadata.
 	// .getName(): Gets the name of the method.
 	// Result: Returns the method name as a String
 
@@ -67,70 +70,71 @@ public class TestListener implements ITestListener {
 
 	@Override
 
-public void onFinish(ITestContext context) {
-    logger.info("========================================================================");
-    logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
-    logger.info("========================================================================");
+	public void onFinish(ITestContext context) {
+		logger.info("========================================================================");
+		logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
+		logger.info("========================================================================");
 
-    // Set email content with test results
-    StringBuilder emailContent = new StringBuilder();
-    emailContent.append("Hi Team,").append("\n\n");
-    emailContent.append(context.getName()).append(" is Completed").append("\n\n");
-    emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
-    emailContent.append("Module Name :").append(context.getName()).append("\n\n");
-    emailContent.append("========================").append("\n\n");
-    emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
-    emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
-    emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
-    emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n");
-    emailContent.append("========================").append("\n\n");
+		// Set email content with test results
+		StringBuilder emailContent = new StringBuilder();
+		emailContent.append("Hi Team,").append("\n\n");
+		emailContent.append(context.getName()).append(" is Completed").append("\n\n");
+		emailContent.append("Test Suite Name :").append(context.getSuite().getName()).append("\n");
+		emailContent.append("Module Name :").append(context.getName()).append("\n\n");
+		emailContent.append("========================").append("\n\n");
+		emailContent.append("No of Test Cases Executed : ").append(context.getAllTestMethods().length).append("\n\n");
+		emailContent.append("No of Test Cases Passed : ").append(context.getPassedTests().size()).append("\n\n");
+		emailContent.append("No of Test Cases Failed : ").append(context.getFailedTests().size()).append("\n\n");
+		emailContent.append("No of Test Cases Skipped : ").append(context.getSkippedTests().size()).append("\n\n");
+		emailContent.append("========================").append("\n\n");
 
-    emailContent.append("Click here to view the detailed report.").append("\n");
-    emailContent.append("https://spoorswebautomationreport.netlify.app/").append("\n\n");
+		emailContent.append("Click here to view the detailed report.").append("\n");
+		emailContent.append("https://spoorswebautomationreport.netlify.app/").append("\n\n");
 
-    // Add detailed information for Passed Test Cases
-    emailContent.append("Detailed Information Of Passed Test Cases").append("\n");
-    emailContent.append("============================================").append("\n");
+		// Add detailed information for Passed Test Cases
+		emailContent.append("Detailed Information Of Passed Test Cases").append("\n");
+		emailContent.append("============================================").append("\n");
 
-    List<ITestResult> passedTests = new ArrayList<>(context.getPassedTests().getAllResults());
-    passedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
+		List<ITestResult> passedTests = new ArrayList<>(context.getPassedTests().getAllResults());
+		passedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
 
-    for (ITestResult result : passedTests) {
-        emailContent.append("Pass : ").append(result.getName()).append("\n");
-    }
+		for (ITestResult result : passedTests) {
+			emailContent.append("Pass : ").append(result.getName()).append("\n");
+		}
 
-    // Add detailed information for Failed Test Cases
-    emailContent.append("\nDetailed Information Of Failed Test Cases").append("\n");
-    emailContent.append("============================================").append("\n");
+		// Add detailed information for Failed Test Cases
+		emailContent.append("\nDetailed Information Of Failed Test Cases").append("\n");
+		emailContent.append("============================================").append("\n");
 
-    List<ITestResult> failedTests = new ArrayList<>(context.getFailedTests().getAllResults());
-    failedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
+		List<ITestResult> failedTests = new ArrayList<>(context.getFailedTests().getAllResults());
+		failedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
 
-    for (ITestResult result : failedTests) {
-        emailContent.append("Fail : ").append(result.getName()).append("\n\n");
-        emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
-    }
+		for (ITestResult result : failedTests) {
+			emailContent.append("Fail : ").append(result.getName()).append("\n\n");
+			emailContent.append("Exception: ").append(result.getThrowable().getMessage()).append("\n\n");
+		}
 
-    // Add detailed information for Skipped Test Cases
-    emailContent.append("Detailed Information Of Skipped Test Cases").append("\n");
-    emailContent.append("============================================").append("\n");
+		// Add detailed information for Skipped Test Cases
+		emailContent.append("Detailed Information Of Skipped Test Cases").append("\n");
+		emailContent.append("============================================").append("\n");
 
-    List<ITestResult> skippedTests = new ArrayList<>(context.getSkippedTests().getAllResults());
-    skippedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
+		List<ITestResult> skippedTests = new ArrayList<>(context.getSkippedTests().getAllResults());
+		skippedTests.sort(Comparator.comparingLong(ITestResult::getStartMillis));
 
-    for (ITestResult result : skippedTests) {
-        emailContent.append("Skip : ").append(result.getName()).append("\n\n");
-    }
+		for (ITestResult result : skippedTests) {
+			emailContent.append("Skip : ").append(result.getName()).append("\n\n");
+		}
 
-    emailContent.append("Thanks,\n").append("Test Team");
+		emailContent.append("Thanks,\n").append("Test Team");
 
-    EmailSender.sendEmail(
-			"saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in",
-			"Web Automation Sanity Report", emailContent.toString());
+		EmailSender.sendEmail(
+				"saikiran.devarakonda@spoors.in,srinivas.maddy@spoors.in,sirisha.dande@spoors.in,komal.jidage@spoors.in,venkatesh.avula@spoors.in",
+				"Web Automation Sanity Report", emailContent.toString());
 
-    ExtentTestManager.endTest();
-    ExtentManager.getInstance().flush();
-}
+		ExtentTestManager.endTest();
+		ExtentManager.getInstance().flush();
+	}
+
 	@Override
 	public void onTestStart(ITestResult result) {
 		logger.info("========================================================================");
@@ -158,20 +162,20 @@ public void onFinish(ITestContext context) {
 
 		if (driver != null) {
 			logger.info(String.format("Screenshot captured for test case: %s", getTestMethodName(iTestResult)));
-			
+
 			try {
 				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-				wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+				wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
+						.equals("complete"));
 				saveScreenshotPNG("Test_Failure_Screenshot_", driver);
 
 			} catch (Exception e) {
-			    logger.error("Error while capturing screenshot: ", e);
+				logger.error("Error while capturing screenshot: ", e);
 			}
 
 		}
 	}
 
-	
 	/*
 	 * public void onTestFailure2(ITestResult result) { logger.info(
 	 * "========================================================================");
