@@ -43,6 +43,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending of initEffortLogin method in Work Creation process");
 	}
 
+	String smartWorkID;
+
 	@Test(priority = 1, description = "Add the work in the web app", groups = { "sanity" })
 	@Description("Test Case #1, Assigning the work")
 	@Severity(SeverityLevel.BLOCKER)
@@ -364,24 +366,39 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.enterWorkName(formDataProp.getProperty("smartWorkName") + addWork.getCurrentDateTime());
 		this.addWork.clickOnWorkEndDate();
 		this.addWork.clickOnCurrentDateTime();
-		this.addWork.smartWorkEmplpoyee(formDataProp.getProperty("smartWorkEMP"));
+		this.addWork.smartWorkEmplpoyee(formDataProp.getProperty("AssignEmployee"));
 
-		this.addWork.assignSmartWorkEmplpoyee(formDataProp.getProperty("smartWorkEMP"));
+		this.addWork.assignSmartWorkEmplpoyee(formDataProp.getProperty("AssignEmployee"));
 
 		this.addWork.clickOnSave();
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
 
+		smartWorkID = addWork.getSmartWorkId();
+
 		logger.info("Ending the smartWorkCreation Method");
 	}
 
-	// @Test(priority = 11, description = "Smart work Complete", groups = { "sanity"
-	// })
+	@Parameters({ "userName", "password" })
+	@Test(priority = 11, description = "Smart work Complete", groups = { "sanity" })
 	@Description("Test Case #11, Smart Work Complete")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #11, Smart work Complete")
-	public void smartWorkComplete() throws InterruptedException {
+	public void smartWorkComplete(String userName, String password) throws InterruptedException {
 		logger.info("Starting of the smartWorkComplete method");
+
+		loginPage.logOutForSmartWork();
+
+		this.loginPage.enterUserName(formDataProp.getProperty("smartWorkUserName"));
+		this.loginPage.clickOnPassword(formDataProp.getProperty("smartWorkUserPassword"));
+		this.loginPage.clickOnLoginButton();
+		this.loginPage.clickOnSignOutFromAllSessions(formDataProp.getProperty("smartWorkUserName"),
+				formDataProp.getProperty("smartWorkUserPassword"));
+
+		loginPage.ClickonWebApp();
+		this.addWork.clickOnProcessModule();
+		this.addWork.clickOnSmartWorkName();
+		workfilter.filterWorkWithId(smartWorkID);
 
 		addWork.clickOnWorkId();
 
@@ -397,6 +414,17 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.smartWorkActionWork();
 
 		this.smartWorkActionWork();
+
+		loginPage.logOutForSmartWork();
+
+		LoginToApplication(userName, password);
+
+		loginPage.ClickonWebApp();
+		this.addWork.clickOnProcessModule();
+		this.addWork.clickOnSmartWorkName();
+		workfilter.filterWorkWithId(smartWorkID);
+
+		addWork.clickOnWorkId();
 
 		this.smartWorkActionWork();
 
