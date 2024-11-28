@@ -103,6 +103,7 @@
 	</build>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -215,12 +216,5 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version> <!-- Use the latest version available -->
 		</dependency>
-
-		<dependency>
-			<groupId>com.spoors</groupId>
-			<artifactId>effort-mobile-automation</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
-
 </project>
