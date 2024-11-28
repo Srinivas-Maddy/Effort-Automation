@@ -155,14 +155,14 @@ public class WorkFiltersPage extends BaseAutomationPage {
 	private WebElement workFieldCustomerType;
 
 	@FindBy(xpath = "//label[text()='Territory']/following-sibling::div//div")
-	private WebElement filterWorkTerritory;  
-	
+	private WebElement filterWorkTerritory;
+
 	@FindBy(xpath = "//span[text()='HYD']")
-	private WebElement filterSelectTerritory;  
+	private WebElement filterSelectTerritory;
 
 	@FindBy(xpath = "//label[text()='Territory']/following-sibling::div//div//input")
 	private WebElement workFieldInputTerritory;
-	
+
 	@FindBy(xpath = "//table[@id='example']/tbody/tr[1]/td[22]")
 	private WebElement workFieldTerritory;
 
@@ -183,13 +183,13 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//input[@id='UnCompleted']")
 	private WebElement filterInCompletedWork;
-	
+
 	@FindBy(xpath = "//input[@id='rejected']")
 	private WebElement filterRejectedWork;
-	
+
 	@FindBy(xpath = "//input[@id='viewUnassigned']")
 	private WebElement filterUnassignedWork;
-	
+
 	@FindBy(xpath = "//input[@id='viewAssigned']")
 	private WebElement filterAssignedWork;
 
@@ -447,17 +447,17 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		waitUntilElementVisible(driver, this.resetFilterBtn);
 		clickUsingActionClass(resetFilterBtn);
-		
+
 		waitUntilElementVisible(driver, this.filterWorkTerritory);
 		scrollIntoView(filterWorkTerritory);
 		clickUsingActionClass(filterWorkTerritory);
 
 		waitUntilElementVisible(driver, this.workFieldInputTerritory);
 		workFieldInputTerritory.sendKeys(workTerritory);
-		
+
 		waitUntilElementVisible(driver, this.filterSelectTerritory);
 		clickUsingActionClass(filterSelectTerritory);
-		
+
 		clickUsingActionClass(filterWorkTerritory);
 
 		waitUntilElementVisible(driver, this.applyFilterBtn);
@@ -776,7 +776,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterIncompletedWork menthod");
 	}
-	
+
 	public void filterRejectedWork() {
 		logger.info("Starting of filterRejectedWork method");
 		hardWait(3);
@@ -797,7 +797,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterRejectedWork menthod");
 	}
-	
+
 	public void filterUnassignedWork() {
 		logger.info("Starting of filterUnassignedWork method");
 		hardWait(3);
@@ -818,7 +818,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterUnassignedWork menthod");
 	}
-	
+
 	public void filterAssignedWork() {
 		logger.info("Starting of filterAssignedWork method");
 		hardWait(3);
@@ -839,7 +839,6 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		logger.info("Ending of filterAssignedWork menthod");
 	}
-	
 
 	public void clickOnWorkId() {
 		logger.info("Starting of clickOnWorkId method");
@@ -950,7 +949,7 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		return isWorkAssignEmployeeFieldDisplayed;
 	}
-	
+
 	public boolean isWorkAssignEmpFieldDisplayed() {
 		logger.info("Starting of isWorkAssignEmpFieldDisplayed method");
 
@@ -959,23 +958,21 @@ public class WorkFiltersPage extends BaseAutomationPage {
 
 		try {
 
-			if(isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
-				isWorkAssignEmpFieldDisplayed= true;
+			if (isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
+				isWorkAssignEmpFieldDisplayed = true;
 			}
-			
-			
 
 		} catch (Exception e) {
 
 			try {
-				
-				if(isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
-					isWorkAssignEmpFieldDisplayed= true;
+
+				if (isWorkAssignEmpFieldDisplayed = workFieldAssignEmployee.getText().isEmpty()) {
+					isWorkAssignEmpFieldDisplayed = true;
 				}
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
-			
+
 		}
 
 		logger.info("Ending of isWorkAssignEmployeeFieldDisplayed method");

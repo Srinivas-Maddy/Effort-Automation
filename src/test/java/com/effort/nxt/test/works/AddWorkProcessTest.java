@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
+import com.effort.filters.WorkFiltersPage;
 import com.effort.forms.FormSubmission;
 import com.effort.nxt.test.BaseAutomationTest;
 import com.effort.works.AddWorkProcess;
@@ -23,6 +24,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(AddWorkProcessTest.class);
 	private AddWorkProcess addWork;
 	private FormSubmission addwork;
+	private WorkFiltersPage workfilter;
 
 	// Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
@@ -35,6 +37,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork = new AddWorkProcess(driver);
 		this.loginPage = new LoginPage(driver);
 		this.addwork = new FormSubmission(driver);
+		this.workfilter = new WorkFiltersPage(driver);
 		LoginToApplication(userName, password);
 
 		logger.info("Ending of initEffortLogin method in Work Creation process");
@@ -116,7 +119,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnSave();
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
-		
+
 		addWork.getWorkId();
 
 		logger.info("Ending the Addwork Method");
@@ -128,7 +131,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #2, modify the work in the web app")
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
-		
+
 		addWork.clickOnEditIcn();
 
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified") + addWork.getCurrentDateTime());
@@ -192,13 +195,13 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Starting of the workAttachement method");
 
 		addWork.clickOnAddWorkAttachmentButton();
-		
+
 		addWork.clickOnWorkAttachmentButton();
-		
+
 		addwork.enterCurrency(formDataProp.getProperty("currency"));
 
 		addwork.clickOnSave();
-		
+
 		addWork.clickOnAttachmentViewButton();
 
 		Assert.assertTrue(addWork.isWorkAttachmentAddedSucessfully());
@@ -217,7 +220,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnWorkName();
 
 		addWork.filterWork();
-		
+
 		addWork.clickOnWorkSelectButton();
 
 		addWork.deleteSelectedWork();
@@ -229,10 +232,97 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteSelectedWork Method");
 	}
 
-	@Test(priority = 7, description = "Delete filtered work", groups = { "sanity" })
-	@Description("Test Case #7, Delete filtered work")
+	@Test(priority = 7, description = "Verify works matrix", groups = "sanity")
+	@Description("Verify works matrix")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #7, Delete filtered work")
+	@Story("Verify works matrix")
+	public void workMatrixValidation() {
+		logger.info("Starting of workMatrixValidation Method");
+
+		Assert.assertTrue(addWork.isYetToStartCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.isYetToStartWorksDisplayed(),
+					filtersDataProp.getProperty("yetToStart.work"));
+
+		}
+
+		Assert.assertTrue(addWork.isUnassignedCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertTrue(workfilter.isWorkAssignEmpFieldDisplayed());
+
+		}
+
+		Assert.assertTrue(addWork.isRejectedCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("rejected.work"));
+
+		}
+
+		Assert.assertTrue(addWork.isInProgressCountDisplayed());
+
+		Assert.assertTrue(addWork.isCompletedCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.workStatusDisplayed(), filtersDataProp.getProperty("completed.work"));
+
+		}
+
+		Assert.assertTrue(addWork.isYoursCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+					filtersDataProp.getProperty("Work.EmpName"));
+
+		}
+
+		Assert.assertTrue(addWork.isTeamCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+					filtersDataProp.getProperty("work.underEmpName"));
+
+		}
+
+		logger.info("Ending of workMatrixValidation Method");
+	}
+
+	@Test(priority = 8, description = "Verify works progress bar", groups = "sanity")
+	@Description("Verify works progress bar")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Verify works progress bar")
+	public void workProgressBarValidation() {
+		logger.info("Starting of workProgressBarValidation Method");
+
+		Assert.assertTrue(addWork.ispendingCountDisplayed());
+
+		Assert.assertTrue(addWork.yoursCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+					filtersDataProp.getProperty("Work.EmpName"));
+
+		}
+
+		Assert.assertTrue(addWork.teamActionableCountDisplayed());
+
+		if (addWork.matrixCount() > 0) {
+			Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+					filtersDataProp.getProperty("work.underEmpName"));
+
+		}
+
+		Assert.assertTrue(addWork.updatedTodayCountDisplayed());
+
+		logger.info("Ending of workProgressBarValidation Method");
+	}
+
+	@Test(priority = 9, description = "Delete filtered work", groups = { "sanity" })
+	@Description("Test Case #9, Delete filtered work")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Test Case #9, Delete filtered work")
 	public void deleteFilteredWork() throws InterruptedException {
 		logger.info("Starting of the deleteFilteredWork method");
 
@@ -259,10 +349,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the deleteFilteredWork Method");
 	}
 
-	@Test(priority = 8, description = "Smart work Creation", groups = { "sanity" })
-	@Description("Test Case #8, Smart Work Creation")
+	@Test(priority = 10, description = "Smart work Creation", groups = { "sanity" })
+	@Description("Test Case #10, Smart Work Creation")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #8, Smart work creation")
+	@Story("Test Case #10, Smart work creation")
 	public void smartWorkCreation() throws InterruptedException {
 		logger.info("Starting of the smartWorkCreation method");
 
@@ -285,10 +375,11 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		logger.info("Ending the smartWorkCreation Method");
 	}
 
-	//@Test(priority = 9, description = "Smart work Complete", groups = { "sanity" })
-	@Description("Test Case #9, Smart Work Complete")
+	// @Test(priority = 11, description = "Smart work Complete", groups = { "sanity"
+	// })
+	@Description("Test Case #11, Smart Work Complete")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test Case #9, Smart work Complete")
+	@Story("Test Case #11, Smart work Complete")
 	public void smartWorkComplete() throws InterruptedException {
 		logger.info("Starting of the smartWorkComplete method");
 

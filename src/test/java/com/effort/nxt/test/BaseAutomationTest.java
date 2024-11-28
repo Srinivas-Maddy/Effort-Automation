@@ -23,9 +23,6 @@ import org.testng.annotations.BeforeSuite;
 
 import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
-
-import org.openqa.selenium.TimeoutException;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseAutomationTest {
@@ -49,7 +46,8 @@ public class BaseAutomationTest {
 	protected static Properties enumProp = null;
 	protected static Properties dayPlannerProp = null;
 	protected static Properties listProp=null;
-
+	//protected WebDriver childWebDriver = null;
+	
 	protected String USER_DIR = System.getProperty("user.dir");
 
 	private static Map<WebDriversEnum, WebDriver> webDriverPool = new Hashtable<WebDriversEnum, WebDriver>();
@@ -211,7 +209,7 @@ public class BaseAutomationTest {
 
 	protected synchronized WebDriver getWebDriver(String browser, String headless, WebDriversEnum WebDriver) {
         logger.info("Starting of method getWebDriver");
-
+       
         WebDriver driver = webDriverPool.get(WebDriver);
 
         String osPath = System.getProperty("os.name");
@@ -375,4 +373,10 @@ public class BaseAutomationTest {
 		logger.info("Ending of LoginToApplication Method");
 	}
 
+	public WebDriver getChildWebDriver() {
+		logger.info("Starting of getChildWebDriver method");
+		logger.info("Ending of getChildWebDriver method");
+
+		return this.driver;
+	}
 }
