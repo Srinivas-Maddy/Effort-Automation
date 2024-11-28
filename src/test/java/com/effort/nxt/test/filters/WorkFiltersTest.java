@@ -81,7 +81,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithStartDate(filtersDataProp.getProperty("Work.StartDate"));
 
-		workfilter.filterWorkWithEndDate(filtersDataProp.getProperty("Work.EndDate"), filtersDataProp.getProperty("Work.id"));
+		workfilter.filterWorkWithEndDate(filtersDataProp.getProperty("Work.EndDate"),
+				filtersDataProp.getProperty("Work.id"));
 
 		Assert.assertEquals(workfilter.isWorkStartDateDisplayed(),
 				expectedAssertionsProp.getProperty("Work.StateDate"));
@@ -97,9 +98,10 @@ public class WorkFiltersTest extends BaseAutomationTest {
 	public void filterWorkWithEndDate() throws InterruptedException {
 		logger.info("Starting of the filerWorkWithEndDate method");
 
-		//workfilter.filterWorkWithStartDate(filtersDataProp.getProperty("Work.StartDate"));
+		// workfilter.filterWorkWithStartDate(filtersDataProp.getProperty("Work.StartDate"));
 
-		//workfilter.filterWorkWithEndDate(filtersDataProp.getProperty("Work.EndDate"), filtersDataProp.getProperty("Work.id"));
+		// workfilter.filterWorkWithEndDate(filtersDataProp.getProperty("Work.EndDate"),
+		// filtersDataProp.getProperty("Work.id"));
 
 		Assert.assertEquals(workfilter.isWorkEndDateDisplayed(), expectedAssertionsProp.getProperty("Work.EndDate"));
 
@@ -116,7 +118,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithAssignEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
 
-		Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
+		Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+				filtersDataProp.getProperty("Work.EmpName"));
 
 		logger.info("Ending the filerWorkWithAssignEmployeeName Method");
 
@@ -166,7 +169,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithDate Method");
 
 	}
-	
+
 	@Test(priority = 9, description = "Filter work With Duration", groups = { "sanity" })
 	@Description("Test Case #9, Filter work With Duration")
 	@Severity(SeverityLevel.BLOCKER)
@@ -181,7 +184,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithDuration Method");
 
 	}
-	
+
 	@Test(priority = 10, description = "Filter work With Duration", groups = { "sanity" })
 	@Description("Test Case #10, Filter work With Duration")
 	@Severity(SeverityLevel.BLOCKER)
@@ -196,7 +199,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithNumber Method");
 
 	}
-	
+
 	@Test(priority = 11, description = "Filter work With Time", groups = { "sanity" })
 	@Description("Test Case #11, Filter work With Time")
 	@Severity(SeverityLevel.BLOCKER)
@@ -204,14 +207,15 @@ public class WorkFiltersTest extends BaseAutomationTest {
 	public void filterWorkWithTime() throws InterruptedException {
 		logger.info("Starting of the filerWorkWithTime method");
 
-		workfilter.filterWorkWithTime(filtersDataProp.getProperty("work.TimeStart"), filtersDataProp.getProperty("work.TimeEnd"));
+		workfilter.filterWorkWithTime(filtersDataProp.getProperty("work.TimeStart"),
+				filtersDataProp.getProperty("work.TimeEnd"));
 
 		Assert.assertEquals(workfilter.isWorkTimeFieldDisplayed(), filtersDataProp.getProperty("work.TimeEnd"));
 
 		logger.info("Ending the filerWorkWithTime Method");
 
 	}
-	
+
 	@Test(priority = 12, description = "Filter work With Email", groups = { "sanity" })
 	@Description("Test Case #12, Filter work With Email")
 	@Severity(SeverityLevel.BLOCKER)
@@ -226,7 +230,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithEmail Method");
 
 	}
-	
+
 	@Test(priority = 13, description = "Filter work With Phone", groups = { "sanity" })
 	@Description("Test Case #13, Filter work With Phone")
 	@Severity(SeverityLevel.BLOCKER)
@@ -241,7 +245,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithPhone Method");
 
 	}
-	
+
 	@Test(priority = 14, description = "Filter work With Country", groups = { "sanity" })
 	@Description("Test Case #14, Filter work With Country")
 	@Severity(SeverityLevel.BLOCKER)
@@ -256,12 +260,13 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithCountry Method");
 
 	}
-	
+
 	@Test(priority = 15, description = "Filter work With Customer", groups = { "sanity" })
 	@Description("Test Case #15, Filter work With Customer")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test Case #15, Filter work With Customer")
 	public void filterWorkWithCustomer() throws InterruptedException {
+
 		logger.info("Starting of the filerWorkWithCustomer method");
 
 		workfilter.filterWorkWithCustomer(filtersDataProp.getProperty("work.Customer"));
@@ -271,7 +276,7 @@ public class WorkFiltersTest extends BaseAutomationTest {
 		logger.info("Ending the filerWorkWithCustomer Method");
 
 	}
-	
+
 	@Test(priority = 16, description = "Filter work With Customer Type", groups = { "sanity" })
 	@Description("Test Case #16, Filter work With Customer Type")
 	@Severity(SeverityLevel.BLOCKER)
@@ -281,12 +286,13 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithCustomerType(filtersDataProp.getProperty("work.CustomerType"));
 
-		Assert.assertEquals(workfilter.isWorkCustomerTypeFieldDisplayed(), filtersDataProp.getProperty("work.CustomerType"));
+		Assert.assertEquals(workfilter.isWorkCustomerTypeFieldDisplayed(),
+				filtersDataProp.getProperty("work.CustomerType"));
 
 		logger.info("Ending the filerWorkWithCustomerType Method");
 
 	}
-	
+
 	@Test(priority = 17, description = "Filter work With Employee", groups = { "sanity" })
 	@Description("Test Case #17, Filter work With Employee")
 	@Severity(SeverityLevel.BLOCKER)
@@ -300,8 +306,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerWorkWithEmployeeName Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 18, description = "Filter work With Territory", groups = { "sanity" })
 	@Description("Test Case #18, Filter work With Territory")
 	@Severity(SeverityLevel.BLOCKER)
@@ -315,8 +321,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerWorkWithTerritory Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 19, description = "Filter work With YesOrNo", groups = { "sanity" })
 	@Description("Test Case #19, Filter work With YesOrNo")
 	@Severity(SeverityLevel.BLOCKER)
@@ -330,8 +336,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerWorkWithYesOrNo Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 20, description = "Filter work With Filler By", groups = { "sanity" })
 	@Description("Test Case #20, Filter work With Custom Filled By")
 	@Severity(SeverityLevel.BLOCKER)
@@ -341,12 +347,13 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterWorkWithFilledEmployeeName(filtersDataProp.getProperty("Work.EmpName"));
 
-		Assert.assertEquals(workfilter.isWorkFilledEmployeeFieldDisplayed(), filtersDataProp.getProperty("Work.EmpName"));
+		Assert.assertEquals(workfilter.isWorkFilledEmployeeFieldDisplayed(),
+				filtersDataProp.getProperty("Work.EmpName"));
 
 		logger.info("Ending the filerWorkWithFilledBy Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 21, description = "Filter work With Yet To Start", groups = { "sanity" })
 	@Description("Test Case #21, Filter work With Yet To Start")
 	@Severity(SeverityLevel.BLOCKER)
@@ -360,11 +367,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerWorkWithYetToStart Method");
 
-	}	
-	
-	
-	
-	
+	}
+
 	@Test(priority = 22, description = "Filter completed work", groups = { "sanity" })
 	@Description("Test Case #22, Filter completed work")
 	@Severity(SeverityLevel.BLOCKER)
@@ -378,8 +382,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerCompletedWork Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 23, description = "Filter Incompleted works", groups = { "sanity" })
 	@Description("Test Case #23, Filter Incompleted work")
 	@Severity(SeverityLevel.BLOCKER)
@@ -393,8 +397,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerIncompletedWork Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 24, description = "Filter Unassigned works", groups = { "sanity" })
 	@Description("Test Case #24, Filter Unassigned works")
 	@Severity(SeverityLevel.BLOCKER)
@@ -404,13 +408,14 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		workfilter.filterUnassignedWork();
 
-		//Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(), filtersDataProp.getProperty("empty.Name"));
+		// Assert.assertEquals(workfilter.isWorkAssignEmployeeFieldDisplayed(),
+		// filtersDataProp.getProperty("empty.Name"));
 		Assert.assertTrue(workfilter.isWorkAssignEmpFieldDisplayed());
 
 		logger.info("Ending the filterUnassignedWorks Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 25, description = "Filter Assigned works", groups = { "sanity" })
 	@Description("Test Case #25, Filter Assigned works")
 	@Severity(SeverityLevel.BLOCKER)
@@ -422,11 +427,9 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		Assert.assertFalse(workfilter.isWorkAssignEmpFieldDisplayed());
 
-
 		logger.info("Ending the filterAssignedWorks Method");
 
-	}	
-	
+	}
 
 	@Test(priority = 26, description = "Filter filerRejectedWork works", groups = { "sanity" })
 	@Description("Test Case #26, Filter filerRejectedWork work")
@@ -441,8 +444,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filerRejectedWork Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 27, description = "Filter works on Last Activity", groups = { "sanity" })
 	@Description("Test Case #27, Filter works on Last Activity")
 	@Severity(SeverityLevel.BLOCKER)
@@ -456,8 +459,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filterLastActivityWorks Method");
 
-	}	
-	
+	}
+
 	@Test(priority = 28, description = "Filter works on Next Activity", groups = { "sanity" })
 	@Description("Test Case #28, Filter works on Next Activity")
 	@Severity(SeverityLevel.BLOCKER)
@@ -471,8 +474,8 @@ public class WorkFiltersTest extends BaseAutomationTest {
 
 		logger.info("Ending the filterNextActivityWorks Method");
 
-	}	
-	
+	}
+
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");

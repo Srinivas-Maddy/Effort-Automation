@@ -270,6 +270,48 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//button[contains(@id,\"attachment_create\")]")
 	private WebElement workAttachement;
 
+	@FindBy(id = "yetToStartCount")
+	private WebElement yetToStartCount_card;
+
+	@FindBy(id = "unAssignedCount")
+	private WebElement unAssignedCount_card;
+
+	@FindBy(id = "rejectedCount")
+	private WebElement rejectedCount_card;
+
+	@FindBy(id = "inProgressWorkCount")
+	private WebElement inProgressWorkCount_card;
+
+	@FindBy(id = "completedCount")
+	private WebElement completedCount_card;
+
+	@FindBy(id = "yoursCount")
+	private WebElement yoursCount_card;
+
+	@FindBy(id = "teamsCount")
+	private WebElement teamsCount_card;
+
+	@FindBy(id = "switchActionableWork")
+	private WebElement yoursToggleBtn;
+
+	@FindBy(id = "switchTeamActionableWork")
+	private WebElement teamsToggleBtn;
+
+	@FindBy(xpath = "//div[contains(text(),'Showing')]")
+	private WebElement totalWorks_txt;
+
+	@FindBy(id = "pendingCount")
+	private WebElement pendingCount;
+
+	@FindBy(id = "actionableCount")
+	private WebElement actionableCount;
+
+	@FindBy(id = "teamActionableCount")
+	private WebElement teamActionableCount;
+
+	@FindBy(id = "updatedTodayCount")
+	private WebElement updatedTodayCount;
+
 	public AddWorkProcess(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -747,14 +789,12 @@ public class AddWorkProcess extends BaseAutomationPage {
 				logger.info("On Leave Alert was not displayed");
 			}
 
-			
-
 		} catch (Exception e) {
 			System.out.println("Work Not Saved ");
 		}
 
 		hardWait(2);
-		
+
 		logger.info("Ending of clickOnSave method");
 	}
 
@@ -1145,8 +1185,8 @@ public class AddWorkProcess extends BaseAutomationPage {
 		hardWait(3);
 
 		try {
-		scrollIntoView(AttachedWork);
-		hardWait(3);
+			scrollIntoView(AttachedWork);
+
 			waitUntilElementVisible(driver, AttachedWork);
 			if (AttachedWork.isDisplayed()) {
 
@@ -1160,6 +1200,478 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of isWorkAttachmentAddedSucessfully method");
 
 		return isWorkAttachmentAddedSucessfully;
+	}
+
+	private int number;
+
+	public boolean isYetToStartCountDisplayed() {
+		logger.info("Starting of isYetToStartCountDisplayed Method");
+
+		Boolean isYetToStartCountDisplayed = false;
+		waitUntilElementVisible(driver, yetToStartCount_card);
+		hardWait(3);
+		String yetToStart = yetToStartCount_card.getText();
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(yetToStartCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				isYetToStartCountDisplayed = true;
+			}
+		} else {
+			logger.info("The yet to start count was zero");
+			isYetToStartCountDisplayed = true;
+		}
+		logger.info("Ending of isYetToStartCountDisplayed Method");
+		return isYetToStartCountDisplayed;
+
+	}
+
+	public boolean isUnassignedCountDisplayed() {
+		logger.info("Starting of isUnassignedCountDisplayed Method");
+
+		Boolean isUnassignedCountDisplayed = false;
+		waitUntilElementVisible(driver, unAssignedCount_card);
+		hardWait(3);
+		String yetToStart = unAssignedCount_card.getText();
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(unAssignedCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				isUnassignedCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Unassigned count was zero");
+			isUnassignedCountDisplayed = true;
+		}
+
+		logger.info("Ending of isUnassignedCountDisplayed Method");
+		return isUnassignedCountDisplayed;
+
+	}
+
+	public boolean isRejectedCountDisplayed() {
+		logger.info("Starting of isRejectedCountDisplayed Method");
+
+		Boolean isRejectedCountDisplayed = false;
+		waitUntilElementVisible(driver, rejectedCount_card);
+		hardWait(3);
+		String yetToStart = rejectedCount_card.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(rejectedCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				isRejectedCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Rejected count was zero");
+			isRejectedCountDisplayed = true;
+		}
+		logger.info("Ending of isRejectedCountDisplayed Method");
+		return isRejectedCountDisplayed;
+
+	}
+
+	public boolean isInProgressCountDisplayed() {
+		logger.info("Starting of isInProgressCountDisplayed Method");
+
+		Boolean isInProgressCountDisplayed = false;
+		waitUntilElementVisible(driver, inProgressWorkCount_card);
+		hardWait(3);
+		String yetToStart = inProgressWorkCount_card.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(inProgressWorkCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				isInProgressCountDisplayed = true;
+			}
+		} else {
+			logger.info("The In Progress count was zero");
+			isInProgressCountDisplayed = true;
+		}
+
+		logger.info("Ending of isInProgressCountDisplayed Method");
+		return isInProgressCountDisplayed;
+
+	}
+
+	public boolean isCompletedCountDisplayed() {
+		logger.info("Starting of isCompletedCountDisplayed Method");
+
+		Boolean isCompletedCountDisplayed = false;
+		waitUntilElementVisible(driver, completedCount_card);
+		hardWait(3);
+		String yetToStart = completedCount_card.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(completedCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				isCompletedCountDisplayed = true;
+			}
+		} else {
+			logger.info("The completed count was zero");
+			isCompletedCountDisplayed = true;
+		}
+		logger.info("Ending of isCompletedCountDisplayed Method");
+		return isCompletedCountDisplayed;
+
+	}
+
+	public boolean isYoursCountDisplayed() {
+		logger.info("Starting of isYoursCountDisplayed Method");
+
+		Boolean isYoursCountDisplayed = false;
+		waitUntilElementVisible(driver, yoursCount_card);
+		hardWait(3);
+		String yetToStart = yoursCount_card.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(yoursCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart) && yoursToggleBtn.isSelected()) {
+				isYoursCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Yours count was zero");
+			isYoursCountDisplayed = true;
+		}
+		logger.info("Ending of isYoursCountDisplayed Method");
+		return isYoursCountDisplayed;
+
+	}
+
+	public boolean isTeamCountDisplayed() {
+		logger.info("Starting of isTeamCountDisplayed Method");
+
+		Boolean isTeamCountDisplayed = false;
+		waitUntilElementVisible(driver, teamsCount_card);
+		hardWait(3);
+		String yetToStart = teamsCount_card.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(teamsCount_card);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart) && teamsToggleBtn.isSelected()) {
+				isTeamCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Teams count was zero");
+			isTeamCountDisplayed = true;
+		}
+		logger.info("Ending of isTeamCountDisplayed Method");
+		return isTeamCountDisplayed;
+
+	}
+
+	public boolean ispendingCountDisplayed() {
+		logger.info("Starting of ispendingCountDisplayed Method");
+
+		driver.navigate().refresh();
+		Boolean ispendingCountDisplayed = false;
+		scrollIntoView(pendingCount);
+
+		waitUntilElementVisible(driver, pendingCount);
+		hardWait(3);
+		String yetToStart = pendingCount.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(pendingCount);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				ispendingCountDisplayed = true;
+			}
+		} else {
+			logger.info("The pending count was zero");
+			ispendingCountDisplayed = true;
+		}
+		logger.info("Ending of ispendingCountDisplayed Method");
+		return ispendingCountDisplayed;
+
+	}
+
+	public boolean yoursCountDisplayed() {
+		logger.info("Starting of yoursCountDisplayed Method");
+
+		Boolean actionableCountDisplayed = false;
+		waitUntilElementVisible(driver, actionableCount);
+		hardWait(3);
+		String yetToStart = actionableCount.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(actionableCount);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart) && yoursToggleBtn.isSelected()) {
+				actionableCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Yours count was zero");
+			actionableCountDisplayed = true;
+		}
+
+		logger.info("Ending of yoursCountDisplayed Method");
+		return actionableCountDisplayed;
+
+	}
+
+	public boolean teamActionableCountDisplayed() {
+		logger.info("Starting of teamActionableCountDisplayed Method");
+
+		Boolean teamActionableCountDisplayed = false;
+		waitUntilElementVisible(driver, teamActionableCount);
+		hardWait(3);
+		String yetToStart = teamActionableCount.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(teamActionableCount);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart) && teamsToggleBtn.isSelected()) {
+				teamActionableCountDisplayed = true;
+			}
+		} else {
+			logger.info("The teams count was zero");
+			teamActionableCountDisplayed = true;
+		}
+		logger.info("Ending of teamActionableCountDisplayed Method");
+		return teamActionableCountDisplayed;
+
+	}
+
+	public boolean updatedTodayCountDisplayed() {
+		logger.info("Starting of updatedTodayCountDisplayed Method");
+
+		Boolean updatedTodayCountDisplayed = false;
+		waitUntilElementVisible(driver, updatedTodayCount);
+		hardWait(3);
+		String yetToStart = updatedTodayCount.getText();
+
+		number = Integer.valueOf(yetToStart);
+
+		if (number > 0) {
+
+			clickOnWebElement(updatedTodayCount);
+			/////////////////
+			hardWait(3);
+			String worksCountText = totalWorks_txt.getText();
+			// int length = worksCountText.length();
+			String text;
+
+			if (number < 10) {
+				text = worksCountText.substring(18, 20);
+			} else if (number > 9) {
+				text = worksCountText.substring(18, 21);
+			} else {
+				text = worksCountText.substring(18, 22);
+			}
+
+			String totalCust = text.trim();
+			hardWait(3);
+			// totalCustomersText.substring(4);
+			if (totalCust.equalsIgnoreCase(yetToStart)) {
+				updatedTodayCountDisplayed = true;
+			}
+		} else {
+			logger.info("The Updated Today count was zero");
+			updatedTodayCountDisplayed = true;
+		}
+		logger.info("Ending of updatedTodayCountDisplayed Method");
+		return updatedTodayCountDisplayed;
+
+	}
+
+	public int matrixCount() {
+		return this.number;
 	}
 
 	public void logOut() {

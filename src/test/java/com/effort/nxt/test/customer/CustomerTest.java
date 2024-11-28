@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.effort.base.LoginPage;
 import com.effort.common.WebDriversEnum;
 import com.effort.customers.CustomerPage;
 import com.effort.nxt.test.BaseAutomationTest;
@@ -111,7 +110,6 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Ending of AddCustomer Method");
 	}
 
-
 	@Test(priority = 2, description = "Modify Customer Data by Clicking Edit Button", groups = "sanity")
 	@Description("Modification of Customer Details")
 	@Severity(SeverityLevel.BLOCKER)
@@ -135,16 +133,18 @@ public class CustomerTest extends BaseAutomationTest {
 		logger.info("Ending of modifyCustomer Method");
 	}
 
-	@Test(priority = 3, description = "Mapping Customer to Employee by Selecting Checkbox", groups = "sanity")
+	@Test(priority = 3, description = "Mapping Customer to Employee by SelectingCheckbox", groups = "sanity")
 	@Description("Mapping Customer to Employee")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Mapping Customers to Employee to asign Work")
 	public void CustmrtoEmployeeMapping() throws InterruptedException {
 		logger.info("Starting of CustmrtoEmployeeMapping");
+		
 		custmrCreation.CustmrMaptoEmployee();
 		custmrCreation.AssignCustmrtoEmployee();
 		custmrCreation.ClickonAssign(custmrDataProp.getProperty("empname"),
 				custmrDataProp.getProperty("dropdownempname"));
+		
 		logger.info("Ending of CustmrtoEmployeeMapping");
 	}
 
@@ -167,23 +167,23 @@ public class CustomerTest extends BaseAutomationTest {
 	@Test(priority = 5, description = "Verify Customer matrix", groups = "sanity")
 	@Description("Deleting Customers")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Deleting the Customers")
+	@Story("verfiying the Customers matrix")
 	public void customerMatrixValidation() {
-		logger.info("Starting of customerDeletion Method");
+		logger.info("Starting of customerMatrixValidation Method");
 
 		Assert.assertTrue(custmrCreation.isTotalCustomerCountDisplayed());
 		Assert.assertTrue(custmrCreation.isPendingRequisitionApprovalsCountDisplayed());
 		Assert.assertTrue(custmrCreation.isTotalVisitsTodayCountDisplayed());
 
-		logger.info("Ending of customerDeletion Method");
+		logger.info("Ending of customerMatrixValidation Method");
 	}
 
-//	@Test(priority = 6, description = "Verify activity snapshot page", groups = "sanity")
-	@Description("Deleting Customers")
+	@Test(priority = 6, description = "Verify activity snapshot page", groups = "sanity")
+	@Description("activity SnapShot Validation Customers")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Deleting the Customers")
+	@Story("activity SnapShot Validation")
 	public void activitySnapShotValidation() {
-		logger.info("Starting of customerDeletion Method");
+		logger.info("Starting of activitySnapShotValidation Method");
 
 		custmrCreation.clickOnActivitySnapshotButton();
 
@@ -193,10 +193,9 @@ public class CustomerTest extends BaseAutomationTest {
 
 		Assert.assertTrue(custmrCreation.isFormActivitiesCountDisplayed());
 
-		logger.info("Ending of customerDeletion Method");
+		logger.info("Ending of activitySnapShotValidation Method");
 	}
 
-	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
 		logger.info("Starting of quitDriver Method");
