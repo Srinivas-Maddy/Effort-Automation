@@ -125,6 +125,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 	public void clickOnApplyButton() {
 		logger.info("Starting of clickOnApplyButton Method");
 
+		hardWait(3);
 		waitUntilElementVisible(driver, this.apply_Btn);
 		this.apply_Btn.click();
 
@@ -170,6 +171,7 @@ public class RoutePlanFilterPage extends BaseAutomationPage {
 	public void clickOnEmployeeDropDown() {
 		logger.info("Starting of clickOnEmployeeDropDown Method");
 
+		hardWait(3);
 		scrollIntoView(selectEmployee_Dpr);
 		waitUntilElementVisible(driver, this.selectEmployee_Dpr);
 		this.selectEmployee_Dpr.click();

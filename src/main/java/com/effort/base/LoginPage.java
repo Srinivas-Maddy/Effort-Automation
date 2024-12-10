@@ -28,6 +28,12 @@ public class LoginPage extends BaseAutomationPage {
 
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement btnUserName;
+	
+	@FindBy(xpath = "//a[text()='Ignore']")
+	private WebElement btnIgnoreInviataion;
+	
+	@FindBy(xpath = "//a[text()=' LogOut']")
+	private WebElement btnLogOut;
 
 	@FindBy(xpath = "//ul[@class='profile-list']/li/a")
 	private List<WebElement> btnlogout;
@@ -131,6 +137,26 @@ public class LoginPage extends BaseAutomationPage {
 		logger.info("Ending of Logout method");
 	}
 
+	public void logOutForSmartWork() {
+		logger.info("Starting of Logout method");
+		hardWait(2);
+		waitUntilElementVisible(driver, btnUserName);
+	
+		clickOnWebElement(btnUserName);
+		
+		try {
+			if(btnIgnoreInviataion.isDisplayed()) {
+				clickOnWebElement(btnIgnoreInviataion);
+			}
+		} catch (Exception e) {
+			logger.info("No inviation card was displayed");
+		}
+		
+		clickUsingActionClass(btnLogOut);
+
+		logger.info("Ending of Logout method");
+	}
+	
 	public void clickOnSignOutFromAllSessions(String userName, String password) {
 		logger.info("Starting of clickOnSignOutFromAllSessions Method");
 

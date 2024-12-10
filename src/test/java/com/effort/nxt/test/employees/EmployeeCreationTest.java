@@ -81,10 +81,6 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Ending of employeeCreationWithUserDefinedFields Method");
 	}
 	
-	
-	
-	
-	
 	@Test(priority = 3, description="Modify the employee data", groups = {"sanity"})
 	@Description("Modify the employee")
 	@Epic("Employee Module")
