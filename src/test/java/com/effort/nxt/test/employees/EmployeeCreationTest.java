@@ -120,6 +120,105 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		logger.info("Ending of Employee Disable Method");
 	}
 	
+	@Test(priority = 5, description="Customer Mapping through the employee screen", groups = {"sanity"})
+	@Description("We are mapping the customers to the employeess in the employee module")
+	@Epic("Employee Module")
+	@Feature("Employee Customer Mapping")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Customer Mapping in action Option")
+	public void customerMappingEmployee() {
+		logger.info("Starting of customerMappingEmployee Method");
+		
+			//Step 1: Open the three dots menu
+			empCreation.clickOnThreeDots();
+			
+			//Step2: Select Customer Mapping Option
+			empCreation.clickOnCustomerMappingOption();
+			
+			//Step3: Open Map More Customer Option
+			empCreation.clickOnMapMoreOption();
+			
+			//Step4: Select the top 5 customers in the picker
+			empCreation.selectCustomers();
+			
+			//Step5: Click On Ok Button in the customer picker
+			empCreation.clickOnOkay();
+			
+			//Step6: Click on the save button
+			empCreation.clickOnMappingSave();
+		
+		
+		logger.info("Ending of customerMappingEmployee Method");
+	}
+	
+	
+	@Test(priority = 6, description="List Mapping through the employee screen", groups = {"sanity"})
+	@Description("We are mapping the List items to the employeess in the employee module")
+	@Epic("Employee Module")
+	@Feature("Employee List Mapping")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("List Mapping in action Option")
+	public void listItemsMapToEmp() {
+		logger.info("Starting of listItemsMapToEmp Method");
+		
+			//Step 1: Open the three dots menu
+			empCreation.clickOnThreeDots();
+			
+			//Step2: Select List Mapping Option
+			empCreation.clickOnListMappingOption();
+			
+			//Step3: Select the List Spec Icon in the list
+			empCreation.clickOnListSpecIcon();
+			
+			//Step4: Click on the Map More option
+			empCreation.clickOnMapMoreOptionList();
+			
+			//Step5: Select the list items in the picker
+			empCreation.selectListItems();
+			
+			//Step6: Click on the Ok button
+			empCreation.clickOnOkListPicker();
+			
+			//Step7: Clicked On save button on mapping
+			empCreation.clickOnSaveListMapping();
+			
+		
+		logger.info("Ending of listItemsMapToEmp Method");
+	}
+	
+	@Test(priority = 7, description="Send the new Email Password", groups = {"sanity"})
+	@Description("We will send the new password to the employee")
+	@Epic("Employee Module")
+	@Feature("Send New Password")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("List Mapping in action Option")
+	public void sendNewPassword() {
+		logger.info("Starting of sendNewPassword Method");
+		
+		//Step 1: Click on Filter
+		empCreation.clickOnFilter();
+
+		//Step 2: Enter the employee name
+		empCreation.enterEmployeeName("Srinivas Maddy");
+		
+		//Step 3: Click On Apply Filter Btn
+		empCreation.clickOnApply();
+		
+		//Step 4: Open the three dots menu
+		empCreation.clickOnThreeDots();
+		
+		//Step 5: Click On the Send new password via email
+		empCreation.clickOnSendNewOption();
+		
+		//Step 6: Get the send password Status. 
+		empCreation.getStatusPassword();
+		
+		//Step 7: Validate whether password send Successfully or not
+		Assert.assertEquals(empCreation.getStatusPassword(), expectedAssertionsProp.getProperty("emp.password.status"));
+		
+		logger.info("Ending of sendNewPassword Method");
+	}
+	
 	
 	public void addEmpBasicFields() {
 		logger.info("Starting of addEmpBasicFields ");
