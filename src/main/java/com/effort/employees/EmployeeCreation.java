@@ -1,11 +1,11 @@
 package com.effort.employees;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -150,6 +150,12 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 	@FindBy(id="fields0_fieldValue")
 	private WebElement userDefinedTextInput;
+	
+	@FindBy(xpath="//input[contains(@id,'fieldValue')]")
+	private List<WebElement> userDefinedInputFields;
+	
+	@FindBy(xpath="//span[contains(@id,'fieldValue_fieldLabel')]/label")
+	private List<WebElement> userDefinedFieldLabels;
 
 	@FindBy(xpath = "//li[@id='logout_id']")
 	private WebElement userNameBtn;
@@ -211,6 +217,51 @@ public class EmployeeCreation extends BaseAutomationPage {
 	
 	@FindBy(id="search")
 	private WebElement applyBtnInFiter;
+	
+	@FindBy(xpath="//div[contains(@style,'position: absolute;')]//table/tbody/tr/td[contains(@class,'xdsoft_current ')]")
+	private WebElement currentDatePicker;
+	
+	@FindBy(xpath="(//span[@class='dropdown open']/ul/li/a)[4]")
+	private WebElement activationCodeOption;
+	
+	@FindBy(xpath="(//span[@class='dropdown open']/ul/li/a)[6]")
+	private WebElement createdWebAccountOption;
+	
+	@FindBy(xpath="(//span[@class='dropdown open']/ul/li/a)[8]")
+	private WebElement territoryMapOption;
+	
+	@FindBy(xpath="//select[@class='unselected']/option[contains(text(),'HYD')]")
+	private WebElement territryValues;
+	
+	@FindBy(xpath="(//span[@class='glyphicon glyphicon-chevron-right'])[2]")
+	private WebElement moveRightOption;
+	
+	@FindBy(xpath="//input[@value='Save']")
+	private WebElement saveBtnInMapping;
+	
+	@FindBy(xpath="(//span[@class='dropdown open']/ul/li/a)[9]")
+	private WebElement routePlanMapOption;
+	
+	@FindBy(xpath="//select[@class='unselected']/option[contains(text(),'April 27th route plan')]")
+	private WebElement routePlan;
+	
+	@FindBy(xpath="(//span[@class='dropdown open']/ul/li/a)[10]")
+	private WebElement typeMappingOption;
+	
+	@FindBy(xpath="//select[@class='unselected']/option[contains(text(),'Dellars')]")
+	private WebElement typeVaule;
+	
+	@FindBy(id="totalCount")
+	private WebElement totalEmpBtn;
+	
+	@FindBy(xpath="//div[@id='example_info']")
+	private WebElement pageCount;
+	
+	@FindBy(id="requistionStatusCount")
+	private WebElement approvalCount;
+	
+	public String totalEmpCount=null;
+	public String approvalCountValue=null;
 
 	public EmployeeCreation(WebDriver driver) {
 		super(driver);
@@ -545,14 +596,24 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 		logger.info("Ending of ClickOnSave Method");
 	}
-
-	public void disableEmployee() {
-		logger.info("Starting of diable employee method");
-
+	
+	
+	public void filterEmpById() {
+		logger.info("Starting of filterEmpById Method");
+		
+		hardWait(2);
 		waitUntilElementVisible(driver, this.empIdFilterScreen);
 		this.empIdFilterScreen.sendKeys(this.employeeId);
 		waitUntilElementVisible(driver, this.applyBtn);
 		this.applyBtn.click();
+		hardWait(2);
+
+		logger.info("Ending of filterEmpById Method");
+	}
+
+	public void disableEmployee() {
+		logger.info("Starting of diable employee method");
+
 		hardWait(2);
 		waitUntilElementVisible(driver, this.actionMenu);
 		this.actionMenu.click();
@@ -596,6 +657,69 @@ public class EmployeeCreation extends BaseAutomationPage {
 		this.userDefinedTextInput.sendKeys(text);
 
 		logger.info("Ending of enterTextValue Method");
+	}
+	
+	
+	public void enterUserDefinedValue(String fieldLabel, String fieldValue) {
+		logger.info("Starting of enterUserDefinedValue Method");
+	
+		
+		for (int i = 0; i < userDefinedFieldLabels.size(); i++) {	
+		    // Retrieve the field label
+		    String userDefinedLabel = driver.findElement(By.xpath("//span[@id='fields"+i+ "_fieldValue_fieldLabel']/label")).getText();
+
+		    // Check if input fields are provided and not empty
+		    if (userDefinedInputFields != null && !userDefinedInputFields.isEmpty()) {
+		        for (int j = 0; j < userDefinedInputFields.size(); j++) { // Fix increment variable
+		            // Match the label
+		            if (userDefinedLabel.equals(fieldLabel)) { 
+		                // Wait until the input field is visible
+		                waitUntilElementVisible(driver, userDefinedInputFields.get(j));
+		                
+		                //scroll to element visiblity
+		                scrollIntoView(userDefinedInputFields.get(j));
+		                // Locate the input field and set the value
+		               driver.findElement(By.xpath("//input[@id='fields"+i+"_fieldValue']")).sendKeys(fieldValue);
+		                
+		                break; // Exit loop after match is found
+		            }
+
+		        }
+		    }
+		}
+		
+		logger.info("Ending of enterUserDefinedValue Method");
+	}
+	
+	public void datePicker(String fieldLabel) {
+		logger.info("Starting of userDefinedPicker Method");
+		
+		
+		for (int i = 0; i < userDefinedFieldLabels.size(); i++) {	
+		    // Retrieve the field label
+		    String userDefinedLabel = driver.findElement(By.xpath("//span[@id='fields"+i+ "_fieldValue_fieldLabel']/label")).getText();
+
+		    // Check if input fields are provided and not empty
+		    if (userDefinedInputFields != null && !userDefinedInputFields.isEmpty()) {
+		        for (int j = 0; j < userDefinedInputFields.size(); j++) { // Fix increment variable
+		            // Match the label
+		            if (userDefinedLabel.equals(fieldLabel)) { 
+		                // Wait until the input field is visible
+		                waitUntilElementVisible(driver, userDefinedInputFields.get(j));
+		                
+		                // Locate the pick field 
+		               driver.findElement(By.xpath("//input[@id='fields"+i+"_fieldValue']")).click();
+		               waitUntilElementVisible(driver, this.currentDatePicker);
+		               clickOnWebElement(this.currentDatePicker);
+		                break; // Exit loop after match is found
+		            }
+
+		        }
+		    }
+		}
+		
+		logger.info("Ending of userDefinedPicker Method");
+
 	}
 
 	public void clickOnThreeDots() {
@@ -813,8 +937,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 		logger.info("Starting of selectListItems Method");
 
 		try {
-
-			if (listItemsCheckBoxes!=null && listItemsCheckBoxes.isEmpty()) { //Check if the list contains items or not
+			if (listItemsCheckBoxes!=null && !listItemsCheckBoxes.isEmpty()) { //Check if the list contains items or not
 
 				for (int i = 0; i < this.listItemsCheckBoxes.size(); i++) {
 					int count=0;
@@ -907,8 +1030,8 @@ public class EmployeeCreation extends BaseAutomationPage {
 		logger.info("Ending of clickOnSendNewOption Method");
 	}
 	
-	public String getStatusPassword() {
-		logger.info("Starting of getStatusSendEmail Method");
+	public String getStatus() {
+		logger.info("Starting of getStatus Method");
 		
 		String status=null;
 		
@@ -928,7 +1051,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 			throw new RuntimeException("Unexpected failure during interaction.", e);
 		}
 		
-		logger.info("Ending of getStatusSendEmail Method");
+		logger.info("Ending of getStatus Method");
 		
 		return status;
 	}
@@ -979,5 +1102,360 @@ public class EmployeeCreation extends BaseAutomationPage {
 		
 		logger.info("Ending of clickOnApply Method");
 	}
-
+	
+	public void clickOnActivationOption() {
+		logger.info("Starting of clickOnActivationOption Method");
+		
+		try {
+			
+			if (this.activationCodeOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.activationCodeOption);
+				clickOnWebElement(this.activationCodeOption);
+				acceptSystemAlert();
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		
+		logger.info("Ending of clickOnActivationOption Method");
+	}
+	
+	
+	public void clickOnCreateWebAccount() {
+		logger.info("Starting of clickOnCreateWebAccount Method");
+		
+		try {
+			
+			if (this.createdWebAccountOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.createdWebAccountOption);
+				clickOnWebElement(this.createdWebAccountOption);
+				acceptSystemAlert();
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		
+		logger.info("Ending of clickOnCreateWebAccount Method");
+	}
+	
+	public void clickOnDeleteWebAccount() {
+		logger.info("Starting of clickOnCreateWebAccount Method");
+		
+		try {
+			
+			if (this.createdWebAccountOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.createdWebAccountOption);
+				clickOnWebElement(this.createdWebAccountOption);
+				acceptSystemAlert();
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnCreateWebAccount Method");
+	}
+	
+	
+	public void clickOnTerritoryMappingOption() {
+		logger.info("Starting of clickOnTerritoryMappingOption Method");
+		
+		try {
+			
+			if (this.territoryMapOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.territoryMapOption);
+				clickOnWebElement(this.territoryMapOption);
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnTerritoryMappingOption Method");
+	}
+	
+	
+	public void selectTerriotryValue() {
+		logger.info("Starting of selectTerriotryValue Method");
+		
+		try {
+			waitUntilElementVisible(driver, this.territryValues);
+			clickOnWebElement(this.territryValues);
+			clickOnWebElement(this.moveRightOption);
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of selectTerriotryValue Method");
+	}
+	
+	
+	public void clickOnSaveMapping() {
+		
+		try {
+			
+			if (this.saveBtnInMapping.isDisplayed()) { //Check whether save button is displayed or not
+				
+				waitUntilElementVisible(driver, this.saveBtnInMapping);
+				clickOnWebElement(this.saveBtnInMapping);
+			}
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+	}
+	
+	
+	public void clickOnRouteMappingOption() {
+		logger.info("Starting of clickOnRouteMappingOption Method");
+		
+		try {
+			
+			if (this.routePlanMapOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.routePlanMapOption);
+				clickOnWebElement(this.routePlanMapOption);
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnRouteMappingOption Method");
+	}
+	
+	public void selectRoutePlan() {
+		logger.info("Starting of selectRoutePlan Method");
+		
+		try {
+			waitUntilElementVisible(driver, this.routePlan);
+			clickOnWebElement(this.routePlan);
+			clickOnWebElement(this.moveRightOption);
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of selectRoutePlan Method");
+	}
+	
+	public void clickOnTypeMappingOption() {
+		logger.info("Starting of clickOnTypeMappingOption Method");
+		
+		try {
+			
+			if (this.typeMappingOption.isDisplayed()) { // checking the option is displayed or not
+				waitUntilElementVisible(driver, this.typeMappingOption);
+				clickOnWebElement(this.typeMappingOption);
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnTypeMappingOption Method");
+	}
+	
+	public void selectTypeValue() {
+		logger.info("Starting of selectTypeValue Method");
+		
+		try {
+			waitUntilElementVisible(driver, this.typeVaule);
+			clickOnWebElement(this.typeVaule);
+			clickOnWebElement(this.moveRightOption);
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of selectTypeValue Method");
+	}
+	
+	public void clickOnTotalEmpBtn() {
+		logger.info("Starting of clickOnTotalEmpBtn Method");
+		
+		try {
+			
+			if (this.totalEmpBtn.isDisplayed()) { //Validate the total employee button is displyed or not
+				waitUntilElementVisible(driver, this.totalEmpBtn);
+				clickOnWebElement(this.totalEmpBtn);
+				totalEmpCount=this.totalEmpBtn.getText();
+				hardWait(5);
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnTotalEmpBtn Method");
+	}
+	
+	public String getTotalEmpCount() {
+		logger.info("Starting of getTotalEmpCount Method");
+		
+		String finalCount=null;
+		try {
+			if (this.pageCount.isDisplayed()) { //Validate to check page count
+				waitUntilElementVisible(driver, this.pageCount);
+				String pageValue=this.pageCount.getText();
+				String[] value=pageValue.split("of");
+				String s1=value[1];
+				String[] s3=s1.split(" ");
+				String s4=s3[1];
+				finalCount=s4.trim();
+			}
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of getTotalEmpCount Method");
+		
+		return finalCount;
+	}
+	
+	public void clickOnPendingApproval() {
+		logger.info("Starting of clickOnPendingApproval Method");
+		
+		try {
+			if (approvalCount.isDisplayed()) { // validate the check count page is displayed
+				waitUntilElementVisible(driver, this.approvalCount);
+				clickOnWebElement(this.approvalCount);
+				approvalCountValue=this.approvalCount.getText();
+				hardWait(5);
+			}
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Ending of clickOnPendingApproval Method");
+	}
+	
+	public String getApprovalCount() {
+		logger.info("Starting of getApprovalCount Method");
+		
+		switchNewWindow();
+		String approvalCount=null;
+		
+		try {
+			if (this.pageCount.isDisplayed()) { //Validate to check page count
+				waitUntilElementVisible(driver, this.pageCount);
+				String pageValue=this.pageCount.getText();
+				String[] split1=pageValue.split("of");
+				String secondValue=split1[1];
+				String[] split2=secondValue.split("entries");
+				String firstValue=split2[0];
+				approvalCount=firstValue.trim();
+			}
+			
+		} catch (NoSuchElementException e) {
+			logger.error("Error: Element is not visible : " + e.getMessage(), e);
+			throw new RuntimeException("Searching Element is not visible in the page.", e);
+		} catch (ElementNotInteractableException e) {
+			logger.error("Error: Element is visible, But unable to interact the element " + e.getMessage(), e);
+			throw new RuntimeException("Unable to Interact the element.", e);
+		} catch (Exception e) {
+			logger.error("Unexpected error occured : " + e.getMessage(), e);
+			throw new RuntimeException("Unexpected failure during interaction.", e);
+		}
+		
+		logger.info("Starting of getApprovalCount Method");
+		
+		return approvalCount;
+	}
+	
+	
 }
