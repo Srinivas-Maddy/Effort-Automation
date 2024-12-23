@@ -258,7 +258,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 	@FindBy(xpath = "//label[text()='Completed']")
 	private WebElement workCompleted;
 
-	@FindBy(xpath = "//img[@id='addAttachment']")
+	@FindBy(xpath = "//img[@id='addAttachment']/parent::div/preceding-sibling::div")
 	private WebElement addWorkAttachement;
 
 	@FindBy(xpath = "//i[@id='workAttachmentsDataToggle']")
@@ -853,6 +853,9 @@ public class AddWorkProcess extends BaseAutomationPage {
 			if (workCreatedSucessfullyText.isDisplayed()) {
 
 				isWorkAddedSucessfully = true;
+				
+				String IDWork  = workCreatedSucessfullyText.getText();
+                workID = IDWork.substring(8, 16);
 
 			}
 		} catch (Exception e) {
@@ -1184,7 +1187,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 		scrollIntoView(addWorkAttachement);
 
-		clickUsingActionClass(workAttachmentTgl);
+		clickUsingActionClass(addWorkAttachement);//workAttachmentTgl
 
 		hardWait(3);
 

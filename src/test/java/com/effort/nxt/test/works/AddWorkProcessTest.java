@@ -122,7 +122,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
 
-		addWork.getWorkId();
+	//	addWork.getWorkId();
 
 		logger.info("Ending the Addwork Method");
 	}
@@ -134,6 +134,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
 
+		addWork.filterWork();
+		
 		addWork.clickOnEditIcn();
 
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkModified") + addWork.getCurrentDateTime());
@@ -152,6 +154,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	public void reaasignWork() throws InterruptedException {
 		logger.info("Starting of the reaasignWork method");
 
+		addWork.filterWork();
+		
 		addWork.clickOnWorkSelectButton();
 
 		addWork.clickOnReaAsignWork();
@@ -175,7 +179,9 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #4, Complete work")
 	public void completeWork() throws InterruptedException {
 		logger.info("Starting of the completeWork method");
-
+		
+		addWork.filterWork();
+		
 		addWork.clickOnWorkId();
 
 		this.ActionWork();
@@ -338,7 +344,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
 
-		addWork.getWorkId();
+		//addWork.getWorkId();
 
 		addWork.filterWork();
 
