@@ -466,5 +466,21 @@ public class BaseAutomationPage {
 	    return Month;
 	}
 	
+	public void acceptSystemAlert() {
+		logger.info("Starting of acceptSystemAlert Method");
+		
+		driver.switchTo().alert().accept();
+		
+		logger.info("Ending of acceptSystemAlert Method");
+	}
+	
+	public void declineSystemAlert() {
+		logger.info("Starting of acceptSystemAlert Method");
+		
+		driver.switchTo().alert().accept();
+		
+		logger.info("Ending of acceptSystemAlert Method");
+	}
+	
 	
 }
