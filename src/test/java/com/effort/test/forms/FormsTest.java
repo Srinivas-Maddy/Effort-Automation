@@ -51,7 +51,7 @@ public class FormsTest extends BaseAutomationTest{
 		forms.clickOnFormsModuleNavBar();
 		forms.clickOnCreateForm();
 		formSpecExpectedTitle=forms.formTitle(testDataProp.getProperty("formSpecTitle"), testDataProp.getProperty("helpText"));
-		forms.selectAllFields();
+		forms.selectDataTypes();
 		logger.info("Ending of formSpecCreation Method");
 
 	}

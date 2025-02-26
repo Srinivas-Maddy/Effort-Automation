@@ -1,7 +1,12 @@
 package com.effort.forms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.effort.base.BaseAutomationPage;
 
 public class Forms extends BaseAutomationPage{
@@ -27,67 +33,67 @@ public class Forms extends BaseAutomationPage{
 
 	@FindBy(xpath="(//div[@id='popupDetails']/div/div/div)[1]/div/a")
 	private WebElement createOnMyOwn;
-	
+
 	@FindBy(id="formTitle")
 	private WebElement formTitle;
-	
+
 	@FindBy(id="showHelpText")
 	private WebElement formSpecHelpText;
-	
+
 	@FindBy(xpath="//span[@class='fieldLabel']")
 	private List<WebElement> fieldLabels;
-	
+
 	@FindBy(id="myInput")
-    private WebElement labelSearch;
-	
+	private WebElement labelSearch;
+
 	@FindBy(xpath="//ul[@id='formFields-0']")
 	private WebElement dropedArea;
-	
+
 	@FindBy(xpath="//span[@id='pageLabel-0']")
 	private WebElement page;
-	
+
 	@FindBy(id="publishButton")
 	private WebElement publishBtn;
-	
+
 	@FindBy(id="customerActivityFormNo")
 	private WebElement customerActvitiyNoBtn;
-	
+
 	@FindBy(xpath="//a[contains(text(),'Modify Design')]")
 	private WebElement modifyCard;
-	
+
 	@FindBy(xpath="//ul[@class='list-group fieldType-group basic']/li[2]")
 	private WebElement addCurrencyField;
-	
+
 	@FindBy(id="save1")
 	private WebElement saveBtn;
-	
+
 	@FindBy(xpath="//input[@id='search']")
 	private WebElement goBackFormModule;
-	
+
 	@FindBy(id="searchText")
 	private WebElement formSpecSearch;
-	
+
 	@FindBy(xpath="//a[contains(text(),'Withdraw')]")
 	private WebElement withDrawnCard;
-	
+
 	@FindBy(xpath="//li[@id='logout_id']")
 	private WebElement userNameBtn;
-	
+
 	@FindBy(xpath="(//ul[@class='dropdown-menu']/li)[5]")
 	private WebElement webAppBtn;
-	
+
 	@FindBy(id="forms")
 	private WebElement formModule;
-	
+
 	@FindBy(id="searchText")
 	private WebElement formSearch;
-	
+
 	@FindBy(xpath="//li[@id='logout_id']/ul/li")
 	private List<WebElement> logoutBtn;
-	
+
 	@FindBy(xpath="//h3[@class='list-title']")
 	private WebElement formName;
-	
+
 	public Forms(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -112,76 +118,74 @@ public class Forms extends BaseAutomationPage{
 		waitUntilElementVisible(driver, createOnMyOwn);
 		this.createOnMyOwn.click();
 
-		
+
 		logger.info("End of create form");
 	}
-	
+
 	public String formTitle(String title, String helpText) {
 		logger.info("Starting of formsModuleNavBar method");
-        waitUntilElementVisible(driver, formTitle);
-        formSpecName=title+"_"+getCurrentDateTime();
+		waitUntilElementVisible(driver, formTitle);
+		formSpecName=title+"_"+getCurrentDateTime();
 		formTitle.sendKeys(formSpecName);
 		waitUntilElementVisible(driver, formSpecHelpText);
 		formSpecHelpText.sendKeys(helpText+"_"+getCurrentDateTime());
 		return formSpecName;
-		
-	}
-	
-	public void selectAllFields() throws InterruptedException {
-		logger.info("Starting of select all fields method");
-		
-		List<String> ignoreDatatypes=new ArrayList<String>();
-		ignoreDatatypes.add("Multi Pick List");
-		ignoreDatatypes.add("Multi Select Dropdown");
-		ignoreDatatypes.add("Dropdown");
-		ignoreDatatypes.add("Datespan");
-		ignoreDatatypes.add("DateTimespan");
-		ignoreDatatypes.add("Location diff");
-		ignoreDatatypes.add("Number To Word");
-		ignoreDatatypes.add("Timespan");
-		ignoreDatatypes.add("Repeatable Section");
-		ignoreDatatypes.add("Fields Group");
-		ignoreDatatypes.add("Audio (Read Only)");
-		ignoreDatatypes.add("Document (Read Only)");
-		ignoreDatatypes.add("Image (Read Only)");
-		ignoreDatatypes.add("URL (Read Only)");
-		ignoreDatatypes.add("Video (Read Only)");
-		ignoreDatatypes.add("Location To Address");
-		
-		int count=0;
-		for (int i=0; i<fieldLabels.size();i++) {
-		
-			if(ignoreDatatypes.contains(fieldLabels.get(i).getText())) {
-				continue;
-			}else {
-				hardWait(5);
-				waitUntilElementVisible(driver, fieldLabels.get(i));
-				Actions action=new Actions(driver);
-				waitUntilElementVisible(driver, dropedArea);
-				hardWait(3);
-				action.dragAndDrop(fieldLabels.get(i), dropedArea).perform();
-				scrollDown(100,dropedArea);
-				Thread.sleep(2000);
-				if(count==0){
-					continue;
-				}else{
-					driver.findElement(By.xpath("//input[@id='formFieldSpecs"+count+"_isRequired']")).click();	
-				}
-				count++;		
-			}
 
+	}
+
+	
+	public void selectDataTypes() {
+		logger.info("Starting of selectDataTypes method");
+
+		Set<String> ignoreDatatype=new HashSet<>(Arrays.asList( "Multi Pick List", "Multi Select Dropdown", "Dropdown", "Datespan", "DateTimespan", 
+				"Location diff", "Number To Word", "Timespan", "Repeatable Section", "Fields Group", 
+				"Audio (Read Only)", "Document (Read Only)", "Image (Read Only)", "URL (Read Only)", 
+				"Video (Read Only)", "Location To Address")); // Here these datatype are ignore while creating the spec
+
+		Actions action = new Actions(driver);
+		int count = 1;
+
+
+		for (WebElement fieldLabel : fieldLabels) {
+			String fieldText = fieldLabel.getText();
+			if (ignoreDatatype.contains(fieldText)) {
+				continue;
+			}
+			waitUntilElementVisible(driver, fieldLabel);
+			waitUntilElementVisible(driver, dropedArea);
+			action.dragAndDrop(fieldLabel, dropedArea).perform();
+			hardWait(2);
+			scrollDown(100, dropedArea);
+
+			if (count > 1) {
+				if(fieldText.contains("AutoGenerate") || fieldText.contains("Label") ) {
+					count++;
+					continue;
+				}
+				else {
+					WebElement isRequiredCheckbox = driver.findElement(By.xpath("//input[@id='formFieldSpecs" + count + "_isRequired']"));
+					scrollIntoView(isRequiredCheckbox);
+					waitUntilElementVisible(driver, isRequiredCheckbox);
+					isRequiredCheckbox.click();
+				}
+
+			}
+			count++;
 		}
+
 		waitUntilElementVisible(driver, publishBtn);
 		publishBtn.click();
+
 		waitUntilElementVisible(driver, customerActvitiyNoBtn);
 		customerActvitiyNoBtn.click();
+
 		waitUntilConfiramtionAlert(driver);
 		driver.switchTo().alert().accept();
-		logger.info("Ending of form spec creation");
-		
+
+		logger.info("Ending of selectDataTypes method");
 	}
-	
-	
+
+
 	public String formSpecValidation() {
 		logger.info("Starting of formSpecValidation method");
 		hardWait(2);
@@ -189,8 +193,8 @@ public class Forms extends BaseAutomationPage{
 		logger.info("Starting of formSpecValidation method");
 		return createdFormSpecName;				
 	}
-	
-	
+
+
 	public void formSpecModification() {
 		logger.info("Starting of formSpecModification method");
 		waitUntilElementVisible(driver, this.modifyCard);
@@ -204,10 +208,10 @@ public class Forms extends BaseAutomationPage{
 		driver.switchTo().alert().accept();
 		logger.info("Ending of formSpecModification method");
 	}
-	
+
 	public void withDrawnForm() {
 		logger.info("Starting of withDranForm method");
-        waitUntilElementVisible(driver, goBackFormModule);
+		waitUntilElementVisible(driver, goBackFormModule);
 		goBackFormModule.click();
 		waitUntilElementVisible(driver, this.formSearch);
 		this.formSearch.sendKeys(formSpecName);
@@ -217,8 +221,8 @@ public class Forms extends BaseAutomationPage{
 		driver.switchTo().alert().accept();
 		logger.info("Starting of withDranForm method");
 	}
-	
-	
+
+
 	public void logOut() {
 		logger.info("Starting of Logout method");
 		waitUntilElementVisible(driver, userNameBtn);
@@ -226,7 +230,7 @@ public class Forms extends BaseAutomationPage{
 		if(logoutBtn.get(logoutBtn.size()-1).getText().equalsIgnoreCase("Logout")) {
 			logoutBtn.get(logoutBtn.size()-1).click();
 		}
-	    logger.info("Ending of Logout method");
+		logger.info("Ending of Logout method");
 	}
 
 }

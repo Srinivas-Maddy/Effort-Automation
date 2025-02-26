@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Effort NXT Automation">
 	<parameter name="browser" value="Chrome" />
-	<!--<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />-->
-	<parameter name="siteURL" value="https://secure.spoors.in/effortx/login" />	
-	<parameter name="userName" value="automation@nmail.com"/>
+	<parameter name="siteURL" value="https://staging.spoors.in/effortx/login" />
+<!--	<parameter name="siteURL" value="https://secure.spoors.in/effortx/login" />	
+-->	<parameter name="userName" value="automation@nmail.com"/>
 	<parameter name="password" value="Spoors@321" />
 	
 
@@ -17,6 +17,4 @@
 			<class name="com.effort.nxt.test.employees.EmployeeCreationTest" />
 		</classes>
 	</test>
-
-
 </suite>
