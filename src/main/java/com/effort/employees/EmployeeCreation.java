@@ -507,6 +507,7 @@ public class EmployeeCreation extends BaseAutomationPage {
 
 		try {
 			waitUntilElementVisible(driver, EmpsavedMsg);
+			hardWait(1);
 		} catch (Exception e) {
 			waitUntilElementVisible(driver, EmpsavedMsg);
 		}
@@ -1038,7 +1039,8 @@ public class EmployeeCreation extends BaseAutomationPage {
 		try {
 			if (passwordSentStatus.isDisplayed()) { //validate check password send pop up is displayed or not
 				waitUntilElementVisible(driver, this.passwordSentStatus); 
-				 status=this.passwordSentStatus.getText(); //Get the text from the alert 
+				hardWait(1);
+				status=this.passwordSentStatus.getText(); //Get the text from the alert 
 			}
 		} catch (NoSuchElementException e) {
 			logger.error("Error: Element is not visible : " + e.getMessage(), e);
