@@ -241,7 +241,7 @@ public class EmployeeCreationTest extends BaseAutomationTest{
 		empCreation.clickOnFilter();
 
 		//Step 2: Enter the employee name
-		empCreation.enterEmployeeName("Srinivas Maddy");
+		empCreation.enterEmployeeName(formDataProp.getProperty("employeeNameEMP"));
 		
 		//Step 3: Click On Apply Filter Btn
 		empCreation.clickOnApply();
