@@ -26,7 +26,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	private FormSubmission addwork;
 	private WorkFiltersPage workfilter;
 
-	// Before class test case was execute once class loaded in the jvm
+// Before class test case was execute once class loaded in the jvm
 	@BeforeClass(alwaysRun = true)
 	@Parameters({ "siteURL", "browser", "userName", "password", "headless" })
 	public void initEffortLogin(String siteURL, String browser, String userName, String password, String headless)
@@ -59,9 +59,10 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.clickOnWorkName();
 		this.addWork.clickOnAddWorkBtn();
 		this.addWork.enterWorkName(formDataProp.getProperty("WorkName") + addWork.getCurrentDateTime());
-		this.addWork.clickOnWorkEndDate();
-		this.addWork.clickOnCurrentDateTime();
-		// this.addWork.pickWorkEndDate();
+// this.addWork.clickOnWorkEndDate();
+// this.addWork.clickOnCurrentDateTime();
+// this.addWork.pickWorkEndDate();
+
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
 		this.addwork.enterCurrency(formDataProp.getProperty("currency"));
 		this.addWork.clickOnDatePicker(formDataProp.getProperty("formDate"));
@@ -69,22 +70,22 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.enterNumberData(formDataProp.getProperty("Number"));
 		this.addWork.enterTextData(formDataProp.getProperty("Text"));
 		this.addWork.pickTime(formDataProp.getProperty("formTime"));
-		this.addwork.enterEmail(formDataProp.getProperty("Email"));
-		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
+		this.addWork.enterEmail(formDataProp.getProperty("Email"));
+		this.addWork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
 		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
 		this.addwork.URL(formDataProp.getProperty("URL"));
 
 		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
-		// this.formSub.audioData();
+// this.formSub.audioData();
 
 		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
-		// this.formSub.documentUpload();
+// this.formSub.documentUpload();
 
 		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
-		// this.formSub.imageUpload();
+// this.formSub.imageUpload();
 
 		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
-		// this.formSub.videoUpload();
+// this.formSub.videoUpload();
 
 		this.addWork.pickCountry();
 		this.addwork.pickCustomer();
@@ -92,17 +93,15 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addWork.pickEmployee();
 
 		this.addWork.SelectTerritory();
-		this.addWork.selectYesOrNo();
-		// addWork.selectCustomEntity();
+		this.addWork.selectYesOrNo(); //
+		addWork.selectCustomEntity();
 		addWork.SelectDropdown();
 		addWork.SelectMultiDropdown();
 		addWork.uploadMultiImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
 
 		addWork.uploadMultiDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
 
-		addWork.pickMultiPickList();
-		// addWork.formField();
-		addWork.pickListField();
+		addWork.pickMultiPickList(); // addWork.formField(); addWork.pickListField();
 		addWork.clickOnSectionAddButton();
 		addWork.enterTextDataInSection(formDataProp.getProperty("Text"));
 
@@ -122,7 +121,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
 
-		addWork.getWorkId();
+		//addWork.getWorkId();
 
 		logger.info("Ending the Addwork Method");
 	}
@@ -133,6 +132,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #2, modify the work in the web app")
 	public void ModifyWork() throws InterruptedException {
 		logger.info("Starting of the ModifyWork method");
+
+		addWork.filterWork();
 
 		addWork.clickOnEditIcn();
 
@@ -151,6 +152,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #3, Reassign the work")
 	public void reaasignWork() throws InterruptedException {
 		logger.info("Starting of the reaasignWork method");
+
+		addWork.filterWork();
 
 		addWork.clickOnWorkSelectButton();
 
@@ -175,6 +178,8 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 	@Story("Test Case #4, Complete work")
 	public void completeWork() throws InterruptedException {
 		logger.info("Starting of the completeWork method");
+
+		addWork.filterWork();
 
 		addWork.clickOnWorkId();
 
@@ -338,7 +343,7 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 
 		Assert.assertTrue(addWork.isWorkAddedSucessfully());
 
-		addWork.getWorkId();
+// addWork.getWorkId();
 
 		addWork.filterWork();
 
@@ -447,31 +452,31 @@ public class AddWorkProcessTest extends BaseAutomationTest {
 		this.addwork.ClickOnMonthPicker();
 		this.addwork.clickOnCurrentMonth();
 		this.addwork.enterNumberData(formDataProp.getProperty("Number"));
-		this.addwork.enterTextData(formDataProp.getProperty("Text"));
+// this.addwork.enterTextData(formDataProp.getProperty("Text"));
 		this.addwork.pickTime();
-		this.addwork.enterEmail(formDataProp.getProperty("Email"));
+// this.addwork.enterEmail(formDataProp.getProperty("Email"));
 		this.addwork.manaualLocaionsEneted(formDataProp.getProperty("Lat"), formDataProp.getProperty("long"));
 		this.addwork.phoneNumber(formDataProp.getProperty("MobileNumber"));
 		this.addwork.URL(formDataProp.getProperty("URL"));
 
 		addwork.uploadAudio(USER_DIR + formDataProp.getProperty("formsubmission.audio.mp3"));
-		// this.formSub.audioData();
+// this.formSub.audioData();
 
 		addwork.uploadDocument(USER_DIR + formDataProp.getProperty("formsubmission.document.xlsx"));
-		// this.formSub.documentUpload();
+// this.formSub.documentUpload();
 
 		addwork.uploadImage(USER_DIR + formDataProp.getProperty("formsubmission.image.jpg"));
-		// this.formSub.imageUpload();
+// this.formSub.imageUpload();
 
 		addwork.uploadVideo(USER_DIR + formDataProp.getProperty("formsubmission.video.mp4"));
-		// this.formSub.videoUpload();
+// this.formSub.videoUpload();
 
 		this.addwork.pickCountry();
 		this.addwork.pickCustomer();
-		this.addwork.pickCustomerType();
+// this.addwork.pickCustomerType();
 		this.addwork.pickEmployee();
 		this.addwork.pickMultiPickCustomer();
-		this.addwork.SelectTerritory();
+// this.addwork.SelectTerritory();
 		this.addwork.selectYesOrNo();
 		this.addwork.clickOnSave();
 

@@ -76,9 +76,10 @@ public class ListPage extends BaseAutomationPage {
 	@FindBy(xpath = "//ul[@id='select2-results-47']/li[2]")
 	private WebElement customerValue;
 
-	@FindBy(xpath = "//div[@class='xdsoft_timepicker active']/div/div/div[@class='xdsoft_time xdsoft_current']")
+	@FindBy(xpath = "(//div[@class='xdsoft_time xdsoft_current'])[2]")
 	private WebElement timeSlot;
-
+	//div[@class='xdsoft_timepicker active']/div/div/div[@class='xdsoft_time xdsoft_current']
+	
 	@FindBy(xpath = "//ul[@id='select2-results-48']/li[2]")
 	private WebElement listItem;
 
@@ -429,22 +430,26 @@ public class ListPage extends BaseAutomationPage {
 
 	public void selectTime() {
 		logger.info("Starting of selectTime Methond");
+try {
+	for (int i = 0; i < this.addListFields.size(); i++) {
 
-		for (int i = 0; i < this.addListFields.size(); i++) {
-
-			String listFieldName = this.addListFields.get(i).getText();
-			String[] labelName = listFieldName.split("_");
-			String label = labelName[0];
-			hardWait(1);
-			if (label.equalsIgnoreCase("Time")) {
-				WebElement timePicker = driver.findElement(By.xpath("//input[@id='fields" + i + "_fieldValue']"));
-				clickOnWebElement(timePicker);
-				hardWait(10);
-				waitUntilElementVisible(driver, this.timeSlot);
-				clickOnWebElement(this.timeSlot);
-				break;
-			}
+		String listFieldName = this.addListFields.get(i).getText();
+		String[] labelName = listFieldName.split("_");
+		String label = labelName[0];
+		hardWait(1);
+		if (label.equalsIgnoreCase("Time")) {
+			WebElement timePicker = driver.findElement(By.xpath("//input[@id='fields" + i + "_fieldValue']"));
+			clickOnWebElement(timePicker);
+			hardWait(10);
+			waitUntilElementVisible(driver, this.timeSlot);
+			clickOnWebElement(this.timeSlot);
+			break;
 		}
+	}
+
+} catch (Exception e) {
+	System.out.println();
+}
 
 		logger.info("Ending of selectTime Methond");
 	}

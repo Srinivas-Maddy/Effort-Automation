@@ -1,4 +1,3 @@
-
 package com.effort.works;
 
 import java.util.List;
@@ -93,6 +92,15 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 	@FindBy(id = "fields9_fieldValue")
 	private WebElement timeField;
+
+	@FindBy(id = "fields10_fieldValue")
+	private WebElement emailField;
+
+	@FindBy(xpath = "//input[@id='fields11_fieldValue']//following-sibling::input")
+	private WebElement latInputField;
+
+	@FindBy(xpath = "//input[@id='fields11_fieldValue']//following-sibling::input//following-sibling::input")
+	private WebElement longInputField;
 
 	@FindBy(id = "s2id_fields18_fieldValue")
 	private WebElement countryDropdown;
@@ -435,6 +443,20 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Ending of enterTextData method");
 	}
 
+	public void enterEmail(String email) {
+		logger.info("Starting of enter Email method");
+		waitUntilElementVisible(driver, this.emailField);
+		this.emailField.sendKeys(email);
+		logger.info("Ending of enter Email method");
+	}
+
+	public void manaualLocaionsEneted(String lat, String longitube) {
+		logger.info("Starting of manaualLocaionsEneted method");
+		this.latInputField.sendKeys(lat);
+		this.longInputField.sendKeys(longitube);
+		logger.info("Ending of manaualLocaionsEneted method");
+	}
+
 	public void pickCountry() {
 		logger.info("Starting of pickCountry method");
 
@@ -770,10 +792,20 @@ public class AddWorkProcess extends BaseAutomationPage {
 		try {
 			waitUntilElementVisible(driver, this.saveBtn);
 			this.saveBtn.click();
+			// hardWait(2);
+			try {
+				if (!workNamefield.isDisplayed()) {
+					return;
+				}
+			} catch (Exception e) {
+				return;
+			}
 // Process Conflict Alert Handling
 			try {
 				waitUntilElementVisible(driver, this.btnProcessAnyway);
 				this.btnProcessAnyway.click();
+				return;
+
 			} catch (Exception e1) {
 				logger.info("Process Anyway Btn is not visible");
 			}
@@ -785,10 +817,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 				if (this.acceptBtn.isDisplayed()) {
 					this.acceptBtn.click();
 				}
+				return;
 			} catch (Exception e2) {
 				logger.info("On Leave Alert was not displayed");
 			}
-
 		} catch (Exception e) {
 			System.out.println("Work Not Saved ");
 		}
@@ -849,10 +881,13 @@ public class AddWorkProcess extends BaseAutomationPage {
 		boolean isWorkAddedSucessfully = false;
 
 		try {
-
+			hardWait(2);
 			if (workCreatedSucessfullyText.isDisplayed()) {
 
 				isWorkAddedSucessfully = true;
+
+				String IDWork = workCreatedSucessfullyText.getText();
+				workID = IDWork.substring(8, 16);
 
 			}
 		} catch (Exception e) {
@@ -1183,8 +1218,15 @@ public class AddWorkProcess extends BaseAutomationPage {
 		logger.info("Starting of clickOnAttachmentViewButton method");
 
 		scrollIntoView(addWorkAttachement);
+		try {
+			clickUsingActionClass(workAttachmentTgl);
 
-		clickUsingActionClass(workAttachmentTgl);
+			scrollIntoView(AttachedWork);
+			waitUntilElementVisible(driver, AttachedWork);
+
+		} catch (Exception e) {
+			clickOnWebElement(workAttachmentTgl);
+		}
 
 		hardWait(3);
 
@@ -1230,10 +1272,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(yetToStartCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1246,7 +1288,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				isYetToStartCountDisplayed = true;
 			}
@@ -1271,10 +1313,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(unAssignedCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1287,7 +1329,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				isUnassignedCountDisplayed = true;
 			}
@@ -1314,10 +1356,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(rejectedCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1330,7 +1372,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				isRejectedCountDisplayed = true;
 			}
@@ -1356,10 +1398,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(inProgressWorkCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1372,7 +1414,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				isInProgressCountDisplayed = true;
 			}
@@ -1399,10 +1441,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(completedCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1415,7 +1457,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				isCompletedCountDisplayed = true;
 			}
@@ -1441,10 +1483,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(yoursCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1457,7 +1499,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart) && yoursToggleBtn.isSelected()) {
 				isYoursCountDisplayed = true;
 			}
@@ -1483,10 +1525,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(teamsCount_card);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1499,7 +1541,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart) && teamsToggleBtn.isSelected()) {
 				isTeamCountDisplayed = true;
 			}
@@ -1528,10 +1570,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(pendingCount);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1544,7 +1586,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				ispendingCountDisplayed = true;
 			}
@@ -1570,10 +1612,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(actionableCount);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1586,7 +1628,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart) && yoursToggleBtn.isSelected()) {
 				actionableCountDisplayed = true;
 			}
@@ -1613,10 +1655,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(teamActionableCount);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1629,7 +1671,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart) && teamsToggleBtn.isSelected()) {
 				teamActionableCountDisplayed = true;
 			}
@@ -1655,10 +1697,10 @@ public class AddWorkProcess extends BaseAutomationPage {
 		if (number > 0) {
 
 			clickOnWebElement(updatedTodayCount);
-			/////////////////
+/////////////////
 			hardWait(3);
 			String worksCountText = totalWorks_txt.getText();
-			// int length = worksCountText.length();
+// int length = worksCountText.length();
 			String text;
 
 			if (number < 10) {
@@ -1671,7 +1713,7 @@ public class AddWorkProcess extends BaseAutomationPage {
 
 			String totalCust = text.trim();
 			hardWait(3);
-			// totalCustomersText.substring(4);
+// totalCustomersText.substring(4);
 			if (totalCust.equalsIgnoreCase(yetToStart)) {
 				updatedTodayCountDisplayed = true;
 			}
