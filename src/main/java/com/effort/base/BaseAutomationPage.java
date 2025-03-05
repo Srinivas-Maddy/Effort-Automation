@@ -65,8 +65,9 @@ public class BaseAutomationPage {
 		conditions.selectByValue(value);
 
 		logger.info("Ending of selectDropdown method");
-
 	}
+	
+	
 
 	public void scrollDown(int scroll, WebElement element) {
 		logger.info("Starting of scrollDown method");

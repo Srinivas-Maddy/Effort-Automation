@@ -315,13 +315,13 @@ public class CustomerPage extends BaseAutomationPage {
 	@FindBy(xpath = "//h5[text()='Total Visits Today']/following-sibling::button")
 	private WebElement closeIconOnTotalVisitsToday;
 
-	@FindBy(xpath = "//button[@id='addItems']/ancestor::li/following-sibling::li//a[contains(text(),'Activity Snapshot')]//i")
+	@FindBy(xpath = "//a[contains(text(),' Activity Snapshot')]")
 	private WebElement activitySnapshot_btn;
 
 	@FindBy(id = "plannedDetails")
 	private WebElement plannedCustomers_txt;
 
-	@FindBy(xpath = "//h5[text()='Planned Customers']/parent::div/following-sibling::div//tbody//tr")
+	@FindBy(xpath = "//div[@class='table-responsive']/table/tbody/tr")
 	private List<WebElement> plannedCustomers_size;
 
 	// h5[text()='Planned
@@ -362,6 +362,29 @@ public class CustomerPage extends BaseAutomationPage {
 
 	@FindBy(id = "customerActivitiesAverageInfo")
 	private WebElement averageOfActivities_txt;
+	
+	@FindBy(xpath="//a[@class='btn btn-default-2-1']")
+	private WebElement allCustomerBtn;
+	
+	@FindBy(xpath="//table[@id='example']/tbody/tr[1]/td[2]/div/span/button/i")
+	private WebElement threeDotFirstCustomer;
+	
+	@FindBy(xpath="(//img[@title='Customer List Mapping'])[1]")
+	private WebElement customeListMapBtn;
+	
+	@FindBy(xpath="(//div[@id='entityIds_display']/div/div/div/select)[1]/option[1]")
+	private WebElement selectListValues;
+	
+	@FindBy(xpath="(//div[@class='col-md-2 center-block']/button)[2]/span")
+	private WebElement moveRigthArrow;
+	
+	@FindBy(xpath="//div[@class='sticky']/span")
+	private WebElement invAlert;
+	
+	@FindBy(xpath="//input[@value='Save']")
+	private WebElement saveBtn;
+
+	
 
 	public CustomerPage(WebDriver driver) {
 		super(driver);
@@ -1331,10 +1354,8 @@ public class CustomerPage extends BaseAutomationPage {
 	public void clickOnActivitySnapshotButton() {
 		logger.info("Starting of clickOnActivitySnapshotButton Method");
 
-		clickUsingActionClass(activitySnapshot_btn);
-
-		this.hardWait(3);
-		// switchToNewWindow(0);
+		clickOnWebElement(this.activitySnapshot_btn);
+		this.hardWait(5);
 
 		logger.info("Ending of clickOnActivitySnapshotButton Method");
 
@@ -1463,7 +1484,60 @@ public class CustomerPage extends BaseAutomationPage {
 		return isFormActivitiesCountDisplayed;
 
 	}
+	
+	
+	public void clickOnAllCustomerBtn() {
+		logger.info("Starting of clickOnAllCustomerBtn Method");
+		
+		waitUntilElementVisible(driver, this.allCustomerBtn);
+		clickOnWebElement(this.allCustomerBtn);
+		
+		logger.info("Ending of clickOnAllCustomerBtn Method");
+	}
+	
+	public void clickOnThreeDots() {
+		logger.info("Starting of clickOnThreeDots Method");
+		
+		waitUntilElementVisible(driver, this.threeDotFirstCustomer);
+		scrollIntoView(this.threeDotFirstCustomer);
+		clickOnWebElement(this.threeDotFirstCustomer);
+		
+		logger.info("Ending of clickOnThreeDots Method");
+	}
 
+	public void clickOnCustomerListMapOption() {
+		logger.info("Starting of clickOnCustomerListMapOption Method");
+		
+		waitUntilElementVisible(driver, this.customeListMapBtn);
+		clickOnWebElement(this.customeListMapBtn);
+		
+		logger.info("Ending of clickOnCustomerListMapOption Method");
+	}
+	
+	public void selectListValues() {
+		logger.info("Starting of selectListValues Method");
+		
+		waitUntilElementVisible(driver, this.selectListValues);
+		clickOnWebElement(this.selectListValues);
+		hardWait(1);
+		waitUntilElementVisible(driver, this.moveRigthArrow);
+		clickOnWebElement(this.moveRigthArrow);
+		
+		logger.info("Ending of selectListValues Method");
+	}
+	
+	public void clickOnSaveListMapping() {
+		logger.info("Starting of clickOnSaveListMapping Method");
+		
+		waitUntilElementVisible(driver, this.invAlert);
+		this.invAlert.click();
+		waitUntilElementVisible(driver, this.saveBtn);
+		clickOnWebElement(this.saveBtn);
+		acceptSystemAlert();
+		
+		logger.info("Ending of clickOnSaveListMapping Method");
+	}
+	
 	public void LogOut() {
 		logger.info("Starting of LogOut Method");
 		hardWait(3);

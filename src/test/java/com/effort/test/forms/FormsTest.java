@@ -90,15 +90,7 @@ public class FormsTest extends BaseAutomationTest{
 		logger.info("Ending of formSpecCreation Method");		
 	}
 	
-	
-	
-	
-//	@AfterClass(alwaysRun = true)
-//	public void logOutForm() {
-//		logger.info("Starting of Log-out Method");
-//		forms.logOut();	
-//		logger.info("Ending of log-out Method");
-//	}
+
 	
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {

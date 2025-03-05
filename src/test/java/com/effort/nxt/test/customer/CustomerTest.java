@@ -195,6 +195,31 @@ public class CustomerTest extends BaseAutomationTest {
 
 		logger.info("Ending of activitySnapShotValidation Method");
 	}
+	
+	@Test(priority=7, description="Validating the customer list mapping", groups="santiy")
+	@Description("Customer List Mapping")
+	@Severity(SeverityLevel.BLOCKER)
+	@Story("Customer Module List Mapping")
+	public void customerListMapping() {
+		logger.info("Starting of the customerListMapping method");
+		
+		//Step 1: Click on the All customer button
+		custmrCreation.clickOnAllCustomerBtn();
+		
+		//Step 2: Click on three dots in actions
+		custmrCreation.clickOnThreeDots();
+		
+		//Step 3: Click on Customer list mapping option
+		custmrCreation.clickOnCustomerListMapOption();
+		
+		//Step 4: Click on the move right side
+		custmrCreation.selectListValues();
+		
+		//Step 5: Click on Save
+		custmrCreation.clickOnSaveListMapping();
+		
+		logger.info("Ending of the customerListMapping method");
+	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitDriver() {
